@@ -1,0 +1,464 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Guest Installation &#8212; fortrace  documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Installation of Service VM" href="service_vm.html" />
+    <link rel="prev" title="Host Installation" href="host.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <span class="target" id="guestinstall"></span><div class="section" id="guest-installation">
+<h1>Guest Installation<a class="headerlink" href="#guest-installation" title="Permalink to this headline">¶</a></h1>
+<p>Similarly to the installation of the host component described in <a class="reference internal" href="host.html#hostinstall"><span class="std std-ref">Host Installation</span></a>, the guest can be installed
+both automatically via a set of scripts or manually. A major difference in the installation is the OS of the guest
+component. While a similar approach to the host installation can be taken if Ubuntu is chosen as a guest platform,
+an installation of a Windows 10 guest requires some additional work. Similar to the host installation, it is recommended
+to check <a class="reference internal" href="config.html#config"><span class="std std-ref">Configuration of installation options</span></a> for any needed adjustments <strong>before</strong> starting one of the automated install scripts.</p>
+<div class="section" id="windows-10-guest">
+<h2>Windows 10 Guest<a class="headerlink" href="#windows-10-guest" title="Permalink to this headline">¶</a></h2>
+<p>The first step in creating your virtual Windows 10 guest is creating the virtual machine. To do this, you will need to
+obtain a Windows 10 image. We recommend downloading an ISO-file from an official source.</p>
+<p>Next, you need to set up the virtual machine.
+While this can be done via the graphical interface of the <strong>virt-manager</strong>, we recommend running the <strong>win10install.sh</strong>
+install script found in the <strong>install_tools</strong> folder</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo ./win10install.sh path/to/isofile
+</pre></div>
+</div>
+<p>or simply copying the command seen below:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"> $</span> virt-install --name windows-template <span class="se">\</span>
+  --ram <span class="m">4096</span> <span class="se">\</span>
+  --vcpus <span class="nv">sockets</span><span class="o">=</span><span class="m">1</span>,cores<span class="o">=</span><span class="m">2</span>,threads<span class="o">=</span><span class="m">1</span> <span class="se">\</span>
+  --disk <span class="nv">pool</span><span class="o">=</span>fortrace-pool,bus<span class="o">=</span>sata,size<span class="o">=</span><span class="m">40</span>,format<span class="o">=</span>qcow2 <span class="se">\</span>
+  --cdrom /home/fortrace/Win10_1903_V1_German_x64.iso <span class="se">\</span>
+  --network <span class="nv">network</span><span class="o">=</span>public <span class="se">\</span>
+  --network <span class="nv">network</span><span class="o">=</span>private <span class="se">\</span>
+  --graphics spice,listen<span class="o">=</span><span class="m">0</span>.0.0.0 <span class="se">\</span>
+  --noautoconsole <span class="se">\</span>
+  -v
+
+<span class="gp">$</span> sudo chown <span class="o">[</span>user<span class="o">]</span> <span class="o">[</span>path-to-pool<span class="o">]</span>windows-template.qcow2
+</pre></div>
+</div>
+<p>Either method would require you to adapt the <strong>–cdrom</strong> parameter with the correct path and name of your installation
+medium. You might also want to change <strong>–ram</strong>, <strong>disk space (size)</strong> or <strong>–vcpus</strong> depending on your available resources. When starting the
+virtual machine, make sure to name your primary user <strong>fortrace</strong>. Additionally, it is important <strong>not</strong> to set a password
+when first starting the guest component. Otherwise, fortrace will be unable to log into the default chosen user. If, for any
+reason the auto login does not work with your Windows 10 guest component,
+<a class="reference external" href="https://support.microsoft.com/en-us/help/324737/how-to-turn-on-automatic-logon-in-windows">this link</a> should guide you
+through the process of (re-)enabling auto login.</p>
+<div class="section" id="windows-installation-automated">
+<h3>Windows installation - automated<a class="headerlink" href="#windows-installation-automated" title="Permalink to this headline">¶</a></h3>
+<p>While most of the installation of the Windows guest can be automated, a few steps have to be done manually.</p>
+<p>First and foremost, fortrace has to be downloaded and moved or copied to your desktop.
+It can be found <a class="reference external" href="https://github.com/dasec/fortrace">here</a>.</p>
+<p>Next, you simply have to run <strong>install.bat</strong> with admin privileges. It is located in the <strong>install_tools</strong> folder. This will install two .msi files
+located in the same folder.</p>
+<p>The following steps are included in the <strong>install.bat</strong> and are only mentioned for transparency.</p>
+<blockquote>
+<div><p>The first is Python 2.7 and can be <a class="reference external" href="https://www.python.org/ftp/python/2.7.17/python-2.7.17.amd64.msi">downloaded here</a> in case it is missing.</p>
+<p>If you need to install pip in case the automatic installation skips it, download the <a class="reference external" href="https://bootstrap.pypa.io/get-pip.py">get-pip.py script here</a>
+and run the following command in your command line:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">C:\Users\user\fortrace\Downloads&gt; python get-pip.py</span>
+</pre></div>
+</div>
+<p>The second msi file ist the Visual C++ Compiler for Python 2.7. The compiler can be downloaded directly
+from
+<a class="reference external" href="https://download.microsoft.com/download/7/9/6/796EF2E4-801B-4FC4-AB28-B59FBF6D907B/VCForPython27.msi">Microsoft’s web presence</a>.</p>
+<p>After all of the presetup is done, fortrace is installed using the following command:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">C:\Users\user\fortrace\Desktop\fortrace&gt; python setup.py install</span>
+</pre></div>
+</div>
+<p>Generally, this should be done by the executed pre_setup.py script.</p>
+<p>The final step manipulates the Windows Task Scheduler to run <strong>startGuestAgent.bat</strong>, which in turn
+will start the <strong>guestAgent.py</strong> script, both located in <strong>guest_tools</strong>. This script manages the communication between
+your host and guest instances. This is handled by the following line in the pre_setup.py script:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">prepCmd</span> <span class="o">=</span> <span class="s2">&quot;schtasks /create /sc ONLOGON /tn fortrace /tr %HOMEPATH%\Desktop\fortrace\guest_tools\startGuestAgent.bat /f&quot;</span>
+<span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">prepCmd</span><span class="o">.</span><span class="n">split</span><span class="p">(),</span> <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In case the command above is not executed or does not create the task as expected, please follow the instructions in the Windows manual instructions section
+below.</p>
+</div></blockquote>
+<p>Next, you will want to install all applications used to generate traffic. Both Firefox and Thunderbird are the default
+mail and browsing applications used by fortrace.</p>
+</div>
+<div class="section" id="windows-installation-manual">
+<h3>Windows installation - manual<a class="headerlink" href="#windows-installation-manual" title="Permalink to this headline">¶</a></h3>
+<p>Your first step in a manual installation of a Windows guest template should also be to download fortrace from
+<a class="reference external" href="https://github.com/dasec/fortrace">the repository</a> and the folder to your desktop.</p>
+<p>Next, you will need to download and install a few prerequisites before being able to install python packages and fortrace itself.</p>
+<p>The first is Python 2.7 and can be <a class="reference external" href="https://www.python.org/ftp/python/2.7.17/python-2.7.17.amd64.msi">found here</a>.
+During installation, make sure Python is added to PATH and pip is installed alongside Python.</p>
+<img alt="../_images/pythonpathandpip.PNG" src="../_images/pythonpathandpip.PNG" />
+<p>These options should be turned on by default. If needed, both options can be performed after the actual installation.</p>
+<p>A useful, short guide on how to add Python to your PATH can be found <a class="reference external" href="https://geek-university.com/python/add-python-to-the-windows-path/">on this website</a>.</p>
+<p>If you need to install pip after the fact, download the <a class="reference external" href="https://bootstrap.pypa.io/get-pip.py">get-pip.py script here</a>
+and run the following command in your command line:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">C:\Users\user\fortrace\Downloads&gt; python get-pip.py</span>
+</pre></div>
+</div>
+<p>Furthermore, you will need to install the Visual C++ Compiler for Python 2.7. The compiler can be downloaded directly
+from
+<a class="reference external" href="https://download.microsoft.com/download/7/9/6/796EF2E4-801B-4FC4-AB28-B59FBF6D907B/VCForPython27.msi">Microsoft’s web presence</a>.</p>
+<p>Next, you will want to install all applications used to generate traffic. Both Firefox and Thunderbird are the default
+mail and browsing applications used by fortrace. Finally, you will need to install the required python modules. If you have
+installed Python as recommended above, you will simply be able to use the <strong>pip install</strong> command to install the following
+packages:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">C:\Users\user\fortrace\Desktop&gt; pip install -U pywinauto==0.6.0</span>
+<span class="go">C:\Users\user\fortrace\Desktop&gt; pip install -U pywin32</span>
+<span class="go">C:\Users\user\fortrace\Desktop&gt; pip install -U setuptools</span>
+<span class="go">C:\Users\user\fortrace\Desktop&gt; pip install -U selenium</span>
+<span class="go">C:\Users\user\fortrace\Desktop&gt; pip install -U marionette_driver</span>
+<span class="go">C:\Users\user\fortrace\Desktop&gt; pip install -U netifaces</span>
+<span class="go">C:\Users\user\fortrace\Desktop&gt; pip install -U psutil</span>
+<span class="go">C:\Users\user\fortrace\Desktop&gt; pip install -U netaddr</span>
+<span class="go">C:\Users\user\fortrace\Desktop&gt; pip install -U enum34</span>
+<span class="go">C:\Users\user\fortrace\Desktop&gt; pip install -U protobuf==2.5.0</span>
+<span class="go">C:\Users\user\fortrace\Desktop&gt; pip install -U mozprofile</span>
+<span class="go">C:\Users\user\fortrace\Desktop&gt; pip install -U mozrunner</span>
+</pre></div>
+</div>
+<p>Now you need to manipulate the Windows Task Scheduler to run <strong>startGuestAgent.bat</strong>, which in turn
+will start the <strong>guestAgent.py</strong> script, both located in <strong>guest_tools</strong>. This script manages the communication between
+your host and guest instances. The following screenshots will guide you through the process of creating the task.</p>
+<ol class="arabic simple">
+<li>Start task scheduler.</li>
+</ol>
+<div class="figure">
+<img alt="Task Scheduler step 1" src="../_images/tasksched1.PNG" />
+</div>
+<ol class="arabic simple" start="2">
+<li>Select create task.</li>
+</ol>
+<div class="figure">
+<img alt="Task Scheduler step 2" src="../_images/tasksched2.PNG" />
+</div>
+<ol class="arabic simple" start="3">
+<li>Select a name for the task. As a precaution, tick the box to execute the task with highest privileges.</li>
+</ol>
+<div class="figure">
+<img alt="Task Scheduler step 3" src="../_images/tasksched3.PNG" />
+</div>
+<ol class="arabic simple" start="4">
+<li>Select the trigger tab, and add a new trigger (on log on, all users).</li>
+</ol>
+<div class="figure">
+<img alt="Task Scheduler step 4" src="../_images/tasksched4.PNG" />
+</div>
+<ol class="arabic simple" start="5">
+<li>Select the actions tab and add a new action by browsing to the fortrace folder located on your desktop. Select the startGuestAgent.bat file.</li>
+</ol>
+<div class="figure">
+<img alt="Task Scheduler step 5" src="../_images/tasksched5.PNG" />
+</div>
+<p>Alternatively, you can move a link of the startGuestAgent.bat script to the autostart folder located in <strong>C:/Users/fortrace/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup</strong>.</p>
+<p>The only thing left to do to make this Windows guest template operational is to install fortrace.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">C:\Users\user\fortrace\Desktop&gt; python setup.py install</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="ubuntu-guest">
+<h2>Ubuntu Guest<a class="headerlink" href="#ubuntu-guest" title="Permalink to this headline">¶</a></h2>
+<p>The first step in creating your virtual Ubuntu guest is creating the virtual machine. To do this, you will need to
+obtain a Ubuntu image. We recommend downloading an ISO-file from an official source.</p>
+<p>Although we recommend Ubuntu 19.10, you can use other versions as well - the installation process <em>should</em> remain
+the same.</p>
+<p>Next, you need to set up the virtual machine.
+While this can be done via the graphical interface of the <strong>virt-manager</strong>, we recommend running the <strong>ubuntu19.10install.sh</strong>
+install script found in the <strong>install_tools</strong> folder</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo ./ubuntu19.10install.sh path/to/isofile
+</pre></div>
+</div>
+<p>or simply copying the command seen below:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"> $</span> virt-install --name linux-template <span class="se">\</span>
+  --ram <span class="m">4096</span> <span class="se">\</span>
+  --vcpus <span class="nv">sockets</span><span class="o">=</span><span class="m">1</span>,cores<span class="o">=</span><span class="m">2</span>,threads<span class="o">=</span><span class="m">1</span> <span class="se">\</span>
+  --disk <span class="nv">pool</span><span class="o">=</span>fortrace-pool,bus<span class="o">=</span>sata,size<span class="o">=</span><span class="m">40</span>,format<span class="o">=</span>qcow2 <span class="se">\</span>
+  --cdrom /home/fortrace/ubuntu-19.10-desktop-amd64.iso <span class="se">\</span>
+  --network <span class="nv">network</span><span class="o">=</span>public <span class="se">\</span>
+  --network <span class="nv">network</span><span class="o">=</span>private <span class="se">\</span>
+  --graphics spice,listen<span class="o">=</span><span class="m">0</span>.0.0.0 <span class="se">\</span>
+  --noautoconsole <span class="se">\</span>
+  -v
+
+<span class="gp">$</span> sudo chown <span class="o">[</span>user<span class="o">]</span> <span class="o">[</span>path-to-pool<span class="o">]</span>linux-template.qcow2
+</pre></div>
+</div>
+<p>Either method would require you to adapt the <strong>–cdrom</strong> parameter with the correct path and name of your installation
+medium. You might also want to change <strong>–ram</strong> or <strong>–vcpus</strong> depending on your available resources. When starting the
+virtual machine, make sure to name your primary user <strong>fortrace</strong>. During your initial setup, you will be asked for your
+user credentials. On this screen, it is important to choose the option <strong>Log in automatically</strong>. This is required for
+fortrace, so no manual user inputs are needed on the guest side when synthesizing traffic. If your auto login does not
+work, <a class="reference external" href="https://help.ubuntu.com/stable/ubuntu-help/user-autologin.html.en">this guide</a> will help you activate it after
+setting up your host machine.</p>
+<p>Once you are able to start the virtual machine and the OS has been installed and initialized, you should eject the installation medium.</p>
+<div class="section" id="ubuntu-installation-automated">
+<h3>Ubuntu installation - automated<a class="headerlink" href="#ubuntu-installation-automated" title="Permalink to this headline">¶</a></h3>
+<p>The automated installation for a guest running Ubuntu is similar to the installation of the host machine described in
+<a class="reference internal" href="host.html#hostinstall"><span class="std std-ref">Host Installation</span></a>.</p>
+<p>First and foremost, fortrace has to be downloaded and moved or copied to your desktop.
+It can be found <a class="reference external" href="https://github.com/dasec/fortrace">here</a>.</p>
+<p>Next, you will want to install all applications used to generate traffic. Both Firefox and Thunderbird are the default
+mail and browsing applications used by fortrace.</p>
+<p>After fortrace has been downloaded and your traffic generating application have been installed, simply navigate into <strong>install_tools</strong> and run <strong>linux_installation.sh</strong> and choose the option
+for the guest installation. You will be asked to enter your password as root privileges are required for parts of the installation. Do not execute the entire script
+as root (with sudo).</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> ./linux_installation.sh
+<span class="go">Please choose if this installation is host (h) or guest (g) side installation:</span>
+<span class="go">Selection: g</span>
+<span class="go">...</span>
+</pre></div>
+</div>
+<p>This will install Python and then run the <strong>pre_setup.py</strong> with the <strong>vm</strong> parameter to start installing all
+necessary python modules. You can also start this script by hand if you choose to do so, although it would
+require a manual installation of Python beforehand.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo python pre_setup.py vm
+</pre></div>
+</div>
+<p>This script also creates the <strong>~/.config/autostart</strong> folder and places the script <strong>agent.desktop</strong> inside. This script
+ensures that <strong>guestAgent.py</strong> from the <strong>guest_tools</strong> folder is called on system boot to facilitate communication
+between guest and host.</p>
+<p>After installing all necessary Python modules, you just have to install fortrace to complete the installation process. To do
+so, navigate into the main directory you copied to your desktop and run the following:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> python setup.py install --user
+</pre></div>
+</div>
+</div>
+<div class="section" id="ubuntu-installation-manual">
+<h3>Ubuntu installation - manual<a class="headerlink" href="#ubuntu-installation-manual" title="Permalink to this headline">¶</a></h3>
+<p>First and foremost, fortrace has to be downloaded and moved or copied to your desktop.
+It can be found <a class="reference external" href="https://github.com/dasec/fortrace">here</a>.</p>
+<p>Next, you will want to install all applications used to generate traffic. Both Firefox and Thunderbird are the default
+mail and browsing applications used by fortrace.</p>
+<p>After fortrace has been downloaded and your traffic generating application have been installed, you need to install a few
+packages and Python modules. First, install the Python and Python-Pip packages.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt install python
+<span class="gp">$</span> sudo apt install python-pip
+</pre></div>
+</div>
+<p>Make sure the default Python version is a variation of 2.7</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> python -V
+</pre></div>
+</div>
+<p>If this command returns a Python version higher than 2.7, refer to <a class="reference internal" href="host.html#hostinstall"><span class="std std-ref">Host Installation</span></a> for a guide on how to
+change the default Python version.</p>
+<p>Next, you will need to install the required Python modules. Simply use the <strong>pip install -U</strong> commands listed below.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> pip install -U <span class="nv">pywinauto</span><span class="o">==</span><span class="m">0</span>.6.0
+<span class="gp">$</span> pip install -U pywin32
+<span class="gp">$</span> pip install -U setuptools
+<span class="gp">$</span> pip install -U selenium
+<span class="gp">$</span> pip install -U marionette_driver
+<span class="gp">$</span> pip install -U netifaces
+<span class="gp">$</span> pip install -U psutil
+<span class="gp">$</span> pip install -U netaddr
+<span class="gp">$</span> pip install -U enum34
+<span class="gp">$</span> pip install -U <span class="nv">protobuf</span><span class="o">==</span><span class="m">2</span>.5.0
+<span class="gp">$</span> pip install -U mozprofile
+<span class="gp">$</span> pip install -U mozrunner
+</pre></div>
+</div>
+<p>It is possible, that <strong>netifaces</strong> will require you to install <strong>python-dev</strong>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt install python-dev
+<span class="gp">$</span> pip install -U netiface
+</pre></div>
+</div>
+<p>Additionally, Linux requires an additional package called <strong>LDTP</strong> as well as an enabled accessibility feature in Gnome
+to control and manage window actions:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> wget http://download.freedesktop.org/ldtp/3.x/3.5.x/ldtp-3.5.0.tar.gz
+<span class="gp">$</span> pip install –user ldtp-3.5.0.tar.gz
+<span class="gp">$</span> sudo apt install python-gnome2 python-twisted-web2 python-pyatspi
+<span class="gp">$</span> gsettings <span class="nb">set</span> org.gnome.desktop.interface toolkit-accessibility <span class="nb">true</span>
+</pre></div>
+</div>
+<p>Once you have installed all necessary modules, you need to make sure that <strong>guestAgent.py</strong> located in the directory
+<strong>guest_tools</strong> gets executed automatically when the template or one of its future clones boots. To accomplish this,
+make sure the directory <strong>~/.config/autostart</strong> exists - you might have to create <strong>autostart</strong> manually.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">cd</span> ~/.config
+<span class="gp">$</span> mkdir autostart
+</pre></div>
+</div>
+<p>Use an editor of your choice to create a file in this directory and name it <strong>agent.desktop</strong> (you can choose a
+different name), copy and then paste the following text in it:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">[Desktop Entry]</span>
+<span class="go">Type=Application</span>
+<span class="go">Terminal=false</span>
+<span class="go">Exec=gnome-terminal -e &#39;bash -c &quot;python ~/Desktop/fortrace/guest_tools/guestAgent.py; bash&quot;&#39;</span>
+<span class="go">Hidden=false</span>
+<span class="go">X-GNOME-Autostart-enabled=true</span>
+<span class="go">Name=Startup Script</span>
+<span class="go">Comment=</span>
+</pre></div>
+</div>
+<p>The last step of your presetup will be to install fortrace. Navigate into the main directory you copied to your desktop
+and run:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> python setup.py install --user
+</pre></div>
+</div>
+<div class="section" id="connecting-the-guest-machines-to-the-nfs-server">
+<h4>Connecting the guest machines to the NFS server<a class="headerlink" href="#connecting-the-guest-machines-to-the-nfs-server" title="Permalink to this headline">¶</a></h4>
+<p>On the Ubuntu guest, start by running the following 3 commands:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt update
+<span class="gp">$</span> sudo apt install nfs-common
+<span class="gp">$</span> sudo mkdir /mnt/remotenfs
+</pre></div>
+</div>
+<p>This will install NFS and create a folder that will be used to mount the NFS server. You can choose a different location and name.</p>
+<p>Next, edit your <strong>/etc/fstab</strong> file to include the following line:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">[ip_address]:/var/nfsroot /mnt/remotenfs nfs rw,async,hard,intr,noexec 0 0</span>
+</pre></div>
+</div>
+<p>The ip address can be gathered from the service VM by running <strong>ip addr</strong> in a service VM shell. <strong>var/nfsroot</strong> and <strong>mnt/remotenfs</strong> need to be adapted
+to your choice of remote and local folder locations and names.</p>
+<p>Finally, mount the filesystem:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo mount /mnt/remotenfs
+</pre></div>
+</div>
+<p>On Windows 10, your installation will run differently. We recommend installing the service VM before installing the Windows guest component.</p>
+<p>After installing the service VM, start your Windows template. Open your <strong>Control Panel</strong> and select ‘’Programs and Features**.
+Here, you will have the option to <strong>Turn Windows features on or off</strong> in the sidebar - click it, tick “Services for NFS” in the following
+window and click OK.</p>
+<p>As a next step, you need to enable write permissions for this machine. To do this, you need to open <strong>regedit</strong> and find
+<strong>HKEY_LOCAL_MACHINESOFTWAREMicrosoftClientForNFSCurrentVersionDefault</strong>. Create two new <strong>DWORD</strong> components named <strong>AnonymousUid</strong>
+and <strong>AnonymousGid</strong> and assign the UID and GID values shared by the NFS system.
+Lastly, mount the filesystem by adjusting <strong>mountnfs.bat</strong> with the correct IP address and folder location. If you have already installed the service VM
+or do not mind running <strong>install.bat</strong> a second time, the <strong>mountfs.bat</strong> will be added to the Task Scheduler, mounting the filesystem at launch automatically.</p>
+<p>This method can also be used to connect the NFS server to your host machine.</p>
+</div>
+</div>
+</div>
+<div class="section" id="creating-backups-or-manual-clones-for-guest-templates">
+<h2>Creating backups or manual clones for guest templates<a class="headerlink" href="#creating-backups-or-manual-clones-for-guest-templates" title="Permalink to this headline">¶</a></h2>
+<p>fortrace creates and disposes of clones of the prepared templates automatically, but you might want to create
+a backup of your templates manually. To do so, simply start <strong>virt-manager</strong>, right-click on the template and select <strong>clone</strong>.</p>
+<p>While the method above works for both Windows and Ubuntu, you can create a Ubuntu backup without a graphical interface:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> qemu-img create -f qcow2 -b /media/KVM-Images/ubuntu_template.qcow2 /media/KVM-Images/l-guest01.qcow2
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> virt-clone --connect qemu:///system <span class="se">\</span>
+--preserve-data <span class="sb">`</span><span class="c1">#Do not clone disk image`\</span>
+--original ubuntu_template <span class="se">\</span>
+--name l-guest01 <span class="se">\</span>
+--file /media/KVM-Images/l-guest01.qcow2
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">fortrace</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../architecture/index.html">Architecture of fortrace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture/framework_architecture.html">Framework Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture/generator.html">Generator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture/service_vm.html">Service VM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Installation of fortrace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="config.html">Configuration of installation options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="host.html">Host Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Guest Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#windows-10-guest">Windows 10 Guest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ubuntu-guest">Ubuntu Guest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-backups-or-manual-clones-for-guest-templates">Creating backups or manual clones for guest templates</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="service_vm.html">Installation of Service VM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="firstrun.html">First Run after installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/index.html">Developer reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/functions.html">Functions of fortrace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/implementing.html">Implementation of Scenarios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/implementing.html#implementation-of-new-features">Implementation of new Features</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="host.html" title="previous chapter">Host Installation</a></li>
+      <li>Next: <a href="service_vm.html" title="next chapter">Installation of Service VM</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Thomas Schäfer, Thomas Göbel, Jan Türr.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/installation/guest.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

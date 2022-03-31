@@ -1,0 +1,12 @@
+This directory contains drivers for emulation mouse and keyboard on a linux system.
+These drivers expose their interfaces on the /dev directory.
+The keyboard driver expects scancodes from the XT-keymap.
+Refer: http://kbde.sourceforge.net/kbde/man/kbde.4.html
+The mouse driver expects Mouse Systems mouse scancodes.
+Refer: https://www.kryslix.com/nsfaq/Q.12.html
+
+Set the terminal keymap to de-latin1-nodeadkeys and the xserver keymap to de.
+To install the drivers do a simple make install.
+Make sure that the drivers are loaded before using the fortrace framework's raw device communication.
+You may need to run the DevControlServer as root since you are accessing kernel mode drivers.
+The fortrace framework expects the 'set1-de.conf' file from 'src/fortrace/utility/conf' in '/etc/fortrace' directory on your distro's installation.

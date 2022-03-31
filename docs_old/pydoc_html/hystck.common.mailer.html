@@ -1,0 +1,74 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module fortrace.common.mailer</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="fortrace.html"><font color="#ffffff">fortrace</font></a>.<a href="fortrace.common.html"><font color="#ffffff">common</font></a>.mailer</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:///C:/users/vm/documents/github/fortrace/common/mailer.py">c:\users\vm\documents\github\fortrace\common\mailer.py</a></font></td></tr></table>
+    <p><tt>A&nbsp;webmail&nbsp;api&nbsp;to&nbsp;control&nbsp;thunderbird&nbsp;(host-side).<br>
+&nbsp;<br>
+To&nbsp;control&nbsp;the&nbsp;mail&nbsp;client&nbsp;the&nbsp;following&nbsp;functions&nbsp;are&nbsp;implemented:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;create<br>
+&nbsp;&nbsp;&nbsp;&nbsp;close<br>
+&nbsp;&nbsp;&nbsp;&nbsp;sendMail</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="logging.html">logging</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="__builtin__.html#object">__builtin__.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="fortrace.common.mailer.html#mailer">mailer</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="mailer">class <strong>mailer</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>This&nbsp;class&nbsp;is&nbsp;a&nbsp;remote&nbsp;control&nbsp;on&nbsp;the&nbsp;host-side&nbsp;to&nbsp;control&nbsp;thunderbird&nbsp;running&nbsp;on&nbsp;a&nbsp;vm.&nbsp;For&nbsp;more&nbsp;details&nbsp;to&nbsp;the&nbsp;correspond&nbsp;vm-side&nbsp;moudle&nbsp;look&nbsp;into&nbsp;fortrace.interactionManager.windows.application.mailClient&nbsp;(windows).<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="mailer-__init__"><strong>__init__</strong></a>(self, vmobj, mailer<font color="#909090">='thunderbird'</font>, logger<font color="#909090">=None</font>)</dt><dd><tt>Set&nbsp;default&nbsp;attribute&nbsp;values&nbsp;only.<br>
+@param&nbsp;vmobj:&nbsp;The&nbsp;vm&nbsp;on&nbsp;which&nbsp;this&nbsp;browser&nbsp;is&nbsp;running.<br>
+@param&nbsp;<a href="#mailer">mailer</a>:&nbsp;Programm&nbsp;which&nbsp;is&nbsp;used&nbsp;to&nbsp;send&nbsp;an&nbsp;recieve&nbsp;emails.<br>
+@param&nbsp;logger:&nbsp;Logger&nbsp;name&nbsp;for&nbsp;logging.</tt></dd></dl>
+
+<dl><dt><a name="mailer-close"><strong>close</strong></a>(self)</dt><dd><tt>Sends&nbsp;a&nbsp;command&nbsp;to&nbsp;close&nbsp;Thunderbird&nbsp;on&nbsp;the&nbsp;associated&nbsp;vm.</tt></dd></dl>
+
+<dl><dt><a name="mailer-create"><strong>create</strong></a>(self)</dt><dd><tt>Open&nbsp;Thunderbird.</tt></dd></dl>
+
+<dl><dt><a name="mailer-sendMail"><strong>sendMail</strong></a>(self, receiver, subject, message)</dt><dd><tt>Send&nbsp;an&nbsp;email&nbsp;via&nbsp;the&nbsp;mailClient.<br>
+@param&nbsp;receiver:&nbsp;Receiver&nbsp;for&nbsp;this&nbsp;email.<br>
+@param&nbsp;subject:&nbsp;Subject&nbsp;for&nbsp;this&nbsp;email.<br>
+@param&nbsp;message:&nbsp;Message&nbsp;for&nbsp;this&nbsp;email.</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table>
+</body></html>

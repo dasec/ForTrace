@@ -1,0 +1,85 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module fortrace.interactionManager.windows.application.mailClient</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="fortrace.html"><font color="#ffffff">fortrace</font></a>.<a href="fortrace.interactionManager.html"><font color="#ffffff">interactionManager</font></a>.<a href="fortrace.interactionManager.windows.html"><font color="#ffffff">windows</font></a>.<a href="fortrace.interactionManager.windows.application.html"><font color="#ffffff">application</font></a>.mailClient</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:///C:/users/vm/documents/github/fortrace/interactionmanager/windows/application/mailclient.py">c:\users\vm\documents\github\fortrace\interactionmanager\windows\application\mailclient.py</a></font></td></tr></table>
+    <p><tt>This&nbsp;class&nbsp;contains&nbsp;the&nbsp;<a href="#mailClient">mailClient</a>&nbsp;implementations.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="logging.html">logging</a><br>
+</td><td width="25%" valign=top><a href="popen2.html">popen2</a><br>
+</td><td width="25%" valign=top><a href="time.html">time</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="fortrace.interactionManager.windows.application.mailClient.html#mailClient">mailClient</a>
+</font></dt><dt><font face="helvetica, arial"><a href="fortrace.interactionManager.windows.application.mailClient.html#mailClientManagement">mailClientManagement</a>
+</font></dt></dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="mailClient">class <strong>mailClient</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Class&nbsp;<a href="#mailClient">mailClient</a>:<br>
+&nbsp;<br>
+class&nbsp;attributes<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="mailClient-__init__"><strong>__init__</strong></a>(self, logger, interactionManagerObject, timeout<font color="#909090">=30</font>)</dt></dl>
+
+<dl><dt><a name="mailClient-close"><strong>close</strong></a>(self)</dt><dd><tt>Close&nbsp;one&nbsp;given&nbsp;window&nbsp;by&nbsp;winId</tt></dd></dl>
+
+<dl><dt><a name="mailClient-open"><strong>open</strong></a>(self, winId)</dt><dd><tt>Open&nbsp;the&nbsp;program</tt></dd></dl>
+
+<dl><dt><a name="mailClient-recvMails"><strong>recvMails</strong></a>(self)</dt><dd><tt>dummy&nbsp;function,&nbsp;will&nbsp;later&nbsp;receive&nbsp;mails&nbsp;and&nbsp;sort&nbsp;them&nbsp;into&nbsp;a&nbsp;structure<br>
+which&nbsp;will&nbsp;be&nbsp;send&nbsp;to&nbsp;the&nbsp;host</tt></dd></dl>
+
+<dl><dt><a name="mailClient-sendMail"><strong>sendMail</strong></a>(self, receiver, subject, message)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="mailClientManagement">class <strong>mailClientManagement</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Class&nbsp;<a href="#mailClientManagement">mailClientManagement</a>:<br>
+contain&nbsp;all&nbsp;<a href="#mailClient">mailClient</a>&nbsp;Objects<br>
+receive&nbsp;the&nbsp;commands&nbsp;and&nbsp;execute&nbsp;them<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="mailClientManagement-__init__"><strong>__init__</strong></a>(self, interactionManagerObject, logger<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="mailClientManagement-execute"><strong>execute</strong></a>(self, command)</dt><dd><tt>continue&nbsp;the&nbsp;command&nbsp;execution<br>
+&nbsp;<br>
+supported&nbsp;sub&nbsp;commands:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;open&nbsp;-&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;close&nbsp;-</tt></dd></dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>__warningregistry__</strong> = {('The popen2 module is deprecated.  Use the subprocess module.', &lt;type 'exceptions.DeprecationWarning'&gt;, 12): True}</td></tr></table>
+</body></html>

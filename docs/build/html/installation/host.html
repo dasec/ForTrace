@@ -1,0 +1,366 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Host Installation &#8212; fortrace  documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Guest Installation" href="guest.html" />
+    <link rel="prev" title="Configuration of installation options" href="config.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="host-installation">
+<span id="hostinstall"></span><h1>Host Installation<a class="headerlink" href="#host-installation" title="Permalink to this headline">¶</a></h1>
+<p>The installation of the host component of fortrace can be done automatically using <strong>pre_setup.py</strong> and the corresponding
+<strong>config.json</strong> located in the install_tools folder. Please check <a class="reference internal" href="config.html#config"><span class="std std-ref">Configuration of installation options</span></a> before you start any of the installation
+scripts and make adjustments where necessary. Please also adjust <strong>fortrace-pool.xml</strong> and <strong>backing-pool.xml</strong> if necessary. If you are using a different Ubuntu distribution than recommended in
+<a class="reference internal" href="index.html#installindex"><span class="std std-ref">Installation of fortrace</span></a>, you might need to tweak either file or run a completely manual installation of the host component.</p>
+<div class="section" id="installation-host-scripted">
+<h2>Installation Host – scripted<a class="headerlink" href="#installation-host-scripted" title="Permalink to this headline">¶</a></h2>
+<p>The partially automated installation requires just a few steps to set up the host components of fortrace.</p>
+<p>First, make sure the name of the user and your chosen paths for the virtual machine data, the location of your cloned fortrace
+repository and the path to your tcpdump binary you want to install fortrace on is correctly configured in <strong>config.json</strong>
+This is important, since the setup script later adds this user to the libvirtd-group,
+which is required to create clones of the virtual guest machines.</p>
+<p>A new user can be added with the following command:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo adduser fortrace
+</pre></div>
+</div>
+<p>If you want to install fortrace on a new user, please create that user <strong>before</strong> running any part of the installation process.
+Additionally, it is imperative to give the new user root permissions as the installation script has to be called with sudo.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo usermod -a -G sudo fortrace
+</pre></div>
+</div>
+<p>In these two examples replace <strong>fortrace</strong> with a username of your choice. Make sure it matches the username in <strong>config.json</strong>.
+You will also need to make several other adjustments, most importantly allowing you new user to access GUI functionalities.
+An easy way to do so is editing the <strong>.bashrc</strong> file by adding <strong>export DISPLAY=:0</strong> (<strong>NOTE:</strong> You may need to add a different value -
+check before altering your <strong>.bashrc</strong> file.). Then run <strong>xauth</strong>, exit the console session, call <strong>xhost +</strong> and switch to your chosen
+new user. This is one of multiple ways of allowing GUI functions for a new user.</p>
+<p><strong>NOTE:</strong> Please adjust the username and ID in <strong>config.json, fortrace-pool.xml</strong> and <strong>backing-pool.xml</strong>.</p>
+<p>To run the following commands, you will need to download fortrace now.
+fortrace can be found here: <a class="reference external" href="https://github.com/dasec/fortrace">Github link</a>.
+Clone or download the repository and navigate into <strong>/install_tools</strong>.</p>
+<p>In this folder, you will find a shell script called <strong>linux_installation.sh</strong>. To install the further parts of fortrace’s
+host component, run the script initially <strong>without</strong> root privileges (you will be asked to enter your password once the script starts) and choose <strong>h</strong> when the console prompts you to make a choice. The
+script will then install all necessary packages including the appropriate Python version.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> ./linux_installation.sh
+<span class="go">Please choose if this installation is host (h) or guest (g) side installation:</span>
+<span class="go">Selection: h</span>
+<span class="go">...</span>
+</pre></div>
+</div>
+<p>This then runs the <strong>pre_setup.py</strong> with the  <strong>host</strong> parameter to start installing all
+necessary packages and python modules. You can also start this script by hand if you choose to do so, although it would
+require a manual installation of Python beforehand.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo python pre_setup.py host
+</pre></div>
+</div>
+<p>After installing all packages and python modules, the script sets up permissions for the
+appropriate user to create clones of the virtual guest environments by creating the libvirtd group and adding
+the user mentioned in <strong>config.json</strong> to that group as well as to the libvirt group if present. Additionally, rights for the user to run tcpdump are given.
+<strong>pre_setup.py</strong> then creates both the virtual machines pool and the network bridges. If you need to adjust any of the
+default paths for your pools or the location of tcpdump, you can do so in <strong>config.json</strong> (see: <a class="reference internal" href="config.html#config"><span class="std std-ref">Configuration of installation options</span></a>)
+All of these steps will be described further in the next section <strong>Installation Host – manual</strong>.</p>
+<p>The backing folder, which will contain the differential images created during the execution of fortrace tasks, is currently created
+as a pool as well. Refer to the next section in case this causes any issues for you. Alternatively, you could alter <strong>src/fortrace/utility/constants.py</strong>
+and remove the necessity for this backing folder.
+.. Important note: It is possible, that the <strong>backing</strong> folder inside the created pool location is missing, which
+means you have to add it manually before running any <strong>fortrace</strong> commands. If your pool is located in <strong>/data</strong>,
+simply add a folder <strong>/data/[pool-name]/backing</strong>. You can also remove <strong>backing</strong> part of the path in
+<strong>/src/fortrace/utility/constants.py</strong></p>
+<p>Lastly, fortrace needs to be installed. Navigate into the folder and then run:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> python setup.py install --user
+</pre></div>
+</div>
+</div>
+<div class="section" id="installation-host-manual">
+<h2>Installation Host – manual<a class="headerlink" href="#installation-host-manual" title="Permalink to this headline">¶</a></h2>
+<p>In case there are any issues with the partially automatic installation, you are using a different Ubuntu distribution
+or simply want to adapt the installation process to a different OS, this section will guide you through the entire
+host-side installation process.</p>
+<p>First, make sure the name of the user and your chosen paths for the virtual machine data, the location of your cloned fortrace
+repository and the path to your tcpdump binary you want to install fortrace on is correctly configured in <strong>config.json</strong> (:ref.
+This is important, since the setup script later adds this user to the libvirtd-group,
+which is required to create clones of the virtual guest machines.</p>
+<p>A new user can be added with the following command:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo adduser fortrace
+</pre></div>
+</div>
+<p>If you want to install fortrace on a new user, please create that user <strong>before</strong> running any part of the installation process.
+Additionally, it is imperative to give the new user root permissions as the installation script has to be called with sudo.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo usermod -a -G sudo fortrace
+</pre></div>
+</div>
+<p>In these two examples replace <strong>fortrace</strong> with a username of your choice. Make sure it matches the username in <strong>config.json</strong>.</p>
+<p>You will also need to make several other adjustments, most importantly allowing you new user to access GUI functionalities.
+An easy way to do so is editing the <strong>.bashrc</strong> file by adding <strong>export DISPLAY=:0</strong> (<strong>NOTE:</strong> You may need to add a different value -
+check before altering your <strong>.bashrc</strong> file.). Then run <strong>xauth</strong>, exit the console session, call <strong>xhost +</strong> and switch to your chosen
+new user. This is one of multiple ways of allowing GUI functions for a new user.</p>
+<p><strong>NOTE:</strong> Please adjust the username and ID in <strong>config.json, fortrace-pool.xml</strong> and <strong>backing-pool.xml</strong>.</p>
+<p>By default, only python 3 is installed on the recommended Ubuntu distribution, but fortrace is
+currently still running on python 2. The following command should install python 2.7.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt install python
+</pre></div>
+</div>
+<p>You can check your python version:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> python -V
+</pre></div>
+</div>
+<p>Next, you need to install the required packages.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt install python-pip
+<span class="gp">$</span> sudo apt install python-libvirt
+<span class="gp">$</span> sudo apt install qemu-kvm
+<span class="gp">$</span> sudo apt install libvirt-bin
+<span class="gp">$</span> sudo apt install libvirt-dev
+<span class="gp">$</span> sudo apt install virt-manager
+<span class="gp">$</span> sudo apt install libcap2-bin
+<span class="gp">$</span> sudo apt install tcpdump
+</pre></div>
+</div>
+<p>The required packages can also be found in <strong>/install_tools/packet_requirements.txt</strong>.</p>
+<p>In a similar manner, all necessary python packages need to be installed.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> pip install -U pywinauto
+<span class="gp">$</span> pip install -U pywin32
+<span class="gp">$</span> pip install -U setuptools
+<span class="gp">$</span> pip install -U selenium
+<span class="gp">$</span> pip install -U marionette_driver
+<span class="gp">$</span> pip install -U netifaces
+<span class="gp">$</span> pip install -U psutil
+<span class="gp">$</span> pip install -U netaddr
+<span class="gp">$</span> pip install -U enum34
+<span class="gp">$</span> pip install -U <span class="nv">protobuf</span><span class="o">==</span><span class="m">2</span>.5.0
+</pre></div>
+</div>
+<p>These packages can also be located under <strong>/install_tools/PIP_requirements.txt</strong>.</p>
+<p>The default network sniffer chosen by fortrace ist tcpdump. Usually, tcpdump requires root privileges to function
+properly, but since it should not be a requirement to run fortrace with root privileges, a simple modification to tcpdump
+needs to be made.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo setcap cap_net_raw,cap_net_admin<span class="o">=</span>eip /usr/sbin/tcpdump
+</pre></div>
+</div>
+<p>Naturally, you will need to verify if tcpdump ist located in the folder used by this command an potentially adjust the
+path. You can check if the change was successful by entering the following command:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> getcap /usr/sbin/tcpdump
+<span class="go">/usr/sbin/tcpdump = cap_net_admin,cap_net_raw+eip     &quot;This is the output you should get&quot;</span>
+</pre></div>
+</div>
+<p>In case this solution does not work for you, you can simply give tcpdump the necessary privileges:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo chmod +s /usr/sbin/tcpdump
+</pre></div>
+</div>
+<p>Another privilege issue concerns libvirtd and the created fortrace user. Only root and members of the <strong>libvirtd</strong> group
+are able to fully access and modify the virtual machine images. To remedy this situation, we first usually have to create
+the libvirtd group. After creating the group, we can add the fortrace user to it.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo groupadd libvirtd
+<span class="gp">$</span> sudo usermod -a -G libvirtd fortrace
+<span class="gp">$</span> sudo usermod -a -G libvirt fortrace
+</pre></div>
+</div>
+<p>Following the installation of all necessary packages, we need to create the virtual machine pools. This is were our
+guest components original and instanced images are stored. To do so navigate into <strong>install_tools</strong> and run the following four commands:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> virsh pool-define fortrace-pool.xml
+<span class="gp">$</span> virsh pool-build fortrace-pool
+<span class="gp">$</span> virsh pool-start fortrace-pool
+<span class="gp">$</span> virsh pool-autostart fortrace-pool
+</pre></div>
+</div>
+<p>The path <strong>/data/</strong> may have to be created manually beforehand. After running the commands above, you might
+want to add a directory named <strong>backing</strong> into <strong>/data/fortrace-pool</strong> - this is where the clones of our guest images
+are going to be stored. This can be achieved by simply running the same 4 commands
+but replacing <strong>fortrace-pool</strong> with <strong>backing</strong> and <strong>fortrace-pool.xml</strong> with <strong>backing-pool.xml</strong>.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> virsh pool-define backing-pool.xml
+<span class="gp">$</span> virsh pool-build backing
+<span class="gp">$</span> virsh pool-start fortrace-pool
+<span class="gp">$</span> virsh pool-autostart fortrace-pool
+</pre></div>
+</div>
+<p>You can check your pools with the following commands:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> virsh pool-list --all
+<span class="gp">$</span> virsh pool-info fortrace-pool
+</pre></div>
+</div>
+<p>To run the following commands, you will need to download fortrace now.
+fortrace can be found here: <a class="reference external" href="https://github.com/dasec/fortrace">Github link</a>.
+Clone or download the repository and navigate into <strong>/install_tools</strong>. Here, you will find <strong>private.xml</strong> and
+<strong>public.xml</strong>. These two files will help you to set up the network connections needed to communicate between the
+guest and the host without tainting the actual internet traffic fortrace is creating. The following set of commands
+will use the XML templates provided.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> virsh net-define public.xml
+<span class="gp">$</span> virsh net-define private.xml
+
+<span class="gp">$</span> virsh net-start public
+<span class="gp">$</span> virsh net-start private
+
+<span class="gp">$</span> virsh net-autostart public
+<span class="gp">$</span> virsh net-autostart private
+</pre></div>
+</div>
+<p>Similarly to the pools, you can check your created networks:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> virsh net-list
+<span class="gp">$</span> virsh net-dumpxml <span class="o">[</span>name<span class="o">]</span>
+<span class="gp">$</span> virsh net-info <span class="o">[</span>name<span class="o">]</span>
+</pre></div>
+</div>
+<p>Lastly, fortrace needs to be installed. Navigate into the folder and then run:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> python setup.py install --user
+</pre></div>
+</div>
+</div>
+<div class="section" id="template-rights-management">
+<h2>Template Rights Management<a class="headerlink" href="#template-rights-management" title="Permalink to this headline">¶</a></h2>
+<p>After installing the host side of fortrace, you need alter the <strong>/etc/libvirt/qemu.conf</strong>. First, you need to stop the libvirt service:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> systemctl stop libvirtd.service
+</pre></div>
+</div>
+<p>Then, find the following section in the config file mentioned above and change the parameters <strong>user</strong>, <strong>group</strong> and <strong>dynamic_ownership</strong>
+to look like this:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span> Some examples of valid values are:
+<span class="gp">#</span>
+<span class="gp">#</span>       <span class="nv">user</span> <span class="o">=</span> <span class="s2">&quot;qemu&quot;</span>   <span class="c1"># A user named &quot;qemu&quot;</span>
+<span class="gp">#</span>       <span class="nv">user</span> <span class="o">=</span> <span class="s2">&quot;+0&quot;</span>     <span class="c1"># Super user (uid=0)</span>
+<span class="gp">#</span>       <span class="nv">user</span> <span class="o">=</span> <span class="s2">&quot;100&quot;</span>    <span class="c1"># A user named &quot;100&quot; or a user with uid=100</span>
+<span class="gp">#</span>
+<span class="go">user = &quot;root&quot;</span>
+
+<span class="gp">#</span> The group <span class="k">for</span> QEMU processes run by the system instance. It can be
+<span class="gp">#</span> specified in a similar way to user.
+<span class="go">group = &quot;root&quot;</span>
+
+<span class="gp">#</span> Whether libvirt should dynamically change file ownership
+<span class="gp">#</span> to match the configured user/group above. Defaults to <span class="m">1</span>.
+<span class="gp">#</span> Set to <span class="m">0</span> to disable file ownership changes.
+<span class="go">dynamic_ownership = 0</span>
+</pre></div>
+</div>
+<p>The last step is reactivating the libvirt service.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> systemctl start libvirtd.service
+</pre></div>
+</div>
+</div>
+<div class="section" id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt install ebtables  <span class="s2">&quot;If there are KVM or firewall errors&quot;</span>
+<span class="gp">$</span> sudo apt install dnsmasq  <span class="s2">&quot;If there are general Network issues&quot;</span>
+<span class="gp">$</span> sudo apt install qemu-utils <span class="s2">&quot;If KVM gives warnings about performance&quot;</span>
+<span class="gp">$</span> sudo chmod <span class="m">755</span> <span class="o">[</span>path/to/**backing**<span class="o">}</span> <span class="s2">&quot;If KVM has issues with creating differential images&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">fortrace</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../architecture/index.html">Architecture of fortrace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture/framework_architecture.html">Framework Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture/generator.html">Generator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture/service_vm.html">Service VM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Installation of fortrace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="config.html">Configuration of installation options</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Host Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installation-host-scripted">Installation Host – scripted</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation-host-manual">Installation Host – manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#template-rights-management">Template Rights Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="guest.html">Guest Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="service_vm.html">Installation of Service VM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="firstrun.html">First Run after installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/index.html">Developer reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/functions.html">Functions of fortrace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/implementing.html">Implementation of Scenarios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/implementing.html#implementation-of-new-features">Implementation of new Features</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="config.html" title="previous chapter">Configuration of installation options</a></li>
+      <li>Next: <a href="guest.html" title="next chapter">Guest Installation</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Thomas Schäfer, Thomas Göbel, Jan Türr.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/installation/host.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

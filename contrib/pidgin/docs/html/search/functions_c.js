@@ -1,0 +1,5 @@
+var searchData=
+[
+  ['receivedchatmsgcallback',['receivedChatMsgCallback',['../pidgin__puppet_8c.html#af7e46e0f79137458a260b0bd0a62aee6',1,'receivedChatMsgCallback(PurpleAccount *account, char *sender, char *message, PurpleConversation *conv, PurpleMessageFlags flags):&#160;pidgin_puppet.c'],['../pidgin__puppet_8h.html#af7e46e0f79137458a260b0bd0a62aee6',1,'receivedChatMsgCallback(PurpleAccount *account, char *sender, char *message, PurpleConversation *conv, PurpleMessageFlags flags):&#160;pidgin_puppet.c']]],
+  ['receivedimmsgcallback',['receivedImMsgCallback',['../pidgin__puppet_8c.html#a67688ef8b02a69206eab0d61cf0260f3',1,'receivedImMsgCallback(PurpleAccount *account, char *sender, char *message, PurpleConversation *conv, PurpleMessageFlags flags):&#160;pidgin_puppet.c'],['../pidgin__puppet_8h.html#a67688ef8b02a69206eab0d61cf0260f3',1,'receivedImMsgCallback(PurpleAccount *account, char *sender, char *message, PurpleConversation *conv, PurpleMessageFlags flags):&#160;pidgin_puppet.c']]]
+];

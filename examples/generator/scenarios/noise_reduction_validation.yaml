@@ -1,0 +1,36 @@
+name: haystack example with noise reduction and validation
+description: A example action suite to generate a haystack (traffic)
+author: MPSE Group
+seed: 1234
+collections:
+  c-print-0:
+    type: printer
+    files: ./generator/collections/printer_default_documents.txt
+  c-smb-0:
+    type: smb
+    files: ./generator/collections/printer_default_documents.txt
+settings:
+  host_nfs_path: /data/fortrace_data
+  guest_nfs_path: Z:\\
+applications:
+  printer-0:
+    type: printer
+    hostname: http://192.168.103.123:631/ipp/print/name
+  smb-0:
+    type: smb
+    username: service
+    password: fortrace
+    destination: \\192.168.103.123\sambashare
+hay:
+  n-printer-0:
+    application: printer-0
+    collection: c-print-0
+    amount: 10
+  n-smb-0:
+    application: smb-0
+    amount: 10
+    collection: c-smb-0
+needles:
+scripts:
+  - ../utils/generator-validator/validator.sh @dump @config
+  - ../utils/noise-filter/noise_filter.sh @dump

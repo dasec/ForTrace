@@ -1,0 +1,87 @@
+<<<<<<< HEAD
+name: haystack-example
+=======
+#name: haystack-example
+>>>>>>> malware
+description: A example action suite to generate a haystack (traffic)
+author: MPSE Group
+seed: 1234
+collections:
+  c-http-0:
+    type: http
+    urls: ./generator/friendly_urls.txt
+  c-mail-0:
+    type: mail
+    recipients: ./generator/friendly_recipients.txt
+    subjects: ./generator/friendly_subjects.txt
+    messages: ./generator/friendly_messages.txt
+settings:
+    host_nfs_path:
+    guest_nfs_path:
+applications:
+  mail-0:
+    type: mail
+<<<<<<< HEAD
+    imap_hostname: imap.web.de
+    smtp_hostname: smtp.web.de
+    email: hystck@web.de
+    password: Vo@iLmx48Qv8m%y
+    username: hystck
+    full_name: Heinz hystck
+    socket_type: 3
+    socket_type_smtp: 2
+    auth_method_smtp: 3
+  mail-1:
+    type: mail
+    imap_hostname: 192.168.103.66
+    smtp_hostname: 192.168.103.66
+=======
+    imap_hostname: 192.168.103.119
+    smtp_hostname: 192.168.103.119
+>>>>>>> malware
+    email: sk@hystck.local
+    password: hystck
+    username: sk
+    full_name: Heinz hystck
+    socket_type: 0
+    socket_type_smtp: 0
+    auth_method_smtp: 3
+hay:
+  h-http-0:
+    application: http
+    url: https://dasec.h-da.de/
+    amount: 1
+  h-http-1:
+    application: http
+    amount: 3
+    collection: c-http-0
+  h-mail-0:
+<<<<<<< HEAD
+    application: mail-1
+=======
+    application: mail-0
+>>>>>>> malware
+    recipient: sk@hystck.local
+    subject: a random mail
+    message: I'm sending you this mail because of X.
+    amount: 1
+  h-mail-1:
+<<<<<<< HEAD
+    application: mail-1
+=======
+    application: mail-0
+>>>>>>> malware
+    amount: 2
+    recipient: sk@hystck.local
+    collection: c-mail-0
+needles:
+  n-mail-0:
+<<<<<<< HEAD
+    application: mail-1
+=======
+    application: mail-0
+>>>>>>> malware
+    recipient: sk@hystck.local
+    subject: a suspicious mail
+    content: I've attached said document.
+    amount: 1

@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="bug" kind="page">
+    <compoundname>bug</compoundname>
+    <title>Bug List</title>
+    <detaileddescription>
+<para><variablelist>
+<varlistentry><term><anchor id="bug_1_bug000001"/>Member <ref refid="pidgin__puppet_8h_1aaad583d6006338dfe07f493c66eba9db" kindref="member">getAllAccounts</ref>  (GList **list, unsigned int *size)</term></varlistentry>
+<listitem><para>This function is untested.  </para></listitem>
+<varlistentry><term><anchor id="bug_1_bug000002"/>Member <ref refid="pidgin__puppet_8h_1a83e303aa7d2cdc7936ce8b39308c4616" kindref="member">sendMsgToBuddyUnsafe</ref>  (const char *buddy, const char *msg)</term></varlistentry>
+<listitem><para>This function is not implemented. </para></listitem>
+</variablelist>
+</para>    </detaileddescription>
+  </compounddef>
+</doxygen>

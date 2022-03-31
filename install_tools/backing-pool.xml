@@ -1,0 +1,18 @@
+<pool type='dir'>
+  <name>backing</name>
+  <uuid>6698e970-187a-4b93-8f36-bd456c27f864</uuid>
+  <capacity unit='bytes'>983429038080</capacity>
+  <allocation unit='bytes'>46726856704</allocation>
+  <available unit='bytes'>936702181376</available>
+  <source>
+  </source>
+  <target>
+    <path>/data/fortrace-pool/backing</path>
+    <permissions>
+      <mode>0755</mode>
+      <owner>1000</owner>
+      <group>1000</group>
+    </permissions>
+  </target>
+</pool>
+

@@ -1,0 +1,41 @@
+name: haystack web.de mail example
+description: A example action suite to generate a haystack (traffic)
+author: MPSE Group
+seed: 1234
+collections:
+  c-mail-0:
+    type: mail
+    recipients: ./generator/collections/friendly_recipients.txt
+    subjects: ./generator/collections/friendly_subjects.txt
+    messages: ./generator/collections/friendly_messages.txt
+settings:
+  host_nfs_path: /data/fortrace_data
+  guest_nfs_path: Z:\\
+applications:
+  mail-0:
+    type: mail
+    imap_hostname: imap.web.de
+    smtp_hostname: smtp.web.de
+    email: fortrace@web.de
+    password: Vo@iLmx48Qv8m%y
+    username: fortrace
+    full_name: Heinz fortrace
+    socket_type: 3
+    socket_type_smtp: 2
+    auth_method_smtp: 3
+hay:
+  h-mail-0:
+    application: mail-0
+    recipient: fortrace@web.de
+    subject: a random mail
+    message: I'm sending you this mail because of X.
+    attachments:
+      - /data/fortrace_data/blue.jpg
+      - /data/fortrace_data/document.pdf
+    amount: 1
+  h-mail-1:
+    application: mail-0
+    amount: 20
+    recipient: fortrace@web.de
+    collection: c-mail-0
+needles:

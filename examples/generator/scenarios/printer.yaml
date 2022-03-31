@@ -1,0 +1,21 @@
+name: haystack printer example
+description: A example action suite to generate a haystack (traffic)
+author: MPSE Group
+seed: 1234
+collections:
+  c-print-0:
+    type: printer
+    files: ./generator/collections/printer_default_documents.txt
+settings:
+  host_nfs_path: /data/fortrace_data
+  guest_nfs_path: Z:\\
+applications:
+  printer-0:
+    type: printer
+    hostname: http://192.168.103.123:631/ipp/print/name
+hay:
+  n-printer-0:
+    application: printer-0
+    collection: c-print-0
+    amount: 20
+needles:

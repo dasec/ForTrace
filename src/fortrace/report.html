@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+<p>Choose report: <input type="file" id="upload" /></p>
+<p> <button onclick="loadXML()">Load Report</button> </p>
+<br />
+<br />
+<p><b>Name:</b> <span id="title"></span></p>
+<p><b>Author:</b> <span id="author"></span></p>
+<p><b>Hash:</b> <span id="hash"></span></p>
+<p><b>Date:</b> <span id="date"></span></p>
+<p><b>Base Image:</b> <span id="baseimage"></span></p>
+<p><b>Base Hash:</b> <span id="basehash"></span></p>
+
+<p><b>Incriminating Data:</b></p>
+<p id="data"></p>
+
+
+<script>
+
+function loadXML()
+{
+    var fullPath = document.getElementById('upload').value.split(/(\\|\/)/g).pop();
+    var path = "http://localhost/fortrace/examples/" + fullPath;
+
+    document.getElementById('data').innerHTML = "";
+
+
+
+    $.ajax({
+        type: "GET" ,
+        url: path ,
+        dataType: "xml" ,
+        success: function(xmlDoc) {
+
+            document.getElementById("title").innerHTML =
+            xmlDoc.getElementsByTagName("imagename")[0].childNodes[0].nodeValue;
+
+            document.getElementById("author").innerHTML =
+            xmlDoc.getElementsByTagName("author")[0].childNodes[0].nodeValue;
+
+            document.getElementById("hash").innerHTML =
+            xmlDoc.getElementsByTagName("hash")[0].childNodes[0].nodeValue;
+
+            document.getElementById("date").innerHTML =
+            xmlDoc.getElementsByTagName("date")[0].childNodes[0].nodeValue;
+
+            document.getElementById("baseimage").innerHTML =
+            xmlDoc.getElementsByTagName("baseimage")[0].childNodes[0].nodeValue;
+
+            document.getElementById("basehash").innerHTML =
+            xmlDoc.getElementsByTagName("basehash")[0].childNodes[0].nodeValue;
+
+            var mails = xmlDoc.getElementsByTagName("mail");
+            for (var i = 0; i < mails.length; i++) {
+                var str = xmlDoc.getElementsByTagName("mail")[i].childNodes[0].nodeValue;
+
+                var child = document.createElement('div');
+                child.innerHTML = str;
+                child = child.firstChild;
+                document.getElementById('data').appendChild(child);
+
+                var str = "<br />";
+                var child = document.createElement('div');
+                child.innerHTML = str;
+                child = child.firstChild;
+                document.getElementById('data').appendChild(child);
+            }
+
+            var str = "<br />";
+            var child = document.createElement('div');
+            child.innerHTML = str;
+            child = child.firstChild;
+            document.getElementById('data').appendChild(child);
+
+            var downloads = xmlDoc.getElementsByTagName("download");
+            for (var i = 0; i < downloads.length; i++) {
+                var str = xmlDoc.getElementsByTagName("download")[i].childNodes[0].nodeValue;
+
+                var child = document.createElement('div');
+                child.innerHTML = str;
+                child = child.firstChild;
+                document.getElementById('data').appendChild(child);
+
+                var str = "<br />";
+                var child = document.createElement('div');
+                child.innerHTML = str;
+                child = child.firstChild;
+                document.getElementById('data').appendChild(child);
+            }
+
+            var str = "<br />";
+            var child = document.createElement('div');
+            child.innerHTML = str;
+            child = child.firstChild;
+            document.getElementById('data').appendChild(child);
+
+            var browsings = xmlDoc.getElementsByTagName("browsing");
+            for (var i = 0; i < browsings.length; i++) {
+                var str = xmlDoc.getElementsByTagName("browsing")[i].childNodes[0].nodeValue;
+
+                var child = document.createElement('div');
+                child.innerHTML = str;
+                child = child.firstChild;
+                document.getElementById('data').appendChild(child);
+
+                var str = "<br />";
+                var child = document.createElement('div');
+                child.innerHTML = str;
+                child = child.firstChild;
+                document.getElementById('data').appendChild(child);
+            }
+
+            var str = "<br />";
+            var child = document.createElement('div');
+            child.innerHTML = str;
+            child = child.firstChild;
+            document.getElementById('data').appendChild(child);
+
+
+            var container = xmlDoc.getElementsByTagName("veracrypt");
+            for (var i = 0; i < downloads.length; i++) {
+                var str = xmlDoc.getElementsByTagName("veracrypt")[i].childNodes[0].nodeValue;
+
+                var child = document.createElement('div');
+                child.innerHTML = str;
+                child = child.firstChild;
+                document.getElementById('data').appendChild(child);
+
+                var str = "<br />";
+                var child = document.createElement('div');
+                child.innerHTML = str;
+                child = child.firstChild;
+                document.getElementById('data').appendChild(child);
+            }
+
+        }
+    });
+
+}
+
+</script>
+
+</body>
+</html>

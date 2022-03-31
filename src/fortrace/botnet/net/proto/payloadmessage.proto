@@ -1,0 +1,26 @@
+import "genericmessage.proto";
+
+enum SourceType {
+	EMBEDDED = 0;
+	HTTP = 1;
+	FTP = 2;
+}
+
+message PayloadRequest {
+	required string payload_name = 1 [default='default'];
+}
+
+message PayloadInfo {
+	required SourceType source_type = 1; //specifies the payload type (default: embedded)
+	optional string source = 2; //used if type is not embedded (contains an uri to a payload)
+	optional uint64 size = 3; //used if type is embedded (specifies the size of the payload)
+	optional bytes content = 4; //used if type is embedded (the payload itself)
+}
+
+extend GenericMessage {
+	required PayloadInfo payload_info = 105;
+}
+
+extend GenericMessage {
+	required PayloadRequest payload_req = 106;
+}

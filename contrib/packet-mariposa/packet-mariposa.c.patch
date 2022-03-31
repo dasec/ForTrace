@@ -1,0 +1,20 @@
+--- packet-mariposa.c.orig	2015-06-14 13:16:10.275232000 +0200
++++ packet-mariposa.c	2015-06-18 09:54:18.591246172 +0200
+@@ -41,7 +41,7 @@
+ static dissector_handle_t data_handle=NULL;
+ 
+ static dissector_handle_t mariposa_handle;
+-void dissect_mariposa(tvbuff_t *tvb, packet_info *pinfo, proto_tree *tree);
++static void dissect_mariposa(tvbuff_t *tvb, packet_info *pinfo, proto_tree *tree);
+ 
+ static int global_mariposa_port = 3333;
+ 
+@@ -83,7 +83,7 @@
+ 	if (!initialized) {
+ 		data_handle = find_dissector("data");
+ 		mariposa_handle = create_dissector_handle(dissect_mariposa, proto_mariposa);
+-		dissector_add("udp.port", global_mariposa_port, mariposa_handle);
++		dissector_add_uint("udp.port", global_mariposa_port, mariposa_handle);
+ 		initialized = TRUE;
+ 	}
+ 

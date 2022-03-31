@@ -1,0 +1,1726 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module fortrace.common.ipaddr</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="fortrace.html"><font color="#ffffff">fortrace</font></a>.<a href="fortrace.common.html"><font color="#ffffff">common</font></a>.ipaddr</strong></big></big> (version 2.1.10)</font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:///C:/users/vm/documents/github/fortrace/common/ipaddr.py">c:\users\vm\documents\github\fortrace\common\ipaddr.py</a></font></td></tr></table>
+    <p><tt>A&nbsp;fast,&nbsp;lightweight&nbsp;IPv4/IPv6&nbsp;manipulation&nbsp;library&nbsp;in&nbsp;Python.<br>
+&nbsp;<br>
+This&nbsp;library&nbsp;is&nbsp;used&nbsp;to&nbsp;create/poke/manipulate&nbsp;IPv4&nbsp;and&nbsp;IPv6&nbsp;addresses<br>
+and&nbsp;networks.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="struct.html">struct</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="__builtin__.html#str">__builtin__.str</a>(<a href="__builtin__.html#basestring">__builtin__.basestring</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="fortrace.common.ipaddr.html#Bytes">Bytes</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="exceptions.html#ValueError">exceptions.ValueError</a>(<a href="exceptions.html#StandardError">exceptions.StandardError</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="fortrace.common.ipaddr.html#AddressValueError">AddressValueError</a>
+</font></dt><dt><font face="helvetica, arial"><a href="fortrace.common.ipaddr.html#NetmaskValueError">NetmaskValueError</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="fortrace.common.ipaddr.html#_BaseIP">_BaseIP</a>(<a href="fortrace.common.ipaddr.html#_IPAddrBase">_IPAddrBase</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="fortrace.common.ipaddr.html#IPv4Address">IPv4Address</a>(<a href="fortrace.common.ipaddr.html#_BaseV4">_BaseV4</a>, <a href="fortrace.common.ipaddr.html#_BaseIP">_BaseIP</a>)
+</font></dt><dt><font face="helvetica, arial"><a href="fortrace.common.ipaddr.html#IPv6Address">IPv6Address</a>(<a href="fortrace.common.ipaddr.html#_BaseV6">_BaseV6</a>, <a href="fortrace.common.ipaddr.html#_BaseIP">_BaseIP</a>)
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="fortrace.common.ipaddr.html#_BaseNet">_BaseNet</a>(<a href="fortrace.common.ipaddr.html#_IPAddrBase">_IPAddrBase</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="fortrace.common.ipaddr.html#IPv4Network">IPv4Network</a>(<a href="fortrace.common.ipaddr.html#_BaseV4">_BaseV4</a>, <a href="fortrace.common.ipaddr.html#_BaseNet">_BaseNet</a>)
+</font></dt><dt><font face="helvetica, arial"><a href="fortrace.common.ipaddr.html#IPv6Network">IPv6Network</a>(<a href="fortrace.common.ipaddr.html#_BaseV6">_BaseV6</a>, <a href="fortrace.common.ipaddr.html#_BaseNet">_BaseNet</a>)
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="fortrace.common.ipaddr.html#_BaseV4">_BaseV4</a>(<a href="__builtin__.html#object">__builtin__.object</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="fortrace.common.ipaddr.html#IPv4Address">IPv4Address</a>(<a href="fortrace.common.ipaddr.html#_BaseV4">_BaseV4</a>, <a href="fortrace.common.ipaddr.html#_BaseIP">_BaseIP</a>)
+</font></dt><dt><font face="helvetica, arial"><a href="fortrace.common.ipaddr.html#IPv4Network">IPv4Network</a>(<a href="fortrace.common.ipaddr.html#_BaseV4">_BaseV4</a>, <a href="fortrace.common.ipaddr.html#_BaseNet">_BaseNet</a>)
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="fortrace.common.ipaddr.html#_BaseV6">_BaseV6</a>(<a href="__builtin__.html#object">__builtin__.object</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="fortrace.common.ipaddr.html#IPv6Address">IPv6Address</a>(<a href="fortrace.common.ipaddr.html#_BaseV6">_BaseV6</a>, <a href="fortrace.common.ipaddr.html#_BaseIP">_BaseIP</a>)
+</font></dt><dt><font face="helvetica, arial"><a href="fortrace.common.ipaddr.html#IPv6Network">IPv6Network</a>(<a href="fortrace.common.ipaddr.html#_BaseV6">_BaseV6</a>, <a href="fortrace.common.ipaddr.html#_BaseNet">_BaseNet</a>)
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="AddressValueError">class <strong>AddressValueError</strong></a>(<a href="exceptions.html#ValueError">exceptions.ValueError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>A&nbsp;Value&nbsp;Error&nbsp;related&nbsp;to&nbsp;the&nbsp;address.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="fortrace.common.ipaddr.html#AddressValueError">AddressValueError</a></dd>
+<dd><a href="exceptions.html#ValueError">exceptions.ValueError</a></dd>
+<dd><a href="exceptions.html#StandardError">exceptions.StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+<dd><a href="exceptions.html#BaseException">exceptions.BaseException</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#ValueError">exceptions.ValueError</a>:<br>
+<dl><dt><a name="AddressValueError-__init__"><strong>__init__</strong></a>(...)</dt><dd><tt>x.<a href="#AddressValueError-__init__">__init__</a>(...)&nbsp;initializes&nbsp;x;&nbsp;see&nbsp;help(type(x))&nbsp;for&nbsp;signature</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#ValueError">exceptions.ValueError</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object&gt;<dd><tt>T.<a href="#AddressValueError-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;object&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><a name="AddressValueError-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#AddressValueError-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="AddressValueError-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#AddressValueError-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="AddressValueError-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#AddressValueError-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="AddressValueError-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#AddressValueError-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="AddressValueError-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="AddressValueError-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#AddressValueError-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="AddressValueError-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#AddressValueError-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="AddressValueError-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="AddressValueError-__str__"><strong>__str__</strong></a>(...)</dt><dd><tt>x.<a href="#AddressValueError-__str__">__str__</a>()&nbsp;&lt;==&gt;&nbsp;<a href="__builtin__.html#str">str</a>(x)</tt></dd></dl>
+
+<dl><dt><a name="AddressValueError-__unicode__"><strong>__unicode__</strong></a>(...)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+<dl><dt><strong>message</strong></dt>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Bytes">class <strong>Bytes</strong></a>(<a href="__builtin__.html#str">__builtin__.str</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="fortrace.common.ipaddr.html#Bytes">Bytes</a></dd>
+<dd><a href="__builtin__.html#str">__builtin__.str</a></dd>
+<dd><a href="__builtin__.html#basestring">__builtin__.basestring</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="Bytes-__repr__"><strong>__repr__</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="__builtin__.html#str">__builtin__.str</a>:<br>
+<dl><dt><a name="Bytes-__add__"><strong>__add__</strong></a>(...)</dt><dd><tt>x.<a href="#Bytes-__add__">__add__</a>(y)&nbsp;&lt;==&gt;&nbsp;x+y</tt></dd></dl>
+
+<dl><dt><a name="Bytes-__contains__"><strong>__contains__</strong></a>(...)</dt><dd><tt>x.<a href="#Bytes-__contains__">__contains__</a>(y)&nbsp;&lt;==&gt;&nbsp;y&nbsp;in&nbsp;x</tt></dd></dl>
+
+<dl><dt><a name="Bytes-__eq__"><strong>__eq__</strong></a>(...)</dt><dd><tt>x.<a href="#Bytes-__eq__">__eq__</a>(y)&nbsp;&lt;==&gt;&nbsp;x==y</tt></dd></dl>
+
+<dl><dt><a name="Bytes-__format__"><strong>__format__</strong></a>(...)</dt><dd><tt>S.<a href="#Bytes-__format__">__format__</a>(format_spec)&nbsp;-&gt;&nbsp;string<br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;formatted&nbsp;version&nbsp;of&nbsp;S&nbsp;as&nbsp;described&nbsp;by&nbsp;format_spec.</tt></dd></dl>
+
+<dl><dt><a name="Bytes-__ge__"><strong>__ge__</strong></a>(...)</dt><dd><tt>x.<a href="#Bytes-__ge__">__ge__</a>(y)&nbsp;&lt;==&gt;&nbsp;x&gt;=y</tt></dd></dl>
+
+<dl><dt><a name="Bytes-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#Bytes-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="Bytes-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#Bytes-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="Bytes-__getnewargs__"><strong>__getnewargs__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Bytes-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#Bytes-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="Bytes-__gt__"><strong>__gt__</strong></a>(...)</dt><dd><tt>x.<a href="#Bytes-__gt__">__gt__</a>(y)&nbsp;&lt;==&gt;&nbsp;x&gt;y</tt></dd></dl>
+
+<dl><dt><a name="Bytes-__hash__"><strong>__hash__</strong></a>(...)</dt><dd><tt>x.<a href="#Bytes-__hash__">__hash__</a>()&nbsp;&lt;==&gt;&nbsp;hash(x)</tt></dd></dl>
+
+<dl><dt><a name="Bytes-__le__"><strong>__le__</strong></a>(...)</dt><dd><tt>x.<a href="#Bytes-__le__">__le__</a>(y)&nbsp;&lt;==&gt;&nbsp;x&lt;=y</tt></dd></dl>
+
+<dl><dt><a name="Bytes-__len__"><strong>__len__</strong></a>(...)</dt><dd><tt>x.<a href="#Bytes-__len__">__len__</a>()&nbsp;&lt;==&gt;&nbsp;len(x)</tt></dd></dl>
+
+<dl><dt><a name="Bytes-__lt__"><strong>__lt__</strong></a>(...)</dt><dd><tt>x.<a href="#Bytes-__lt__">__lt__</a>(y)&nbsp;&lt;==&gt;&nbsp;x&lt;y</tt></dd></dl>
+
+<dl><dt><a name="Bytes-__mod__"><strong>__mod__</strong></a>(...)</dt><dd><tt>x.<a href="#Bytes-__mod__">__mod__</a>(y)&nbsp;&lt;==&gt;&nbsp;x%y</tt></dd></dl>
+
+<dl><dt><a name="Bytes-__mul__"><strong>__mul__</strong></a>(...)</dt><dd><tt>x.<a href="#Bytes-__mul__">__mul__</a>(n)&nbsp;&lt;==&gt;&nbsp;x*n</tt></dd></dl>
+
+<dl><dt><a name="Bytes-__ne__"><strong>__ne__</strong></a>(...)</dt><dd><tt>x.<a href="#Bytes-__ne__">__ne__</a>(y)&nbsp;&lt;==&gt;&nbsp;x!=y</tt></dd></dl>
+
+<dl><dt><a name="Bytes-__rmod__"><strong>__rmod__</strong></a>(...)</dt><dd><tt>x.<a href="#Bytes-__rmod__">__rmod__</a>(y)&nbsp;&lt;==&gt;&nbsp;y%x</tt></dd></dl>
+
+<dl><dt><a name="Bytes-__rmul__"><strong>__rmul__</strong></a>(...)</dt><dd><tt>x.<a href="#Bytes-__rmul__">__rmul__</a>(n)&nbsp;&lt;==&gt;&nbsp;n*x</tt></dd></dl>
+
+<dl><dt><a name="Bytes-__sizeof__"><strong>__sizeof__</strong></a>(...)</dt><dd><tt>S.<a href="#Bytes-__sizeof__">__sizeof__</a>()&nbsp;-&gt;&nbsp;size&nbsp;of&nbsp;S&nbsp;in&nbsp;memory,&nbsp;in&nbsp;bytes</tt></dd></dl>
+
+<dl><dt><a name="Bytes-__str__"><strong>__str__</strong></a>(...)</dt><dd><tt>x.<a href="#Bytes-__str__">__str__</a>()&nbsp;&lt;==&gt;&nbsp;<a href="__builtin__.html#str">str</a>(x)</tt></dd></dl>
+
+<dl><dt><a name="Bytes-capitalize"><strong>capitalize</strong></a>(...)</dt><dd><tt>S.<a href="#Bytes-capitalize">capitalize</a>()&nbsp;-&gt;&nbsp;string<br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;string&nbsp;S&nbsp;with&nbsp;only&nbsp;its&nbsp;first&nbsp;character<br>
+capitalized.</tt></dd></dl>
+
+<dl><dt><a name="Bytes-center"><strong>center</strong></a>(...)</dt><dd><tt>S.<a href="#Bytes-center">center</a>(width[,&nbsp;fillchar])&nbsp;-&gt;&nbsp;string<br>
+&nbsp;<br>
+Return&nbsp;S&nbsp;centered&nbsp;in&nbsp;a&nbsp;string&nbsp;of&nbsp;length&nbsp;width.&nbsp;Padding&nbsp;is<br>
+done&nbsp;using&nbsp;the&nbsp;specified&nbsp;fill&nbsp;character&nbsp;(default&nbsp;is&nbsp;a&nbsp;space)</tt></dd></dl>
+
+<dl><dt><a name="Bytes-count"><strong>count</strong></a>(...)</dt><dd><tt>S.<a href="#Bytes-count">count</a>(sub[,&nbsp;start[,&nbsp;end]])&nbsp;-&gt;&nbsp;int<br>
+&nbsp;<br>
+Return&nbsp;the&nbsp;number&nbsp;of&nbsp;non-overlapping&nbsp;occurrences&nbsp;of&nbsp;substring&nbsp;sub&nbsp;in<br>
+string&nbsp;S[start:end].&nbsp;&nbsp;Optional&nbsp;arguments&nbsp;start&nbsp;and&nbsp;end&nbsp;are&nbsp;interpreted<br>
+as&nbsp;in&nbsp;slice&nbsp;notation.</tt></dd></dl>
+
+<dl><dt><a name="Bytes-decode"><strong>decode</strong></a>(...)</dt><dd><tt>S.<a href="#Bytes-decode">decode</a>([encoding[,errors]])&nbsp;-&gt;&nbsp;object<br>
+&nbsp;<br>
+Decodes&nbsp;S&nbsp;using&nbsp;the&nbsp;codec&nbsp;registered&nbsp;for&nbsp;encoding.&nbsp;encoding&nbsp;defaults<br>
+to&nbsp;the&nbsp;default&nbsp;encoding.&nbsp;errors&nbsp;may&nbsp;be&nbsp;given&nbsp;to&nbsp;set&nbsp;a&nbsp;different&nbsp;error<br>
+handling&nbsp;scheme.&nbsp;Default&nbsp;is&nbsp;'strict'&nbsp;meaning&nbsp;that&nbsp;encoding&nbsp;errors&nbsp;raise<br>
+a&nbsp;UnicodeDecodeError.&nbsp;Other&nbsp;possible&nbsp;values&nbsp;are&nbsp;'ignore'&nbsp;and&nbsp;'replace'<br>
+as&nbsp;well&nbsp;as&nbsp;any&nbsp;other&nbsp;name&nbsp;registered&nbsp;with&nbsp;codecs.register_error&nbsp;that&nbsp;is<br>
+able&nbsp;to&nbsp;handle&nbsp;UnicodeDecodeErrors.</tt></dd></dl>
+
+<dl><dt><a name="Bytes-encode"><strong>encode</strong></a>(...)</dt><dd><tt>S.<a href="#Bytes-encode">encode</a>([encoding[,errors]])&nbsp;-&gt;&nbsp;object<br>
+&nbsp;<br>
+Encodes&nbsp;S&nbsp;using&nbsp;the&nbsp;codec&nbsp;registered&nbsp;for&nbsp;encoding.&nbsp;encoding&nbsp;defaults<br>
+to&nbsp;the&nbsp;default&nbsp;encoding.&nbsp;errors&nbsp;may&nbsp;be&nbsp;given&nbsp;to&nbsp;set&nbsp;a&nbsp;different&nbsp;error<br>
+handling&nbsp;scheme.&nbsp;Default&nbsp;is&nbsp;'strict'&nbsp;meaning&nbsp;that&nbsp;encoding&nbsp;errors&nbsp;raise<br>
+a&nbsp;UnicodeEncodeError.&nbsp;Other&nbsp;possible&nbsp;values&nbsp;are&nbsp;'ignore',&nbsp;'replace'&nbsp;and<br>
+'xmlcharrefreplace'&nbsp;as&nbsp;well&nbsp;as&nbsp;any&nbsp;other&nbsp;name&nbsp;registered&nbsp;with<br>
+codecs.register_error&nbsp;that&nbsp;is&nbsp;able&nbsp;to&nbsp;handle&nbsp;UnicodeEncodeErrors.</tt></dd></dl>
+
+<dl><dt><a name="Bytes-endswith"><strong>endswith</strong></a>(...)</dt><dd><tt>S.<a href="#Bytes-endswith">endswith</a>(suffix[,&nbsp;start[,&nbsp;end]])&nbsp;-&gt;&nbsp;bool<br>
+&nbsp;<br>
+Return&nbsp;True&nbsp;if&nbsp;S&nbsp;ends&nbsp;with&nbsp;the&nbsp;specified&nbsp;suffix,&nbsp;False&nbsp;otherwise.<br>
+With&nbsp;optional&nbsp;start,&nbsp;test&nbsp;S&nbsp;beginning&nbsp;at&nbsp;that&nbsp;position.<br>
+With&nbsp;optional&nbsp;end,&nbsp;stop&nbsp;comparing&nbsp;S&nbsp;at&nbsp;that&nbsp;position.<br>
+suffix&nbsp;can&nbsp;also&nbsp;be&nbsp;a&nbsp;tuple&nbsp;of&nbsp;strings&nbsp;to&nbsp;try.</tt></dd></dl>
+
+<dl><dt><a name="Bytes-expandtabs"><strong>expandtabs</strong></a>(...)</dt><dd><tt>S.<a href="#Bytes-expandtabs">expandtabs</a>([tabsize])&nbsp;-&gt;&nbsp;string<br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;copy&nbsp;of&nbsp;S&nbsp;where&nbsp;all&nbsp;tab&nbsp;characters&nbsp;are&nbsp;expanded&nbsp;using&nbsp;spaces.<br>
+If&nbsp;tabsize&nbsp;is&nbsp;not&nbsp;given,&nbsp;a&nbsp;tab&nbsp;size&nbsp;of&nbsp;8&nbsp;characters&nbsp;is&nbsp;assumed.</tt></dd></dl>
+
+<dl><dt><a name="Bytes-find"><strong>find</strong></a>(...)</dt><dd><tt>S.<a href="#Bytes-find">find</a>(sub&nbsp;[,start&nbsp;[,end]])&nbsp;-&gt;&nbsp;int<br>
+&nbsp;<br>
+Return&nbsp;the&nbsp;lowest&nbsp;index&nbsp;in&nbsp;S&nbsp;where&nbsp;substring&nbsp;sub&nbsp;is&nbsp;found,<br>
+such&nbsp;that&nbsp;sub&nbsp;is&nbsp;contained&nbsp;within&nbsp;S[start:end].&nbsp;&nbsp;Optional<br>
+arguments&nbsp;start&nbsp;and&nbsp;end&nbsp;are&nbsp;interpreted&nbsp;as&nbsp;in&nbsp;slice&nbsp;notation.<br>
+&nbsp;<br>
+Return&nbsp;-1&nbsp;on&nbsp;failure.</tt></dd></dl>
+
+<dl><dt><a name="Bytes-format"><strong>format</strong></a>(...)</dt><dd><tt>S.<a href="#Bytes-format">format</a>(*args,&nbsp;**kwargs)&nbsp;-&gt;&nbsp;string<br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;formatted&nbsp;version&nbsp;of&nbsp;S,&nbsp;using&nbsp;substitutions&nbsp;from&nbsp;args&nbsp;and&nbsp;kwargs.<br>
+The&nbsp;substitutions&nbsp;are&nbsp;identified&nbsp;by&nbsp;braces&nbsp;('{'&nbsp;and&nbsp;'}').</tt></dd></dl>
+
+<dl><dt><a name="Bytes-index"><strong>index</strong></a>(...)</dt><dd><tt>S.<a href="#Bytes-index">index</a>(sub&nbsp;[,start&nbsp;[,end]])&nbsp;-&gt;&nbsp;int<br>
+&nbsp;<br>
+Like&nbsp;S.<a href="#Bytes-find">find</a>()&nbsp;but&nbsp;raise&nbsp;<a href="exceptions.html#ValueError">ValueError</a>&nbsp;when&nbsp;the&nbsp;substring&nbsp;is&nbsp;not&nbsp;found.</tt></dd></dl>
+
+<dl><dt><a name="Bytes-isalnum"><strong>isalnum</strong></a>(...)</dt><dd><tt>S.<a href="#Bytes-isalnum">isalnum</a>()&nbsp;-&gt;&nbsp;bool<br>
+&nbsp;<br>
+Return&nbsp;True&nbsp;if&nbsp;all&nbsp;characters&nbsp;in&nbsp;S&nbsp;are&nbsp;alphanumeric<br>
+and&nbsp;there&nbsp;is&nbsp;at&nbsp;least&nbsp;one&nbsp;character&nbsp;in&nbsp;S,&nbsp;False&nbsp;otherwise.</tt></dd></dl>
+
+<dl><dt><a name="Bytes-isalpha"><strong>isalpha</strong></a>(...)</dt><dd><tt>S.<a href="#Bytes-isalpha">isalpha</a>()&nbsp;-&gt;&nbsp;bool<br>
+&nbsp;<br>
+Return&nbsp;True&nbsp;if&nbsp;all&nbsp;characters&nbsp;in&nbsp;S&nbsp;are&nbsp;alphabetic<br>
+and&nbsp;there&nbsp;is&nbsp;at&nbsp;least&nbsp;one&nbsp;character&nbsp;in&nbsp;S,&nbsp;False&nbsp;otherwise.</tt></dd></dl>
+
+<dl><dt><a name="Bytes-isdigit"><strong>isdigit</strong></a>(...)</dt><dd><tt>S.<a href="#Bytes-isdigit">isdigit</a>()&nbsp;-&gt;&nbsp;bool<br>
+&nbsp;<br>
+Return&nbsp;True&nbsp;if&nbsp;all&nbsp;characters&nbsp;in&nbsp;S&nbsp;are&nbsp;digits<br>
+and&nbsp;there&nbsp;is&nbsp;at&nbsp;least&nbsp;one&nbsp;character&nbsp;in&nbsp;S,&nbsp;False&nbsp;otherwise.</tt></dd></dl>
+
+<dl><dt><a name="Bytes-islower"><strong>islower</strong></a>(...)</dt><dd><tt>S.<a href="#Bytes-islower">islower</a>()&nbsp;-&gt;&nbsp;bool<br>
+&nbsp;<br>
+Return&nbsp;True&nbsp;if&nbsp;all&nbsp;cased&nbsp;characters&nbsp;in&nbsp;S&nbsp;are&nbsp;lowercase&nbsp;and&nbsp;there&nbsp;is<br>
+at&nbsp;least&nbsp;one&nbsp;cased&nbsp;character&nbsp;in&nbsp;S,&nbsp;False&nbsp;otherwise.</tt></dd></dl>
+
+<dl><dt><a name="Bytes-isspace"><strong>isspace</strong></a>(...)</dt><dd><tt>S.<a href="#Bytes-isspace">isspace</a>()&nbsp;-&gt;&nbsp;bool<br>
+&nbsp;<br>
+Return&nbsp;True&nbsp;if&nbsp;all&nbsp;characters&nbsp;in&nbsp;S&nbsp;are&nbsp;whitespace<br>
+and&nbsp;there&nbsp;is&nbsp;at&nbsp;least&nbsp;one&nbsp;character&nbsp;in&nbsp;S,&nbsp;False&nbsp;otherwise.</tt></dd></dl>
+
+<dl><dt><a name="Bytes-istitle"><strong>istitle</strong></a>(...)</dt><dd><tt>S.<a href="#Bytes-istitle">istitle</a>()&nbsp;-&gt;&nbsp;bool<br>
+&nbsp;<br>
+Return&nbsp;True&nbsp;if&nbsp;S&nbsp;is&nbsp;a&nbsp;titlecased&nbsp;string&nbsp;and&nbsp;there&nbsp;is&nbsp;at&nbsp;least&nbsp;one<br>
+character&nbsp;in&nbsp;S,&nbsp;i.e.&nbsp;uppercase&nbsp;characters&nbsp;may&nbsp;only&nbsp;follow&nbsp;uncased<br>
+characters&nbsp;and&nbsp;lowercase&nbsp;characters&nbsp;only&nbsp;cased&nbsp;ones.&nbsp;Return&nbsp;False<br>
+otherwise.</tt></dd></dl>
+
+<dl><dt><a name="Bytes-isupper"><strong>isupper</strong></a>(...)</dt><dd><tt>S.<a href="#Bytes-isupper">isupper</a>()&nbsp;-&gt;&nbsp;bool<br>
+&nbsp;<br>
+Return&nbsp;True&nbsp;if&nbsp;all&nbsp;cased&nbsp;characters&nbsp;in&nbsp;S&nbsp;are&nbsp;uppercase&nbsp;and&nbsp;there&nbsp;is<br>
+at&nbsp;least&nbsp;one&nbsp;cased&nbsp;character&nbsp;in&nbsp;S,&nbsp;False&nbsp;otherwise.</tt></dd></dl>
+
+<dl><dt><a name="Bytes-join"><strong>join</strong></a>(...)</dt><dd><tt>S.<a href="#Bytes-join">join</a>(iterable)&nbsp;-&gt;&nbsp;string<br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;string&nbsp;which&nbsp;is&nbsp;the&nbsp;concatenation&nbsp;of&nbsp;the&nbsp;strings&nbsp;in&nbsp;the<br>
+iterable.&nbsp;&nbsp;The&nbsp;separator&nbsp;between&nbsp;elements&nbsp;is&nbsp;S.</tt></dd></dl>
+
+<dl><dt><a name="Bytes-ljust"><strong>ljust</strong></a>(...)</dt><dd><tt>S.<a href="#Bytes-ljust">ljust</a>(width[,&nbsp;fillchar])&nbsp;-&gt;&nbsp;string<br>
+&nbsp;<br>
+Return&nbsp;S&nbsp;left-justified&nbsp;in&nbsp;a&nbsp;string&nbsp;of&nbsp;length&nbsp;width.&nbsp;Padding&nbsp;is<br>
+done&nbsp;using&nbsp;the&nbsp;specified&nbsp;fill&nbsp;character&nbsp;(default&nbsp;is&nbsp;a&nbsp;space).</tt></dd></dl>
+
+<dl><dt><a name="Bytes-lower"><strong>lower</strong></a>(...)</dt><dd><tt>S.<a href="#Bytes-lower">lower</a>()&nbsp;-&gt;&nbsp;string<br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;string&nbsp;S&nbsp;converted&nbsp;to&nbsp;lowercase.</tt></dd></dl>
+
+<dl><dt><a name="Bytes-lstrip"><strong>lstrip</strong></a>(...)</dt><dd><tt>S.<a href="#Bytes-lstrip">lstrip</a>([chars])&nbsp;-&gt;&nbsp;string&nbsp;or&nbsp;unicode<br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;string&nbsp;S&nbsp;with&nbsp;leading&nbsp;whitespace&nbsp;removed.<br>
+If&nbsp;chars&nbsp;is&nbsp;given&nbsp;and&nbsp;not&nbsp;None,&nbsp;remove&nbsp;characters&nbsp;in&nbsp;chars&nbsp;instead.<br>
+If&nbsp;chars&nbsp;is&nbsp;unicode,&nbsp;S&nbsp;will&nbsp;be&nbsp;converted&nbsp;to&nbsp;unicode&nbsp;before&nbsp;stripping</tt></dd></dl>
+
+<dl><dt><a name="Bytes-partition"><strong>partition</strong></a>(...)</dt><dd><tt>S.<a href="#Bytes-partition">partition</a>(sep)&nbsp;-&gt;&nbsp;(head,&nbsp;sep,&nbsp;tail)<br>
+&nbsp;<br>
+Search&nbsp;for&nbsp;the&nbsp;separator&nbsp;sep&nbsp;in&nbsp;S,&nbsp;and&nbsp;return&nbsp;the&nbsp;part&nbsp;before&nbsp;it,<br>
+the&nbsp;separator&nbsp;itself,&nbsp;and&nbsp;the&nbsp;part&nbsp;after&nbsp;it.&nbsp;&nbsp;If&nbsp;the&nbsp;separator&nbsp;is&nbsp;not<br>
+found,&nbsp;return&nbsp;S&nbsp;and&nbsp;two&nbsp;empty&nbsp;strings.</tt></dd></dl>
+
+<dl><dt><a name="Bytes-replace"><strong>replace</strong></a>(...)</dt><dd><tt>S.<a href="#Bytes-replace">replace</a>(old,&nbsp;new[,&nbsp;count])&nbsp;-&gt;&nbsp;string<br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;copy&nbsp;of&nbsp;string&nbsp;S&nbsp;with&nbsp;all&nbsp;occurrences&nbsp;of&nbsp;substring<br>
+old&nbsp;replaced&nbsp;by&nbsp;new.&nbsp;&nbsp;If&nbsp;the&nbsp;optional&nbsp;argument&nbsp;count&nbsp;is<br>
+given,&nbsp;only&nbsp;the&nbsp;first&nbsp;count&nbsp;occurrences&nbsp;are&nbsp;replaced.</tt></dd></dl>
+
+<dl><dt><a name="Bytes-rfind"><strong>rfind</strong></a>(...)</dt><dd><tt>S.<a href="#Bytes-rfind">rfind</a>(sub&nbsp;[,start&nbsp;[,end]])&nbsp;-&gt;&nbsp;int<br>
+&nbsp;<br>
+Return&nbsp;the&nbsp;highest&nbsp;index&nbsp;in&nbsp;S&nbsp;where&nbsp;substring&nbsp;sub&nbsp;is&nbsp;found,<br>
+such&nbsp;that&nbsp;sub&nbsp;is&nbsp;contained&nbsp;within&nbsp;S[start:end].&nbsp;&nbsp;Optional<br>
+arguments&nbsp;start&nbsp;and&nbsp;end&nbsp;are&nbsp;interpreted&nbsp;as&nbsp;in&nbsp;slice&nbsp;notation.<br>
+&nbsp;<br>
+Return&nbsp;-1&nbsp;on&nbsp;failure.</tt></dd></dl>
+
+<dl><dt><a name="Bytes-rindex"><strong>rindex</strong></a>(...)</dt><dd><tt>S.<a href="#Bytes-rindex">rindex</a>(sub&nbsp;[,start&nbsp;[,end]])&nbsp;-&gt;&nbsp;int<br>
+&nbsp;<br>
+Like&nbsp;S.<a href="#Bytes-rfind">rfind</a>()&nbsp;but&nbsp;raise&nbsp;<a href="exceptions.html#ValueError">ValueError</a>&nbsp;when&nbsp;the&nbsp;substring&nbsp;is&nbsp;not&nbsp;found.</tt></dd></dl>
+
+<dl><dt><a name="Bytes-rjust"><strong>rjust</strong></a>(...)</dt><dd><tt>S.<a href="#Bytes-rjust">rjust</a>(width[,&nbsp;fillchar])&nbsp;-&gt;&nbsp;string<br>
+&nbsp;<br>
+Return&nbsp;S&nbsp;right-justified&nbsp;in&nbsp;a&nbsp;string&nbsp;of&nbsp;length&nbsp;width.&nbsp;Padding&nbsp;is<br>
+done&nbsp;using&nbsp;the&nbsp;specified&nbsp;fill&nbsp;character&nbsp;(default&nbsp;is&nbsp;a&nbsp;space)</tt></dd></dl>
+
+<dl><dt><a name="Bytes-rpartition"><strong>rpartition</strong></a>(...)</dt><dd><tt>S.<a href="#Bytes-rpartition">rpartition</a>(sep)&nbsp;-&gt;&nbsp;(head,&nbsp;sep,&nbsp;tail)<br>
+&nbsp;<br>
+Search&nbsp;for&nbsp;the&nbsp;separator&nbsp;sep&nbsp;in&nbsp;S,&nbsp;starting&nbsp;at&nbsp;the&nbsp;end&nbsp;of&nbsp;S,&nbsp;and&nbsp;return<br>
+the&nbsp;part&nbsp;before&nbsp;it,&nbsp;the&nbsp;separator&nbsp;itself,&nbsp;and&nbsp;the&nbsp;part&nbsp;after&nbsp;it.&nbsp;&nbsp;If&nbsp;the<br>
+separator&nbsp;is&nbsp;not&nbsp;found,&nbsp;return&nbsp;two&nbsp;empty&nbsp;strings&nbsp;and&nbsp;S.</tt></dd></dl>
+
+<dl><dt><a name="Bytes-rsplit"><strong>rsplit</strong></a>(...)</dt><dd><tt>S.<a href="#Bytes-rsplit">rsplit</a>([sep&nbsp;[,maxsplit]])&nbsp;-&gt;&nbsp;list&nbsp;of&nbsp;strings<br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;list&nbsp;of&nbsp;the&nbsp;words&nbsp;in&nbsp;the&nbsp;string&nbsp;S,&nbsp;using&nbsp;sep&nbsp;as&nbsp;the<br>
+delimiter&nbsp;string,&nbsp;starting&nbsp;at&nbsp;the&nbsp;end&nbsp;of&nbsp;the&nbsp;string&nbsp;and&nbsp;working<br>
+to&nbsp;the&nbsp;front.&nbsp;&nbsp;If&nbsp;maxsplit&nbsp;is&nbsp;given,&nbsp;at&nbsp;most&nbsp;maxsplit&nbsp;splits&nbsp;are<br>
+done.&nbsp;If&nbsp;sep&nbsp;is&nbsp;not&nbsp;specified&nbsp;or&nbsp;is&nbsp;None,&nbsp;any&nbsp;whitespace&nbsp;string<br>
+is&nbsp;a&nbsp;separator.</tt></dd></dl>
+
+<dl><dt><a name="Bytes-rstrip"><strong>rstrip</strong></a>(...)</dt><dd><tt>S.<a href="#Bytes-rstrip">rstrip</a>([chars])&nbsp;-&gt;&nbsp;string&nbsp;or&nbsp;unicode<br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;string&nbsp;S&nbsp;with&nbsp;trailing&nbsp;whitespace&nbsp;removed.<br>
+If&nbsp;chars&nbsp;is&nbsp;given&nbsp;and&nbsp;not&nbsp;None,&nbsp;remove&nbsp;characters&nbsp;in&nbsp;chars&nbsp;instead.<br>
+If&nbsp;chars&nbsp;is&nbsp;unicode,&nbsp;S&nbsp;will&nbsp;be&nbsp;converted&nbsp;to&nbsp;unicode&nbsp;before&nbsp;stripping</tt></dd></dl>
+
+<dl><dt><a name="Bytes-split"><strong>split</strong></a>(...)</dt><dd><tt>S.<a href="#Bytes-split">split</a>([sep&nbsp;[,maxsplit]])&nbsp;-&gt;&nbsp;list&nbsp;of&nbsp;strings<br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;list&nbsp;of&nbsp;the&nbsp;words&nbsp;in&nbsp;the&nbsp;string&nbsp;S,&nbsp;using&nbsp;sep&nbsp;as&nbsp;the<br>
+delimiter&nbsp;string.&nbsp;&nbsp;If&nbsp;maxsplit&nbsp;is&nbsp;given,&nbsp;at&nbsp;most&nbsp;maxsplit<br>
+splits&nbsp;are&nbsp;done.&nbsp;If&nbsp;sep&nbsp;is&nbsp;not&nbsp;specified&nbsp;or&nbsp;is&nbsp;None,&nbsp;any<br>
+whitespace&nbsp;string&nbsp;is&nbsp;a&nbsp;separator&nbsp;and&nbsp;empty&nbsp;strings&nbsp;are&nbsp;removed<br>
+from&nbsp;the&nbsp;result.</tt></dd></dl>
+
+<dl><dt><a name="Bytes-splitlines"><strong>splitlines</strong></a>(...)</dt><dd><tt>S.<a href="#Bytes-splitlines">splitlines</a>(keepends=False)&nbsp;-&gt;&nbsp;list&nbsp;of&nbsp;strings<br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;list&nbsp;of&nbsp;the&nbsp;lines&nbsp;in&nbsp;S,&nbsp;breaking&nbsp;at&nbsp;line&nbsp;boundaries.<br>
+Line&nbsp;breaks&nbsp;are&nbsp;not&nbsp;included&nbsp;in&nbsp;the&nbsp;resulting&nbsp;list&nbsp;unless&nbsp;keepends<br>
+is&nbsp;given&nbsp;and&nbsp;true.</tt></dd></dl>
+
+<dl><dt><a name="Bytes-startswith"><strong>startswith</strong></a>(...)</dt><dd><tt>S.<a href="#Bytes-startswith">startswith</a>(prefix[,&nbsp;start[,&nbsp;end]])&nbsp;-&gt;&nbsp;bool<br>
+&nbsp;<br>
+Return&nbsp;True&nbsp;if&nbsp;S&nbsp;starts&nbsp;with&nbsp;the&nbsp;specified&nbsp;prefix,&nbsp;False&nbsp;otherwise.<br>
+With&nbsp;optional&nbsp;start,&nbsp;test&nbsp;S&nbsp;beginning&nbsp;at&nbsp;that&nbsp;position.<br>
+With&nbsp;optional&nbsp;end,&nbsp;stop&nbsp;comparing&nbsp;S&nbsp;at&nbsp;that&nbsp;position.<br>
+prefix&nbsp;can&nbsp;also&nbsp;be&nbsp;a&nbsp;tuple&nbsp;of&nbsp;strings&nbsp;to&nbsp;try.</tt></dd></dl>
+
+<dl><dt><a name="Bytes-strip"><strong>strip</strong></a>(...)</dt><dd><tt>S.<a href="#Bytes-strip">strip</a>([chars])&nbsp;-&gt;&nbsp;string&nbsp;or&nbsp;unicode<br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;string&nbsp;S&nbsp;with&nbsp;leading&nbsp;and&nbsp;trailing<br>
+whitespace&nbsp;removed.<br>
+If&nbsp;chars&nbsp;is&nbsp;given&nbsp;and&nbsp;not&nbsp;None,&nbsp;remove&nbsp;characters&nbsp;in&nbsp;chars&nbsp;instead.<br>
+If&nbsp;chars&nbsp;is&nbsp;unicode,&nbsp;S&nbsp;will&nbsp;be&nbsp;converted&nbsp;to&nbsp;unicode&nbsp;before&nbsp;stripping</tt></dd></dl>
+
+<dl><dt><a name="Bytes-swapcase"><strong>swapcase</strong></a>(...)</dt><dd><tt>S.<a href="#Bytes-swapcase">swapcase</a>()&nbsp;-&gt;&nbsp;string<br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;string&nbsp;S&nbsp;with&nbsp;uppercase&nbsp;characters<br>
+converted&nbsp;to&nbsp;lowercase&nbsp;and&nbsp;vice&nbsp;versa.</tt></dd></dl>
+
+<dl><dt><a name="Bytes-title"><strong>title</strong></a>(...)</dt><dd><tt>S.<a href="#Bytes-title">title</a>()&nbsp;-&gt;&nbsp;string<br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;titlecased&nbsp;version&nbsp;of&nbsp;S,&nbsp;i.e.&nbsp;words&nbsp;start&nbsp;with&nbsp;uppercase<br>
+characters,&nbsp;all&nbsp;remaining&nbsp;cased&nbsp;characters&nbsp;have&nbsp;lowercase.</tt></dd></dl>
+
+<dl><dt><a name="Bytes-translate"><strong>translate</strong></a>(...)</dt><dd><tt>S.<a href="#Bytes-translate">translate</a>(table&nbsp;[,deletechars])&nbsp;-&gt;&nbsp;string<br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;string&nbsp;S,&nbsp;where&nbsp;all&nbsp;characters&nbsp;occurring<br>
+in&nbsp;the&nbsp;optional&nbsp;argument&nbsp;deletechars&nbsp;are&nbsp;removed,&nbsp;and&nbsp;the<br>
+remaining&nbsp;characters&nbsp;have&nbsp;been&nbsp;mapped&nbsp;through&nbsp;the&nbsp;given<br>
+translation&nbsp;table,&nbsp;which&nbsp;must&nbsp;be&nbsp;a&nbsp;string&nbsp;of&nbsp;length&nbsp;256&nbsp;or&nbsp;None.<br>
+If&nbsp;the&nbsp;table&nbsp;argument&nbsp;is&nbsp;None,&nbsp;no&nbsp;translation&nbsp;is&nbsp;applied&nbsp;and<br>
+the&nbsp;operation&nbsp;simply&nbsp;removes&nbsp;the&nbsp;characters&nbsp;in&nbsp;deletechars.</tt></dd></dl>
+
+<dl><dt><a name="Bytes-upper"><strong>upper</strong></a>(...)</dt><dd><tt>S.<a href="#Bytes-upper">upper</a>()&nbsp;-&gt;&nbsp;string<br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;string&nbsp;S&nbsp;converted&nbsp;to&nbsp;uppercase.</tt></dd></dl>
+
+<dl><dt><a name="Bytes-zfill"><strong>zfill</strong></a>(...)</dt><dd><tt>S.<a href="#Bytes-zfill">zfill</a>(width)&nbsp;-&gt;&nbsp;string<br>
+&nbsp;<br>
+Pad&nbsp;a&nbsp;numeric&nbsp;string&nbsp;S&nbsp;with&nbsp;zeros&nbsp;on&nbsp;the&nbsp;left,&nbsp;to&nbsp;fill&nbsp;a&nbsp;field<br>
+of&nbsp;the&nbsp;specified&nbsp;width.&nbsp;&nbsp;The&nbsp;string&nbsp;S&nbsp;is&nbsp;never&nbsp;truncated.</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="__builtin__.html#str">__builtin__.str</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object&gt;<dd><tt>T.<a href="#Bytes-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;object&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="IPv4Address">class <strong>IPv4Address</strong></a>(<a href="fortrace.common.ipaddr.html#_BaseV4">_BaseV4</a>, <a href="fortrace.common.ipaddr.html#_BaseIP">_BaseIP</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Represent&nbsp;and&nbsp;manipulate&nbsp;single&nbsp;IPv4&nbsp;Addresses.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="fortrace.common.ipaddr.html#IPv4Address">IPv4Address</a></dd>
+<dd><a href="fortrace.common.ipaddr.html#_BaseV4">_BaseV4</a></dd>
+<dd><a href="fortrace.common.ipaddr.html#_BaseIP">_BaseIP</a></dd>
+<dd><a href="fortrace.common.ipaddr.html#_IPAddrBase">_IPAddrBase</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="IPv4Address-__init__"><strong>__init__</strong></a>(self, address)</dt><dd><tt>Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;address:&nbsp;A&nbsp;string&nbsp;or&nbsp;integer&nbsp;representing&nbsp;the&nbsp;IP<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'192.168.1.1'<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Additionally,&nbsp;an&nbsp;integer&nbsp;can&nbsp;be&nbsp;passed,&nbsp;so<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#IPv4Address">IPv4Address</a>('192.168.1.1')&nbsp;==&nbsp;<a href="#IPv4Address">IPv4Address</a>(3232235777).<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;or,&nbsp;more&nbsp;generally<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#IPv4Address">IPv4Address</a>(int(<a href="#IPv4Address">IPv4Address</a>('192.168.1.1')))&nbsp;==<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#IPv4Address">IPv4Address</a>('192.168.1.1')<br>
+&nbsp;<br>
+Raises:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#AddressValueError">AddressValueError</a>:&nbsp;If&nbsp;ipaddr&nbsp;isn't&nbsp;a&nbsp;valid&nbsp;IPv4&nbsp;address.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="fortrace.common.ipaddr.html#_BaseV4">_BaseV4</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>is_link_local</strong></dt>
+<dd><tt>Test&nbsp;if&nbsp;the&nbsp;address&nbsp;is&nbsp;reserved&nbsp;for&nbsp;link-local.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;boolean,&nbsp;True&nbsp;if&nbsp;the&nbsp;address&nbsp;is&nbsp;link-local&nbsp;per&nbsp;<a href="http://www.rfc-editor.org/rfc/rfc3927.txt">RFC&nbsp;3927</a>.</tt></dd>
+</dl>
+<dl><dt><strong>is_loopback</strong></dt>
+<dd><tt>Test&nbsp;if&nbsp;the&nbsp;address&nbsp;is&nbsp;a&nbsp;loopback&nbsp;address.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;boolean,&nbsp;True&nbsp;if&nbsp;the&nbsp;address&nbsp;is&nbsp;a&nbsp;loopback&nbsp;per&nbsp;<a href="http://www.rfc-editor.org/rfc/rfc3330.txt">RFC&nbsp;3330</a>.</tt></dd>
+</dl>
+<dl><dt><strong>is_multicast</strong></dt>
+<dd><tt>Test&nbsp;if&nbsp;the&nbsp;address&nbsp;is&nbsp;reserved&nbsp;for&nbsp;multicast&nbsp;use.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;boolean,&nbsp;True&nbsp;if&nbsp;the&nbsp;address&nbsp;is&nbsp;multicast.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;See&nbsp;<a href="http://www.rfc-editor.org/rfc/rfc3171.txt">RFC&nbsp;3171</a>&nbsp;for&nbsp;details.</tt></dd>
+</dl>
+<dl><dt><strong>is_private</strong></dt>
+<dd><tt>Test&nbsp;if&nbsp;this&nbsp;address&nbsp;is&nbsp;allocated&nbsp;for&nbsp;private&nbsp;networks.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;boolean,&nbsp;True&nbsp;if&nbsp;the&nbsp;address&nbsp;is&nbsp;reserved&nbsp;per&nbsp;<a href="http://www.rfc-editor.org/rfc/rfc1918.txt">RFC&nbsp;1918</a>.</tt></dd>
+</dl>
+<dl><dt><strong>is_reserved</strong></dt>
+<dd><tt>Test&nbsp;if&nbsp;the&nbsp;address&nbsp;is&nbsp;otherwise&nbsp;IETF&nbsp;reserved.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;boolean,&nbsp;True&nbsp;if&nbsp;the&nbsp;address&nbsp;is&nbsp;within&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;reserved&nbsp;IPv4&nbsp;Network&nbsp;range.</tt></dd>
+</dl>
+<dl><dt><strong>is_unspecified</strong></dt>
+<dd><tt>Test&nbsp;if&nbsp;the&nbsp;address&nbsp;is&nbsp;unspecified.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;boolean,&nbsp;True&nbsp;if&nbsp;this&nbsp;is&nbsp;the&nbsp;unspecified&nbsp;address&nbsp;as&nbsp;defined&nbsp;in<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.rfc-editor.org/rfc/rfc5735.txt">RFC&nbsp;5735</a>&nbsp;3.</tt></dd>
+</dl>
+<dl><dt><strong>max_prefixlen</strong></dt>
+</dl>
+<dl><dt><strong>packed</strong></dt>
+<dd><tt>The&nbsp;binary&nbsp;representation&nbsp;of&nbsp;this&nbsp;address.</tt></dd>
+</dl>
+<dl><dt><strong>version</strong></dt>
+</dl>
+<hr>
+Methods inherited from <a href="fortrace.common.ipaddr.html#_BaseIP">_BaseIP</a>:<br>
+<dl><dt><a name="IPv4Address-__add__"><strong>__add__</strong></a>(self, other)</dt><dd><tt>#&nbsp;Shorthand&nbsp;for&nbsp;Integer&nbsp;addition&nbsp;and&nbsp;subtraction.&nbsp;This&nbsp;is&nbsp;not<br>
+#&nbsp;meant&nbsp;to&nbsp;ever&nbsp;support&nbsp;addition/subtraction&nbsp;of&nbsp;addresses.</tt></dd></dl>
+
+<dl><dt><a name="IPv4Address-__eq__"><strong>__eq__</strong></a>(self, other)</dt></dl>
+
+<dl><dt><a name="IPv4Address-__ge__"><strong>__ge__</strong></a>(self, other)</dt></dl>
+
+<dl><dt><a name="IPv4Address-__gt__"><strong>__gt__</strong></a>(self, other)</dt></dl>
+
+<dl><dt><a name="IPv4Address-__hash__"><strong>__hash__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="IPv4Address-__le__"><strong>__le__</strong></a>(self, other)</dt></dl>
+
+<dl><dt><a name="IPv4Address-__lt__"><strong>__lt__</strong></a>(self, other)</dt></dl>
+
+<dl><dt><a name="IPv4Address-__ne__"><strong>__ne__</strong></a>(self, other)</dt></dl>
+
+<dl><dt><a name="IPv4Address-__repr__"><strong>__repr__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="IPv4Address-__str__"><strong>__str__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="IPv4Address-__sub__"><strong>__sub__</strong></a>(self, other)</dt></dl>
+
+<hr>
+Methods inherited from <a href="fortrace.common.ipaddr.html#_IPAddrBase">_IPAddrBase</a>:<br>
+<dl><dt><a name="IPv4Address-__hex__"><strong>__hex__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="IPv4Address-__index__"><strong>__index__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="IPv4Address-__int__"><strong>__int__</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="fortrace.common.ipaddr.html#_IPAddrBase">_IPAddrBase</a>:<br>
+<dl><dt><strong>compressed</strong></dt>
+<dd><tt>Return&nbsp;the&nbsp;shorthand&nbsp;version&nbsp;of&nbsp;the&nbsp;IP&nbsp;address&nbsp;as&nbsp;a&nbsp;string.</tt></dd>
+</dl>
+<dl><dt><strong>exploded</strong></dt>
+<dd><tt>Return&nbsp;the&nbsp;longhand&nbsp;version&nbsp;of&nbsp;the&nbsp;IP&nbsp;address&nbsp;as&nbsp;a&nbsp;string.</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="IPv4Network">class <strong>IPv4Network</strong></a>(<a href="fortrace.common.ipaddr.html#_BaseV4">_BaseV4</a>, <a href="fortrace.common.ipaddr.html#_BaseNet">_BaseNet</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>This&nbsp;class&nbsp;represents&nbsp;and&nbsp;manipulates&nbsp;32-bit&nbsp;IPv4&nbsp;networks.<br>
+&nbsp;<br>
+Attributes:&nbsp;[examples&nbsp;for&nbsp;<a href="#IPv4Network">IPv4Network</a>('1.2.3.4/27')]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;._ip:&nbsp;16909060<br>
+&nbsp;&nbsp;&nbsp;&nbsp;.ip:&nbsp;<a href="#IPv4Address">IPv4Address</a>('1.2.3.4')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;.network:&nbsp;<a href="#IPv4Address">IPv4Address</a>('1.2.3.0')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;.hostmask:&nbsp;<a href="#IPv4Address">IPv4Address</a>('0.0.0.31')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;.broadcast:&nbsp;<a href="#IPv4Address">IPv4Address</a>('1.2.3.31')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;.netmask:&nbsp;<a href="#IPv4Address">IPv4Address</a>('255.255.255.224')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;.prefixlen:&nbsp;27<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="fortrace.common.ipaddr.html#IPv4Network">IPv4Network</a></dd>
+<dd><a href="fortrace.common.ipaddr.html#_BaseV4">_BaseV4</a></dd>
+<dd><a href="fortrace.common.ipaddr.html#_BaseNet">_BaseNet</a></dd>
+<dd><a href="fortrace.common.ipaddr.html#_IPAddrBase">_IPAddrBase</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><strong>IsLinkLocal</strong> <em>lambda</em> self</dt></dl>
+
+<dl><dt><strong>IsLoopback</strong> <em>lambda</em> self</dt></dl>
+
+<dl><dt><strong>IsMulticast</strong> <em>lambda</em> self</dt></dl>
+
+<dl><dt><strong>IsRFC1918</strong> <em>lambda</em> self</dt><dd><tt>#&nbsp;backwards&nbsp;compatibility</tt></dd></dl>
+
+<dl><dt><a name="IPv4Network-__init__"><strong>__init__</strong></a>(self, address, strict<font color="#909090">=False</font>)</dt><dd><tt>Instantiate&nbsp;a&nbsp;new&nbsp;IPv4&nbsp;network&nbsp;object.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;address:&nbsp;A&nbsp;string&nbsp;or&nbsp;integer&nbsp;representing&nbsp;the&nbsp;IP&nbsp;[&amp;&nbsp;network].<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'192.168.1.1/24'<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'192.168.1.1/255.255.255.0'<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'192.168.1.1/0.0.0.255'<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;are&nbsp;all&nbsp;functionally&nbsp;the&nbsp;same&nbsp;in&nbsp;IPv4.&nbsp;Similarly,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'192.168.1.1'<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'192.168.1.1/255.255.255.255'<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'192.168.1.1/32'<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;are&nbsp;also&nbsp;functionaly&nbsp;equivalent.&nbsp;That&nbsp;is&nbsp;to&nbsp;say,&nbsp;failing&nbsp;to<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;provide&nbsp;a&nbsp;subnetmask&nbsp;will&nbsp;create&nbsp;an&nbsp;object&nbsp;with&nbsp;a&nbsp;mask&nbsp;of&nbsp;/32.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;the&nbsp;mask&nbsp;(portion&nbsp;after&nbsp;the&nbsp;/&nbsp;in&nbsp;the&nbsp;argument)&nbsp;is&nbsp;given&nbsp;in<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dotted&nbsp;quad&nbsp;form,&nbsp;it&nbsp;is&nbsp;treated&nbsp;as&nbsp;a&nbsp;netmask&nbsp;if&nbsp;it&nbsp;starts&nbsp;with&nbsp;a<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;non-zero&nbsp;field&nbsp;(e.g.&nbsp;/255.0.0.0&nbsp;==&nbsp;/8)&nbsp;and&nbsp;as&nbsp;a&nbsp;hostmask&nbsp;if&nbsp;it<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;starts&nbsp;with&nbsp;a&nbsp;zero&nbsp;field&nbsp;(e.g.&nbsp;0.255.255.255&nbsp;==&nbsp;/8),&nbsp;with&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;single&nbsp;exception&nbsp;of&nbsp;an&nbsp;all-zero&nbsp;mask&nbsp;which&nbsp;is&nbsp;treated&nbsp;as&nbsp;a<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;netmask&nbsp;==&nbsp;/0.&nbsp;If&nbsp;no&nbsp;mask&nbsp;is&nbsp;given,&nbsp;a&nbsp;default&nbsp;of&nbsp;/32&nbsp;is&nbsp;used.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Additionally,&nbsp;an&nbsp;integer&nbsp;can&nbsp;be&nbsp;passed,&nbsp;so<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#IPv4Network">IPv4Network</a>('192.168.1.1')&nbsp;==&nbsp;<a href="#IPv4Network">IPv4Network</a>(3232235777).<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;or,&nbsp;more&nbsp;generally<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#IPv4Network">IPv4Network</a>(int(<a href="#IPv4Network">IPv4Network</a>('192.168.1.1')))&nbsp;==<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#IPv4Network">IPv4Network</a>('192.168.1.1')<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;strict:&nbsp;A&nbsp;boolean.&nbsp;If&nbsp;true,&nbsp;ensure&nbsp;that&nbsp;we&nbsp;have&nbsp;been&nbsp;passed<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;true&nbsp;network&nbsp;address,&nbsp;eg,&nbsp;192.168.1.0/24&nbsp;and&nbsp;not&nbsp;an<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IP&nbsp;address&nbsp;on&nbsp;a&nbsp;network,&nbsp;eg,&nbsp;192.168.1.1/24.<br>
+&nbsp;<br>
+Raises:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#AddressValueError">AddressValueError</a>:&nbsp;If&nbsp;ipaddr&nbsp;isn't&nbsp;a&nbsp;valid&nbsp;IPv4&nbsp;address.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#NetmaskValueError">NetmaskValueError</a>:&nbsp;If&nbsp;the&nbsp;netmask&nbsp;isn't&nbsp;valid&nbsp;for<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;an&nbsp;IPv4&nbsp;address.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="exceptions.html#ValueError">ValueError</a>:&nbsp;If&nbsp;strict&nbsp;was&nbsp;True&nbsp;and&nbsp;a&nbsp;network&nbsp;address&nbsp;was&nbsp;not<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;supplied.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="fortrace.common.ipaddr.html#_BaseV4">_BaseV4</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>is_link_local</strong></dt>
+<dd><tt>Test&nbsp;if&nbsp;the&nbsp;address&nbsp;is&nbsp;reserved&nbsp;for&nbsp;link-local.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;boolean,&nbsp;True&nbsp;if&nbsp;the&nbsp;address&nbsp;is&nbsp;link-local&nbsp;per&nbsp;<a href="http://www.rfc-editor.org/rfc/rfc3927.txt">RFC&nbsp;3927</a>.</tt></dd>
+</dl>
+<dl><dt><strong>is_loopback</strong></dt>
+<dd><tt>Test&nbsp;if&nbsp;the&nbsp;address&nbsp;is&nbsp;a&nbsp;loopback&nbsp;address.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;boolean,&nbsp;True&nbsp;if&nbsp;the&nbsp;address&nbsp;is&nbsp;a&nbsp;loopback&nbsp;per&nbsp;<a href="http://www.rfc-editor.org/rfc/rfc3330.txt">RFC&nbsp;3330</a>.</tt></dd>
+</dl>
+<dl><dt><strong>is_multicast</strong></dt>
+<dd><tt>Test&nbsp;if&nbsp;the&nbsp;address&nbsp;is&nbsp;reserved&nbsp;for&nbsp;multicast&nbsp;use.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;boolean,&nbsp;True&nbsp;if&nbsp;the&nbsp;address&nbsp;is&nbsp;multicast.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;See&nbsp;<a href="http://www.rfc-editor.org/rfc/rfc3171.txt">RFC&nbsp;3171</a>&nbsp;for&nbsp;details.</tt></dd>
+</dl>
+<dl><dt><strong>is_private</strong></dt>
+<dd><tt>Test&nbsp;if&nbsp;this&nbsp;address&nbsp;is&nbsp;allocated&nbsp;for&nbsp;private&nbsp;networks.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;boolean,&nbsp;True&nbsp;if&nbsp;the&nbsp;address&nbsp;is&nbsp;reserved&nbsp;per&nbsp;<a href="http://www.rfc-editor.org/rfc/rfc1918.txt">RFC&nbsp;1918</a>.</tt></dd>
+</dl>
+<dl><dt><strong>is_reserved</strong></dt>
+<dd><tt>Test&nbsp;if&nbsp;the&nbsp;address&nbsp;is&nbsp;otherwise&nbsp;IETF&nbsp;reserved.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;boolean,&nbsp;True&nbsp;if&nbsp;the&nbsp;address&nbsp;is&nbsp;within&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;reserved&nbsp;IPv4&nbsp;Network&nbsp;range.</tt></dd>
+</dl>
+<dl><dt><strong>is_unspecified</strong></dt>
+<dd><tt>Test&nbsp;if&nbsp;the&nbsp;address&nbsp;is&nbsp;unspecified.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;boolean,&nbsp;True&nbsp;if&nbsp;this&nbsp;is&nbsp;the&nbsp;unspecified&nbsp;address&nbsp;as&nbsp;defined&nbsp;in<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.rfc-editor.org/rfc/rfc5735.txt">RFC&nbsp;5735</a>&nbsp;3.</tt></dd>
+</dl>
+<dl><dt><strong>max_prefixlen</strong></dt>
+</dl>
+<dl><dt><strong>packed</strong></dt>
+<dd><tt>The&nbsp;binary&nbsp;representation&nbsp;of&nbsp;this&nbsp;address.</tt></dd>
+</dl>
+<dl><dt><strong>version</strong></dt>
+</dl>
+<hr>
+Methods inherited from <a href="fortrace.common.ipaddr.html#_BaseNet">_BaseNet</a>:<br>
+<dl><dt><a name="IPv4Network-AddressExclude"><strong>AddressExclude</strong></a> = address_exclude(self, other)</dt><dd><tt>Remove&nbsp;an&nbsp;address&nbsp;from&nbsp;a&nbsp;larger&nbsp;block.<br>
+&nbsp;<br>
+For&nbsp;example:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;addr1&nbsp;=&nbsp;<a href="#-IPNetwork">IPNetwork</a>('10.1.1.0/24')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;addr2&nbsp;=&nbsp;<a href="#-IPNetwork">IPNetwork</a>('10.1.1.0/26')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;addr1.<a href="#IPv4Network-address_exclude">address_exclude</a>(addr2)&nbsp;=<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<a href="#-IPNetwork">IPNetwork</a>('10.1.1.64/26'),&nbsp;<a href="#-IPNetwork">IPNetwork</a>('10.1.1.128/25')]<br>
+&nbsp;<br>
+or&nbsp;IPv6:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;addr1&nbsp;=&nbsp;<a href="#-IPNetwork">IPNetwork</a>('::1/32')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;addr2&nbsp;=&nbsp;<a href="#-IPNetwork">IPNetwork</a>('::1/128')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;addr1.<a href="#IPv4Network-address_exclude">address_exclude</a>(addr2)&nbsp;=&nbsp;[<a href="#-IPNetwork">IPNetwork</a>('::0/128'),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#-IPNetwork">IPNetwork</a>('::2/127'),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#-IPNetwork">IPNetwork</a>('::4/126'),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#-IPNetwork">IPNetwork</a>('::8/125'),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#-IPNetwork">IPNetwork</a>('0:0:8000::/33')]<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;other:&nbsp;An&nbsp;IPvXNetwork&nbsp;object&nbsp;of&nbsp;the&nbsp;same&nbsp;type.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;sorted&nbsp;list&nbsp;of&nbsp;IPvXNetwork&nbsp;objects&nbsp;addresses&nbsp;which&nbsp;is&nbsp;self<br>
+&nbsp;&nbsp;&nbsp;&nbsp;minus&nbsp;other.<br>
+&nbsp;<br>
+Raises:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;TypeError:&nbsp;If&nbsp;self&nbsp;and&nbsp;other&nbsp;are&nbsp;of&nbsp;difffering&nbsp;address<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;versions,&nbsp;or&nbsp;if&nbsp;other&nbsp;is&nbsp;not&nbsp;a&nbsp;network&nbsp;object.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="exceptions.html#ValueError">ValueError</a>:&nbsp;If&nbsp;other&nbsp;is&nbsp;not&nbsp;completely&nbsp;contained&nbsp;by&nbsp;self.</tt></dd></dl>
+
+<dl><dt><a name="IPv4Network-CompareNetworks"><strong>CompareNetworks</strong></a> = compare_networks(self, other)</dt><dd><tt>Compare&nbsp;two&nbsp;IP&nbsp;objects.<br>
+&nbsp;<br>
+This&nbsp;is&nbsp;only&nbsp;concerned&nbsp;about&nbsp;the&nbsp;comparison&nbsp;of&nbsp;the&nbsp;integer<br>
+representation&nbsp;of&nbsp;the&nbsp;network&nbsp;addresses.&nbsp;&nbsp;This&nbsp;means&nbsp;that&nbsp;the<br>
+host&nbsp;bits&nbsp;aren't&nbsp;considered&nbsp;at&nbsp;all&nbsp;in&nbsp;this&nbsp;method.&nbsp;&nbsp;If&nbsp;you&nbsp;want<br>
+to&nbsp;compare&nbsp;host&nbsp;bits,&nbsp;you&nbsp;can&nbsp;easily&nbsp;enough&nbsp;do&nbsp;a<br>
+'HostA._ip&nbsp;&lt;&nbsp;HostB._ip'<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;other:&nbsp;An&nbsp;IP&nbsp;object.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;the&nbsp;IP&nbsp;versions&nbsp;of&nbsp;self&nbsp;and&nbsp;other&nbsp;are&nbsp;the&nbsp;same,&nbsp;returns:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-1&nbsp;if&nbsp;self&nbsp;&lt;&nbsp;other:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eg:&nbsp;IPv4('1.1.1.0/24')&nbsp;&lt;&nbsp;IPv4('1.1.2.0/24')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IPv6('1080::200C:417A')&nbsp;&lt;&nbsp;IPv6('1080::200B:417B')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;if&nbsp;self&nbsp;==&nbsp;other<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eg:&nbsp;IPv4('1.1.1.1/24')&nbsp;==&nbsp;IPv4('1.1.1.2/24')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IPv6('1080::200C:417A/96')&nbsp;==&nbsp;IPv6('1080::200C:417B/96')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;if&nbsp;self&nbsp;&gt;&nbsp;other<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eg:&nbsp;IPv4('1.1.1.0/24')&nbsp;&gt;&nbsp;IPv4('1.1.0.0/24')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IPv6('1080::1:200C:417A/112')&nbsp;&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IPv6('1080::0:200C:417A/112')<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;the&nbsp;IP&nbsp;versions&nbsp;of&nbsp;self&nbsp;and&nbsp;other&nbsp;are&nbsp;different,&nbsp;returns:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-1&nbsp;if&nbsp;self.<strong>_version</strong>&nbsp;&lt;&nbsp;other._version<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eg:&nbsp;IPv4('10.0.0.1/24')&nbsp;&lt;&nbsp;IPv6('::1/128')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;if&nbsp;self.<strong>_version</strong>&nbsp;&gt;&nbsp;other._version<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eg:&nbsp;IPv6('::1/128')&nbsp;&gt;&nbsp;IPv4('255.255.255.0/24')</tt></dd></dl>
+
+<dl><dt><a name="IPv4Network-Contains"><strong>Contains</strong></a> = __contains__(self, other)</dt></dl>
+
+<dl><dt><a name="IPv4Network-Subnet"><strong>Subnet</strong></a> = subnet(self, prefixlen_diff<font color="#909090">=1</font>, new_prefix<font color="#909090">=None</font>)</dt><dd><tt>Return&nbsp;a&nbsp;list&nbsp;of&nbsp;subnets,&nbsp;rather&nbsp;than&nbsp;an&nbsp;iterator.</tt></dd></dl>
+
+<dl><dt><a name="IPv4Network-Supernet"><strong>Supernet</strong></a> = supernet(self, prefixlen_diff<font color="#909090">=1</font>, new_prefix<font color="#909090">=None</font>)</dt><dd><tt>The&nbsp;supernet&nbsp;containing&nbsp;the&nbsp;current&nbsp;network.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;prefixlen_diff:&nbsp;An&nbsp;integer,&nbsp;the&nbsp;amount&nbsp;the&nbsp;prefix&nbsp;length&nbsp;of<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;network&nbsp;should&nbsp;be&nbsp;decreased&nbsp;by.&nbsp;&nbsp;For&nbsp;example,&nbsp;given&nbsp;a<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/24&nbsp;network&nbsp;and&nbsp;a&nbsp;prefixlen_diff&nbsp;of&nbsp;3,&nbsp;a&nbsp;supernet&nbsp;with&nbsp;a<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/21&nbsp;netmask&nbsp;is&nbsp;returned.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;An&nbsp;IPv4&nbsp;network&nbsp;object.<br>
+&nbsp;<br>
+Raises:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="exceptions.html#ValueError">ValueError</a>:&nbsp;If&nbsp;self.<strong>prefixlen</strong>&nbsp;-&nbsp;prefixlen_diff&nbsp;&lt;&nbsp;0.&nbsp;I.e.,&nbsp;you&nbsp;have&nbsp;a<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;negative&nbsp;prefix&nbsp;length.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OR<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;prefixlen_diff&nbsp;and&nbsp;new_prefix&nbsp;are&nbsp;both&nbsp;set&nbsp;or&nbsp;new_prefix&nbsp;is&nbsp;a<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;larger&nbsp;number&nbsp;than&nbsp;the&nbsp;current&nbsp;prefix&nbsp;(larger&nbsp;number&nbsp;means&nbsp;a<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;smaller&nbsp;network)</tt></dd></dl>
+
+<dl><dt><a name="IPv4Network-__contains__"><strong>__contains__</strong></a>(self, other)</dt></dl>
+
+<dl><dt><a name="IPv4Network-__eq__"><strong>__eq__</strong></a>(self, other)</dt></dl>
+
+<dl><dt><a name="IPv4Network-__ge__"><strong>__ge__</strong></a>(self, other)</dt></dl>
+
+<dl><dt><a name="IPv4Network-__getitem__"><strong>__getitem__</strong></a>(self, n)</dt></dl>
+
+<dl><dt><a name="IPv4Network-__gt__"><strong>__gt__</strong></a>(self, other)</dt></dl>
+
+<dl><dt><a name="IPv4Network-__hash__"><strong>__hash__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="IPv4Network-__iter__"><strong>__iter__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="IPv4Network-__le__"><strong>__le__</strong></a>(self, other)</dt></dl>
+
+<dl><dt><a name="IPv4Network-__lt__"><strong>__lt__</strong></a>(self, other)</dt></dl>
+
+<dl><dt><a name="IPv4Network-__ne__"><strong>__ne__</strong></a>(self, other)</dt></dl>
+
+<dl><dt><a name="IPv4Network-__repr__"><strong>__repr__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="IPv4Network-__str__"><strong>__str__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="IPv4Network-address_exclude"><strong>address_exclude</strong></a>(self, other)</dt><dd><tt>Remove&nbsp;an&nbsp;address&nbsp;from&nbsp;a&nbsp;larger&nbsp;block.<br>
+&nbsp;<br>
+For&nbsp;example:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;addr1&nbsp;=&nbsp;<a href="#-IPNetwork">IPNetwork</a>('10.1.1.0/24')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;addr2&nbsp;=&nbsp;<a href="#-IPNetwork">IPNetwork</a>('10.1.1.0/26')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;addr1.<a href="#IPv4Network-address_exclude">address_exclude</a>(addr2)&nbsp;=<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<a href="#-IPNetwork">IPNetwork</a>('10.1.1.64/26'),&nbsp;<a href="#-IPNetwork">IPNetwork</a>('10.1.1.128/25')]<br>
+&nbsp;<br>
+or&nbsp;IPv6:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;addr1&nbsp;=&nbsp;<a href="#-IPNetwork">IPNetwork</a>('::1/32')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;addr2&nbsp;=&nbsp;<a href="#-IPNetwork">IPNetwork</a>('::1/128')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;addr1.<a href="#IPv4Network-address_exclude">address_exclude</a>(addr2)&nbsp;=&nbsp;[<a href="#-IPNetwork">IPNetwork</a>('::0/128'),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#-IPNetwork">IPNetwork</a>('::2/127'),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#-IPNetwork">IPNetwork</a>('::4/126'),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#-IPNetwork">IPNetwork</a>('::8/125'),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#-IPNetwork">IPNetwork</a>('0:0:8000::/33')]<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;other:&nbsp;An&nbsp;IPvXNetwork&nbsp;object&nbsp;of&nbsp;the&nbsp;same&nbsp;type.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;sorted&nbsp;list&nbsp;of&nbsp;IPvXNetwork&nbsp;objects&nbsp;addresses&nbsp;which&nbsp;is&nbsp;self<br>
+&nbsp;&nbsp;&nbsp;&nbsp;minus&nbsp;other.<br>
+&nbsp;<br>
+Raises:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;TypeError:&nbsp;If&nbsp;self&nbsp;and&nbsp;other&nbsp;are&nbsp;of&nbsp;difffering&nbsp;address<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;versions,&nbsp;or&nbsp;if&nbsp;other&nbsp;is&nbsp;not&nbsp;a&nbsp;network&nbsp;object.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="exceptions.html#ValueError">ValueError</a>:&nbsp;If&nbsp;other&nbsp;is&nbsp;not&nbsp;completely&nbsp;contained&nbsp;by&nbsp;self.</tt></dd></dl>
+
+<dl><dt><a name="IPv4Network-compare_networks"><strong>compare_networks</strong></a>(self, other)</dt><dd><tt>Compare&nbsp;two&nbsp;IP&nbsp;objects.<br>
+&nbsp;<br>
+This&nbsp;is&nbsp;only&nbsp;concerned&nbsp;about&nbsp;the&nbsp;comparison&nbsp;of&nbsp;the&nbsp;integer<br>
+representation&nbsp;of&nbsp;the&nbsp;network&nbsp;addresses.&nbsp;&nbsp;This&nbsp;means&nbsp;that&nbsp;the<br>
+host&nbsp;bits&nbsp;aren't&nbsp;considered&nbsp;at&nbsp;all&nbsp;in&nbsp;this&nbsp;method.&nbsp;&nbsp;If&nbsp;you&nbsp;want<br>
+to&nbsp;compare&nbsp;host&nbsp;bits,&nbsp;you&nbsp;can&nbsp;easily&nbsp;enough&nbsp;do&nbsp;a<br>
+'HostA._ip&nbsp;&lt;&nbsp;HostB._ip'<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;other:&nbsp;An&nbsp;IP&nbsp;object.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;the&nbsp;IP&nbsp;versions&nbsp;of&nbsp;self&nbsp;and&nbsp;other&nbsp;are&nbsp;the&nbsp;same,&nbsp;returns:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-1&nbsp;if&nbsp;self&nbsp;&lt;&nbsp;other:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eg:&nbsp;IPv4('1.1.1.0/24')&nbsp;&lt;&nbsp;IPv4('1.1.2.0/24')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IPv6('1080::200C:417A')&nbsp;&lt;&nbsp;IPv6('1080::200B:417B')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;if&nbsp;self&nbsp;==&nbsp;other<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eg:&nbsp;IPv4('1.1.1.1/24')&nbsp;==&nbsp;IPv4('1.1.1.2/24')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IPv6('1080::200C:417A/96')&nbsp;==&nbsp;IPv6('1080::200C:417B/96')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;if&nbsp;self&nbsp;&gt;&nbsp;other<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eg:&nbsp;IPv4('1.1.1.0/24')&nbsp;&gt;&nbsp;IPv4('1.1.0.0/24')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IPv6('1080::1:200C:417A/112')&nbsp;&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IPv6('1080::0:200C:417A/112')<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;the&nbsp;IP&nbsp;versions&nbsp;of&nbsp;self&nbsp;and&nbsp;other&nbsp;are&nbsp;different,&nbsp;returns:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-1&nbsp;if&nbsp;self.<strong>_version</strong>&nbsp;&lt;&nbsp;other._version<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eg:&nbsp;IPv4('10.0.0.1/24')&nbsp;&lt;&nbsp;IPv6('::1/128')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;if&nbsp;self.<strong>_version</strong>&nbsp;&gt;&nbsp;other._version<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eg:&nbsp;IPv6('::1/128')&nbsp;&gt;&nbsp;IPv4('255.255.255.0/24')</tt></dd></dl>
+
+<dl><dt><a name="IPv4Network-iter_subnets"><strong>iter_subnets</strong></a>(self, prefixlen_diff<font color="#909090">=1</font>, new_prefix<font color="#909090">=None</font>)</dt><dd><tt>The&nbsp;subnets&nbsp;which&nbsp;join&nbsp;to&nbsp;make&nbsp;the&nbsp;current&nbsp;subnet.<br>
+&nbsp;<br>
+In&nbsp;the&nbsp;case&nbsp;that&nbsp;self&nbsp;contains&nbsp;only&nbsp;one&nbsp;IP<br>
+(self.<strong>_prefixlen</strong>&nbsp;==&nbsp;32&nbsp;for&nbsp;IPv4&nbsp;or&nbsp;self.<strong>_prefixlen</strong>&nbsp;==&nbsp;128<br>
+for&nbsp;IPv6),&nbsp;return&nbsp;a&nbsp;list&nbsp;with&nbsp;just&nbsp;ourself.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;prefixlen_diff:&nbsp;An&nbsp;integer,&nbsp;the&nbsp;amount&nbsp;the&nbsp;prefix&nbsp;length<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;should&nbsp;be&nbsp;increased&nbsp;by.&nbsp;This&nbsp;should&nbsp;not&nbsp;be&nbsp;set&nbsp;if<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new_prefix&nbsp;is&nbsp;also&nbsp;set.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;new_prefix:&nbsp;The&nbsp;desired&nbsp;new&nbsp;prefix&nbsp;length.&nbsp;This&nbsp;must&nbsp;be&nbsp;a<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;larger&nbsp;number&nbsp;(smaller&nbsp;prefix)&nbsp;than&nbsp;the&nbsp;existing&nbsp;prefix.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This&nbsp;should&nbsp;not&nbsp;be&nbsp;set&nbsp;if&nbsp;prefixlen_diff&nbsp;is&nbsp;also&nbsp;set.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;An&nbsp;iterator&nbsp;of&nbsp;IPv(4|6)&nbsp;objects.<br>
+&nbsp;<br>
+Raises:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="exceptions.html#ValueError">ValueError</a>:&nbsp;The&nbsp;prefixlen_diff&nbsp;is&nbsp;too&nbsp;small&nbsp;or&nbsp;too&nbsp;large.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OR<br>
+&nbsp;&nbsp;&nbsp;&nbsp;prefixlen_diff&nbsp;and&nbsp;new_prefix&nbsp;are&nbsp;both&nbsp;set&nbsp;or&nbsp;new_prefix<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is&nbsp;a&nbsp;smaller&nbsp;number&nbsp;than&nbsp;the&nbsp;current&nbsp;prefix&nbsp;(smaller<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;number&nbsp;means&nbsp;a&nbsp;larger&nbsp;network)</tt></dd></dl>
+
+<dl><dt><a name="IPv4Network-iterhosts"><strong>iterhosts</strong></a>(self)</dt><dd><tt>Generate&nbsp;Iterator&nbsp;over&nbsp;usable&nbsp;hosts&nbsp;in&nbsp;a&nbsp;network.<br>
+&nbsp;<br>
+This&nbsp;is&nbsp;like&nbsp;__iter__&nbsp;except&nbsp;it&nbsp;doesn't&nbsp;return&nbsp;the&nbsp;network<br>
+or&nbsp;broadcast&nbsp;addresses.</tt></dd></dl>
+
+<dl><dt><a name="IPv4Network-masked"><strong>masked</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;network&nbsp;object&nbsp;with&nbsp;the&nbsp;host&nbsp;bits&nbsp;masked&nbsp;out.</tt></dd></dl>
+
+<dl><dt><a name="IPv4Network-overlaps"><strong>overlaps</strong></a>(self, other)</dt><dd><tt>Tell&nbsp;if&nbsp;self&nbsp;is&nbsp;partly&nbsp;contained&nbsp;in&nbsp;other.</tt></dd></dl>
+
+<dl><dt><a name="IPv4Network-subnet"><strong>subnet</strong></a>(self, prefixlen_diff<font color="#909090">=1</font>, new_prefix<font color="#909090">=None</font>)</dt><dd><tt>Return&nbsp;a&nbsp;list&nbsp;of&nbsp;subnets,&nbsp;rather&nbsp;than&nbsp;an&nbsp;iterator.</tt></dd></dl>
+
+<dl><dt><a name="IPv4Network-supernet"><strong>supernet</strong></a>(self, prefixlen_diff<font color="#909090">=1</font>, new_prefix<font color="#909090">=None</font>)</dt><dd><tt>The&nbsp;supernet&nbsp;containing&nbsp;the&nbsp;current&nbsp;network.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;prefixlen_diff:&nbsp;An&nbsp;integer,&nbsp;the&nbsp;amount&nbsp;the&nbsp;prefix&nbsp;length&nbsp;of<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;network&nbsp;should&nbsp;be&nbsp;decreased&nbsp;by.&nbsp;&nbsp;For&nbsp;example,&nbsp;given&nbsp;a<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/24&nbsp;network&nbsp;and&nbsp;a&nbsp;prefixlen_diff&nbsp;of&nbsp;3,&nbsp;a&nbsp;supernet&nbsp;with&nbsp;a<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/21&nbsp;netmask&nbsp;is&nbsp;returned.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;An&nbsp;IPv4&nbsp;network&nbsp;object.<br>
+&nbsp;<br>
+Raises:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="exceptions.html#ValueError">ValueError</a>:&nbsp;If&nbsp;self.<strong>prefixlen</strong>&nbsp;-&nbsp;prefixlen_diff&nbsp;&lt;&nbsp;0.&nbsp;I.e.,&nbsp;you&nbsp;have&nbsp;a<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;negative&nbsp;prefix&nbsp;length.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OR<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;prefixlen_diff&nbsp;and&nbsp;new_prefix&nbsp;are&nbsp;both&nbsp;set&nbsp;or&nbsp;new_prefix&nbsp;is&nbsp;a<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;larger&nbsp;number&nbsp;than&nbsp;the&nbsp;current&nbsp;prefix&nbsp;(larger&nbsp;number&nbsp;means&nbsp;a<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;smaller&nbsp;network)</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="fortrace.common.ipaddr.html#_BaseNet">_BaseNet</a>:<br>
+<dl><dt><strong>broadcast</strong></dt>
+</dl>
+<dl><dt><strong>hostmask</strong></dt>
+</dl>
+<dl><dt><strong>network</strong></dt>
+</dl>
+<dl><dt><strong>numhosts</strong></dt>
+<dd><tt>Number&nbsp;of&nbsp;hosts&nbsp;in&nbsp;the&nbsp;current&nbsp;subnet.</tt></dd>
+</dl>
+<dl><dt><strong>prefixlen</strong></dt>
+</dl>
+<dl><dt><strong>with_hostmask</strong></dt>
+</dl>
+<dl><dt><strong>with_netmask</strong></dt>
+</dl>
+<dl><dt><strong>with_prefixlen</strong></dt>
+</dl>
+<hr>
+Methods inherited from <a href="fortrace.common.ipaddr.html#_IPAddrBase">_IPAddrBase</a>:<br>
+<dl><dt><a name="IPv4Network-__hex__"><strong>__hex__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="IPv4Network-__index__"><strong>__index__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="IPv4Network-__int__"><strong>__int__</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="fortrace.common.ipaddr.html#_IPAddrBase">_IPAddrBase</a>:<br>
+<dl><dt><strong>compressed</strong></dt>
+<dd><tt>Return&nbsp;the&nbsp;shorthand&nbsp;version&nbsp;of&nbsp;the&nbsp;IP&nbsp;address&nbsp;as&nbsp;a&nbsp;string.</tt></dd>
+</dl>
+<dl><dt><strong>exploded</strong></dt>
+<dd><tt>Return&nbsp;the&nbsp;longhand&nbsp;version&nbsp;of&nbsp;the&nbsp;IP&nbsp;address&nbsp;as&nbsp;a&nbsp;string.</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="IPv6Address">class <strong>IPv6Address</strong></a>(<a href="fortrace.common.ipaddr.html#_BaseV6">_BaseV6</a>, <a href="fortrace.common.ipaddr.html#_BaseIP">_BaseIP</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Represent&nbsp;and&nbsp;manipulate&nbsp;single&nbsp;IPv6&nbsp;Addresses.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="fortrace.common.ipaddr.html#IPv6Address">IPv6Address</a></dd>
+<dd><a href="fortrace.common.ipaddr.html#_BaseV6">_BaseV6</a></dd>
+<dd><a href="fortrace.common.ipaddr.html#_BaseIP">_BaseIP</a></dd>
+<dd><a href="fortrace.common.ipaddr.html#_IPAddrBase">_IPAddrBase</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="IPv6Address-__init__"><strong>__init__</strong></a>(self, address)</dt><dd><tt>Instantiate&nbsp;a&nbsp;new&nbsp;IPv6&nbsp;address&nbsp;object.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;address:&nbsp;A&nbsp;string&nbsp;or&nbsp;integer&nbsp;representing&nbsp;the&nbsp;IP<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Additionally,&nbsp;an&nbsp;integer&nbsp;can&nbsp;be&nbsp;passed,&nbsp;so<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#IPv6Address">IPv6Address</a>('2001:4860::')&nbsp;==<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#IPv6Address">IPv6Address</a>(42541956101370907050197289607612071936L).<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;or,&nbsp;more&nbsp;generally<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#IPv6Address">IPv6Address</a>(<a href="#IPv6Address">IPv6Address</a>('2001:4860::')._ip)&nbsp;==<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#IPv6Address">IPv6Address</a>('2001:4860::')<br>
+&nbsp;<br>
+Raises:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#AddressValueError">AddressValueError</a>:&nbsp;If&nbsp;address&nbsp;isn't&nbsp;a&nbsp;valid&nbsp;IPv6&nbsp;address.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="fortrace.common.ipaddr.html#_BaseV6">_BaseV6</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>ipv4_mapped</strong></dt>
+<dd><tt>Return&nbsp;the&nbsp;IPv4&nbsp;mapped&nbsp;address.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;the&nbsp;IPv6&nbsp;address&nbsp;is&nbsp;a&nbsp;v4&nbsp;mapped&nbsp;address,&nbsp;return&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;IPv4&nbsp;mapped&nbsp;address.&nbsp;Return&nbsp;None&nbsp;otherwise.</tt></dd>
+</dl>
+<dl><dt><strong>is_link_local</strong></dt>
+<dd><tt>Test&nbsp;if&nbsp;the&nbsp;address&nbsp;is&nbsp;reserved&nbsp;for&nbsp;link-local.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;boolean,&nbsp;True&nbsp;if&nbsp;the&nbsp;address&nbsp;is&nbsp;reserved&nbsp;per&nbsp;<a href="http://www.rfc-editor.org/rfc/rfc4291.txt">RFC&nbsp;4291</a>.</tt></dd>
+</dl>
+<dl><dt><strong>is_loopback</strong></dt>
+<dd><tt>Test&nbsp;if&nbsp;the&nbsp;address&nbsp;is&nbsp;a&nbsp;loopback&nbsp;address.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;boolean,&nbsp;True&nbsp;if&nbsp;the&nbsp;address&nbsp;is&nbsp;a&nbsp;loopback&nbsp;address&nbsp;as&nbsp;defined&nbsp;in<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.rfc-editor.org/rfc/rfc2373.txt">RFC&nbsp;2373</a>&nbsp;2.5.3.</tt></dd>
+</dl>
+<dl><dt><strong>is_multicast</strong></dt>
+<dd><tt>Test&nbsp;if&nbsp;the&nbsp;address&nbsp;is&nbsp;reserved&nbsp;for&nbsp;multicast&nbsp;use.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;boolean,&nbsp;True&nbsp;if&nbsp;the&nbsp;address&nbsp;is&nbsp;a&nbsp;multicast&nbsp;address.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;See&nbsp;<a href="http://www.rfc-editor.org/rfc/rfc2373.txt">RFC&nbsp;2373</a>&nbsp;2.7&nbsp;for&nbsp;details.</tt></dd>
+</dl>
+<dl><dt><strong>is_private</strong></dt>
+<dd><tt>Test&nbsp;if&nbsp;this&nbsp;address&nbsp;is&nbsp;allocated&nbsp;for&nbsp;private&nbsp;networks.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;boolean,&nbsp;True&nbsp;if&nbsp;the&nbsp;address&nbsp;is&nbsp;reserved&nbsp;per&nbsp;<a href="http://www.rfc-editor.org/rfc/rfc4193.txt">RFC&nbsp;4193</a>.</tt></dd>
+</dl>
+<dl><dt><strong>is_reserved</strong></dt>
+<dd><tt>Test&nbsp;if&nbsp;the&nbsp;address&nbsp;is&nbsp;otherwise&nbsp;IETF&nbsp;reserved.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;boolean,&nbsp;True&nbsp;if&nbsp;the&nbsp;address&nbsp;is&nbsp;within&nbsp;one&nbsp;of&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;reserved&nbsp;IPv6&nbsp;Network&nbsp;ranges.</tt></dd>
+</dl>
+<dl><dt><strong>is_site_local</strong></dt>
+<dd><tt>Test&nbsp;if&nbsp;the&nbsp;address&nbsp;is&nbsp;reserved&nbsp;for&nbsp;site-local.<br>
+&nbsp;<br>
+Note&nbsp;that&nbsp;the&nbsp;site-local&nbsp;address&nbsp;space&nbsp;has&nbsp;been&nbsp;deprecated&nbsp;by&nbsp;<a href="http://www.rfc-editor.org/rfc/rfc3879.txt">RFC&nbsp;3879</a>.<br>
+Use&nbsp;is_private&nbsp;to&nbsp;test&nbsp;if&nbsp;this&nbsp;address&nbsp;is&nbsp;in&nbsp;the&nbsp;space&nbsp;of&nbsp;unique&nbsp;local<br>
+addresses&nbsp;as&nbsp;defined&nbsp;by&nbsp;<a href="http://www.rfc-editor.org/rfc/rfc4193.txt">RFC&nbsp;4193</a>.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;boolean,&nbsp;True&nbsp;if&nbsp;the&nbsp;address&nbsp;is&nbsp;reserved&nbsp;per&nbsp;<a href="http://www.rfc-editor.org/rfc/rfc3513.txt">RFC&nbsp;3513</a>&nbsp;2.5.6.</tt></dd>
+</dl>
+<dl><dt><strong>is_unspecified</strong></dt>
+<dd><tt>Test&nbsp;if&nbsp;the&nbsp;address&nbsp;is&nbsp;unspecified.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;boolean,&nbsp;True&nbsp;if&nbsp;this&nbsp;is&nbsp;the&nbsp;unspecified&nbsp;address&nbsp;as&nbsp;defined&nbsp;in<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.rfc-editor.org/rfc/rfc2373.txt">RFC&nbsp;2373</a>&nbsp;2.5.2.</tt></dd>
+</dl>
+<dl><dt><strong>max_prefixlen</strong></dt>
+</dl>
+<dl><dt><strong>packed</strong></dt>
+<dd><tt>The&nbsp;binary&nbsp;representation&nbsp;of&nbsp;this&nbsp;address.</tt></dd>
+</dl>
+<dl><dt><strong>sixtofour</strong></dt>
+<dd><tt>Return&nbsp;the&nbsp;IPv4&nbsp;6to4&nbsp;embedded&nbsp;address.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;IPv4&nbsp;6to4-embedded&nbsp;address&nbsp;if&nbsp;present&nbsp;or&nbsp;None&nbsp;if&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;address&nbsp;doesn't&nbsp;appear&nbsp;to&nbsp;contain&nbsp;a&nbsp;6to4&nbsp;embedded&nbsp;address.</tt></dd>
+</dl>
+<dl><dt><strong>teredo</strong></dt>
+<dd><tt>Tuple&nbsp;of&nbsp;embedded&nbsp;teredo&nbsp;IPs.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Tuple&nbsp;of&nbsp;the&nbsp;(server,&nbsp;client)&nbsp;IPs&nbsp;or&nbsp;None&nbsp;if&nbsp;the&nbsp;address<br>
+&nbsp;&nbsp;&nbsp;&nbsp;doesn't&nbsp;appear&nbsp;to&nbsp;be&nbsp;a&nbsp;teredo&nbsp;address&nbsp;(doesn't&nbsp;start&nbsp;with<br>
+&nbsp;&nbsp;&nbsp;&nbsp;2001::/32)</tt></dd>
+</dl>
+<dl><dt><strong>version</strong></dt>
+</dl>
+<hr>
+Methods inherited from <a href="fortrace.common.ipaddr.html#_BaseIP">_BaseIP</a>:<br>
+<dl><dt><a name="IPv6Address-__add__"><strong>__add__</strong></a>(self, other)</dt><dd><tt>#&nbsp;Shorthand&nbsp;for&nbsp;Integer&nbsp;addition&nbsp;and&nbsp;subtraction.&nbsp;This&nbsp;is&nbsp;not<br>
+#&nbsp;meant&nbsp;to&nbsp;ever&nbsp;support&nbsp;addition/subtraction&nbsp;of&nbsp;addresses.</tt></dd></dl>
+
+<dl><dt><a name="IPv6Address-__eq__"><strong>__eq__</strong></a>(self, other)</dt></dl>
+
+<dl><dt><a name="IPv6Address-__ge__"><strong>__ge__</strong></a>(self, other)</dt></dl>
+
+<dl><dt><a name="IPv6Address-__gt__"><strong>__gt__</strong></a>(self, other)</dt></dl>
+
+<dl><dt><a name="IPv6Address-__hash__"><strong>__hash__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="IPv6Address-__le__"><strong>__le__</strong></a>(self, other)</dt></dl>
+
+<dl><dt><a name="IPv6Address-__lt__"><strong>__lt__</strong></a>(self, other)</dt></dl>
+
+<dl><dt><a name="IPv6Address-__ne__"><strong>__ne__</strong></a>(self, other)</dt></dl>
+
+<dl><dt><a name="IPv6Address-__repr__"><strong>__repr__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="IPv6Address-__str__"><strong>__str__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="IPv6Address-__sub__"><strong>__sub__</strong></a>(self, other)</dt></dl>
+
+<hr>
+Methods inherited from <a href="fortrace.common.ipaddr.html#_IPAddrBase">_IPAddrBase</a>:<br>
+<dl><dt><a name="IPv6Address-__hex__"><strong>__hex__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="IPv6Address-__index__"><strong>__index__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="IPv6Address-__int__"><strong>__int__</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="fortrace.common.ipaddr.html#_IPAddrBase">_IPAddrBase</a>:<br>
+<dl><dt><strong>compressed</strong></dt>
+<dd><tt>Return&nbsp;the&nbsp;shorthand&nbsp;version&nbsp;of&nbsp;the&nbsp;IP&nbsp;address&nbsp;as&nbsp;a&nbsp;string.</tt></dd>
+</dl>
+<dl><dt><strong>exploded</strong></dt>
+<dd><tt>Return&nbsp;the&nbsp;longhand&nbsp;version&nbsp;of&nbsp;the&nbsp;IP&nbsp;address&nbsp;as&nbsp;a&nbsp;string.</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="IPv6Network">class <strong>IPv6Network</strong></a>(<a href="fortrace.common.ipaddr.html#_BaseV6">_BaseV6</a>, <a href="fortrace.common.ipaddr.html#_BaseNet">_BaseNet</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>This&nbsp;class&nbsp;represents&nbsp;and&nbsp;manipulates&nbsp;128-bit&nbsp;IPv6&nbsp;networks.<br>
+&nbsp;<br>
+Attributes:&nbsp;[examples&nbsp;for&nbsp;IPv6('2001:658:22A:CAFE:200::1/64')]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;.ip:&nbsp;<a href="#IPv6Address">IPv6Address</a>('2001:658:22a:cafe:200::1')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;.network:&nbsp;<a href="#IPv6Address">IPv6Address</a>('2001:658:22a:cafe::')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;.hostmask:&nbsp;<a href="#IPv6Address">IPv6Address</a>('::ffff:ffff:ffff:ffff')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;.broadcast:&nbsp;<a href="#IPv6Address">IPv6Address</a>('2001:658:22a:cafe:ffff:ffff:ffff:ffff')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;.netmask:&nbsp;<a href="#IPv6Address">IPv6Address</a>('ffff:ffff:ffff:ffff::')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;.prefixlen:&nbsp;64<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="fortrace.common.ipaddr.html#IPv6Network">IPv6Network</a></dd>
+<dd><a href="fortrace.common.ipaddr.html#_BaseV6">_BaseV6</a></dd>
+<dd><a href="fortrace.common.ipaddr.html#_BaseNet">_BaseNet</a></dd>
+<dd><a href="fortrace.common.ipaddr.html#_IPAddrBase">_IPAddrBase</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="IPv6Network-__init__"><strong>__init__</strong></a>(self, address, strict<font color="#909090">=False</font>)</dt><dd><tt>Instantiate&nbsp;a&nbsp;new&nbsp;IPv6&nbsp;Network&nbsp;object.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;address:&nbsp;A&nbsp;string&nbsp;or&nbsp;integer&nbsp;representing&nbsp;the&nbsp;IPv6&nbsp;network&nbsp;or&nbsp;the&nbsp;IP<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;and&nbsp;prefix/netmask.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'2001:4860::/128'<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'2001:4860:0000:0000:0000:0000:0000:0000/128'<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'2001:4860::'<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;are&nbsp;all&nbsp;functionally&nbsp;the&nbsp;same&nbsp;in&nbsp;IPv6.&nbsp;&nbsp;That&nbsp;is&nbsp;to&nbsp;say,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;failing&nbsp;to&nbsp;provide&nbsp;a&nbsp;subnetmask&nbsp;will&nbsp;create&nbsp;an&nbsp;object&nbsp;with<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;mask&nbsp;of&nbsp;/128.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Additionally,&nbsp;an&nbsp;integer&nbsp;can&nbsp;be&nbsp;passed,&nbsp;so<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#IPv6Network">IPv6Network</a>('2001:4860::')&nbsp;==<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#IPv6Network">IPv6Network</a>(42541956101370907050197289607612071936L).<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;or,&nbsp;more&nbsp;generally<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#IPv6Network">IPv6Network</a>(<a href="#IPv6Network">IPv6Network</a>('2001:4860::')._ip)&nbsp;==<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#IPv6Network">IPv6Network</a>('2001:4860::')<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;strict:&nbsp;A&nbsp;boolean.&nbsp;If&nbsp;true,&nbsp;ensure&nbsp;that&nbsp;we&nbsp;have&nbsp;been&nbsp;passed<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;true&nbsp;network&nbsp;address,&nbsp;eg,&nbsp;192.168.1.0/24&nbsp;and&nbsp;not&nbsp;an<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IP&nbsp;address&nbsp;on&nbsp;a&nbsp;network,&nbsp;eg,&nbsp;192.168.1.1/24.<br>
+&nbsp;<br>
+Raises:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#AddressValueError">AddressValueError</a>:&nbsp;If&nbsp;address&nbsp;isn't&nbsp;a&nbsp;valid&nbsp;IPv6&nbsp;address.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#NetmaskValueError">NetmaskValueError</a>:&nbsp;If&nbsp;the&nbsp;netmask&nbsp;isn't&nbsp;valid&nbsp;for<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;an&nbsp;IPv6&nbsp;address.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="exceptions.html#ValueError">ValueError</a>:&nbsp;If&nbsp;strict&nbsp;was&nbsp;True&nbsp;and&nbsp;a&nbsp;network&nbsp;address&nbsp;was&nbsp;not<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;supplied.</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>with_netmask</strong></dt>
+</dl>
+<hr>
+Data descriptors inherited from <a href="fortrace.common.ipaddr.html#_BaseV6">_BaseV6</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>ipv4_mapped</strong></dt>
+<dd><tt>Return&nbsp;the&nbsp;IPv4&nbsp;mapped&nbsp;address.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;the&nbsp;IPv6&nbsp;address&nbsp;is&nbsp;a&nbsp;v4&nbsp;mapped&nbsp;address,&nbsp;return&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;IPv4&nbsp;mapped&nbsp;address.&nbsp;Return&nbsp;None&nbsp;otherwise.</tt></dd>
+</dl>
+<dl><dt><strong>is_link_local</strong></dt>
+<dd><tt>Test&nbsp;if&nbsp;the&nbsp;address&nbsp;is&nbsp;reserved&nbsp;for&nbsp;link-local.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;boolean,&nbsp;True&nbsp;if&nbsp;the&nbsp;address&nbsp;is&nbsp;reserved&nbsp;per&nbsp;<a href="http://www.rfc-editor.org/rfc/rfc4291.txt">RFC&nbsp;4291</a>.</tt></dd>
+</dl>
+<dl><dt><strong>is_loopback</strong></dt>
+<dd><tt>Test&nbsp;if&nbsp;the&nbsp;address&nbsp;is&nbsp;a&nbsp;loopback&nbsp;address.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;boolean,&nbsp;True&nbsp;if&nbsp;the&nbsp;address&nbsp;is&nbsp;a&nbsp;loopback&nbsp;address&nbsp;as&nbsp;defined&nbsp;in<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.rfc-editor.org/rfc/rfc2373.txt">RFC&nbsp;2373</a>&nbsp;2.5.3.</tt></dd>
+</dl>
+<dl><dt><strong>is_multicast</strong></dt>
+<dd><tt>Test&nbsp;if&nbsp;the&nbsp;address&nbsp;is&nbsp;reserved&nbsp;for&nbsp;multicast&nbsp;use.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;boolean,&nbsp;True&nbsp;if&nbsp;the&nbsp;address&nbsp;is&nbsp;a&nbsp;multicast&nbsp;address.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;See&nbsp;<a href="http://www.rfc-editor.org/rfc/rfc2373.txt">RFC&nbsp;2373</a>&nbsp;2.7&nbsp;for&nbsp;details.</tt></dd>
+</dl>
+<dl><dt><strong>is_private</strong></dt>
+<dd><tt>Test&nbsp;if&nbsp;this&nbsp;address&nbsp;is&nbsp;allocated&nbsp;for&nbsp;private&nbsp;networks.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;boolean,&nbsp;True&nbsp;if&nbsp;the&nbsp;address&nbsp;is&nbsp;reserved&nbsp;per&nbsp;<a href="http://www.rfc-editor.org/rfc/rfc4193.txt">RFC&nbsp;4193</a>.</tt></dd>
+</dl>
+<dl><dt><strong>is_reserved</strong></dt>
+<dd><tt>Test&nbsp;if&nbsp;the&nbsp;address&nbsp;is&nbsp;otherwise&nbsp;IETF&nbsp;reserved.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;boolean,&nbsp;True&nbsp;if&nbsp;the&nbsp;address&nbsp;is&nbsp;within&nbsp;one&nbsp;of&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;reserved&nbsp;IPv6&nbsp;Network&nbsp;ranges.</tt></dd>
+</dl>
+<dl><dt><strong>is_site_local</strong></dt>
+<dd><tt>Test&nbsp;if&nbsp;the&nbsp;address&nbsp;is&nbsp;reserved&nbsp;for&nbsp;site-local.<br>
+&nbsp;<br>
+Note&nbsp;that&nbsp;the&nbsp;site-local&nbsp;address&nbsp;space&nbsp;has&nbsp;been&nbsp;deprecated&nbsp;by&nbsp;<a href="http://www.rfc-editor.org/rfc/rfc3879.txt">RFC&nbsp;3879</a>.<br>
+Use&nbsp;is_private&nbsp;to&nbsp;test&nbsp;if&nbsp;this&nbsp;address&nbsp;is&nbsp;in&nbsp;the&nbsp;space&nbsp;of&nbsp;unique&nbsp;local<br>
+addresses&nbsp;as&nbsp;defined&nbsp;by&nbsp;<a href="http://www.rfc-editor.org/rfc/rfc4193.txt">RFC&nbsp;4193</a>.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;boolean,&nbsp;True&nbsp;if&nbsp;the&nbsp;address&nbsp;is&nbsp;reserved&nbsp;per&nbsp;<a href="http://www.rfc-editor.org/rfc/rfc3513.txt">RFC&nbsp;3513</a>&nbsp;2.5.6.</tt></dd>
+</dl>
+<dl><dt><strong>is_unspecified</strong></dt>
+<dd><tt>Test&nbsp;if&nbsp;the&nbsp;address&nbsp;is&nbsp;unspecified.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;boolean,&nbsp;True&nbsp;if&nbsp;this&nbsp;is&nbsp;the&nbsp;unspecified&nbsp;address&nbsp;as&nbsp;defined&nbsp;in<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.rfc-editor.org/rfc/rfc2373.txt">RFC&nbsp;2373</a>&nbsp;2.5.2.</tt></dd>
+</dl>
+<dl><dt><strong>max_prefixlen</strong></dt>
+</dl>
+<dl><dt><strong>packed</strong></dt>
+<dd><tt>The&nbsp;binary&nbsp;representation&nbsp;of&nbsp;this&nbsp;address.</tt></dd>
+</dl>
+<dl><dt><strong>sixtofour</strong></dt>
+<dd><tt>Return&nbsp;the&nbsp;IPv4&nbsp;6to4&nbsp;embedded&nbsp;address.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;IPv4&nbsp;6to4-embedded&nbsp;address&nbsp;if&nbsp;present&nbsp;or&nbsp;None&nbsp;if&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;address&nbsp;doesn't&nbsp;appear&nbsp;to&nbsp;contain&nbsp;a&nbsp;6to4&nbsp;embedded&nbsp;address.</tt></dd>
+</dl>
+<dl><dt><strong>teredo</strong></dt>
+<dd><tt>Tuple&nbsp;of&nbsp;embedded&nbsp;teredo&nbsp;IPs.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Tuple&nbsp;of&nbsp;the&nbsp;(server,&nbsp;client)&nbsp;IPs&nbsp;or&nbsp;None&nbsp;if&nbsp;the&nbsp;address<br>
+&nbsp;&nbsp;&nbsp;&nbsp;doesn't&nbsp;appear&nbsp;to&nbsp;be&nbsp;a&nbsp;teredo&nbsp;address&nbsp;(doesn't&nbsp;start&nbsp;with<br>
+&nbsp;&nbsp;&nbsp;&nbsp;2001::/32)</tt></dd>
+</dl>
+<dl><dt><strong>version</strong></dt>
+</dl>
+<hr>
+Methods inherited from <a href="fortrace.common.ipaddr.html#_BaseNet">_BaseNet</a>:<br>
+<dl><dt><a name="IPv6Network-AddressExclude"><strong>AddressExclude</strong></a> = address_exclude(self, other)</dt><dd><tt>Remove&nbsp;an&nbsp;address&nbsp;from&nbsp;a&nbsp;larger&nbsp;block.<br>
+&nbsp;<br>
+For&nbsp;example:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;addr1&nbsp;=&nbsp;<a href="#-IPNetwork">IPNetwork</a>('10.1.1.0/24')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;addr2&nbsp;=&nbsp;<a href="#-IPNetwork">IPNetwork</a>('10.1.1.0/26')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;addr1.<a href="#IPv6Network-address_exclude">address_exclude</a>(addr2)&nbsp;=<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<a href="#-IPNetwork">IPNetwork</a>('10.1.1.64/26'),&nbsp;<a href="#-IPNetwork">IPNetwork</a>('10.1.1.128/25')]<br>
+&nbsp;<br>
+or&nbsp;IPv6:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;addr1&nbsp;=&nbsp;<a href="#-IPNetwork">IPNetwork</a>('::1/32')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;addr2&nbsp;=&nbsp;<a href="#-IPNetwork">IPNetwork</a>('::1/128')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;addr1.<a href="#IPv6Network-address_exclude">address_exclude</a>(addr2)&nbsp;=&nbsp;[<a href="#-IPNetwork">IPNetwork</a>('::0/128'),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#-IPNetwork">IPNetwork</a>('::2/127'),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#-IPNetwork">IPNetwork</a>('::4/126'),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#-IPNetwork">IPNetwork</a>('::8/125'),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#-IPNetwork">IPNetwork</a>('0:0:8000::/33')]<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;other:&nbsp;An&nbsp;IPvXNetwork&nbsp;object&nbsp;of&nbsp;the&nbsp;same&nbsp;type.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;sorted&nbsp;list&nbsp;of&nbsp;IPvXNetwork&nbsp;objects&nbsp;addresses&nbsp;which&nbsp;is&nbsp;self<br>
+&nbsp;&nbsp;&nbsp;&nbsp;minus&nbsp;other.<br>
+&nbsp;<br>
+Raises:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;TypeError:&nbsp;If&nbsp;self&nbsp;and&nbsp;other&nbsp;are&nbsp;of&nbsp;difffering&nbsp;address<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;versions,&nbsp;or&nbsp;if&nbsp;other&nbsp;is&nbsp;not&nbsp;a&nbsp;network&nbsp;object.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="exceptions.html#ValueError">ValueError</a>:&nbsp;If&nbsp;other&nbsp;is&nbsp;not&nbsp;completely&nbsp;contained&nbsp;by&nbsp;self.</tt></dd></dl>
+
+<dl><dt><a name="IPv6Network-CompareNetworks"><strong>CompareNetworks</strong></a> = compare_networks(self, other)</dt><dd><tt>Compare&nbsp;two&nbsp;IP&nbsp;objects.<br>
+&nbsp;<br>
+This&nbsp;is&nbsp;only&nbsp;concerned&nbsp;about&nbsp;the&nbsp;comparison&nbsp;of&nbsp;the&nbsp;integer<br>
+representation&nbsp;of&nbsp;the&nbsp;network&nbsp;addresses.&nbsp;&nbsp;This&nbsp;means&nbsp;that&nbsp;the<br>
+host&nbsp;bits&nbsp;aren't&nbsp;considered&nbsp;at&nbsp;all&nbsp;in&nbsp;this&nbsp;method.&nbsp;&nbsp;If&nbsp;you&nbsp;want<br>
+to&nbsp;compare&nbsp;host&nbsp;bits,&nbsp;you&nbsp;can&nbsp;easily&nbsp;enough&nbsp;do&nbsp;a<br>
+'HostA._ip&nbsp;&lt;&nbsp;HostB._ip'<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;other:&nbsp;An&nbsp;IP&nbsp;object.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;the&nbsp;IP&nbsp;versions&nbsp;of&nbsp;self&nbsp;and&nbsp;other&nbsp;are&nbsp;the&nbsp;same,&nbsp;returns:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-1&nbsp;if&nbsp;self&nbsp;&lt;&nbsp;other:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eg:&nbsp;IPv4('1.1.1.0/24')&nbsp;&lt;&nbsp;IPv4('1.1.2.0/24')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IPv6('1080::200C:417A')&nbsp;&lt;&nbsp;IPv6('1080::200B:417B')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;if&nbsp;self&nbsp;==&nbsp;other<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eg:&nbsp;IPv4('1.1.1.1/24')&nbsp;==&nbsp;IPv4('1.1.1.2/24')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IPv6('1080::200C:417A/96')&nbsp;==&nbsp;IPv6('1080::200C:417B/96')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;if&nbsp;self&nbsp;&gt;&nbsp;other<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eg:&nbsp;IPv4('1.1.1.0/24')&nbsp;&gt;&nbsp;IPv4('1.1.0.0/24')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IPv6('1080::1:200C:417A/112')&nbsp;&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IPv6('1080::0:200C:417A/112')<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;the&nbsp;IP&nbsp;versions&nbsp;of&nbsp;self&nbsp;and&nbsp;other&nbsp;are&nbsp;different,&nbsp;returns:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-1&nbsp;if&nbsp;self.<strong>_version</strong>&nbsp;&lt;&nbsp;other._version<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eg:&nbsp;IPv4('10.0.0.1/24')&nbsp;&lt;&nbsp;IPv6('::1/128')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;if&nbsp;self.<strong>_version</strong>&nbsp;&gt;&nbsp;other._version<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eg:&nbsp;IPv6('::1/128')&nbsp;&gt;&nbsp;IPv4('255.255.255.0/24')</tt></dd></dl>
+
+<dl><dt><a name="IPv6Network-Contains"><strong>Contains</strong></a> = __contains__(self, other)</dt></dl>
+
+<dl><dt><a name="IPv6Network-Subnet"><strong>Subnet</strong></a> = subnet(self, prefixlen_diff<font color="#909090">=1</font>, new_prefix<font color="#909090">=None</font>)</dt><dd><tt>Return&nbsp;a&nbsp;list&nbsp;of&nbsp;subnets,&nbsp;rather&nbsp;than&nbsp;an&nbsp;iterator.</tt></dd></dl>
+
+<dl><dt><a name="IPv6Network-Supernet"><strong>Supernet</strong></a> = supernet(self, prefixlen_diff<font color="#909090">=1</font>, new_prefix<font color="#909090">=None</font>)</dt><dd><tt>The&nbsp;supernet&nbsp;containing&nbsp;the&nbsp;current&nbsp;network.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;prefixlen_diff:&nbsp;An&nbsp;integer,&nbsp;the&nbsp;amount&nbsp;the&nbsp;prefix&nbsp;length&nbsp;of<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;network&nbsp;should&nbsp;be&nbsp;decreased&nbsp;by.&nbsp;&nbsp;For&nbsp;example,&nbsp;given&nbsp;a<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/24&nbsp;network&nbsp;and&nbsp;a&nbsp;prefixlen_diff&nbsp;of&nbsp;3,&nbsp;a&nbsp;supernet&nbsp;with&nbsp;a<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/21&nbsp;netmask&nbsp;is&nbsp;returned.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;An&nbsp;IPv4&nbsp;network&nbsp;object.<br>
+&nbsp;<br>
+Raises:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="exceptions.html#ValueError">ValueError</a>:&nbsp;If&nbsp;self.<strong>prefixlen</strong>&nbsp;-&nbsp;prefixlen_diff&nbsp;&lt;&nbsp;0.&nbsp;I.e.,&nbsp;you&nbsp;have&nbsp;a<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;negative&nbsp;prefix&nbsp;length.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OR<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;prefixlen_diff&nbsp;and&nbsp;new_prefix&nbsp;are&nbsp;both&nbsp;set&nbsp;or&nbsp;new_prefix&nbsp;is&nbsp;a<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;larger&nbsp;number&nbsp;than&nbsp;the&nbsp;current&nbsp;prefix&nbsp;(larger&nbsp;number&nbsp;means&nbsp;a<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;smaller&nbsp;network)</tt></dd></dl>
+
+<dl><dt><a name="IPv6Network-__contains__"><strong>__contains__</strong></a>(self, other)</dt></dl>
+
+<dl><dt><a name="IPv6Network-__eq__"><strong>__eq__</strong></a>(self, other)</dt></dl>
+
+<dl><dt><a name="IPv6Network-__ge__"><strong>__ge__</strong></a>(self, other)</dt></dl>
+
+<dl><dt><a name="IPv6Network-__getitem__"><strong>__getitem__</strong></a>(self, n)</dt></dl>
+
+<dl><dt><a name="IPv6Network-__gt__"><strong>__gt__</strong></a>(self, other)</dt></dl>
+
+<dl><dt><a name="IPv6Network-__hash__"><strong>__hash__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="IPv6Network-__iter__"><strong>__iter__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="IPv6Network-__le__"><strong>__le__</strong></a>(self, other)</dt></dl>
+
+<dl><dt><a name="IPv6Network-__lt__"><strong>__lt__</strong></a>(self, other)</dt></dl>
+
+<dl><dt><a name="IPv6Network-__ne__"><strong>__ne__</strong></a>(self, other)</dt></dl>
+
+<dl><dt><a name="IPv6Network-__repr__"><strong>__repr__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="IPv6Network-__str__"><strong>__str__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="IPv6Network-address_exclude"><strong>address_exclude</strong></a>(self, other)</dt><dd><tt>Remove&nbsp;an&nbsp;address&nbsp;from&nbsp;a&nbsp;larger&nbsp;block.<br>
+&nbsp;<br>
+For&nbsp;example:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;addr1&nbsp;=&nbsp;<a href="#-IPNetwork">IPNetwork</a>('10.1.1.0/24')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;addr2&nbsp;=&nbsp;<a href="#-IPNetwork">IPNetwork</a>('10.1.1.0/26')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;addr1.<a href="#IPv6Network-address_exclude">address_exclude</a>(addr2)&nbsp;=<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<a href="#-IPNetwork">IPNetwork</a>('10.1.1.64/26'),&nbsp;<a href="#-IPNetwork">IPNetwork</a>('10.1.1.128/25')]<br>
+&nbsp;<br>
+or&nbsp;IPv6:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;addr1&nbsp;=&nbsp;<a href="#-IPNetwork">IPNetwork</a>('::1/32')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;addr2&nbsp;=&nbsp;<a href="#-IPNetwork">IPNetwork</a>('::1/128')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;addr1.<a href="#IPv6Network-address_exclude">address_exclude</a>(addr2)&nbsp;=&nbsp;[<a href="#-IPNetwork">IPNetwork</a>('::0/128'),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#-IPNetwork">IPNetwork</a>('::2/127'),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#-IPNetwork">IPNetwork</a>('::4/126'),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#-IPNetwork">IPNetwork</a>('::8/125'),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#-IPNetwork">IPNetwork</a>('0:0:8000::/33')]<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;other:&nbsp;An&nbsp;IPvXNetwork&nbsp;object&nbsp;of&nbsp;the&nbsp;same&nbsp;type.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;sorted&nbsp;list&nbsp;of&nbsp;IPvXNetwork&nbsp;objects&nbsp;addresses&nbsp;which&nbsp;is&nbsp;self<br>
+&nbsp;&nbsp;&nbsp;&nbsp;minus&nbsp;other.<br>
+&nbsp;<br>
+Raises:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;TypeError:&nbsp;If&nbsp;self&nbsp;and&nbsp;other&nbsp;are&nbsp;of&nbsp;difffering&nbsp;address<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;versions,&nbsp;or&nbsp;if&nbsp;other&nbsp;is&nbsp;not&nbsp;a&nbsp;network&nbsp;object.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="exceptions.html#ValueError">ValueError</a>:&nbsp;If&nbsp;other&nbsp;is&nbsp;not&nbsp;completely&nbsp;contained&nbsp;by&nbsp;self.</tt></dd></dl>
+
+<dl><dt><a name="IPv6Network-compare_networks"><strong>compare_networks</strong></a>(self, other)</dt><dd><tt>Compare&nbsp;two&nbsp;IP&nbsp;objects.<br>
+&nbsp;<br>
+This&nbsp;is&nbsp;only&nbsp;concerned&nbsp;about&nbsp;the&nbsp;comparison&nbsp;of&nbsp;the&nbsp;integer<br>
+representation&nbsp;of&nbsp;the&nbsp;network&nbsp;addresses.&nbsp;&nbsp;This&nbsp;means&nbsp;that&nbsp;the<br>
+host&nbsp;bits&nbsp;aren't&nbsp;considered&nbsp;at&nbsp;all&nbsp;in&nbsp;this&nbsp;method.&nbsp;&nbsp;If&nbsp;you&nbsp;want<br>
+to&nbsp;compare&nbsp;host&nbsp;bits,&nbsp;you&nbsp;can&nbsp;easily&nbsp;enough&nbsp;do&nbsp;a<br>
+'HostA._ip&nbsp;&lt;&nbsp;HostB._ip'<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;other:&nbsp;An&nbsp;IP&nbsp;object.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;the&nbsp;IP&nbsp;versions&nbsp;of&nbsp;self&nbsp;and&nbsp;other&nbsp;are&nbsp;the&nbsp;same,&nbsp;returns:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-1&nbsp;if&nbsp;self&nbsp;&lt;&nbsp;other:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eg:&nbsp;IPv4('1.1.1.0/24')&nbsp;&lt;&nbsp;IPv4('1.1.2.0/24')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IPv6('1080::200C:417A')&nbsp;&lt;&nbsp;IPv6('1080::200B:417B')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;if&nbsp;self&nbsp;==&nbsp;other<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eg:&nbsp;IPv4('1.1.1.1/24')&nbsp;==&nbsp;IPv4('1.1.1.2/24')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IPv6('1080::200C:417A/96')&nbsp;==&nbsp;IPv6('1080::200C:417B/96')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;if&nbsp;self&nbsp;&gt;&nbsp;other<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eg:&nbsp;IPv4('1.1.1.0/24')&nbsp;&gt;&nbsp;IPv4('1.1.0.0/24')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IPv6('1080::1:200C:417A/112')&nbsp;&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IPv6('1080::0:200C:417A/112')<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;the&nbsp;IP&nbsp;versions&nbsp;of&nbsp;self&nbsp;and&nbsp;other&nbsp;are&nbsp;different,&nbsp;returns:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-1&nbsp;if&nbsp;self.<strong>_version</strong>&nbsp;&lt;&nbsp;other._version<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eg:&nbsp;IPv4('10.0.0.1/24')&nbsp;&lt;&nbsp;IPv6('::1/128')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;if&nbsp;self.<strong>_version</strong>&nbsp;&gt;&nbsp;other._version<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eg:&nbsp;IPv6('::1/128')&nbsp;&gt;&nbsp;IPv4('255.255.255.0/24')</tt></dd></dl>
+
+<dl><dt><a name="IPv6Network-iter_subnets"><strong>iter_subnets</strong></a>(self, prefixlen_diff<font color="#909090">=1</font>, new_prefix<font color="#909090">=None</font>)</dt><dd><tt>The&nbsp;subnets&nbsp;which&nbsp;join&nbsp;to&nbsp;make&nbsp;the&nbsp;current&nbsp;subnet.<br>
+&nbsp;<br>
+In&nbsp;the&nbsp;case&nbsp;that&nbsp;self&nbsp;contains&nbsp;only&nbsp;one&nbsp;IP<br>
+(self.<strong>_prefixlen</strong>&nbsp;==&nbsp;32&nbsp;for&nbsp;IPv4&nbsp;or&nbsp;self.<strong>_prefixlen</strong>&nbsp;==&nbsp;128<br>
+for&nbsp;IPv6),&nbsp;return&nbsp;a&nbsp;list&nbsp;with&nbsp;just&nbsp;ourself.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;prefixlen_diff:&nbsp;An&nbsp;integer,&nbsp;the&nbsp;amount&nbsp;the&nbsp;prefix&nbsp;length<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;should&nbsp;be&nbsp;increased&nbsp;by.&nbsp;This&nbsp;should&nbsp;not&nbsp;be&nbsp;set&nbsp;if<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new_prefix&nbsp;is&nbsp;also&nbsp;set.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;new_prefix:&nbsp;The&nbsp;desired&nbsp;new&nbsp;prefix&nbsp;length.&nbsp;This&nbsp;must&nbsp;be&nbsp;a<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;larger&nbsp;number&nbsp;(smaller&nbsp;prefix)&nbsp;than&nbsp;the&nbsp;existing&nbsp;prefix.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This&nbsp;should&nbsp;not&nbsp;be&nbsp;set&nbsp;if&nbsp;prefixlen_diff&nbsp;is&nbsp;also&nbsp;set.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;An&nbsp;iterator&nbsp;of&nbsp;IPv(4|6)&nbsp;objects.<br>
+&nbsp;<br>
+Raises:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="exceptions.html#ValueError">ValueError</a>:&nbsp;The&nbsp;prefixlen_diff&nbsp;is&nbsp;too&nbsp;small&nbsp;or&nbsp;too&nbsp;large.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OR<br>
+&nbsp;&nbsp;&nbsp;&nbsp;prefixlen_diff&nbsp;and&nbsp;new_prefix&nbsp;are&nbsp;both&nbsp;set&nbsp;or&nbsp;new_prefix<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is&nbsp;a&nbsp;smaller&nbsp;number&nbsp;than&nbsp;the&nbsp;current&nbsp;prefix&nbsp;(smaller<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;number&nbsp;means&nbsp;a&nbsp;larger&nbsp;network)</tt></dd></dl>
+
+<dl><dt><a name="IPv6Network-iterhosts"><strong>iterhosts</strong></a>(self)</dt><dd><tt>Generate&nbsp;Iterator&nbsp;over&nbsp;usable&nbsp;hosts&nbsp;in&nbsp;a&nbsp;network.<br>
+&nbsp;<br>
+This&nbsp;is&nbsp;like&nbsp;__iter__&nbsp;except&nbsp;it&nbsp;doesn't&nbsp;return&nbsp;the&nbsp;network<br>
+or&nbsp;broadcast&nbsp;addresses.</tt></dd></dl>
+
+<dl><dt><a name="IPv6Network-masked"><strong>masked</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;network&nbsp;object&nbsp;with&nbsp;the&nbsp;host&nbsp;bits&nbsp;masked&nbsp;out.</tt></dd></dl>
+
+<dl><dt><a name="IPv6Network-overlaps"><strong>overlaps</strong></a>(self, other)</dt><dd><tt>Tell&nbsp;if&nbsp;self&nbsp;is&nbsp;partly&nbsp;contained&nbsp;in&nbsp;other.</tt></dd></dl>
+
+<dl><dt><a name="IPv6Network-subnet"><strong>subnet</strong></a>(self, prefixlen_diff<font color="#909090">=1</font>, new_prefix<font color="#909090">=None</font>)</dt><dd><tt>Return&nbsp;a&nbsp;list&nbsp;of&nbsp;subnets,&nbsp;rather&nbsp;than&nbsp;an&nbsp;iterator.</tt></dd></dl>
+
+<dl><dt><a name="IPv6Network-supernet"><strong>supernet</strong></a>(self, prefixlen_diff<font color="#909090">=1</font>, new_prefix<font color="#909090">=None</font>)</dt><dd><tt>The&nbsp;supernet&nbsp;containing&nbsp;the&nbsp;current&nbsp;network.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;prefixlen_diff:&nbsp;An&nbsp;integer,&nbsp;the&nbsp;amount&nbsp;the&nbsp;prefix&nbsp;length&nbsp;of<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;network&nbsp;should&nbsp;be&nbsp;decreased&nbsp;by.&nbsp;&nbsp;For&nbsp;example,&nbsp;given&nbsp;a<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/24&nbsp;network&nbsp;and&nbsp;a&nbsp;prefixlen_diff&nbsp;of&nbsp;3,&nbsp;a&nbsp;supernet&nbsp;with&nbsp;a<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/21&nbsp;netmask&nbsp;is&nbsp;returned.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;An&nbsp;IPv4&nbsp;network&nbsp;object.<br>
+&nbsp;<br>
+Raises:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="exceptions.html#ValueError">ValueError</a>:&nbsp;If&nbsp;self.<strong>prefixlen</strong>&nbsp;-&nbsp;prefixlen_diff&nbsp;&lt;&nbsp;0.&nbsp;I.e.,&nbsp;you&nbsp;have&nbsp;a<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;negative&nbsp;prefix&nbsp;length.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OR<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;prefixlen_diff&nbsp;and&nbsp;new_prefix&nbsp;are&nbsp;both&nbsp;set&nbsp;or&nbsp;new_prefix&nbsp;is&nbsp;a<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;larger&nbsp;number&nbsp;than&nbsp;the&nbsp;current&nbsp;prefix&nbsp;(larger&nbsp;number&nbsp;means&nbsp;a<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;smaller&nbsp;network)</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="fortrace.common.ipaddr.html#_BaseNet">_BaseNet</a>:<br>
+<dl><dt><strong>broadcast</strong></dt>
+</dl>
+<dl><dt><strong>hostmask</strong></dt>
+</dl>
+<dl><dt><strong>network</strong></dt>
+</dl>
+<dl><dt><strong>numhosts</strong></dt>
+<dd><tt>Number&nbsp;of&nbsp;hosts&nbsp;in&nbsp;the&nbsp;current&nbsp;subnet.</tt></dd>
+</dl>
+<dl><dt><strong>prefixlen</strong></dt>
+</dl>
+<dl><dt><strong>with_hostmask</strong></dt>
+</dl>
+<dl><dt><strong>with_prefixlen</strong></dt>
+</dl>
+<hr>
+Methods inherited from <a href="fortrace.common.ipaddr.html#_IPAddrBase">_IPAddrBase</a>:<br>
+<dl><dt><a name="IPv6Network-__hex__"><strong>__hex__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="IPv6Network-__index__"><strong>__index__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="IPv6Network-__int__"><strong>__int__</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="fortrace.common.ipaddr.html#_IPAddrBase">_IPAddrBase</a>:<br>
+<dl><dt><strong>compressed</strong></dt>
+<dd><tt>Return&nbsp;the&nbsp;shorthand&nbsp;version&nbsp;of&nbsp;the&nbsp;IP&nbsp;address&nbsp;as&nbsp;a&nbsp;string.</tt></dd>
+</dl>
+<dl><dt><strong>exploded</strong></dt>
+<dd><tt>Return&nbsp;the&nbsp;longhand&nbsp;version&nbsp;of&nbsp;the&nbsp;IP&nbsp;address&nbsp;as&nbsp;a&nbsp;string.</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="NetmaskValueError">class <strong>NetmaskValueError</strong></a>(<a href="exceptions.html#ValueError">exceptions.ValueError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>A&nbsp;Value&nbsp;Error&nbsp;related&nbsp;to&nbsp;the&nbsp;netmask.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="fortrace.common.ipaddr.html#NetmaskValueError">NetmaskValueError</a></dd>
+<dd><a href="exceptions.html#ValueError">exceptions.ValueError</a></dd>
+<dd><a href="exceptions.html#StandardError">exceptions.StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+<dd><a href="exceptions.html#BaseException">exceptions.BaseException</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#ValueError">exceptions.ValueError</a>:<br>
+<dl><dt><a name="NetmaskValueError-__init__"><strong>__init__</strong></a>(...)</dt><dd><tt>x.<a href="#NetmaskValueError-__init__">__init__</a>(...)&nbsp;initializes&nbsp;x;&nbsp;see&nbsp;help(type(x))&nbsp;for&nbsp;signature</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#ValueError">exceptions.ValueError</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object&gt;<dd><tt>T.<a href="#NetmaskValueError-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;object&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><a name="NetmaskValueError-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#NetmaskValueError-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="NetmaskValueError-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#NetmaskValueError-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="NetmaskValueError-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#NetmaskValueError-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="NetmaskValueError-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#NetmaskValueError-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="NetmaskValueError-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NetmaskValueError-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#NetmaskValueError-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="NetmaskValueError-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#NetmaskValueError-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="NetmaskValueError-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NetmaskValueError-__str__"><strong>__str__</strong></a>(...)</dt><dd><tt>x.<a href="#NetmaskValueError-__str__">__str__</a>()&nbsp;&lt;==&gt;&nbsp;<a href="__builtin__.html#str">str</a>(x)</tt></dd></dl>
+
+<dl><dt><a name="NetmaskValueError-__unicode__"><strong>__unicode__</strong></a>(...)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+<dl><dt><strong>message</strong></dt>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-CollapseAddrList"><strong>CollapseAddrList</strong></a> = collapse_address_list(addresses)</dt><dd><tt>Collapse&nbsp;a&nbsp;list&nbsp;of&nbsp;IP&nbsp;objects.<br>
+&nbsp;<br>
+Example:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#-collapse_address_list">collapse_address_list</a>([IPv4('1.1.0.0/24'),&nbsp;IPv4('1.1.1.0/24')])&nbsp;-&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IPv4('1.1.0.0/23')]<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;addresses:&nbsp;A&nbsp;list&nbsp;of&nbsp;<a href="#IPv4Network">IPv4Network</a>&nbsp;or&nbsp;<a href="#IPv6Network">IPv6Network</a>&nbsp;objects.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;list&nbsp;of&nbsp;<a href="#IPv4Network">IPv4Network</a>&nbsp;or&nbsp;<a href="#IPv6Network">IPv6Network</a>&nbsp;objects&nbsp;depending&nbsp;on&nbsp;what&nbsp;we<br>
+&nbsp;&nbsp;&nbsp;&nbsp;were&nbsp;passed.<br>
+&nbsp;<br>
+Raises:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;TypeError:&nbsp;If&nbsp;passed&nbsp;a&nbsp;list&nbsp;of&nbsp;mixed&nbsp;version&nbsp;objects.</tt></dd></dl>
+ <dl><dt><a name="-IPAddress"><strong>IPAddress</strong></a>(address, version<font color="#909090">=None</font>)</dt><dd><tt>Take&nbsp;an&nbsp;IP&nbsp;string/int&nbsp;and&nbsp;return&nbsp;an&nbsp;object&nbsp;of&nbsp;the&nbsp;correct&nbsp;type.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;address:&nbsp;A&nbsp;string&nbsp;or&nbsp;integer,&nbsp;the&nbsp;IP&nbsp;address.&nbsp;&nbsp;Either&nbsp;IPv4&nbsp;or<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IPv6&nbsp;addresses&nbsp;may&nbsp;be&nbsp;supplied;&nbsp;integers&nbsp;less&nbsp;than&nbsp;2**32&nbsp;will<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;be&nbsp;considered&nbsp;to&nbsp;be&nbsp;IPv4&nbsp;by&nbsp;default.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;version:&nbsp;An&nbsp;Integer,&nbsp;4&nbsp;or&nbsp;6.&nbsp;If&nbsp;set,&nbsp;don't&nbsp;try&nbsp;to&nbsp;automatically<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;determine&nbsp;what&nbsp;the&nbsp;IP&nbsp;address&nbsp;type&nbsp;is.&nbsp;important&nbsp;for&nbsp;things<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;like&nbsp;<a href="#-IPAddress">IPAddress</a>(1),&nbsp;which&nbsp;could&nbsp;be&nbsp;IPv4,&nbsp;'0.0.0.1',&nbsp;&nbsp;or&nbsp;IPv6,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'::1'.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;An&nbsp;<a href="#IPv4Address">IPv4Address</a>&nbsp;or&nbsp;<a href="#IPv6Address">IPv6Address</a>&nbsp;object.<br>
+&nbsp;<br>
+Raises:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="exceptions.html#ValueError">ValueError</a>:&nbsp;if&nbsp;the&nbsp;string&nbsp;passed&nbsp;isn't&nbsp;either&nbsp;a&nbsp;v4&nbsp;or&nbsp;a&nbsp;v6<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;address.</tt></dd></dl>
+ <dl><dt><a name="-IPNetwork"><strong>IPNetwork</strong></a>(address, version<font color="#909090">=None</font>, strict<font color="#909090">=False</font>)</dt><dd><tt>Take&nbsp;an&nbsp;IP&nbsp;string/int&nbsp;and&nbsp;return&nbsp;an&nbsp;object&nbsp;of&nbsp;the&nbsp;correct&nbsp;type.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;address:&nbsp;A&nbsp;string&nbsp;or&nbsp;integer,&nbsp;the&nbsp;IP&nbsp;address.&nbsp;&nbsp;Either&nbsp;IPv4&nbsp;or<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IPv6&nbsp;addresses&nbsp;may&nbsp;be&nbsp;supplied;&nbsp;integers&nbsp;less&nbsp;than&nbsp;2**32&nbsp;will<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;be&nbsp;considered&nbsp;to&nbsp;be&nbsp;IPv4&nbsp;by&nbsp;default.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;version:&nbsp;An&nbsp;Integer,&nbsp;if&nbsp;set,&nbsp;don't&nbsp;try&nbsp;to&nbsp;automatically<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;determine&nbsp;what&nbsp;the&nbsp;IP&nbsp;address&nbsp;type&nbsp;is.&nbsp;important&nbsp;for&nbsp;things<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;like&nbsp;<a href="#-IPNetwork">IPNetwork</a>(1),&nbsp;which&nbsp;could&nbsp;be&nbsp;IPv4,&nbsp;'0.0.0.1/32',&nbsp;or&nbsp;IPv6,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'::1/128'.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;An&nbsp;<a href="#IPv4Network">IPv4Network</a>&nbsp;or&nbsp;<a href="#IPv6Network">IPv6Network</a>&nbsp;object.<br>
+&nbsp;<br>
+Raises:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="exceptions.html#ValueError">ValueError</a>:&nbsp;if&nbsp;the&nbsp;string&nbsp;passed&nbsp;isn't&nbsp;either&nbsp;a&nbsp;v4&nbsp;or&nbsp;a&nbsp;v6<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;address.&nbsp;Or&nbsp;if&nbsp;a&nbsp;strict&nbsp;network&nbsp;was&nbsp;requested&nbsp;and&nbsp;a&nbsp;strict<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;network&nbsp;wasn't&nbsp;given.</tt></dd></dl>
+ <dl><dt><a name="-collapse_address_list"><strong>collapse_address_list</strong></a>(addresses)</dt><dd><tt>Collapse&nbsp;a&nbsp;list&nbsp;of&nbsp;IP&nbsp;objects.<br>
+&nbsp;<br>
+Example:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#-collapse_address_list">collapse_address_list</a>([IPv4('1.1.0.0/24'),&nbsp;IPv4('1.1.1.0/24')])&nbsp;-&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IPv4('1.1.0.0/23')]<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;addresses:&nbsp;A&nbsp;list&nbsp;of&nbsp;<a href="#IPv4Network">IPv4Network</a>&nbsp;or&nbsp;<a href="#IPv6Network">IPv6Network</a>&nbsp;objects.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;list&nbsp;of&nbsp;<a href="#IPv4Network">IPv4Network</a>&nbsp;or&nbsp;<a href="#IPv6Network">IPv6Network</a>&nbsp;objects&nbsp;depending&nbsp;on&nbsp;what&nbsp;we<br>
+&nbsp;&nbsp;&nbsp;&nbsp;were&nbsp;passed.<br>
+&nbsp;<br>
+Raises:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;TypeError:&nbsp;If&nbsp;passed&nbsp;a&nbsp;list&nbsp;of&nbsp;mixed&nbsp;version&nbsp;objects.</tt></dd></dl>
+ <dl><dt><a name="-get_mixed_type_key"><strong>get_mixed_type_key</strong></a>(obj)</dt><dd><tt>Return&nbsp;a&nbsp;key&nbsp;suitable&nbsp;for&nbsp;sorting&nbsp;between&nbsp;networks&nbsp;and&nbsp;addresses.<br>
+&nbsp;<br>
+Address&nbsp;and&nbsp;Network&nbsp;objects&nbsp;are&nbsp;not&nbsp;sortable&nbsp;by&nbsp;default;&nbsp;they're<br>
+fundamentally&nbsp;different&nbsp;so&nbsp;the&nbsp;expression<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#IPv4Address">IPv4Address</a>('1.1.1.1')&nbsp;&lt;=&nbsp;<a href="#IPv4Network">IPv4Network</a>('1.1.1.1/24')<br>
+&nbsp;<br>
+doesn't&nbsp;make&nbsp;any&nbsp;sense.&nbsp;&nbsp;There&nbsp;are&nbsp;some&nbsp;times&nbsp;however,&nbsp;where&nbsp;you&nbsp;may&nbsp;wish<br>
+to&nbsp;have&nbsp;ipaddr&nbsp;sort&nbsp;these&nbsp;for&nbsp;you&nbsp;anyway.&nbsp;If&nbsp;you&nbsp;need&nbsp;to&nbsp;do&nbsp;this,&nbsp;you<br>
+can&nbsp;use&nbsp;this&nbsp;function&nbsp;as&nbsp;the&nbsp;key=&nbsp;argument&nbsp;to&nbsp;sorted().<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;obj:&nbsp;either&nbsp;a&nbsp;Network&nbsp;or&nbsp;Address&nbsp;object.<br>
+Returns:<br>
+&nbsp;&nbsp;appropriate&nbsp;key.</tt></dd></dl>
+ <dl><dt><a name="-summarize_address_range"><strong>summarize_address_range</strong></a>(first, last)</dt><dd><tt>Summarize&nbsp;a&nbsp;network&nbsp;range&nbsp;given&nbsp;the&nbsp;first&nbsp;and&nbsp;last&nbsp;IP&nbsp;addresses.<br>
+&nbsp;<br>
+Example:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;<a href="#-summarize_address_range">summarize_address_range</a>(<a href="#IPv4Address">IPv4Address</a>('1.1.1.0'),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#IPv4Address">IPv4Address</a>('1.1.1.130'))<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[<a href="#IPv4Network">IPv4Network</a>('1.1.1.0/25'),&nbsp;<a href="#IPv4Network">IPv4Network</a>('1.1.1.128/31'),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#IPv4Network">IPv4Network</a>('1.1.1.130/32')]<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;first:&nbsp;the&nbsp;first&nbsp;<a href="#IPv4Address">IPv4Address</a>&nbsp;or&nbsp;<a href="#IPv6Address">IPv6Address</a>&nbsp;in&nbsp;the&nbsp;range.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;last:&nbsp;the&nbsp;last&nbsp;<a href="#IPv4Address">IPv4Address</a>&nbsp;or&nbsp;<a href="#IPv6Address">IPv6Address</a>&nbsp;in&nbsp;the&nbsp;range.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;address&nbsp;range&nbsp;collapsed&nbsp;to&nbsp;a&nbsp;list&nbsp;of&nbsp;<a href="#IPv4Network">IPv4Network</a>'s&nbsp;or<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#IPv6Network">IPv6Network</a>'s.<br>
+&nbsp;<br>
+Raise:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;TypeError:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;the&nbsp;first&nbsp;and&nbsp;last&nbsp;objects&nbsp;are&nbsp;not&nbsp;IP&nbsp;addresses.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;the&nbsp;first&nbsp;and&nbsp;last&nbsp;objects&nbsp;are&nbsp;not&nbsp;the&nbsp;same&nbsp;version.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="exceptions.html#ValueError">ValueError</a>:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;the&nbsp;last&nbsp;object&nbsp;is&nbsp;not&nbsp;greater&nbsp;than&nbsp;the&nbsp;first.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;the&nbsp;version&nbsp;is&nbsp;not&nbsp;4&nbsp;or&nbsp;6.</tt></dd></dl>
+ <dl><dt><a name="-v4_int_to_packed"><strong>v4_int_to_packed</strong></a>(address)</dt><dd><tt>The&nbsp;binary&nbsp;representation&nbsp;of&nbsp;this&nbsp;address.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;address:&nbsp;An&nbsp;integer&nbsp;representation&nbsp;of&nbsp;an&nbsp;IPv4&nbsp;IP&nbsp;address.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;binary&nbsp;representation&nbsp;of&nbsp;this&nbsp;address.<br>
+&nbsp;<br>
+Raises:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="exceptions.html#ValueError">ValueError</a>:&nbsp;If&nbsp;the&nbsp;integer&nbsp;is&nbsp;too&nbsp;large&nbsp;to&nbsp;be&nbsp;an&nbsp;IPv4&nbsp;IP<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;address.</tt></dd></dl>
+ <dl><dt><a name="-v6_int_to_packed"><strong>v6_int_to_packed</strong></a>(address)</dt><dd><tt>The&nbsp;binary&nbsp;representation&nbsp;of&nbsp;this&nbsp;address.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;address:&nbsp;An&nbsp;integer&nbsp;representation&nbsp;of&nbsp;an&nbsp;IPv4&nbsp;IP&nbsp;address.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;binary&nbsp;representation&nbsp;of&nbsp;this&nbsp;address.</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>IPV4LENGTH</strong> = 32<br>
+<strong>IPV6LENGTH</strong> = 128<br>
+<strong>__version__</strong> = '2.1.10'</td></tr></table>
+</body></html>

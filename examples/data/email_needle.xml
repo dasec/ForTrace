@@ -1,0 +1,26 @@
+<data>
+    <item>
+        <type>in</type>
+        <from_name>Mr. X</from_name>
+        <from_ad>mr_blue@secret.de</from_ad>
+        <to_name>Testbot</to_name>
+        <to_ad>theo.test1@web.de</to_ad>
+        <user>Bill</user>
+        <server>pop3.web.de</server>
+        <timestamp>Fri Feb  1 11:05:34 2018</timestamp>
+        <subject>New Warez</subject>
+        <message>Hello Friend, thank you for your payment, your download is available at: http://192.168.2.104/index.html Greetings, Mr. X</message>
+    </item>
+    <item>
+        <type>out</type>
+        <from_name>Testbot</from_name>
+        <from_ad>theo.test1@web.de</from_ad>
+        <to_name>Mr. X</to_name>
+        <to_ad>mr_blue@secret.de</to_ad>
+        <user>Bill</user>
+        <server>pop3.web.de</server>
+        <timestamp>Fri Feb  1 18:15:34 2018</timestamp>
+        <subject>Re: New Warez</subject>
+        <message>Thank you, the goods are highly appreciated.</message>
+    </item>
+</data>

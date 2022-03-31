@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TARGETNAME Condition="'$(OVERRIDE_TARGETNAME)'!='true'">vmulti</TARGETNAME>
+    <TARGETTYPE Condition="'$(OVERRIDE_TARGETTYPE)'!='true'">DRIVER</TARGETTYPE>
+    <KMDF_VERSION_MAJOR Condition="'$(OVERRIDE_KMDF_VERSION_MAJOR)'!='true'">1</KMDF_VERSION_MAJOR>
+    <TARGETLIBS Condition="'$(OVERRIDE_TARGETLIBS)'!='true'">$(DDK_LIB_PATH)\hidclass.lib             $(DDK_LIB_PATH)\ntstrsafe.lib</TARGETLIBS>
+    <INCLUDES Condition="'$(OVERRIDE_INCLUDES)'!='true'">..\inc</INCLUDES>
+    <SOURCES Condition="'$(OVERRIDE_SOURCES)'!='true'">vmulti.c        vmulti.rc</SOURCES>
+    <INF_NAME Condition="'$(OVERRIDE_INF_NAME)'!='true'">vmulti</INF_NAME>
+    <NTTARGETFILE0 Condition="'$(OVERRIDE_NTTARGETFILE0)'!='true'">$(OBJ_PATH)\$(O)\$(INF_NAME).inf</NTTARGETFILE0>
+    <PASS0_BINPLACE Condition="'$(OVERRIDE_PASS0_BINPLACE)'!='true'">$(NTTARGETFILE0)</PASS0_BINPLACE>
+    <TARGET_DESTINATION Condition="'$(OVERRIDE_TARGET_DESTINATION)'!='true'">bin</TARGET_DESTINATION>
+    <ALLOW_DATE_TIME Condition="'$(OVERRIDE_ALLOW_DATE_TIME)'!='true'">1</ALLOW_DATE_TIME>
+  </PropertyGroup>
+  <ItemGroup>
+    <InvokedTargetsList Include="$(OBJ_PATH)\$(O)\$(INF_NAME).inf">
+      <Pass>0</Pass>
+      <Condition>
+      </Condition>
+    </InvokedTargetsList>
+  </ItemGroup>
+</Project>

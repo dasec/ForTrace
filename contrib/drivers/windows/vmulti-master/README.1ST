@@ -1,0 +1,16 @@
+This is a fork of the vmulti-driver for Windows.
+No changes were made to the original driver code.
+The changes themselves conclude to:
+- Porting the dirs project to VS2015
+- Adding a pipe server userspace application for controlling the driver
+
+All original work was done by djpnewton.
+See Readme.md for original instructions.
+
+Note: 
+If you want to use Visual Studio for compilation open dirs.sln.
+You may encounter errors during compilation from inf2cat.
+These error may be safely ignored.
+The default target for the driver is Windows 7.
+You will find the userspace applications in their respective dirs.
+The driver can be found in Release/Debug for win32 and in x64 for win64.

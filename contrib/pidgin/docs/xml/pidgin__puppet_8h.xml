@@ -1,0 +1,1721 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="pidgin__puppet_8h" kind="file" language="C++">
+    <compoundname>pidgin_puppet.h</compoundname>
+    <includes local="no">glib.h</includes>
+    <includes local="no">memory.h</includes>
+    <includes local="no">windows.h</includes>
+    <includes local="no">process.h</includes>
+    <includes local="no">winsock2.h</includes>
+    <includes local="no">ws2tcpip.h</includes>
+    <includes local="yes">eventloop.h</includes>
+    <includes local="yes">conversation.h</includes>
+    <includes local="yes">blist.h</includes>
+    <includes local="yes">cmds.h</includes>
+    <includes local="yes">notify.h</includes>
+    <includes local="yes">plugin.h</includes>
+    <includes local="yes">version.h</includes>
+    <includes local="yes">debug.h</includes>
+    <includes local="yes">ft.h</includes>
+    <includedby refid="pidgin__puppet_8c" local="yes">pidgin_puppet.c</includedby>
+    <incdepgraph>
+      <node id="29">
+        <label>notify.h</label>
+      </node>
+      <node id="22">
+        <label>process.h</label>
+      </node>
+      <node id="21">
+        <label>windows.h</label>
+      </node>
+      <node id="24">
+        <label>ws2tcpip.h</label>
+      </node>
+      <node id="27">
+        <label>blist.h</label>
+      </node>
+      <node id="25">
+        <label>eventloop.h</label>
+      </node>
+      <node id="33">
+        <label>ft.h</label>
+      </node>
+      <node id="20">
+        <label>memory.h</label>
+      </node>
+      <node id="23">
+        <label>winsock2.h</label>
+      </node>
+      <node id="30">
+        <label>plugin.h</label>
+      </node>
+      <node id="18">
+        <label>pidgin_puppet.h</label>
+        <link refid="pidgin_puppet.h"/>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>glib.h</label>
+      </node>
+      <node id="28">
+        <label>cmds.h</label>
+      </node>
+      <node id="26">
+        <label>conversation.h</label>
+      </node>
+      <node id="32">
+        <label>debug.h</label>
+      </node>
+      <node id="31">
+        <label>version.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="35">
+        <label>pidgin_puppet.c</label>
+        <link refid="pidgin__puppet_8c"/>
+      </node>
+      <node id="34">
+        <label>pidgin_puppet.h</label>
+        <link refid="pidgin_puppet.h"/>
+        <childnode refid="35" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structagentmessageheader" prot="public">agentmessageheader</innerclass>
+    <innerclass refid="structcb__message" prot="public">cb_message</innerclass>
+      <sectiondef kind="user-defined">
+      <header>helpers</header>
+      <memberdef kind="function" id="pidgin__puppet_8h_1aca7292a1fb03d38ab1943a790b6d494b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void headertohost</definition>
+        <argsstring>(char *buf)</argsstring>
+        <name>headertohost</name>
+        <param>
+          <type>char *</type>
+          <declname>buf</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Transform header to host byte-order <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">buf</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to header </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pidgin_puppet.h" line="212" column="1" bodyfile="pidgin_puppet.c" bodystart="99" bodyend="112"/>
+      </memberdef>
+      <memberdef kind="function" id="pidgin__puppet_8h_1af580db12de271f097757981388551a4f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void headertonet</definition>
+        <argsstring>(char *buf)</argsstring>
+        <name>headertonet</name>
+        <param>
+          <type>char *</type>
+          <declname>buf</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Transform header to network byte-order <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">buf</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to header </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pidgin_puppet.h" line="217" column="1" bodyfile="pidgin_puppet.c" bodystart="114" bodyend="127"/>
+      </memberdef>
+      <memberdef kind="function" id="pidgin__puppet_8h_1a7b8bdc0abbd2d617a34ee9b2eaeecb5e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void printbufferedmessage</definition>
+        <argsstring>(char *buf)</argsstring>
+        <name>printbufferedmessage</name>
+        <param>
+          <type>char *</type>
+          <declname>buf</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Prints a packet Packets needs to be in host byte-order <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">buf</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to send or receive buffer </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pidgin_puppet.h" line="223" column="1" bodyfile="pidgin_puppet.c" bodystart="129" bodyend="141"/>
+      </memberdef>
+      <memberdef kind="function" id="pidgin__puppet_8h_1aabb2c8cec14e2fa018a9cd8c00ab64ff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>char *</type>
+        <definition>char* offsetentrytoptr</definition>
+        <argsstring>(char *bufptr, unsigned int num, unsigned int *out_offset)</argsstring>
+        <name>offsetentrytoptr</name>
+        <param>
+          <type>char *</type>
+          <declname>bufptr</declname>
+        </param>
+        <param>
+          <type>unsigned int</type>
+          <declname>num</declname>
+        </param>
+        <param>
+          <type>unsigned int *</type>
+          <declname>out_offset</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns pointer to a receive buffer entry <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">bufptr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to a header </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">num</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Entry no., starts at 0 </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">out_offset</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the offset entry, optional </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Pointer to the string data requested </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pidgin_puppet.h" line="231" column="1" bodyfile="pidgin_puppet.c" bodystart="228" bodyend="242"/>
+      </memberdef>
+      <memberdef kind="function" id="pidgin__puppet_8h_1afc811c1f8e2719d20eb9fdb1e9d6e8fd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sendpackstr</definition>
+        <argsstring>(const char *str, unsigned int *argnum, unsigned int *bytecnt, amh *header)</argsstring>
+        <name>sendpackstr</name>
+        <param>
+          <type>const char *</type>
+          <declname>str</declname>
+        </param>
+        <param>
+          <type>unsigned int *</type>
+          <declname>argnum</declname>
+        </param>
+        <param>
+          <type>unsigned int *</type>
+          <declname>bytecnt</declname>
+        </param>
+        <param>
+          <type><ref refid="pidgin__puppet_8h_1ae3e76f0c9620187ebb5fac4366299499" kindref="member">amh</ref> *</type>
+          <declname>header</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Add a string to packet, will auto-increment message length, argument number and byte position <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">str</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>String pointer which contents will be added to the packet </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="inout">argnum</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the current argument number of added string, auto-incremented </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="inout">bytecnt</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the curent byte count, auto-incremented </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">header</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to a send header </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pidgin_puppet.h" line="239" column="1" bodyfile="pidgin_puppet.c" bodystart="143" bodyend="157"/>
+      </memberdef>
+      <memberdef kind="function" id="pidgin__puppet_8h_1af906b471a9b10cf5ed852c9e594013a4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>unsigned int</type>
+        <definition>unsigned int sendgetinitialbytepos</definition>
+        <argsstring>(unsigned int numofargs)</argsstring>
+        <name>sendgetinitialbytepos</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>numofargs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the offset to the first byte after header <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">numofargs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of arguments to reserve space for </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Number of reserved bytes including header </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pidgin_puppet.h" line="245" column="1" bodyfile="pidgin_puppet.c" bodystart="219" bodyend="225"/>
+      </memberdef>
+      <memberdef kind="function" id="pidgin__puppet_8h_1a34bf4649765aac25a2426fbb23405808" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void lockSend</definition>
+        <argsstring>(void)</argsstring>
+        <name>lockSend</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Lock send buffer access </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pidgin_puppet.h" line="249" column="1" bodyfile="pidgin_puppet.c" bodystart="73" bodyend="76"/>
+      </memberdef>
+      <memberdef kind="function" id="pidgin__puppet_8h_1a156819c15ad0fd4f9820f99bcce7e1fd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void unlockSend</definition>
+        <argsstring>(void)</argsstring>
+        <name>unlockSend</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Unlock send buffer access </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pidgin_puppet.h" line="253" column="1" bodyfile="pidgin_puppet.c" bodystart="79" bodyend="82"/>
+      </memberdef>
+      <memberdef kind="function" id="pidgin__puppet_8h_1a6be49dbace2e34711f917582509b4ed1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sendpackstatus</definition>
+        <argsstring>(PIDGIN_PUPPET_RETVAL rval, unsigned int *argnum, unsigned int *bytecnt, amh *header)</argsstring>
+        <name>sendpackstatus</name>
+        <param>
+          <type><ref refid="pidgin__puppet_8h_1a36a659884b6cfd0057f770189ef59173" kindref="member">PIDGIN_PUPPET_RETVAL</ref></type>
+          <declname>rval</declname>
+        </param>
+        <param>
+          <type>unsigned int *</type>
+          <declname>argnum</declname>
+        </param>
+        <param>
+          <type>unsigned int *</type>
+          <declname>bytecnt</declname>
+        </param>
+        <param>
+          <type><ref refid="pidgin__puppet_8h_1ae3e76f0c9620187ebb5fac4366299499" kindref="member">amh</ref> *</type>
+          <declname>header</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Packs return status to header <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rval</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The status to be added </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>argnum</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to argument number </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>bytecnt</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to current byte count </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>header</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the header </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="warning"><para>On <ref refid="pidgin__puppet_8h_1a36a659884b6cfd0057f770189ef59173a4a628dd3af8c6dd16738f5a00dedbe70" kindref="member">P_OK</ref> only one slot is used </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pidgin_puppet.h" line="262" column="1" bodyfile="pidgin_puppet.c" bodystart="159" bodyend="217"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>signals</header>
+      <memberdef kind="function" id="pidgin__puppet_8h_1a295f5fafa09b6153612737ee8992c463" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void cbSendImToBuddy</definition>
+        <argsstring>(void *cbmsg, void *data)</argsstring>
+        <name>cbSendImToBuddy</name>
+        <param>
+          <type>void *</type>
+          <declname>cbmsg</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>obsolete callback to send a message <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">cbmsg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to a <ref refid="structcb__message" kindref="compound">cb_message</ref> struct </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Internal Pointer to additional data, unused </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pidgin_puppet.h" line="272" column="1" bodyfile="pidgin_puppet.c" bodystart="772" bodyend="779"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>network</header>
+      <memberdef kind="function" id="pidgin__puppet_8h_1af6a04c95e7d374fa7d5872f0ec39fee9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void demultiplexmessage</definition>
+        <argsstring>(void)</argsstring>
+        <name>demultiplexmessage</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Deconstructs a message and calls the appropriate command<linebreak/>
+ Notify agent of success of the received and processed command </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pidgin_puppet.h" line="281" column="1" bodyfile="pidgin_puppet.c" bodystart="245" bodyend="376"/>
+      </memberdef>
+      <memberdef kind="function" id="pidgin__puppet_8h_1a00638eb0ebbce4393aae224d81c13d17" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void listensocket</definition>
+        <argsstring>(void)</argsstring>
+        <name>listensocket</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Checks if message arrives and stores it to buffer </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pidgin_puppet.h" line="285" column="1" bodyfile="pidgin_puppet.c" bodystart="379" bodyend="406"/>
+      </memberdef>
+      <memberdef kind="function" id="pidgin__puppet_8h_1a2ededcf48792ab007abcd68c863b35f0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void opensocket</definition>
+        <argsstring>(void)</argsstring>
+        <name>opensocket</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Establish connection to agent </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pidgin_puppet.h" line="289" column="1" bodyfile="pidgin_puppet.c" bodystart="409" bodyend="443"/>
+      </memberdef>
+      <memberdef kind="function" id="pidgin__puppet_8h_1a53447863ccd8135651b96397aaa8f884" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void destroysocket</definition>
+        <argsstring>(void)</argsstring>
+        <name>destroysocket</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Close the socket </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pidgin_puppet.h" line="293" column="1" bodyfile="pidgin_puppet.c" bodystart="446" bodyend="451"/>
+      </memberdef>
+      <memberdef kind="function" id="pidgin__puppet_8h_1a3e07c7b90b2ffe72aae42f03779ec3ec" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void __cdecl</type>
+        <definition>void __cdecl listenerWorker</definition>
+        <argsstring>(LPVOID data)</argsstring>
+        <name>listenerWorker</name>
+        <param>
+          <type>LPVOID</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Thread to handle network communication with agent <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Internal pointer to additional data, unused </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pidgin_puppet.h" line="299" column="1" bodyfile="pidgin_puppet.c" bodystart="457" bodyend="470"/>
+      </memberdef>
+      <memberdef kind="function" id="pidgin__puppet_8h_1a0ca50d83161d709e4b01c35c0d03e69e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int startAgentListener</definition>
+        <argsstring>(void)</argsstring>
+        <name>startAgentListener</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Starts the agent listener<linebreak/>
+ May return: <ref refid="pidgin__puppet_8h_1a36a659884b6cfd0057f770189ef59173a4a628dd3af8c6dd16738f5a00dedbe70" kindref="member">P_OK</ref>, <ref refid="pidgin__puppet_8h_1a36a659884b6cfd0057f770189ef59173aed05b94b67c22dfa8ee067240a47adcb" kindref="member">P_GENERIC_FAIL</ref> <simplesect kind="return"><para>Status code resulting from executed operation </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pidgin_puppet.h" line="313" column="1" bodyfile="pidgin_puppet.c" bodystart="473" bodyend="482"/>
+      </memberdef>
+      <memberdef kind="function" id="pidgin__puppet_8h_1ae8ed76a5976a2f1254b2d73d5369c114" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int stopAgentListener</definition>
+        <argsstring>(void)</argsstring>
+        <name>stopAgentListener</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Stops the agent listener<linebreak/>
+ May return: <ref refid="pidgin__puppet_8h_1a36a659884b6cfd0057f770189ef59173a4a628dd3af8c6dd16738f5a00dedbe70" kindref="member">P_OK</ref> <simplesect kind="return"><para>Status code resulting from executed operation </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pidgin_puppet.h" line="319" column="1" bodyfile="pidgin_puppet.c" bodystart="485" bodyend="491"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>commands</header>
+      <memberdef kind="function" id="pidgin__puppet_8h_1a761a04242e08337a7ff144cf408671de" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int notifyAgent</definition>
+        <argsstring>(PIDGIN_PUPPET_STATE state, void *data)</argsstring>
+        <name>notifyAgent</name>
+        <param>
+          <type><ref refid="pidgin__puppet_8h_1a3832477baa6d324b5c9f91adc3b80ec0" kindref="member">PIDGIN_PUPPET_STATE</ref></type>
+          <declname>state</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Notify Agent for state change<linebreak/>
+ May return: <ref refid="pidgin__puppet_8h_1a36a659884b6cfd0057f770189ef59173a4a628dd3af8c6dd16738f5a00dedbe70" kindref="member">P_OK</ref> <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Internal state code to notify for </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to data used in switch-case statement </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Status code resulting from executed operation </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pidgin_puppet.h" line="331" column="1" bodyfile="pidgin_puppet.c" bodystart="532" bodyend="564"/>
+      </memberdef>
+      <memberdef kind="function" id="pidgin__puppet_8h_1acef9c5f3e76e89cb0ba7943d017d160e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int isBuddyOnline</definition>
+        <argsstring>(const char *buddyname, int *retval)</argsstring>
+        <name>isBuddyOnline</name>
+        <param>
+          <type>const char *</type>
+          <declname>buddyname</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>retval</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Check if buddy is online, untested<linebreak/>
+ May return: <ref refid="pidgin__puppet_8h_1a36a659884b6cfd0057f770189ef59173a4a628dd3af8c6dd16738f5a00dedbe70" kindref="member">P_OK</ref>, <ref refid="pidgin__puppet_8h_1a36a659884b6cfd0057f770189ef59173a498bccebf9532f98bf70297adca5bf57" kindref="member">P_BAD_PTR</ref>, <ref refid="pidgin__puppet_8h_1a36a659884b6cfd0057f770189ef59173ac788601a9f8f3470eff3227793aec589" kindref="member">P_NO_ACCOUNT</ref>, <ref refid="pidgin__puppet_8h_1a36a659884b6cfd0057f770189ef59173a2a13d86f973aa833cd968d872c9b5a3b" kindref="member">P_NO_MATCH</ref> <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">buddyname</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name of buddy to check for state </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">retval</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to return value to write to (gboolean) </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Status code resulting from executed operation </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pidgin_puppet.h" line="339" column="1" bodyfile="pidgin_puppet.c" bodystart="567" bodyend="584"/>
+      </memberdef>
+      <memberdef kind="function" id="pidgin__puppet_8h_1aaad583d6006338dfe07f493c66eba9db" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int getAllAccounts</definition>
+        <argsstring>(GList **list, unsigned int *size)</argsstring>
+        <name>getAllAccounts</name>
+        <param>
+          <type>GList **</type>
+          <declname>list</declname>
+        </param>
+        <param>
+          <type>unsigned int *</type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets a list of all registered accounts<linebreak/>
+ May return: <ref refid="pidgin__puppet_8h_1a36a659884b6cfd0057f770189ef59173a4a628dd3af8c6dd16738f5a00dedbe70" kindref="member">P_OK</ref>, <ref refid="pidgin__puppet_8h_1a36a659884b6cfd0057f770189ef59173a498bccebf9532f98bf70297adca5bf57" kindref="member">P_BAD_PTR</ref>, <ref refid="pidgin__puppet_8h_1a36a659884b6cfd0057f770189ef59173ab5a2589cbeabd51f49a656804dca4e41" kindref="member">P_NO_DATA</ref> <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="out">list</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to list reference, will be initialized by function </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to size of list, that will be returned </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Status code resulting from executed operation </para></simplesect>
+<xrefsect id="bug_1_bug000001"><xreftitle>Bug</xreftitle><xrefdescription><para>This function is untested. </para></xrefdescription></xrefsect></para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pidgin_puppet.h" line="348" column="1" bodyfile="pidgin_puppet.c" bodystart="587" bodyend="615"/>
+      </memberdef>
+      <memberdef kind="function" id="pidgin__puppet_8h_1af33f059a78ae2737eea32b4748ab0ed4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int selectAccount</definition>
+        <argsstring>(const char *accountname, const char *prot_id)</argsstring>
+        <name>selectAccount</name>
+        <param>
+          <type>const char *</type>
+          <declname>accountname</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>prot_id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Switch to a specific account for further actions (&quot;user@server/resource&quot;), if prot_id == NULL use xmpp<linebreak/>
+ Needs to be called before every thing else<linebreak/>
+ If not, most operations will fail with <ref refid="pidgin__puppet_8h_1a36a659884b6cfd0057f770189ef59173ac788601a9f8f3470eff3227793aec589" kindref="member">P_NO_ACCOUNT<linebreak/>
+</ref> May return: <ref refid="pidgin__puppet_8h_1a36a659884b6cfd0057f770189ef59173a4a628dd3af8c6dd16738f5a00dedbe70" kindref="member">P_OK</ref>, <ref refid="pidgin__puppet_8h_1a36a659884b6cfd0057f770189ef59173a2a13d86f973aa833cd968d872c9b5a3b" kindref="member">P_NO_MATCH</ref> <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">accountname</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to account name string (&quot;user@server/resource&quot; for xmpp) </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">prot_id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to libpurple protocol id string, optional, xmpp is default </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Status code resulting from executed operation </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pidgin_puppet.h" line="358" column="1" bodyfile="pidgin_puppet.c" bodystart="618" bodyend="641"/>
+      </memberdef>
+      <memberdef kind="function" id="pidgin__puppet_8h_1ae1c02665c8ecae17068ecfebd43adc03" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int getContactList</definition>
+        <argsstring>(GSList **list, unsigned int *size)</argsstring>
+        <name>getContactList</name>
+        <param>
+          <type>GSList **</type>
+          <declname>list</declname>
+        </param>
+        <param>
+          <type>unsigned int *</type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns all buddies in selected account, returned list needs to be freed with g_slist_free if operation succeeded<linebreak/>
+ May return: <ref refid="pidgin__puppet_8h_1a36a659884b6cfd0057f770189ef59173a4a628dd3af8c6dd16738f5a00dedbe70" kindref="member">P_OK</ref>, <ref refid="pidgin__puppet_8h_1a36a659884b6cfd0057f770189ef59173a498bccebf9532f98bf70297adca5bf57" kindref="member">P_BAD_PTR</ref>, <ref refid="pidgin__puppet_8h_1a36a659884b6cfd0057f770189ef59173ab5a2589cbeabd51f49a656804dca4e41" kindref="member">P_NO_DATA</ref> <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="out">list</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to list reference, will be initialized by function, needs to be freed with g_slist_free if operation succeeded </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to size of list, that will be returned </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Status code resulting from executed operation </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pidgin_puppet.h" line="366" column="1" bodyfile="pidgin_puppet.c" bodystart="644" bodyend="688"/>
+      </memberdef>
+      <memberdef kind="function" id="pidgin__puppet_8h_1a83e303aa7d2cdc7936ce8b39308c4616" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int sendMsgToBuddyUnsafe</definition>
+        <argsstring>(const char *buddy, const char *msg)</argsstring>
+        <name>sendMsgToBuddyUnsafe</name>
+        <param>
+          <type>const char *</type>
+          <declname>buddy</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Send Message to buddy using Chat Messages<linebreak/>
+ May return: <ref refid="pidgin__puppet_8h_1a36a659884b6cfd0057f770189ef59173a4a628dd3af8c6dd16738f5a00dedbe70" kindref="member">P_OK</ref> <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">buddy</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to buddy name </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to message that will be send to buddy </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Status code resulting from executed operation </para></simplesect>
+<simplesect kind="warning"><para>Should only be called from main thread </para></simplesect>
+<xrefsect id="bug_1_bug000002"><xreftitle>Bug</xreftitle><xrefdescription><para>This function is not implemented. </para></xrefdescription></xrefsect></para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pidgin_puppet.h" line="376" column="1" bodyfile="pidgin_puppet.c" bodystart="691" bodyend="695"/>
+      </memberdef>
+      <memberdef kind="function" id="pidgin__puppet_8h_1a97c100abe7b2a1b4008cd65593b45b3f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int sendImToBuddyUnsafe</definition>
+        <argsstring>(const char *buddy, const char *msg)</argsstring>
+        <name>sendImToBuddyUnsafe</name>
+        <param>
+          <type>const char *</type>
+          <declname>buddy</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Send Message to buddy using Instant Messaging<linebreak/>
+ May return: <ref refid="pidgin__puppet_8h_1a36a659884b6cfd0057f770189ef59173a4a628dd3af8c6dd16738f5a00dedbe70" kindref="member">P_OK</ref>, <ref refid="pidgin__puppet_8h_1a36a659884b6cfd0057f770189ef59173a498bccebf9532f98bf70297adca5bf57" kindref="member">P_BAD_PTR</ref>, <ref refid="pidgin__puppet_8h_1a36a659884b6cfd0057f770189ef59173a2a13d86f973aa833cd968d872c9b5a3b" kindref="member">P_NO_MATCH</ref> <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">buddy</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to buddy name </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to message that will be send to buddy </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Status code resulting from executed operation </para></simplesect>
+<simplesect kind="warning"><para>Should only be called from main thread </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pidgin_puppet.h" line="385" column="1" bodyfile="pidgin_puppet.c" bodystart="698" bodyend="728"/>
+      </memberdef>
+      <memberdef kind="function" id="pidgin__puppet_8h_1ad5e4be07ef48d4db89e0607021ff0bb3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int addBuddy</definition>
+        <argsstring>(const char *buddyname)</argsstring>
+        <name>addBuddy</name>
+        <param>
+          <type>const char *</type>
+          <declname>buddyname</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Add a buddy to current account and send authorization request<linebreak/>
+ May return: <ref refid="pidgin__puppet_8h_1a36a659884b6cfd0057f770189ef59173a4a628dd3af8c6dd16738f5a00dedbe70" kindref="member">P_OK</ref>, <ref refid="pidgin__puppet_8h_1a36a659884b6cfd0057f770189ef59173ac788601a9f8f3470eff3227793aec589" kindref="member">P_NO_ACCOUNT</ref> <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">buddyname</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to buddy name that will be added </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Status code resulting from executed operation </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pidgin_puppet.h" line="392" column="1" bodyfile="pidgin_puppet.c" bodystart="731" bodyend="751"/>
+      </memberdef>
+      <memberdef kind="function" id="pidgin__puppet_8h_1a8a025b51466522fb7713d03f680b5adc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int changeOnlineState</definition>
+        <argsstring>(gboolean online)</argsstring>
+        <name>changeOnlineState</name>
+        <param>
+          <type>gboolean</type>
+          <declname>online</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets state to on-/offline<linebreak/>
+ May return: <ref refid="pidgin__puppet_8h_1a36a659884b6cfd0057f770189ef59173a4a628dd3af8c6dd16738f5a00dedbe70" kindref="member">P_OK</ref>, <ref refid="pidgin__puppet_8h_1a36a659884b6cfd0057f770189ef59173ac788601a9f8f3470eff3227793aec589" kindref="member">P_NO_ACCOUNT</ref> <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>online</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>True for inline, False for Offline </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Status code resulting from executed operation </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pidgin_puppet.h" line="399" column="1" bodyfile="pidgin_puppet.c" bodystart="753" bodyend="768"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>callbacks</header>
+      <memberdef kind="function" id="pidgin__puppet_8h_1a67688ef8b02a69206eab0d61cf0260f3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void receivedImMsgCallback</definition>
+        <argsstring>(PurpleAccount *account, char *sender, char *message, PurpleConversation *conv, PurpleMessageFlags flags)</argsstring>
+        <name>receivedImMsgCallback</name>
+        <param>
+          <type>PurpleAccount *</type>
+          <declname>account</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>sender</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>message</declname>
+        </param>
+        <param>
+          <type>PurpleConversation *</type>
+          <declname>conv</declname>
+        </param>
+        <param>
+          <type>PurpleMessageFlags</type>
+          <declname>flags</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Callback for Instant Messages <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">account</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to account, that received the IM </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">sender</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to buddy name, that received the IM </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">message</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the actual message </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">conv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the conversation object </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">flags</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Flags of the received message </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pidgin_puppet.h" line="412" column="1" bodyfile="pidgin_puppet.c" bodystart="782" bodyend="797"/>
+      </memberdef>
+      <memberdef kind="function" id="pidgin__puppet_8h_1af7e46e0f79137458a260b0bd0a62aee6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void receivedChatMsgCallback</definition>
+        <argsstring>(PurpleAccount *account, char *sender, char *message, PurpleConversation *conv, PurpleMessageFlags flags)</argsstring>
+        <name>receivedChatMsgCallback</name>
+        <param>
+          <type>PurpleAccount *</type>
+          <declname>account</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>sender</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>message</declname>
+        </param>
+        <param>
+          <type>PurpleConversation *</type>
+          <declname>conv</declname>
+        </param>
+        <param>
+          <type>PurpleMessageFlags</type>
+          <declname>flags</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Callback for Chat Messages <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">account</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to account, that received the chat message </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">sender</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to buddy name, that received the chat message </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">message</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the actual message </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">conv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the conversation object </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">flags</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Flags of the received message </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pidgin_puppet.h" line="422" column="1" bodyfile="pidgin_puppet.c" bodystart="800" bodyend="807"/>
+      </memberdef>
+      <memberdef kind="function" id="pidgin__puppet_8h_1a545f941243d29a9e3507e643acc9bf96" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int account_authorization_requested</definition>
+        <argsstring>(PurpleAccount *account, const char *user)</argsstring>
+        <name>account_authorization_requested</name>
+        <param>
+          <type>PurpleAccount *</type>
+          <declname>account</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>user</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Callback for Authorization Requests <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">account</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to account, that received the authorization request </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">user</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to buddy name, that send the authorization request </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>1 for accept, -1 for deny (default: accept) </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pidgin_puppet.h" line="430" column="1" bodyfile="pidgin_puppet.c" bodystart="810" bodyend="817"/>
+      </memberdef>
+      <memberdef kind="function" id="pidgin__puppet_8h_1ae40d22c2c9956ddb6031de2176705831" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void signed_on</definition>
+        <argsstring>(PurpleConnection *gc)</argsstring>
+        <name>signed_on</name>
+        <param>
+          <type>PurpleConnection *</type>
+          <declname>gc</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Callback for self server sign on <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">gc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to a PurpleConnection object </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pidgin_puppet.h" line="435" column="1" bodyfile="pidgin_puppet.c" bodystart="820" bodyend="824"/>
+      </memberdef>
+      <memberdef kind="function" id="pidgin__puppet_8h_1a83a88050267b4ec123895f48c3bb753e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void buddy_signed_on</definition>
+        <argsstring>(PurpleBuddy *buddy)</argsstring>
+        <name>buddy_signed_on</name>
+        <param>
+          <type>PurpleBuddy *</type>
+          <declname>buddy</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Callback for buddy sign on <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">buddy</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the name of a signed on buddy </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pidgin_puppet.h" line="440" column="1" bodyfile="pidgin_puppet.c" bodystart="827" bodyend="830"/>
+      </memberdef>
+      <memberdef kind="function" id="pidgin__puppet_8h_1a1dbd5aceeaa5d76b4ae14e3dcb18d649" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void buddy_signed_off</definition>
+        <argsstring>(PurpleBuddy *buddy)</argsstring>
+        <name>buddy_signed_off</name>
+        <param>
+          <type>PurpleBuddy *</type>
+          <declname>buddy</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Callback for buddy sign off <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">buddy</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the name of a signed off buddy </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pidgin_puppet.h" line="445" column="1" bodyfile="pidgin_puppet.c" bodystart="833" bodyend="836"/>
+      </memberdef>
+      <memberdef kind="function" id="pidgin__puppet_8h_1aa02bbc6fea0ec396fcceb47875379aad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void file_recv_request</definition>
+        <argsstring>(PurpleXfer *xfer, gpointer data)</argsstring>
+        <name>file_recv_request</name>
+        <param>
+          <type>PurpleXfer *</type>
+          <declname>xfer</declname>
+        </param>
+        <param>
+          <type>gpointer</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Callback for incoming file <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">xfer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to a PurpleXfer object </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Additional data </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pidgin_puppet.h" line="451" column="1" bodyfile="pidgin_puppet.c" bodystart="839" bodyend="856"/>
+      </memberdef>
+      <memberdef kind="function" id="pidgin__puppet_8h_1ab179cf1c0a216640b7e20053002c2007" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void file_recv_accept</definition>
+        <argsstring>(PurpleXfer *xfer, gpointer data)</argsstring>
+        <name>file_recv_accept</name>
+        <param>
+          <type>PurpleXfer *</type>
+          <declname>xfer</declname>
+        </param>
+        <param>
+          <type>gpointer</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Callback for incoming file accepted <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">xfer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to a PurpleXfer object </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Additional data </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pidgin_puppet.h" line="457" column="1" bodyfile="pidgin_puppet.c" bodystart="859" bodyend="868"/>
+      </memberdef>
+      <memberdef kind="function" id="pidgin__puppet_8h_1a1882c89b019dfb3227931e5d827d4e04" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void file_recv_complete</definition>
+        <argsstring>(PurpleXfer *xfer, gpointer data)</argsstring>
+        <name>file_recv_complete</name>
+        <param>
+          <type>PurpleXfer *</type>
+          <declname>xfer</declname>
+        </param>
+        <param>
+          <type>gpointer</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Callback for incoming file transfer completed <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">xfer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to a PurpleXfer object </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Additional data </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pidgin_puppet.h" line="463" column="1" bodyfile="pidgin_puppet.c" bodystart="871" bodyend="880"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="pidgin__puppet_8h_1a0f40654b416236bb51e039f02aeababf" prot="public" static="no">
+        <name>PURPLE_PLUGINS</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This is a libpurple plugin </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pidgin_puppet.h" line="76" column="9" bodyfile="pidgin_puppet.h" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pidgin__puppet_8h_1a5fc2dbdfd8973fb275af04457dbc32c8" prot="public" static="no">
+        <name>G_GNUC_NULL_TERMINATED</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Generic bug fix provided by pidgin </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pidgin_puppet.h" line="89" column="13" bodyfile="pidgin_puppet.h" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pidgin__puppet_8h_1a9c7f6d5331abb2692a876d5ee67474b7" prot="public" static="no">
+        <name>close</name>
+        <initializer>closesocket</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>WIN32 doesn&apos;t define close use closesocket for that </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pidgin_puppet.h" line="103" column="9" bodyfile="pidgin_puppet.h" bodystart="103" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pidgin__puppet_8h_1add4ff194692fc3c972558cbf568f547f" prot="public" static="no">
+        <name>SERVADDR</name>
+        <initializer>&quot;127.0.0.1&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>IP address of agent </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pidgin_puppet.h" line="125" column="9" bodyfile="pidgin_puppet.h" bodystart="125" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pidgin__puppet_8h_1a4fdcebb3723e64c7d58aeb804256dd93" prot="public" static="no">
+        <name>SERVPORT</name>
+        <initializer>11001</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Port used for agent communication </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pidgin_puppet.h" line="126" column="9" bodyfile="pidgin_puppet.h" bodystart="126" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pidgin__puppet_8h_1a7abcc323e4058abf7155578ff5ed091f" prot="public" static="no">
+        <name>SIZERECVBUF</name>
+        <initializer>4096</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Buffer size of receive buffer </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pidgin_puppet.h" line="127" column="9" bodyfile="pidgin_puppet.h" bodystart="127" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pidgin__puppet_8h_1ab72c97b4d9a2ef897ca885354e6062d0" prot="public" static="no">
+        <name>SIZESENDBUF</name>
+        <initializer>4096</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Buffer size of send buffer </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pidgin_puppet.h" line="128" column="9" bodyfile="pidgin_puppet.h" bodystart="128" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="pidgin__puppet_8h_1a36a659884b6cfd0057f770189ef59173" prot="public" static="no">
+        <name>PIDGIN_PUPPET_RETVAL</name>
+        <enumvalue id="pidgin__puppet_8h_1a36a659884b6cfd0057f770189ef59173a4a628dd3af8c6dd16738f5a00dedbe70" prot="public">
+          <name>P_OK</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Success </para>          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="pidgin__puppet_8h_1a36a659884b6cfd0057f770189ef59173aed05b94b67c22dfa8ee067240a47adcb" prot="public">
+          <name>P_GENERIC_FAIL</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Generic failure </para>          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="pidgin__puppet_8h_1a36a659884b6cfd0057f770189ef59173ac788601a9f8f3470eff3227793aec589" prot="public">
+          <name>P_NO_ACCOUNT</name>
+          <initializer>= 2</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>No account selected </para>          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="pidgin__puppet_8h_1a36a659884b6cfd0057f770189ef59173ab5a2589cbeabd51f49a656804dca4e41" prot="public">
+          <name>P_NO_DATA</name>
+          <initializer>= 3</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>No data or empty list was returned </para>          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="pidgin__puppet_8h_1a36a659884b6cfd0057f770189ef59173a2a13d86f973aa833cd968d872c9b5a3b" prot="public">
+          <name>P_NO_MATCH</name>
+          <initializer>= 4</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Referenced object was not found </para>          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="pidgin__puppet_8h_1a36a659884b6cfd0057f770189ef59173a498bccebf9532f98bf70297adca5bf57" prot="public">
+          <name>P_BAD_PTR</name>
+          <initializer>= 5</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>A Null-pointer was provided, but argument was not optional </para>          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="pidgin__puppet_8h_1a36a659884b6cfd0057f770189ef59173a344792a2dad1d3ce4331ba5e022c14ec" prot="public">
+          <name>P_OUT_OF_MEM</name>
+          <initializer>= 6</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Could not allocate memory </para>          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="pidgin__puppet_8h_1a36a659884b6cfd0057f770189ef59173a1dc7c13336215d35db9b3b6fa125d615" prot="public">
+          <name>P_UNKNOWN</name>
+          <initializer>= 7</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Unknown command </para>          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="pidgin__puppet_8h_1a36a659884b6cfd0057f770189ef59173a65b7099529eaa34ad5dcdb87e34950e6" prot="public">
+          <name>P_NO_VALUE</name>
+          <initializer>= -1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Value is not available, used for inter-thread communication </para>          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enum that contains status codes for internal use </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pidgin_puppet.h" line="134" column="1" bodyfile="pidgin_puppet.h" bodystart="134" bodyend="144"/>
+      </memberdef>
+      <memberdef kind="enum" id="pidgin__puppet_8h_1a3832477baa6d324b5c9f91adc3b80ec0" prot="public" static="no">
+        <name>PIDGIN_PUPPET_STATE</name>
+        <enumvalue id="pidgin__puppet_8h_1a3832477baa6d324b5c9f91adc3b80ec0a10353327f9b5240e612f2af4a3ea1cff" prot="public">
+          <name>P_PLUGIN_UP</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Plugin went up </para>          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="pidgin__puppet_8h_1a3832477baa6d324b5c9f91adc3b80ec0a6b401724a68bc78f84f3670d4ebee3fd" prot="public">
+          <name>P_PLUGIN_DOWN</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Plugin went down </para>          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="pidgin__puppet_8h_1a3832477baa6d324b5c9f91adc3b80ec0aeca31deae8b2e2be18d856b13de8e675" prot="public">
+          <name>P_ACTION_DONE</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Action was completed </para>          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="pidgin__puppet_8h_1a3832477baa6d324b5c9f91adc3b80ec0acf6349690fb32a825e7cbf0b215aa423" prot="public">
+          <name>P_MSG_IM_IN</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>IM received </para>          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="pidgin__puppet_8h_1a3832477baa6d324b5c9f91adc3b80ec0a119b735dd9ad64866a75bfbe638f6ad1" prot="public">
+          <name>P_MSG_CHAT_IN</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Chat message received </para>          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="pidgin__puppet_8h_1a3832477baa6d324b5c9f91adc3b80ec0a0c03a09567dd2331870f62f19f83dbbd" prot="public">
+          <name>P_FILE_IN</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>File received </para>          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="pidgin__puppet_8h_1a3832477baa6d324b5c9f91adc3b80ec0aa5bf5fc363c0be85892fb847dead62b6" prot="public">
+          <name>P_CONTACT_NEW</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Authorization request received </para>          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="pidgin__puppet_8h_1a3832477baa6d324b5c9f91adc3b80ec0a3f2267c14430fe188fcec66ca40fddb8" prot="public">
+          <name>P_SERVER_DOWN</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Server went down </para>          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="pidgin__puppet_8h_1a3832477baa6d324b5c9f91adc3b80ec0a3e343ce6b7e7ec3d1045f0f986b45002" prot="public">
+          <name>P_SIGN_ON</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Self signed on </para>          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="pidgin__puppet_8h_1a3832477baa6d324b5c9f91adc3b80ec0a18eac48c0c8bdded54eebaef3a7c7a98" prot="public">
+          <name>P_BUDDY_SIGN_ON</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Buddy went online </para>          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="pidgin__puppet_8h_1a3832477baa6d324b5c9f91adc3b80ec0adfe823efaa48cb8270acd4232edef299" prot="public">
+          <name>P_BUDDY_SIGN_OFF</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Buddy went offline </para>          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Enum that contains status messages for internal use </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pidgin_puppet.h" line="150" column="1" bodyfile="pidgin_puppet.h" bodystart="150" bodyend="162"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="pidgin__puppet_8h_1a2eb3b718074d951580394651dec99eae" prot="public" static="no">
+        <type>unsigned int</type>
+        <definition>hlength_t</definition>
+        <argsstring></argsstring>
+        <name>hlength_t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>32bit length field of header </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pidgin_puppet.h" line="168" column="1" bodyfile="pidgin_puppet.h" bodystart="168" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="pidgin__puppet_8h_1ac991ce97ed2ac2d3a08fbef807b117c6" prot="public" static="no">
+        <type>unsigned int</type>
+        <definition>hnum_t</definition>
+        <argsstring></argsstring>
+        <name>hnum_t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>32bit offset number field of header </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pidgin_puppet.h" line="173" column="1" bodyfile="pidgin_puppet.h" bodystart="173" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="pidgin__puppet_8h_1a4e81645463f19167ed0723e71b925bc0" prot="public" static="no">
+        <type>unsigned int</type>
+        <definition>offset_entry_t</definition>
+        <argsstring></argsstring>
+        <name>offset_entry_t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>32bit offset field of header </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pidgin_puppet.h" line="178" column="1" bodyfile="pidgin_puppet.h" bodystart="178" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="pidgin__puppet_8h_1ae3e76f0c9620187ebb5fac4366299499" prot="public" static="no">
+        <type><ref refid="structagentmessageheader" kindref="compound">agentmessageheader</ref></type>
+        <definition>amh</definition>
+        <argsstring></argsstring>
+        <name>amh</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Name shortener for a message header </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pidgin_puppet.h" line="193" column="1" bodyfile="pidgin_puppet.h" bodystart="193" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>File containing header definitions of Pidgin Puppet. </para>    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>Sascha Kopp </para></simplesect>
+<simplesect kind="date"><para>18 Jan 2015 </para></simplesect>
+</para>    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"></codeline>
+<codeline lineno="76" refid="pidgin__puppet_8h_1a0f40654b416236bb51e039f02aeababf" refkind="member"><highlight class="preprocessor">#define<sp/>PURPLE_PLUGINS</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;glib.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>G_GNUC_NULL_TERMINATED</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/>if<sp/>__GNUC__<sp/>&gt;=<sp/>4</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="preprocessor">#<sp/><sp/><sp/><sp/>define<sp/>G_GNUC_NULL_TERMINATED<sp/>__attribute__((__sentinel__))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/>else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89" refid="pidgin__puppet_8h_1a5fc2dbdfd8973fb275af04457dbc32c8" refkind="member"><highlight class="preprocessor">#<sp/><sp/><sp/><sp/>define<sp/>G_GNUC_NULL_TERMINATED</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/>endif<sp/></highlight><highlight class="comment">/*<sp/>__GNUC__<sp/>&gt;=<sp/>4<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>G_GNUC_NULL_TERMINATED<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;memory.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>WIN32</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;windows.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;process.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;winsock2.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;ws2tcpip.h&gt;</highlight></codeline>
+<codeline lineno="103" refid="pidgin__puppet_8h_1a9c7f6d5331abb2692a876d5ee67474b7" refkind="member"><highlight class="preprocessor">#define<sp/>close<sp/>closesocket</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;pthread.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;sys/types.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;sys/socket.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;netinet/in.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;arpa/inet.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;netdb.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;unistd.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;errno.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;eventloop.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;conversation.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;blist.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cmds.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;notify.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;plugin.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;version.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;debug.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;ft.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight></codeline>
+<codeline lineno="125" refid="pidgin__puppet_8h_1add4ff194692fc3c972558cbf568f547f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SERVADDR<sp/>&quot;127.0.0.1&quot;<sp/></highlight></codeline>
+<codeline lineno="126" refid="pidgin__puppet_8h_1a4fdcebb3723e64c7d58aeb804256dd93" refkind="member"><highlight class="preprocessor">#define<sp/>SERVPORT<sp/>11001<sp/></highlight></codeline>
+<codeline lineno="127" refid="pidgin__puppet_8h_1a7abcc323e4058abf7155578ff5ed091f" refkind="member"><highlight class="preprocessor">#define<sp/>SIZERECVBUF<sp/>4096<sp/></highlight></codeline>
+<codeline lineno="128" refid="pidgin__puppet_8h_1ab72c97b4d9a2ef897ca885354e6062d0" refkind="member"><highlight class="preprocessor">#define<sp/>SIZESENDBUF<sp/>4096<sp/></highlight></codeline>
+<codeline lineno="134" refid="pidgin__puppet_8h_1a36a659884b6cfd0057f770189ef59173" refkind="member"><highlight class="preprocessor">typedef<sp/>enum<sp/>{</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="135" refid="pidgin__puppet_8h_1a36a659884b6cfd0057f770189ef59173a4a628dd3af8c6dd16738f5a00dedbe70" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pidgin__puppet_8h_1a36a659884b6cfd0057f770189ef59173a4a628dd3af8c6dd16738f5a00dedbe70" kindref="member">P_OK</ref><sp/>=<sp/>0,<sp/></highlight></codeline>
+<codeline lineno="136" refid="pidgin__puppet_8h_1a36a659884b6cfd0057f770189ef59173aed05b94b67c22dfa8ee067240a47adcb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pidgin__puppet_8h_1a36a659884b6cfd0057f770189ef59173aed05b94b67c22dfa8ee067240a47adcb" kindref="member">P_GENERIC_FAIL</ref><sp/>=<sp/>1,<sp/></highlight></codeline>
+<codeline lineno="137" refid="pidgin__puppet_8h_1a36a659884b6cfd0057f770189ef59173ac788601a9f8f3470eff3227793aec589" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pidgin__puppet_8h_1a36a659884b6cfd0057f770189ef59173ac788601a9f8f3470eff3227793aec589" kindref="member">P_NO_ACCOUNT</ref><sp/>=<sp/>2,<sp/></highlight></codeline>
+<codeline lineno="138" refid="pidgin__puppet_8h_1a36a659884b6cfd0057f770189ef59173ab5a2589cbeabd51f49a656804dca4e41" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pidgin__puppet_8h_1a36a659884b6cfd0057f770189ef59173ab5a2589cbeabd51f49a656804dca4e41" kindref="member">P_NO_DATA</ref><sp/>=<sp/>3,<sp/></highlight></codeline>
+<codeline lineno="139" refid="pidgin__puppet_8h_1a36a659884b6cfd0057f770189ef59173a2a13d86f973aa833cd968d872c9b5a3b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pidgin__puppet_8h_1a36a659884b6cfd0057f770189ef59173a2a13d86f973aa833cd968d872c9b5a3b" kindref="member">P_NO_MATCH</ref><sp/>=<sp/>4,<sp/></highlight></codeline>
+<codeline lineno="140" refid="pidgin__puppet_8h_1a36a659884b6cfd0057f770189ef59173a498bccebf9532f98bf70297adca5bf57" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pidgin__puppet_8h_1a36a659884b6cfd0057f770189ef59173a498bccebf9532f98bf70297adca5bf57" kindref="member">P_BAD_PTR</ref><sp/>=<sp/>5,<sp/></highlight></codeline>
+<codeline lineno="141" refid="pidgin__puppet_8h_1a36a659884b6cfd0057f770189ef59173a344792a2dad1d3ce4331ba5e022c14ec" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pidgin__puppet_8h_1a36a659884b6cfd0057f770189ef59173a344792a2dad1d3ce4331ba5e022c14ec" kindref="member">P_OUT_OF_MEM</ref><sp/>=<sp/>6,<sp/></highlight></codeline>
+<codeline lineno="142" refid="pidgin__puppet_8h_1a36a659884b6cfd0057f770189ef59173a1dc7c13336215d35db9b3b6fa125d615" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pidgin__puppet_8h_1a36a659884b6cfd0057f770189ef59173a1dc7c13336215d35db9b3b6fa125d615" kindref="member">P_UNKNOWN</ref><sp/>=<sp/>7,<sp/></highlight></codeline>
+<codeline lineno="143" refid="pidgin__puppet_8h_1a36a659884b6cfd0057f770189ef59173a65b7099529eaa34ad5dcdb87e34950e6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pidgin__puppet_8h_1a36a659884b6cfd0057f770189ef59173a65b7099529eaa34ad5dcdb87e34950e6" kindref="member">P_NO_VALUE</ref><sp/>=<sp/>-1,<sp/></highlight></codeline>
+<codeline lineno="144"><highlight class="normal">}<sp/><ref refid="pidgin__puppet_8h_1a36a659884b6cfd0057f770189ef59173" kindref="member">PIDGIN_PUPPET_RETVAL</ref>;</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"></highlight></codeline>
+<codeline lineno="150" refid="pidgin__puppet_8h_1a3832477baa6d324b5c9f91adc3b80ec0" refkind="member"><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="151" refid="pidgin__puppet_8h_1a3832477baa6d324b5c9f91adc3b80ec0a10353327f9b5240e612f2af4a3ea1cff" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pidgin__puppet_8h_1a3832477baa6d324b5c9f91adc3b80ec0a10353327f9b5240e612f2af4a3ea1cff" kindref="member">P_PLUGIN_UP</ref>,<sp/></highlight></codeline>
+<codeline lineno="152" refid="pidgin__puppet_8h_1a3832477baa6d324b5c9f91adc3b80ec0a6b401724a68bc78f84f3670d4ebee3fd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pidgin__puppet_8h_1a3832477baa6d324b5c9f91adc3b80ec0a6b401724a68bc78f84f3670d4ebee3fd" kindref="member">P_PLUGIN_DOWN</ref>,<sp/></highlight></codeline>
+<codeline lineno="153" refid="pidgin__puppet_8h_1a3832477baa6d324b5c9f91adc3b80ec0aeca31deae8b2e2be18d856b13de8e675" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pidgin__puppet_8h_1a3832477baa6d324b5c9f91adc3b80ec0aeca31deae8b2e2be18d856b13de8e675" kindref="member">P_ACTION_DONE</ref>,<sp/></highlight></codeline>
+<codeline lineno="154" refid="pidgin__puppet_8h_1a3832477baa6d324b5c9f91adc3b80ec0acf6349690fb32a825e7cbf0b215aa423" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pidgin__puppet_8h_1a3832477baa6d324b5c9f91adc3b80ec0acf6349690fb32a825e7cbf0b215aa423" kindref="member">P_MSG_IM_IN</ref>,<sp/></highlight></codeline>
+<codeline lineno="155" refid="pidgin__puppet_8h_1a3832477baa6d324b5c9f91adc3b80ec0a119b735dd9ad64866a75bfbe638f6ad1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pidgin__puppet_8h_1a3832477baa6d324b5c9f91adc3b80ec0a119b735dd9ad64866a75bfbe638f6ad1" kindref="member">P_MSG_CHAT_IN</ref>,<sp/></highlight></codeline>
+<codeline lineno="156" refid="pidgin__puppet_8h_1a3832477baa6d324b5c9f91adc3b80ec0a0c03a09567dd2331870f62f19f83dbbd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pidgin__puppet_8h_1a3832477baa6d324b5c9f91adc3b80ec0a0c03a09567dd2331870f62f19f83dbbd" kindref="member">P_FILE_IN</ref>,<sp/></highlight></codeline>
+<codeline lineno="157" refid="pidgin__puppet_8h_1a3832477baa6d324b5c9f91adc3b80ec0aa5bf5fc363c0be85892fb847dead62b6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pidgin__puppet_8h_1a3832477baa6d324b5c9f91adc3b80ec0aa5bf5fc363c0be85892fb847dead62b6" kindref="member">P_CONTACT_NEW</ref>,<sp/></highlight></codeline>
+<codeline lineno="158" refid="pidgin__puppet_8h_1a3832477baa6d324b5c9f91adc3b80ec0a3f2267c14430fe188fcec66ca40fddb8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pidgin__puppet_8h_1a3832477baa6d324b5c9f91adc3b80ec0a3f2267c14430fe188fcec66ca40fddb8" kindref="member">P_SERVER_DOWN</ref>,<sp/></highlight></codeline>
+<codeline lineno="159" refid="pidgin__puppet_8h_1a3832477baa6d324b5c9f91adc3b80ec0a3e343ce6b7e7ec3d1045f0f986b45002" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pidgin__puppet_8h_1a3832477baa6d324b5c9f91adc3b80ec0a3e343ce6b7e7ec3d1045f0f986b45002" kindref="member">P_SIGN_ON</ref>,<sp/></highlight></codeline>
+<codeline lineno="160" refid="pidgin__puppet_8h_1a3832477baa6d324b5c9f91adc3b80ec0a18eac48c0c8bdded54eebaef3a7c7a98" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pidgin__puppet_8h_1a3832477baa6d324b5c9f91adc3b80ec0a18eac48c0c8bdded54eebaef3a7c7a98" kindref="member">P_BUDDY_SIGN_ON</ref>,<sp/></highlight></codeline>
+<codeline lineno="161" refid="pidgin__puppet_8h_1a3832477baa6d324b5c9f91adc3b80ec0adfe823efaa48cb8270acd4232edef299" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pidgin__puppet_8h_1a3832477baa6d324b5c9f91adc3b80ec0adfe823efaa48cb8270acd4232edef299" kindref="member">P_BUDDY_SIGN_OFF</ref>,<sp/></highlight></codeline>
+<codeline lineno="162"><highlight class="normal">}<sp/><ref refid="pidgin__puppet_8h_1a3832477baa6d324b5c9f91adc3b80ec0" kindref="member">PIDGIN_PUPPET_STATE</ref>;</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"></highlight></codeline>
+<codeline lineno="168" refid="pidgin__puppet_8h_1a2eb3b718074d951580394651dec99eae" refkind="member"><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="pidgin__puppet_8h_1a2eb3b718074d951580394651dec99eae" kindref="member">hlength_t</ref>;</highlight></codeline>
+<codeline lineno="173" refid="pidgin__puppet_8h_1ac991ce97ed2ac2d3a08fbef807b117c6" refkind="member"><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="pidgin__puppet_8h_1ac991ce97ed2ac2d3a08fbef807b117c6" kindref="member">hnum_t</ref>;</highlight></codeline>
+<codeline lineno="178" refid="pidgin__puppet_8h_1a4e81645463f19167ed0723e71b925bc0" refkind="member"><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="pidgin__puppet_8h_1a4e81645463f19167ed0723e71b925bc0" kindref="member">offset_entry_t</ref>;</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"></highlight></codeline>
+<codeline lineno="184" refid="structagentmessageheader" refkind="compound"><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="185" refid="structagentmessageheader_1af24484d2b5c15ef4de3ae6f71cbba463" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pidgin__puppet_8h_1a2eb3b718074d951580394651dec99eae" kindref="member">hlength_t</ref><sp/><ref refid="structagentmessageheader_1af24484d2b5c15ef4de3ae6f71cbba463" kindref="member">length</ref>;<sp/></highlight></codeline>
+<codeline lineno="186" refid="structagentmessageheader_1a7f2f76c9d50c026b0a5e64f78f7e9f17" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pidgin__puppet_8h_1ac991ce97ed2ac2d3a08fbef807b117c6" kindref="member">hnum_t</ref><sp/><ref refid="structagentmessageheader_1a7f2f76c9d50c026b0a5e64f78f7e9f17" kindref="member">numofentries</ref>;<sp/></highlight></codeline>
+<codeline lineno="187"><highlight class="normal">}<sp/><ref refid="structagentmessageheader" kindref="compound">agentmessageheader</ref>;<sp/></highlight></codeline>
+<codeline lineno="193" refid="pidgin__puppet_8h_1ae3e76f0c9620187ebb5fac4366299499" refkind="member"><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="structagentmessageheader" kindref="compound">agentmessageheader</ref><sp/><ref refid="pidgin__puppet_8h_1ae3e76f0c9620187ebb5fac4366299499" kindref="member">amh</ref>;</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"></highlight></codeline>
+<codeline lineno="200" refid="structcb__message" refkind="compound"><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="201" refid="structcb__message_1a3dd747fa32b52043c5ad834acf647385" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="structcb__message_1a3dd747fa32b52043c5ad834acf647385" kindref="member">sender</ref>;<sp/></highlight></codeline>
+<codeline lineno="202" refid="structcb__message_1a30549ac3a0c251ec2611d4ef6b1ada4f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="structcb__message_1a30549ac3a0c251ec2611d4ef6b1ada4f" kindref="member">msg</ref>;<sp/></highlight></codeline>
+<codeline lineno="203"><highlight class="normal">}<sp/><ref refid="structcb__message" kindref="compound">cb_message</ref>;<sp/></highlight></codeline>
+<codeline lineno="205"><highlight class="comment">//helpers</highlight></codeline>
+<codeline lineno="212"><highlight class="comment"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="pidgin__puppet_8h_1aca7292a1fb03d38ab1943a790b6d494b" kindref="member">headertohost</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>buf);</highlight></codeline>
+<codeline lineno="217"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="pidgin__puppet_8h_1af580db12de271f097757981388551a4f" kindref="member">headertonet</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>buf);</highlight></codeline>
+<codeline lineno="223"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="pidgin__puppet_8h_1a7b8bdc0abbd2d617a34ee9b2eaeecb5e" kindref="member">printbufferedmessage</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>buf);</highlight></codeline>
+<codeline lineno="231"><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<sp/><ref refid="pidgin__puppet_8h_1aabb2c8cec14e2fa018a9cd8c00ab64ff" kindref="member">offsetentrytoptr</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>bufptr,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>num,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*out_offset);</highlight></codeline>
+<codeline lineno="239"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="pidgin__puppet_8h_1afc811c1f8e2719d20eb9fdb1e9d6e8fd" kindref="member">sendpackstr</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>str,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*argnum,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*bytecnt,<sp/><ref refid="structagentmessageheader" kindref="compound">amh</ref><sp/>*header);</highlight></codeline>
+<codeline lineno="245"><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="pidgin__puppet_8h_1af906b471a9b10cf5ed852c9e594013a4" kindref="member">sendgetinitialbytepos</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>numofargs);</highlight></codeline>
+<codeline lineno="249"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="pidgin__puppet_8h_1a34bf4649765aac25a2426fbb23405808" kindref="member">lockSend</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="253"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="pidgin__puppet_8h_1a156819c15ad0fd4f9820f99bcce7e1fd" kindref="member">unlockSend</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="262"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="pidgin__puppet_8h_1a6be49dbace2e34711f917582509b4ed1" kindref="member">sendpackstatus</ref>(<ref refid="pidgin__puppet_8h_1a36a659884b6cfd0057f770189ef59173" kindref="member">PIDGIN_PUPPET_RETVAL</ref><sp/>rval,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*argnum,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*bytecnt,<sp/><ref refid="structagentmessageheader" kindref="compound">amh</ref><sp/>*header);</highlight></codeline>
+<codeline lineno="264"><highlight class="comment">//signals</highlight></codeline>
+<codeline lineno="272"><highlight class="comment"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="pidgin__puppet_8h_1a295f5fafa09b6153612737ee8992c463" kindref="member">cbSendImToBuddy</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>cbmsg,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>data);</highlight></codeline>
+<codeline lineno="274"><highlight class="comment">//network</highlight></codeline>
+<codeline lineno="281"><highlight class="comment"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="pidgin__puppet_8h_1af6a04c95e7d374fa7d5872f0ec39fee9" kindref="member">demultiplexmessage</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="285"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="pidgin__puppet_8h_1a00638eb0ebbce4393aae224d81c13d17" kindref="member">listensocket</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="289"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="pidgin__puppet_8h_1a2ededcf48792ab007abcd68c863b35f0" kindref="member">opensocket</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="293"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="pidgin__puppet_8h_1a53447863ccd8135651b96397aaa8f884" kindref="member">destroysocket</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="294"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>WIN32</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="295"><highlight class="normal"></highlight></codeline>
+<codeline lineno="299"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>__cdecl<sp/><ref refid="pidgin__puppet_8h_1a3e07c7b90b2ffe72aae42f03779ec3ec" kindref="member">listenerWorker</ref>(LPVOID<sp/>data);</highlight></codeline>
+<codeline lineno="300"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="301"><highlight class="normal"></highlight></codeline>
+<codeline lineno="306"><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><ref refid="pidgin__puppet_8h_1a3e07c7b90b2ffe72aae42f03779ec3ec" kindref="member">listenerWorker</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>data);</highlight></codeline>
+<codeline lineno="307"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="308"><highlight class="normal"></highlight></codeline>
+<codeline lineno="313"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="pidgin__puppet_8h_1a0ca50d83161d709e4b01c35c0d03e69e" kindref="member">startAgentListener</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="319"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="pidgin__puppet_8h_1ae8ed76a5976a2f1254b2d73d5369c114" kindref="member">stopAgentListener</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="321"><highlight class="comment">//commands</highlight></codeline>
+<codeline lineno="331"><highlight class="comment"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="pidgin__puppet_8h_1a761a04242e08337a7ff144cf408671de" kindref="member">notifyAgent</ref>(<ref refid="pidgin__puppet_8h_1a3832477baa6d324b5c9f91adc3b80ec0" kindref="member">PIDGIN_PUPPET_STATE</ref><sp/>state,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*data);</highlight></codeline>
+<codeline lineno="339"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="pidgin__puppet_8h_1acef9c5f3e76e89cb0ba7943d017d160e" kindref="member">isBuddyOnline</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*buddyname,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*retval);</highlight></codeline>
+<codeline lineno="348"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="pidgin__puppet_8h_1aaad583d6006338dfe07f493c66eba9db" kindref="member">getAllAccounts</ref>(GList**<sp/>list,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*size);</highlight></codeline>
+<codeline lineno="358"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="pidgin__puppet_8h_1af33f059a78ae2737eea32b4748ab0ed4" kindref="member">selectAccount</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>accountname,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>prot_id);</highlight></codeline>
+<codeline lineno="366"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="pidgin__puppet_8h_1ae1c02665c8ecae17068ecfebd43adc03" kindref="member">getContactList</ref>(GSList<sp/>**list,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*size);</highlight></codeline>
+<codeline lineno="376"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="pidgin__puppet_8h_1a83e303aa7d2cdc7936ce8b39308c4616" kindref="member">sendMsgToBuddyUnsafe</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>buddy,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>msg);</highlight></codeline>
+<codeline lineno="385"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="pidgin__puppet_8h_1a97c100abe7b2a1b4008cd65593b45b3f" kindref="member">sendImToBuddyUnsafe</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>buddy,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>msg);</highlight></codeline>
+<codeline lineno="392"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="pidgin__puppet_8h_1ad5e4be07ef48d4db89e0607021ff0bb3" kindref="member">addBuddy</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>buddyname);</highlight></codeline>
+<codeline lineno="399"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="pidgin__puppet_8h_1a8a025b51466522fb7713d03f680b5adc" kindref="member">changeOnlineState</ref>(gboolean<sp/>online);</highlight></codeline>
+<codeline lineno="401"><highlight class="comment">//callbacks</highlight></codeline>
+<codeline lineno="412"><highlight class="comment"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="pidgin__puppet_8h_1a67688ef8b02a69206eab0d61cf0260f3" kindref="member">receivedImMsgCallback</ref>(PurpleAccount<sp/>*<ref refid="pidgin__puppet_8c_1a7a963a44a8d050f04c0adb48ac7db0d0" kindref="member">account</ref>,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*sender,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*message,</highlight></codeline>
+<codeline lineno="413"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>PurpleConversation<sp/>*conv,<sp/>PurpleMessageFlags<sp/>flags);</highlight></codeline>
+<codeline lineno="422"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="pidgin__puppet_8h_1af7e46e0f79137458a260b0bd0a62aee6" kindref="member">receivedChatMsgCallback</ref>(PurpleAccount<sp/>*<ref refid="pidgin__puppet_8c_1a7a963a44a8d050f04c0adb48ac7db0d0" kindref="member">account</ref>,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*sender,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*message,</highlight></codeline>
+<codeline lineno="423"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>PurpleConversation<sp/>*conv,<sp/>PurpleMessageFlags<sp/>flags);</highlight></codeline>
+<codeline lineno="430"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="pidgin__puppet_8h_1a545f941243d29a9e3507e643acc9bf96" kindref="member">account_authorization_requested</ref>(PurpleAccount<sp/>*<ref refid="pidgin__puppet_8c_1a7a963a44a8d050f04c0adb48ac7db0d0" kindref="member">account</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*user);</highlight></codeline>
+<codeline lineno="435"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="pidgin__puppet_8h_1ae40d22c2c9956ddb6031de2176705831" kindref="member">signed_on</ref>(PurpleConnection<sp/>*gc);</highlight></codeline>
+<codeline lineno="440"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="pidgin__puppet_8h_1a83a88050267b4ec123895f48c3bb753e" kindref="member">buddy_signed_on</ref>(PurpleBuddy<sp/>*buddy);</highlight></codeline>
+<codeline lineno="445"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="pidgin__puppet_8h_1a1dbd5aceeaa5d76b4ae14e3dcb18d649" kindref="member">buddy_signed_off</ref>(PurpleBuddy<sp/>*buddy);</highlight></codeline>
+<codeline lineno="451"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="pidgin__puppet_8h_1aa02bbc6fea0ec396fcceb47875379aad" kindref="member">file_recv_request</ref>(PurpleXfer<sp/>*xfer,<sp/>gpointer<sp/>data);</highlight></codeline>
+<codeline lineno="457"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="pidgin__puppet_8h_1ab179cf1c0a216640b7e20053002c2007" kindref="member">file_recv_accept</ref>(PurpleXfer<sp/>*xfer,<sp/>gpointer<sp/>data);</highlight></codeline>
+<codeline lineno="463"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="pidgin__puppet_8h_1a1882c89b019dfb3227931e5d827d4e04" kindref="member">file_recv_complete</ref>(PurpleXfer<sp/>*xfer,<sp/>gpointer<sp/>data);</highlight></codeline>
+    </programlisting>
+    <location file="pidgin_puppet.h"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,41 @@
+name: haystack local mail example
+description: A example action suite to generate a haystack (traffic)
+author: MPSE Group
+seed: 1234
+collections:
+  c-mail-0:
+    type: mail
+    recipients: ./generator/collections/friendly_recipients.txt
+    subjects: ./generator/collections/friendly_subjects.txt
+    messages: ./generator/collections/friendly_messages.txt
+settings:
+  host_nfs_path: /data/fortrace_data
+  guest_nfs_path: Z:\\
+applications:
+  mail-0:
+    type: mail
+    imap_hostname: 192.168.103.123
+    smtp_hostname: 192.168.103.123
+    email: sk@fortrace.local
+    password: fortrace
+    username: sk
+    full_name: Heinz fortrace
+    socket_type: 0
+    socket_type_smtp: 0
+    auth_method_smtp: 3
+hay:
+  h-mail-0:
+    application: mail-1
+    recipient: sk@fortrace.local
+    subject: a random mail
+    message: I'm sending you this mail because of X.
+    attachments:
+      - /data/fortrace_data/blue.jpg
+      - /data/fortrace_data/document.pdf
+    amount: 1
+  h-mail-1:
+    application: mail-1
+    amount: 20
+    recipient: sk@fortrace.local
+    collection: c-mail-0
+needles:

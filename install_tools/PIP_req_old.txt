@@ -1,0 +1,16 @@
+setuptools
+pywinauto==0.6.0
+pywin32
+selenium
+marionette_driver
+netifaces
+psutil
+netaddr
+enum34
+protobuf==2.5.0
+mozrunner==7.7.0
+mozprofile==2.4.0
+smbprotocol
+urllib3==1.23
+pyyaml
+libvirt-python==5.10.0

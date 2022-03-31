@@ -1,0 +1,38 @@
+<data>
+    <item>
+        <type>in</type>
+        <from_name>Thomas</from_name>
+        <from_ad>theo.test1@web.de</from_ad>
+        <to_name>Testbot</to_name>
+        <to_ad>theo11111@web.de</to_ad>
+        <user>Bill</user>
+        <server>pop3.web.de</server>
+        <timestamp>author Fri Feb  1 11:05:34 2018</timestamp>
+        <subject>Sample message</subject>
+        <message>This is the body.\nFrom (should be escaped).\nThere are 3 lines.\n</message>
+    </item>
+    <item>
+        <type>in</type>
+        <from_name>Thomas</from_name>
+        <from_ad>theo.test1@web.de</from_ad>
+        <to_name>Testbot</to_name>
+        <to_ad>theo11111@web.de</to_ad>
+        <user>Bill</user>
+        <server>pop3.web.de</server>
+        <timestamp>author Sat Feb  2 21:35:34 2018</timestamp>
+        <subject>Sample message 2</subject>
+        <message>This is the body.\nFrom (should be escaped).\nThere are 3 lines.\n</message>
+    </item>
+    <item>
+        <type>out</type>
+        <from_name>Testbot</from_name>
+        <from_ad>theo11111@web.de</from_ad>
+        <to_name>Thomas</to_name>
+        <to_ad>theo.test1@web.de</to_ad>
+        <user>Bill</user>
+        <server>pop3.web.de</server>
+        <timestamp>author Fri Feb  1 18:15:34 2018</timestamp>
+        <subject>Sample message 2</subject>
+        <message>This is the body.\nFrom (should be escaped).\nThere are 3 lines.\n</message>
+    </item>
+</data>

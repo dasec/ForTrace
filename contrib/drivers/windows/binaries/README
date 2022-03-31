@@ -1,0 +1,9 @@
+This directory contains the driver and userspace binaries for vmulti.
+Install the certificate to the trusted certificate store and enable testsigning.
+The userspace component itself needs the vc2015 runtimes.
+The driver was build for Windows 7+.
+If you need Windows XP support build the driver following the original instructions.
+
+Scripts to easy deployment are provided:
+prepare_driver.cmd will setup the bootoptions for testsigning.
+install_driver.cmd will install and load the driver.

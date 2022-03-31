@@ -1,0 +1,23 @@
+name: haystack smb example
+description: A example action suite to generate a haystack (traffic)
+author: MPSE Group
+seed: 1234
+collections:
+  c-smb-0:
+    type: smb
+    files: ./generator/collections/general_default_attachments.txt
+settings:
+  host_nfs_path: /data/fortrace_data
+  guest_nfs_path: Z:\\
+applications:
+  smb-0:
+    type: smb
+    username: service
+    password: fortrace
+    destination: \\192.168.103.123\sambashare
+hay:
+  n-smb-0:
+    application: smb-0
+    amount: 20
+    collection: c-smb-0
+needles:

@@ -1,0 +1,543 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>fortrace.application.veraCryptWrapper &#8212; fortrace  documentation</title>
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for fortrace.application.veraCryptWrapper</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright (C) 2013-2014 Reinhard Stampp</span>
+<span class="c1"># This file is part of fortrace - http://fortrace.fbi.h-da.de</span>
+<span class="c1"># See the file &#39;docs/LICENSE&#39; for copying permission.</span>
+<span class="c1"># Added by Thomas Schaefer in 2019</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">logging</span>
+    <span class="kn">import</span> <span class="nn">os</span>
+    <span class="kn">import</span> <span class="nn">sys</span>
+    <span class="kn">import</span> <span class="nn">platform</span>
+    <span class="kn">import</span> <span class="nn">threading</span>
+    <span class="kn">import</span> <span class="nn">subprocess</span>
+    <span class="kn">import</span> <span class="nn">inspect</span>  <span class="c1"># for listing all method of a class</span>
+
+    <span class="c1"># base class VMM side</span>
+    <span class="kn">from</span> <span class="nn">fortrace.application.application</span> <span class="k">import</span> <span class="n">ApplicationVmmSide</span>
+    <span class="kn">from</span> <span class="nn">fortrace.application.application</span> <span class="k">import</span> <span class="n">ApplicationVmmSideCommands</span>
+
+    <span class="c1"># base class guest side</span>
+    <span class="kn">from</span> <span class="nn">fortrace.application.application</span> <span class="k">import</span> <span class="n">ApplicationGuestSide</span>
+    <span class="kn">from</span> <span class="nn">fortrace.application.application</span> <span class="k">import</span> <span class="n">ApplicationGuestSideCommands</span>
+    <span class="kn">from</span> <span class="nn">fortrace.utility.line</span> <span class="k">import</span> <span class="n">lineno</span>
+
+    <span class="c1">#</span>
+    <span class="kn">import</span> <span class="nn">fortrace.utility.picklehelper</span> <span class="k">as</span> <span class="nn">ph</span>
+
+    <span class="c1"># file copying</span>
+    <span class="kn">from</span> <span class="nn">shutil</span> <span class="k">import</span> <span class="n">copyfile</span>
+
+<span class="k">except</span> <span class="ne">ImportError</span> <span class="k">as</span> <span class="n">ie</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Import error! in VeraCryptWrapper.py &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ie</span><span class="p">))</span>
+    <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+
+<span class="c1">###############################################################################</span>
+<span class="c1"># Host side implementation</span>
+<span class="c1">###############################################################################</span>
+<div class="viewcode-block" id="VeraCryptWrapperVmmSide"><a class="viewcode-back" href="../../../developer/functions.html#fortrace.application.veraCryptWrapper.VeraCryptWrapperVmmSide">[docs]</a><span class="k">class</span> <span class="nc">VeraCryptWrapperVmmSide</span><span class="p">(</span><span class="n">ApplicationVmmSide</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This class is a remote control on the host-side to control a real &lt;skeleton&gt;</span>
+<span class="sd">    running on a guest.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">guest_obj</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set default attribute values only.</span>
+<span class="sd">        @param guest_obj: The guest on which this application is running. (will be inserted from guest::application())</span>
+<span class="sd">        @param args: containing</span>
+<span class="sd">                 logger: Logger name for logging.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="nb">super</span><span class="p">(</span><span class="n">VeraCryptWrapperVmmSide</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">guest_obj</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;function: VeraCryptWrapperVmmSide::__init__&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">window_id</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">lineno</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot; Error: VeraCryptWrapperHostSide::__init__ &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">guest_obj</span><span class="o">.</span><span class="n">guestname</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+
+<div class="viewcode-block" id="VeraCryptWrapperVmmSide.open"><a class="viewcode-back" href="../../../developer/functions.html#fortrace.application.veraCryptWrapper.VeraCryptWrapperVmmSide.open">[docs]</a>    <span class="k">def</span> <span class="nf">open</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sends a command to open a VeraCryptWrapper on the associated guest.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;function: VeraCryptWrapperVmmSide::open&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">window_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">guest_obj</span><span class="o">.</span><span class="n">current_window_id</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">guest_obj</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;application &quot;</span> <span class="o">+</span> <span class="s2">&quot;veraCryptWrapper &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">window_id</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; open&quot;</span><span class="p">)</span>  <span class="c1"># some parameters</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">guest_obj</span><span class="o">.</span><span class="n">current_window_id</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;error VeraCryptWrapperVmmSide::open: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="VeraCryptWrapperVmmSide.close"><a class="viewcode-back" href="../../../developer/functions.html#fortrace.application.veraCryptWrapper.VeraCryptWrapperVmmSide.close">[docs]</a>    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sends a command to close a VeraCryptWrapper on the associated guest.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;function: VeraCryptWrapperVmmSide::close&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">guest_obj</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;application &quot;</span> <span class="o">+</span> <span class="s2">&quot;veraCryptWrapper &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">window_id</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; close&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;error VeraCryptWrapperVmmSide:close()&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="VeraCryptWrapperVmmSide.createContainer"><a class="viewcode-back" href="../../../developer/functions.html#fortrace.application.veraCryptWrapper.VeraCryptWrapperVmmSide.createContainer">[docs]</a>    <span class="k">def</span> <span class="nf">createContainer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">executable</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="nb">hash</span> <span class="o">=</span> <span class="s2">&quot;sha512&quot;</span><span class="p">,</span> <span class="n">encryption</span> <span class="o">=</span> <span class="s2">&quot;serpent&quot;</span><span class="p">,</span> <span class="n">filesystem</span> <span class="o">=</span> <span class="s2">&quot;FAT&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Creates an encrypted container with veracrypt</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">ac</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="n">path</span><span class="p">,</span>
+                  <span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="n">size</span><span class="p">,</span>
+                  <span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="n">password</span><span class="p">,</span>
+                  <span class="s2">&quot;hash&quot;</span><span class="p">:</span> <span class="nb">hash</span><span class="p">,</span>
+                  <span class="s2">&quot;encryption&quot;</span><span class="p">:</span> <span class="n">encryption</span><span class="p">,</span>
+                  <span class="s2">&quot;filesystem&quot;</span><span class="p">:</span> <span class="n">filesystem</span><span class="p">,</span>
+                  <span class="s2">&quot;executable&quot;</span><span class="p">:</span> <span class="n">executable</span><span class="p">}</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;windowID: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">window_id</span><span class="p">))</span>
+            <span class="n">pcl_ac</span> <span class="o">=</span> <span class="n">ph</span><span class="o">.</span><span class="n">base64pickle</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span>
+            <span class="n">pw_cmd</span> <span class="o">=</span> <span class="s2">&quot;application veraCryptWrapper &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">window_id</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; createContainer &quot;</span> <span class="o">+</span> <span class="n">pcl_ac</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">is_busy</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">guest_obj</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">pw_cmd</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;error: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="VeraCryptWrapperVmmSide.mountContainer"><a class="viewcode-back" href="../../../developer/functions.html#fortrace.application.veraCryptWrapper.VeraCryptWrapperVmmSide.mountContainer">[docs]</a>    <span class="k">def</span> <span class="nf">mountContainer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">executable</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">mount_point</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Mounts an encrypted container with veracrypt</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">ac</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="n">path</span><span class="p">,</span>
+                  <span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="n">password</span><span class="p">,</span>
+                  <span class="s2">&quot;executable&quot;</span><span class="p">:</span> <span class="n">executable</span><span class="p">,</span>
+                  <span class="s2">&quot;mount_point&quot;</span><span class="p">:</span> <span class="n">mount_point</span><span class="p">}</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;windowID: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">window_id</span><span class="p">))</span>
+            <span class="n">pcl_ac</span> <span class="o">=</span> <span class="n">ph</span><span class="o">.</span><span class="n">base64pickle</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span>
+            <span class="n">pw_cmd</span> <span class="o">=</span> <span class="s2">&quot;application veraCryptWrapper &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">window_id</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; mountContainer &quot;</span> <span class="o">+</span> <span class="n">pcl_ac</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">is_busy</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">guest_obj</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">pw_cmd</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;error: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="VeraCryptWrapperVmmSide.copyToContainer"><a class="viewcode-back" href="../../../developer/functions.html#fortrace.application.veraCryptWrapper.VeraCryptWrapperVmmSide.copyToContainer">[docs]</a>    <span class="k">def</span> <span class="nf">copyToContainer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">src</span><span class="p">,</span> <span class="n">dst</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; copy to an encrypted container with veracrypt</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">ac</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;src&quot;</span><span class="p">:</span> <span class="n">src</span><span class="p">,</span>
+                  <span class="s2">&quot;dst&quot;</span><span class="p">:</span> <span class="n">dst</span><span class="p">}</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;windowID: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">window_id</span><span class="p">))</span>
+            <span class="n">pcl_ac</span> <span class="o">=</span> <span class="n">ph</span><span class="o">.</span><span class="n">base64pickle</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span>
+            <span class="n">pw_cmd</span> <span class="o">=</span> <span class="s2">&quot;application veraCryptWrapper &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">window_id</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; copyToContainer &quot;</span> <span class="o">+</span> <span class="n">pcl_ac</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">is_busy</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">guest_obj</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">pw_cmd</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;error: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="VeraCryptWrapperVmmSide.dismountContainer"><a class="viewcode-back" href="../../../developer/functions.html#fortrace.application.veraCryptWrapper.VeraCryptWrapperVmmSide.dismountContainer">[docs]</a>    <span class="k">def</span> <span class="nf">dismountContainer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">executable</span><span class="p">,</span> <span class="n">mount_point</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; unmount an encrypted container with veracrypt</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">ac</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;executable&quot;</span><span class="p">:</span> <span class="n">executable</span><span class="p">,</span>
+                  <span class="s2">&quot;mount_point&quot;</span><span class="p">:</span> <span class="n">mount_point</span><span class="p">}</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;windowID: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">window_id</span><span class="p">))</span>
+            <span class="n">pcl_ac</span> <span class="o">=</span> <span class="n">ph</span><span class="o">.</span><span class="n">base64pickle</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span>
+            <span class="n">pw_cmd</span> <span class="o">=</span> <span class="s2">&quot;application veraCryptWrapper &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">window_id</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; dismountContainer &quot;</span> <span class="o">+</span> <span class="n">pcl_ac</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">is_busy</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">guest_obj</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">pw_cmd</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;error: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span></div></div>
+
+
+<span class="c1">###############################################################################</span>
+<span class="c1"># Commands to parse on host side</span>
+<span class="c1">###############################################################################</span>
+<span class="k">class</span> <span class="nc">VeraCryptWrapperVmmSideCommands</span><span class="p">(</span><span class="n">ApplicationVmmSideCommands</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Class with all commands for &lt;skeleton&gt; which will be received from the agent on the guest.</span>
+
+<span class="sd">    Static only.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">commands</span><span class="p">(</span><span class="n">guest_obj</span><span class="p">,</span> <span class="n">cmd</span><span class="p">):</span>
+        <span class="c1"># cmd[0] = win_id; cmd[1] = state</span>
+        <span class="n">module_name</span> <span class="o">=</span> <span class="s2">&quot;veraCryptWrapper&quot;</span>
+        <span class="n">guest_obj</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;VeraCryptWrapperVmmSideCommands::commands: &quot;</span> <span class="o">+</span> <span class="n">cmd</span><span class="p">)</span>
+        <span class="n">cmd</span> <span class="o">=</span> <span class="n">cmd</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s2">&quot;opened&quot;</span> <span class="ow">in</span> <span class="n">cmd</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+                <span class="n">guest_obj</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;in opened&quot;</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">guest_obj</span><span class="o">.</span><span class="n">applicationWindow</span><span class="p">[</span><span class="n">module_name</span><span class="p">]:</span>
+                    <span class="k">if</span> <span class="n">cmd</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="nb">str</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">window_id</span><span class="p">):</span>
+                        <span class="n">guest_obj</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;window_id: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">window_id</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; found!&quot;</span><span class="p">)</span>
+                        <span class="n">guest_obj</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">module_name</span> <span class="o">+</span> <span class="s2">&quot; with id: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">window_id</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; is_opened = true&quot;</span><span class="p">)</span>
+                        <span class="n">obj</span><span class="o">.</span><span class="n">is_opened</span> <span class="o">=</span> <span class="kc">True</span>
+                        <span class="n">guest_obj</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;obj.is_opened is True now!&quot;</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="s2">&quot;busy&quot;</span> <span class="ow">in</span> <span class="n">cmd</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+                <span class="n">guest_obj</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;in busy&quot;</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">guest_obj</span><span class="o">.</span><span class="n">applicationWindow</span><span class="p">[</span><span class="n">module_name</span><span class="p">]:</span>
+                    <span class="k">if</span> <span class="n">cmd</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="nb">str</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">window_id</span><span class="p">):</span>
+                        <span class="n">guest_obj</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">module_name</span> <span class="o">+</span> <span class="s2">&quot; with id: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">window_id</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; is_busy = true&quot;</span><span class="p">)</span>
+                        <span class="n">obj</span><span class="o">.</span><span class="n">is_busy</span> <span class="o">=</span> <span class="kc">True</span>
+
+            <span class="k">if</span> <span class="s2">&quot;ready&quot;</span> <span class="ow">in</span> <span class="n">cmd</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+                <span class="n">guest_obj</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;in ready&quot;</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">guest_obj</span><span class="o">.</span><span class="n">applicationWindow</span><span class="p">[</span><span class="n">module_name</span><span class="p">]:</span>
+                    <span class="k">if</span> <span class="n">cmd</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="nb">str</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">window_id</span><span class="p">):</span>
+                        <span class="n">guest_obj</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">module_name</span> <span class="o">+</span> <span class="s2">&quot; with id: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">window_id</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; is_busy = false&quot;</span><span class="p">)</span>
+                        <span class="n">obj</span><span class="o">.</span><span class="n">is_busy</span> <span class="o">=</span> <span class="kc">False</span>
+
+            <span class="k">if</span> <span class="s2">&quot;error&quot;</span> <span class="ow">in</span> <span class="n">cmd</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+                <span class="n">guest_obj</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;in error&quot;</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">guest_obj</span><span class="o">.</span><span class="n">applicationWindow</span><span class="p">[</span><span class="n">module_name</span><span class="p">]:</span>
+                    <span class="k">if</span> <span class="n">cmd</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="nb">str</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">window_id</span><span class="p">):</span>
+                        <span class="n">guest_obj</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">module_name</span> <span class="o">+</span> <span class="s2">&quot; with id: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">window_id</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; has_error = True&quot;</span><span class="p">)</span>
+                        <span class="n">obj</span><span class="o">.</span><span class="n">has_error</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">module_name</span> <span class="o">+</span> <span class="s2">&quot;_host_side_commands::commands &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+
+
+<span class="c1">###############################################################################</span>
+<span class="c1"># Guest side implementation</span>
+<span class="c1">###############################################################################</span>
+<span class="k">class</span> <span class="nc">VeraCryptWrapperGuestSide</span><span class="p">(</span><span class="n">ApplicationGuestSide</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;&lt;skeleton&gt; implementation of the guest side.</span>
+
+<span class="sd">    Usually Windows, Linux guest&#39;s</span>
+<span class="sd">    class attributes</span>
+<span class="sd">    window_id - The ID for the opened object</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">agent_obj</span><span class="p">,</span> <span class="n">logger</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">VeraCryptWrapperGuestSide</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">agent_obj</span><span class="p">,</span> <span class="n">logger</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">module_name</span> <span class="o">=</span> <span class="s2">&quot;veraCryptWrapper&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">timeout</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">window_is_crushed</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">window_id</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">agent_object</span> <span class="o">=</span> <span class="n">agent_obj</span>
+
+            <span class="c1">#self.veraCryptApp = VeraCryptWrapperGuestSide(agent_obj, logger, self)</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Error in &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">+</span>
+                            <span class="s2">&quot;: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">open</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Open a &lt;skeleton&gt; and save the skeleton object with an id in a dictionary.</span>
+<span class="sd">        Set page load timeout to 30 seconds.</span>
+
+<span class="sd">        return:</span>
+<span class="sd">        Send to the host in the known to be good state:</span>
+<span class="sd">        &#39;application &lt;skeleton&gt; window_id open&#39;.</span>
+<span class="sd">        &#39;application &lt;skeleton&gt; window_id ready&#39;.</span>
+<span class="sd">        in the error state:</span>
+<span class="sd">        &#39;application &lt;skeleton&gt; window_id error&#39;.</span>
+<span class="sd">        additionally the &#39;window_is_crushed&#39; attribute is set; so the next</span>
+<span class="sd">        call will open a new window.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">arguments</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">module_name</span> <span class="o">+</span> <span class="s2">&quot;GuestSide::open&quot;</span><span class="p">)</span>
+
+            <span class="c1"># send some information about the skeleton state</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">agent_object</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;application &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">module_name</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">window_id</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; opened&quot;</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">agent_object</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;application &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">module_name</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">window_id</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; ready&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">window_is_crushed</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;VeraCryptWrapperGuestSide::open: Close all open windows and clear the VeraCryptWrapper list&quot;</span><span class="p">)</span>
+            <span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">([</span><span class="s2">&quot;taskkill&quot;</span><span class="p">,</span> <span class="s2">&quot;/IM&quot;</span><span class="p">,</span> <span class="s2">&quot;veraCryptWrapper.exe&quot;</span><span class="p">,</span> <span class="s2">&quot;/F&quot;</span><span class="p">])</span>
+            <span class="c1"># for obj in self.agent_object.applicationWindow[self.module_name]:</span>
+            <span class="c1">#    self.agent_obj.applicationWindow[self.module_name].remove(obj)</span>
+            <span class="c1"># set a crushed flag.</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">window_is_crushed</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">agent_object</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;application &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">module_name</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">window_id</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; error&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Error in &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">+</span> <span class="s2">&quot;::open&quot;</span> <span class="o">+</span> <span class="s2">&quot;: selenium is crushed: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Close one given window by window_id&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">+</span>
+                         <span class="s2">&quot;::close &quot;</span><span class="p">)</span>
+        <span class="c1"># self.seleniumDriver.quit()</span>
+
+    <span class="k">def</span> <span class="nf">createContainer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Create a VeraCrypt container with vairous parameters</span>
+<span class="sd">        :param args: contains the parameters for creating the container</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="c1"># implementation</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;creating veracrypt container&quot;</span><span class="p">)</span>
+        <span class="n">ad</span> <span class="o">=</span> <span class="n">ph</span><span class="o">.</span><span class="n">base64unpickle</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+
+        <span class="c1">################</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">ad</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">]</span>
+        <span class="n">size</span> <span class="o">=</span> <span class="n">ad</span><span class="p">[</span><span class="s2">&quot;size&quot;</span><span class="p">]</span>
+        <span class="n">password</span> <span class="o">=</span> <span class="n">ad</span><span class="p">[</span><span class="s2">&quot;password&quot;</span><span class="p">]</span>
+        <span class="nb">hash</span> <span class="o">=</span> <span class="n">ad</span><span class="p">[</span><span class="s2">&quot;hash&quot;</span><span class="p">]</span>
+        <span class="n">encryption</span> <span class="o">=</span> <span class="n">ad</span><span class="p">[</span><span class="s2">&quot;encryption&quot;</span><span class="p">]</span>
+        <span class="n">filesystem</span> <span class="o">=</span> <span class="n">ad</span><span class="p">[</span><span class="s2">&quot;filesystem&quot;</span><span class="p">]</span>
+        <span class="n">executable</span> <span class="o">=</span> <span class="n">ad</span><span class="p">[</span><span class="s2">&quot;executable&quot;</span><span class="p">]</span>
+        <span class="c1">#################</span>
+
+        <span class="c1">#cmd = &#39;&quot;C:\\Program Files\\VeraCrypt\\VeraCrypt Format.exe&quot; /create &#39; + path + &#39; /password &#39; + password + &#39; /hash &#39; + hash + &#39; /encryption &#39; + encryption + &#39; /filesystem &#39; + filesystem + &#39; /size &#39; + size + &#39; /force /quit preferences /silent&quot;&#39;</span>
+        <span class="n">cmd</span> <span class="o">=</span> <span class="n">executable</span> <span class="o">+</span> <span class="s1">&#39; /create &#39;</span> <span class="o">+</span> <span class="n">path</span> <span class="o">+</span> <span class="s1">&#39; /password &#39;</span> <span class="o">+</span> <span class="n">password</span> <span class="o">+</span> <span class="s1">&#39; /hash &#39;</span> <span class="o">+</span> <span class="nb">hash</span> <span class="o">+</span> <span class="s1">&#39; /encryption &#39;</span> <span class="o">+</span> <span class="n">encryption</span> <span class="o">+</span> <span class="s1">&#39; /filesystem &#39;</span> <span class="o">+</span> <span class="n">filesystem</span> <span class="o">+</span> <span class="s1">&#39; /size &#39;</span> <span class="o">+</span> <span class="n">size</span> <span class="o">+</span> <span class="s1">&#39; /force /quit preferences /silent&quot;&#39;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;C:</span><span class="se">\\</span><span class="s2">Users</span><span class="se">\\</span><span class="s2">Bill</span><span class="se">\\</span><span class="s2">Documents</span><span class="se">\\</span><span class="s2">container.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;w+&quot;</span><span class="p">)</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="se">\r\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">password</span><span class="p">)</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+            <span class="c1">#run command line</span>
+            <span class="c1">#caution, shell=True can be an issue if input is untrusted</span>
+            <span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;container successfully created&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;creating container failed: &quot;</span> <span class="o">+</span> <span class="n">lineno</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">mountContainer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Mounting a VeraCrypt container to a given moint point.</span>
+<span class="sd">        :param args: containing the parameters for mounting the container like the path to the container, password, veracrypt executable and mount point</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;mounting veracrypt container&quot;</span><span class="p">)</span>
+        <span class="n">ad</span> <span class="o">=</span> <span class="n">ph</span><span class="o">.</span><span class="n">base64unpickle</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+
+        <span class="c1">################</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">ad</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">]</span>
+        <span class="n">password</span> <span class="o">=</span> <span class="n">ad</span><span class="p">[</span><span class="s2">&quot;password&quot;</span><span class="p">]</span>
+        <span class="n">executable</span> <span class="o">=</span> <span class="n">ad</span><span class="p">[</span><span class="s2">&quot;executable&quot;</span><span class="p">]</span>
+        <span class="n">mount_point</span> <span class="o">=</span> <span class="n">ad</span><span class="p">[</span><span class="s2">&quot;mount_point&quot;</span><span class="p">]</span>
+        <span class="c1">################</span>
+
+        <span class="c1">#veracrypt /v myvolume.tc /l x /a /p MyPassword /e /b</span>
+        <span class="c1">#cmd = &#39;&quot;C:\\Program Files\\VeraCrypt\\VeraCrypt.exe&quot; /v &#39; + path + &#39; /l x /a /p &#39; + password + &#39; /e /q&#39;</span>
+        <span class="n">cmd</span> <span class="o">=</span> <span class="n">executable</span> <span class="o">+</span> <span class="s1">&#39; /v &#39;</span> <span class="o">+</span> <span class="n">path</span> <span class="o">+</span> <span class="s1">&#39; /l &#39;</span> <span class="o">+</span> <span class="n">mount_point</span> <span class="o">+</span> <span class="s1">&#39; /a /p &#39;</span> <span class="o">+</span> <span class="n">password</span> <span class="o">+</span> <span class="s1">&#39; /e /q&#39;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;container successfully mounted&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;mounting container failed: &quot;</span> <span class="o">+</span> <span class="n">lineno</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">copyToContainer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Copy a file from a specific path to a specific path</span>
+<span class="sd">        :param args: holding src as source path of file to be copied and dst as destination where file should be saved.</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;copy to container&quot;</span><span class="p">)</span>
+        <span class="n">ad</span> <span class="o">=</span> <span class="n">ph</span><span class="o">.</span><span class="n">base64unpickle</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+
+        <span class="c1">################</span>
+        <span class="n">src</span> <span class="o">=</span> <span class="n">ad</span><span class="p">[</span><span class="s2">&quot;src&quot;</span><span class="p">]</span>
+        <span class="n">dst</span> <span class="o">=</span> <span class="n">ad</span><span class="p">[</span><span class="s2">&quot;dst&quot;</span><span class="p">]</span>
+        <span class="c1">################</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">copyfile</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">dst</span><span class="p">)</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">src</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;File successfully copied to encrypted container&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;copying to container failed: &quot;</span> <span class="o">+</span> <span class="n">lineno</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">dismountContainer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Dismounting a container to finish the operations of VeraCrypt</span>
+<span class="sd">        :param args: executable = path to veracrypt.exe; mount_point = drive letter of container to be dismounted.</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;unmount container&quot;</span><span class="p">)</span>
+        <span class="n">ad</span> <span class="o">=</span> <span class="n">ph</span><span class="o">.</span><span class="n">base64unpickle</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+
+        <span class="c1">################</span>
+        <span class="n">executable</span> <span class="o">=</span> <span class="n">ad</span><span class="p">[</span><span class="s2">&quot;executable&quot;</span><span class="p">]</span>
+        <span class="n">mount_point</span> <span class="o">=</span> <span class="n">ad</span><span class="p">[</span><span class="s2">&quot;mount_point&quot;</span><span class="p">]</span>
+        <span class="c1">################</span>
+
+        <span class="n">cmd</span> <span class="o">=</span> <span class="n">executable</span> <span class="o">+</span> <span class="s1">&#39; /q /d &#39;</span> <span class="o">+</span> <span class="n">mount_point</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;container successfully dismounted&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;dismounting container failed: &quot;</span> <span class="o">+</span> <span class="n">lineno</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+
+
+<span class="c1">###############################################################################</span>
+<span class="c1"># Commands to parse on guest side</span>
+<span class="c1">###############################################################################</span>
+<span class="k">class</span> <span class="nc">VeraCryptWrapperGuestSideCommands</span><span class="p">(</span><span class="n">ApplicationGuestSideCommands</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Class with all commands for one application.</span>
+
+<span class="sd">    call the ask method for an object. The call will be done by a thread, so if the timeout is</span>
+<span class="sd">    reached, the open application will be closed and opened again.</span>
+<span class="sd">    Static only.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">commands</span><span class="p">(</span><span class="n">agent_obj</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">cmd</span><span class="p">):</span>  <span class="c1"># commands(obj, cmd) obj from list objlist[window_id] win id in cmd[1]?</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">agent_obj</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;static function VeraCryptWrapperGuestSideCommands::commands&quot;</span><span class="p">)</span>
+            <span class="n">agent_obj</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;command to parse: &quot;</span> <span class="o">+</span> <span class="n">cmd</span><span class="p">)</span>
+            <span class="n">com</span> <span class="o">=</span> <span class="n">cmd</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">com</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>
+                <span class="n">args</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">com</span><span class="p">[</span><span class="mi">3</span><span class="p">:])</span>
+
+            <span class="n">module</span> <span class="o">=</span> <span class="n">com</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># inspect.stack()[-1][1].split(&quot;.&quot;)[0]</span>
+            <span class="n">window_id</span> <span class="o">=</span> <span class="n">com</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">method_string</span> <span class="o">=</span> <span class="n">com</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+
+            <span class="n">method_found</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="n">methods</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">getmembers</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">predicate</span><span class="o">=</span><span class="n">inspect</span><span class="o">.</span><span class="n">ismethod</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">method</span> <span class="ow">in</span> <span class="n">methods</span><span class="p">:</span>
+                <span class="c1"># method[0] will now contain the name of the method</span>
+                <span class="c1"># method[1] will contain the value</span>
+
+                <span class="k">if</span> <span class="n">method</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">method_string</span><span class="p">:</span>
+                    <span class="c1"># start methods as threads</span>
+                    <span class="n">method_found</span> <span class="o">=</span> <span class="kc">True</span>
+                    <span class="n">agent_obj</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;method to call: &quot;</span> <span class="o">+</span> <span class="n">method</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;(&quot;</span> <span class="o">+</span> <span class="n">args</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">)</span>
+                    <span class="n">agent_obj</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;args&quot;</span><span class="p">)</span>
+                    <span class="n">tmp_thread</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">method</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">args</span><span class="p">,))</span>
+                    <span class="n">agent_obj</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;thread is defined&quot;</span><span class="p">)</span>
+                    <span class="n">tmp_thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+                    <span class="n">agent_obj</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;thread started&quot;</span><span class="p">)</span>
+                    <span class="n">tmp_thread</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>  <span class="c1"># Wait until the thread is completed</span>
+                    <span class="k">if</span> <span class="n">tmp_thread</span><span class="o">.</span><span class="n">isAlive</span><span class="p">():</span>
+                        <span class="c1"># close skeleton and set obj to crashed</span>
+                        <span class="n">agent_obj</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;thread is alive... time outed&quot;</span><span class="p">)</span>
+                        <span class="n">agent_obj</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+                            <span class="s2">&quot;VeraCryptWrapperGuestSideCommands::commands: Close all open windows and &quot;</span> <span class="o">+</span> <span class="s2">&quot;clear the VeraCryptWrapper list&quot;</span><span class="p">)</span>
+                        <span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">([</span><span class="s2">&quot;taskkill&quot;</span><span class="p">,</span> <span class="s2">&quot;/IM&quot;</span><span class="p">,</span> <span class="s2">&quot;veraCryptWrapper.exe&quot;</span><span class="p">,</span> <span class="s2">&quot;/F&quot;</span><span class="p">])</span>
+                        <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">agent_obj</span><span class="o">.</span><span class="n">applicationWindow</span><span class="p">[</span><span class="n">module</span><span class="p">]:</span>
+                            <span class="n">agent_obj</span><span class="o">.</span><span class="n">applicationWindow</span><span class="p">[</span><span class="n">module</span><span class="p">]</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+                        <span class="c1"># set a crushed flag.</span>
+                        <span class="n">obj</span><span class="o">.</span><span class="n">is_opened</span> <span class="o">=</span> <span class="kc">False</span>
+                        <span class="n">obj</span><span class="o">.</span><span class="n">is_busy</span> <span class="o">=</span> <span class="kc">False</span>
+                        <span class="n">obj</span><span class="o">.</span><span class="n">has_error</span> <span class="o">=</span> <span class="kc">True</span>
+
+                        <span class="n">agent_obj</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;application &quot;</span> <span class="o">+</span> <span class="n">module</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">window_id</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; error&quot;</span><span class="p">)</span>
+                        <span class="n">agent_obj</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;application &quot;</span> <span class="o">+</span> <span class="n">module</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">window_id</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; error&quot;</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">method_found</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Method &quot;</span> <span class="o">+</span> <span class="n">method_string</span> <span class="o">+</span> <span class="s2">&quot; is not defined!&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Error in VeraCryptWrapperGuestSideCommands::commands &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">fortrace</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture/index.html">Architecture of fortrace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture/framework_architecture.html">Framework Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture/generator.html">Generator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture/service_vm.html">Service VM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation/index.html">Installation of fortrace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation/config.html">Configuration of installation options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation/host.html">Host Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation/guest.html">Guest Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation/service_vm.html">Installation of Service VM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation/firstrun.html">First Run after installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../developer/index.html">Developer reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../developer/functions.html">Functions of fortrace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../developer/implementing.html">Implementation of Scenarios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../developer/implementing.html#implementation-of-new-features">Implementation of new Features</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Thomas Schäfer, Thomas Göbel, Jan Türr.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

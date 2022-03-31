@@ -1,0 +1,11 @@
+//package fortrace.core.net.proto;
+
+import public "messagetypes.proto";
+
+message GenericMessage {
+	required MessageType message_type = 1;
+	required uint64 message_id = 2;
+	optional bool request_answer = 3 [default=false];
+	extensions 100 to 1999; //reserved for future extensions by main developer
+	extensions 2000 to max; //reserved for 3rd party extensions
+}

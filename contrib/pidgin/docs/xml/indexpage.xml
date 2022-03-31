@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="indexpage" kind="page">
+    <compoundname>index</compoundname>
+    <title>Documentation of Pidgin Puppet</title>
+    <detaileddescription>
+<sect1 id="index_1intro_sec">
+<title>Introduction</title>
+<para>This is the documentation of Pidgin Puppet.<linebreak/>
+ This Plugin provides an interface for the fortrace agent application to remotely control libpurple based messengers.<linebreak/>
+ Pidgin Puppet is implemented as a C-plugin for libpurple and can also be used in other libpurple based messengers.<linebreak/>
+ The API follows COM-style coding guidelines.<linebreak/>
+ You can find the fortrace project master page at: <ulink url="http://fortrace.fbi.h-da.de">http://fortrace.fbi.h-da.de</ulink></para></sect1>
+<sect1 id="index_1install_sec">
+<title>Installation</title>
+<sect2 id="index_1step1">
+<title>Step 1: Locate the plugin directory</title>
+<para>On Windows the location can be found on: &quot;%APPDATA%\.purple\plugins&quot;<linebreak/>
+ On Linux the location can be found on: &quot;~/.purple/plugins&quot;</para></sect2>
+<sect2 id="index_1step2">
+<title>Step 2: Copy the plugin into the directory</title>
+</sect2>
+<sect2 id="index_1step3">
+<title>Step 3: Enable the plugin</title>
+<para>This step refers to a Pidgin installation.<linebreak/>
+ Note: Plugin activation may differ on different libpurple clients.<linebreak/>
+ Start Pidgin and open the &quot;Plugins&quot; entry under &quot;Extras&quot;.<linebreak/>
+ Enable Pidgin Puppet from the list of plugins.<linebreak/>
+ Note: If no account exists Pidgin will terminate.</para></sect2>
+</sect1>
+<sect1 id="index_1communication_sec">
+<title>Communication</title>
+<para>Here is a brief overview of the protocol used to communicate with a protocol application:<linebreak/>
+</para><sect2 id="index_1com1">
+<title>Format</title>
+<para>A packet can be broken down into length, number of offsets, Offset Table, String Table.</para></sect2>
+<sect2 id="index_1com2">
+<title>Header</title>
+<para>The header consists of the 32bit length filed and the 32bit offset number field.<linebreak/>
+ It is encoded in network byte-order.</para></sect2>
+<sect2 id="index_1com3">
+<title>Offset Table</title>
+<para>The Offset Table consists of a variable amount of 32bit offsets in network byte-order.<linebreak/>
+ The length is specified in the header.<linebreak/>
+ Offsets start from the beginning of the packet.</para></sect2>
+<sect2 id="index_1com4">
+<title>String Table</title>
+<para>The String table consists of a variable amount of NULL-terminated strings.<linebreak/>
+ The begin of each string is specified in the Offset Table.<linebreak/>
+ A string chain consists of the following elements:<linebreak/>
+ command:<linebreak/>
+ command + param1 + param2 + ... + paramn<linebreak/>
+ reply:<linebreak/>
+ command/event + status code + value1 + value2 + ... + valuen</para></sect2>
+</sect1>
+<sect1 id="index_1compilation_sec">
+<title>Compilation</title>
+<para>The source code uses the compiler infrastructure provided by the Pidgin source code.<linebreak/>
+ Copy the source code to the pidgin/plugins directory and refer to the official Pidgin documentation located here:<linebreak/>
+ <ulink url="https://developer.pidgin.im/wiki/CHowTo/BasicPluginHowto">BasicPluginHowto</ulink><linebreak/>
+ <ulink url="https://developer.pidgin.im/wiki/BuildingWinPidgin">BuildingWinPidgin</ulink> </para></sect1>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

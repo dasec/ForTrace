@@ -1,0 +1,5 @@
+This dir contains the mariposa dissector plugin for Wireshark from Palo Alto Networks.
+The plugin itself can be obtained from:
+http://code.google.com/p/botnetdecoding/
+
+The patch-file was included to make the plugin compatible with newer versions of Wireshark.

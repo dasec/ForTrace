@@ -1,0 +1,34 @@
+\hypertarget{index_intro_sec}{}\section{Introduction}\label{index_intro_sec}
+This is the documentation of Pidgin Puppet.~\newline
+ This Plugin provides an interface for the fortrace agent application to remotely control libpurple based messengers.~\newline
+ Pidgin Puppet is implemented as a C-\/plugin for libpurple and can also be used in other libpurple based messengers.~\newline
+ The A\+PI follows C\+O\+M-\/style coding guidelines.~\newline
+ You can find the fortrace project master page at\+: \href{http://fortrace.fbi.h-da.de}{\tt http\+://fortrace.\+fbi.\+h-\/da.\+de}\hypertarget{index_install_sec}{}\section{Installation}\label{index_install_sec}
+\hypertarget{index_step1}{}\subsection{Step 1\+: Locate the plugin directory}\label{index_step1}
+On Windows the location can be found on\+: \char`\"{}\%\+A\+P\+P\+D\+A\+T\+A\%\textbackslash{}.\+purple\textbackslash{}plugins\char`\"{}~\newline
+ On Linux the location can be found on\+: \char`\"{}$\sim$/.\+purple/plugins\char`\"{}\hypertarget{index_step2}{}\subsection{Step 2\+: Copy the plugin into the directory}\label{index_step2}
+\hypertarget{index_step3}{}\subsection{Step 3\+: Enable the plugin}\label{index_step3}
+This step refers to a Pidgin installation.~\newline
+ Note\+: Plugin activation may differ on different libpurple clients.~\newline
+ Start Pidgin and open the \char`\"{}\+Plugins\char`\"{} entry under \char`\"{}\+Extras\char`\"{}.~\newline
+ Enable Pidgin Puppet from the list of plugins.~\newline
+ Note\+: If no account exists Pidgin will terminate.\hypertarget{index_communication_sec}{}\section{Communication}\label{index_communication_sec}
+Here is a brief overview of the protocol used to communicate with a protocol application\+:~\newline
+\hypertarget{index_com1}{}\subsection{Format}\label{index_com1}
+A packet can be broken down into length, number of offsets, Offset Table, String Table.\hypertarget{index_com2}{}\subsection{Header}\label{index_com2}
+The header consists of the 32bit length filed and the 32bit offset number field.~\newline
+ It is encoded in network byte-\/order.\hypertarget{index_com3}{}\subsection{Offset Table}\label{index_com3}
+The Offset Table consists of a variable amount of 32bit offsets in network byte-\/order.~\newline
+ The length is specified in the header.~\newline
+ Offsets start from the beginning of the packet.\hypertarget{index_com4}{}\subsection{String Table}\label{index_com4}
+The String table consists of a variable amount of N\+U\+L\+L-\/terminated strings.~\newline
+ The begin of each string is specified in the Offset Table.~\newline
+ A string chain consists of the following elements\+:~\newline
+ command\+:~\newline
+ command + param1 + param2 + ... + paramn~\newline
+ reply\+:~\newline
+ command/event + status code + value1 + value2 + ... + valuen\hypertarget{index_compilation_sec}{}\section{Compilation}\label{index_compilation_sec}
+The source code uses the compiler infrastructure provided by the Pidgin source code.~\newline
+ Copy the source code to the pidgin/plugins directory and refer to the official Pidgin documentation located here\+:~\newline
+ \href{https://developer.pidgin.im/wiki/CHowTo/BasicPluginHowto}{\tt Basic\+Plugin\+Howto}~\newline
+ \href{https://developer.pidgin.im/wiki/BuildingWinPidgin}{\tt Building\+Win\+Pidgin} 

@@ -1,0 +1,144 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module fortrace.interactionManager.windows.inputDevice.utilities.SendKeys</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="fortrace.html"><font color="#ffffff">fortrace</font></a>.<a href="fortrace.interactionManager.html"><font color="#ffffff">interactionManager</font></a>.<a href="fortrace.interactionManager.windows.html"><font color="#ffffff">windows</font></a>.<a href="fortrace.interactionManager.windows.inputDevice.html"><font color="#ffffff">inputDevice</font></a>.<a href="fortrace.interactionManager.windows.inputDevice.utilities.html"><font color="#ffffff">utilities</font></a>.SendKeys</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:///C:/users/vm/documents/github/fortrace/interactionmanager/windows/inputdevice/utilities/sendkeys.py">c:\users\vm\documents\github\fortrace\interactionmanager\windows\inputdevice\utilities\sendkeys.py</a></font></td></tr></table>
+    <p><tt>SendKeys.py&nbsp;-&nbsp;Sends&nbsp;one&nbsp;or&nbsp;more&nbsp;keystroke&nbsp;or&nbsp;keystroke&nbsp;combinations&nbsp;<br>
+to&nbsp;the&nbsp;active&nbsp;window.<br>
+&nbsp;<br>
+Copyright&nbsp;(C)&nbsp;2003&nbsp;Ollie&nbsp;Rutherfurd&nbsp;&lt;oliver@rutherfurd.net&gt;<br>
+&nbsp;<br>
+Python&nbsp;License<br>
+&nbsp;<br>
+Version&nbsp;0.3&nbsp;(2003-06-14)<br>
+&nbsp;<br>
+$Id$</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="sys.html">sys</a><br>
+</td><td width="25%" valign=top><a href="time.html">time</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="exceptions.html#Exception">exceptions.Exception</a>(<a href="exceptions.html#BaseException">exceptions.BaseException</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="fortrace.interactionManager.windows.inputDevice.utilities.SendKeys.html#KeySequenceError">KeySequenceError</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="KeySequenceError">class <strong>KeySequenceError</strong></a>(<a href="exceptions.html#Exception">exceptions.Exception</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="exceptions.html#Exception">Exception</a>&nbsp;raised&nbsp;when&nbsp;a&nbsp;key&nbsp;sequence&nbsp;string&nbsp;has&nbsp;a&nbsp;syntax&nbsp;error<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="fortrace.interactionManager.windows.inputDevice.utilities.SendKeys.html#KeySequenceError">KeySequenceError</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+<dd><a href="exceptions.html#BaseException">exceptions.BaseException</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="KeySequenceError-__str__"><strong>__str__</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><a name="KeySequenceError-__init__"><strong>__init__</strong></a>(...)</dt><dd><tt>x.<a href="#KeySequenceError-__init__">__init__</a>(...)&nbsp;initializes&nbsp;x;&nbsp;see&nbsp;help(type(x))&nbsp;for&nbsp;signature</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object&gt;<dd><tt>T.<a href="#KeySequenceError-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;object&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><a name="KeySequenceError-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#KeySequenceError-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="KeySequenceError-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#KeySequenceError-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="KeySequenceError-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#KeySequenceError-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="KeySequenceError-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#KeySequenceError-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="KeySequenceError-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="KeySequenceError-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#KeySequenceError-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="KeySequenceError-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#KeySequenceError-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="KeySequenceError-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="KeySequenceError-__unicode__"><strong>__unicode__</strong></a>(...)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+<dl><dt><strong>message</strong></dt>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-SendKeys"><strong>SendKeys</strong></a>(keys, pause<font color="#909090">=0.05</font>, with_spaces<font color="#909090">=False</font>, with_tabs<font color="#909090">=False</font>, with_newlines<font color="#909090">=False</font>, turn_off_numlock<font color="#909090">=True</font>)</dt><dd><tt>Sends&nbsp;keys&nbsp;to&nbsp;the&nbsp;current&nbsp;window.<br>
+&nbsp;<br>
+`keys`&nbsp;:&nbsp;str<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;string&nbsp;of&nbsp;keys.<br>
+`pause`&nbsp;:&nbsp;float<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;number&nbsp;of&nbsp;seconds&nbsp;to&nbsp;wait&nbsp;between&nbsp;sending&nbsp;each&nbsp;key<br>
+&nbsp;&nbsp;&nbsp;&nbsp;or&nbsp;key&nbsp;combination.<br>
+`with_spaces`&nbsp;:&nbsp;bool<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Whether&nbsp;to&nbsp;treat&nbsp;spaces&nbsp;as&nbsp;``{SPACE}``.&nbsp;If&nbsp;`False`,&nbsp;spaces&nbsp;are&nbsp;ignored.<br>
+`with_tabs`&nbsp;:&nbsp;bool<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Whether&nbsp;to&nbsp;treat&nbsp;tabs&nbsp;as&nbsp;``{TAB}``.&nbsp;If&nbsp;`False`,&nbsp;tabs&nbsp;are&nbsp;ignored.<br>
+`with_newlines`&nbsp;:&nbsp;bool<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Whether&nbsp;to&nbsp;treat&nbsp;newlines&nbsp;as&nbsp;``{ENTER}``.&nbsp;If&nbsp;`False`,&nbsp;newlines&nbsp;are&nbsp;ignored.<br>
+`turn_off_numlock`&nbsp;:&nbsp;bool<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Whether&nbsp;to&nbsp;turn&nbsp;off&nbsp;`NUMLOCK`&nbsp;before&nbsp;sending&nbsp;keys.<br>
+&nbsp;<br>
+example::<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#-SendKeys">SendKeys</a>("+hello{SPACE}+world+1")<br>
+&nbsp;<br>
+would&nbsp;result&nbsp;in&nbsp;``"Hello&nbsp;World!"``</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>__all__</strong> = ['KeySequenceError', 'SendKeys']</td></tr></table>
+</body></html>

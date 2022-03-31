@@ -1,0 +1,65 @@
+name: haystack machine learning dataset
+description: A example action suite to generate a haystack (traffic)
+author: MPSE Group
+collections:
+  c-http-0:
+    type: http
+    urls: ./generator/collections/friendly_urls.txt
+  c-http-1:
+    type: http
+    urls: ./generator/collections/friendly_vimeo_videos.txt
+  c-http-2:
+    type: http
+    urls: ./generator/collections/friendly_youtube_videos.txt
+  c-mail-0:
+    type: mail
+    recipients: ./generator/collections/friendly_recipients.txt
+    subjects: ./generator/collections/friendly_subjects.txt
+    messages: ./generator/collections/friendly_messages.txt
+  c-smb-0:
+    type: smb
+    files: ./generator/collections/smb_default_attachments.txt
+settings:
+  host_nfs_path: /data/fortrace_data
+  guest_nfs_path: Z:\\
+  minimum_wait_duration: 20
+applications:
+  mail-0:
+    type: mail
+    imap_hostname: 192.168.103.123
+    smtp_hostname: 192.168.103.123
+    email: sk@fortrace.local
+    password: fortrace
+    username: sk
+    full_name: Heinz fortrace
+    socket_type: 0
+    socket_type_smtp: 0
+    auth_method_smtp: 3
+  smb-0:
+    type: smb
+    username: service
+    password: fortrace
+    destination: \\192.168.103.123\sambashare
+hay:
+  h-http-0:
+    application: http
+    amount: 10
+    collection: c-http-1
+  h-http-1:
+    application: http
+    amount: 10
+    collection: c-http-2
+  h-mail-0:
+    application: mail-0
+    amount: 3
+    recipient: sk@fortrace.local
+    collection: c-mail-0
+  h-smb-0:
+    application: smb-0
+    amount: 30
+    collection: c-smb-0
+needles:
+  n-http-0:
+    application: http
+    amount: 20
+    collection: c-http-0

@@ -1,0 +1,28 @@
+//package fortrace.core.net.proto;
+
+enum MessageType {
+	DUMMY = 0; //The message contains no data, for testing purposes only
+	//Generic commands
+	ANNOUNCE = 1; //Informs about status changes or reply to a command
+	ACTIVATE = 2; //Activate the bot
+	DISABLE = 3; //Disable the bot
+	TERMINATE = 4; //Terminate the bot process
+	//Utility Commands
+	LOG = 5;
+	PAYLOAD_REQUEST = 6;
+	PAYLOAD = 7;
+	ANSWER = 8;
+	GLOBALS_REQUEST = 9; //Request the globals dict
+	GLOBALS_ANSWER = 10;
+	//Bot commands
+	BOTPULL = 50;
+	BOTEXECUTE = 51;
+	//CnC server commands
+	CNCPUSHORDERS = 60;
+	CNCBROADCASTORDERS = 61;
+	CNCHOSTORDERS = 62;
+	//Bot master commands
+	BOTMASTERPLACEORDER = 70;
+	BOTMASTERGETRESULT = 71;
+	SAMPLEEXTENSIONTYPE = 2000; //2000 and higher can be used for 3rd-party extension messages
+}

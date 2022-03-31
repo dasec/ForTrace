@@ -1,0 +1,37 @@
+#name: haystack-example
+description: A example action suite to generate a haystack (traffic)
+author: MPSE Group
+seed: 1234
+collections:
+  c-http-0:
+    type: http
+    urls: ./generator/friendly_urls.txt
+settings:
+    host_nfs_path:
+    guest_nfs_path:
+applications:
+  mail-0:
+    type: mail
+    imap_hostname: 192.168.103.119
+    smtp_hostname: 192.168.103.119
+    email: sk@hystck.local
+    password: hystck
+    username: sk
+    full_name: Heinz hystck
+    socket_type: 0
+    socket_type_smtp: 0
+    auth_method_smtp: 3
+hay:
+  h-mail-0:
+    application: mail-0
+    recipient: sk@hystck.local
+    subject: hay
+    message: hay
+    amount: 1
+needles:
+  n-mail-0:
+    application: mail-0
+    recipient: sk@hystck.local
+    subject: needle
+    content: needle
+    amount: 1

@@ -1,0 +1,17 @@
+name: haystack youtube example
+description: A example action suite to generate a haystack (traffic)
+author: MPSE Group
+seed: 1234
+collections:
+  c-http-0:
+    type: http
+    urls: ./generator/collections/friendly_youtube_videos.txt
+settings:
+  minimum_wait_duration: 20
+applications:
+hay:
+  h-http-1:
+    application: http
+    amount: 10
+    collection: c-http-0
+needles:

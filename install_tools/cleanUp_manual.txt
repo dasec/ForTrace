@@ -1,0 +1,25 @@
+# Note: this procedure clears most of the identified artifacts, only leaving hints on the sdelete.exe file.
+#       So the temporary path may be altered to place it somewhere less obvious
+
+# Copy necessary files to the Desktop
+copy %userprofile%\Desktop\fortrace\contrib\windows-utils\sdelete64.exe %userprofile%\Desktop /Y
+copy %userprofile%\Desktop\fortrace\contrib\ccleaner\CCleaner64.exe %userprofile%\Desktop /Y
+copy %userprofile%\Desktop\fortrace\contrib\ccleaner\ccleaner.ini %userprofile%\Desktop /Y
+
+# Delete the framework artifacts
+del "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\startGuestAgent.lnk" /f /q
+%userprofile%\Desktop\sdelete64.exe -s -r -q -p 1 -nobanner -accepteula %APPDATA%\Python\Python27\site-packages
+%userprofile%\Desktop\sdelete64.exe -s -r -q -p 1 -nobanner -accepteula  %userprofile%\Desktop\fortrace
+# Clean the free disk space and the MFT to remove hints on the secure deleted directories
+# WARNING: Do not use, if there are targeted artifacts within the deleted files, these won't be recoverable afterwards!
+%userprofile%\Desktop\CCleaner64.exe /AUTO      # wait until the process has finished
+
+# delete the remaining files and traces
+%userprofile%\Desktop\sdelete64.exe -s -r -q -p 1 -nobanner -accepteula "C:\Windows\Prefetch\CCLEANER*"
+%userprofile%\Desktop\sdelete64.exe -s -r -q -p 1 -nobanner -accepteula %userprofile%\Desktop\CCleaner64.exe
+%userprofile%\Desktop\sdelete64.exe -s -r -q -p 1 -nobanner -accepteula %userprofile%\Desktop\ccleaner.ini
+del %userprofile%\Desktop\sdelete64.exe /f /q
+
+
+
+

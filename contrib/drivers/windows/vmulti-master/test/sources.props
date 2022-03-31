@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TARGETNAME Condition="'$(OVERRIDE_TARGETNAME)'!='true'">testvmulti</TARGETNAME>
+    <TARGETTYPE Condition="'$(OVERRIDE_TARGETTYPE)'!='true'">PROGRAM</TARGETTYPE>
+    <USE_MSVCRT Condition="'$(OVERRIDE_USE_MSVCRT)'!='true'">1</USE_MSVCRT>
+    <TARGETLIBS Condition="'$(OVERRIDE_TARGETLIBS)'!='true'">$(SDK_LIB_PATH)\hid.lib             $(SDK_LIB_PATH)\setupapi.lib             $(SDK_LIB_PATH)\comdlg32.lib             $(OBJ_PATH)\..\client\$(O)\vmulticlient.lib</TARGETLIBS>
+    <SOURCES Condition="'$(OVERRIDE_SOURCES)'!='true'">testvmulti.c testvmulti.rc</SOURCES>
+    <INCLUDES Condition="'$(OVERRIDE_INCLUDES)'!='true'">..\inc</INCLUDES>
+    <UMTYPE Condition="'$(OVERRIDE_UMTYPE)'!='true'">console</UMTYPE>
+    <UMBASE Condition="'$(OVERRIDE_UMBASE)'!='true'">0x400000</UMBASE>
+    <TARGET_DESTINATION Condition="'$(OVERRIDE_TARGET_DESTINATION)'!='true'">bin</TARGET_DESTINATION>
+    <_NT_TARGET_VERSION Condition="'$(OVERRIDE__NT_TARGET_VERSION)'!='true'">$(_NT_TARGET_VERSION_WINXP)</_NT_TARGET_VERSION>
+  </PropertyGroup>
+</Project>

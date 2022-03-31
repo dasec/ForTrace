@@ -1,0 +1,82 @@
+<data>
+    <item>
+        <type>out</type>
+        <from_name>Thomas</from_name>
+        <from_ad>theo.test1@web.de</from_ad>
+        <to_name>Testbot</to_name>
+        <to_ad>theo11111@web.de</to_ad>
+        <user>fortrace</user>
+        <server>pop3.web.de</server>
+        <timestamp>author Fri Feb  1 11:05:34 2018</timestamp>
+        <subject>Supply Chain Attack</subject>
+        <message>Nice supply chain attack</message>
+	<attachments>
+		<attachment>C:\users\fortrace\Downloads\MalwareBot.exe</attachment>
+	</attachments>
+    </item>
+    <item>
+        <type>in</type>
+        <from_name>Thomas</from_name>
+        <from_ad>theo.test1@web.de</from_ad>
+        <to_name>Testbot</to_name>
+        <to_ad>theo11111@web.de</to_ad>
+        <user>fortrace</user>
+        <server>pop3.web.de</server>
+        <timestamp>author Sat Feb  2 21:35:34 2018</timestamp>
+        <subject>Phishing Mail</subject>
+	<message>Nice phishing mail</message>
+	<attachments>
+		<attachment>C:\users\fortrace\Downloads\MalwareBot.exe</attachment>
+	</attachments>
+    </item>
+    <item>
+        <type>out</type>
+        <from_name>Supplier</from_name>
+        <from_ad>some.email@mail.com</from_ad>
+        <to_name>Client</to_name>
+        <to_ad>some.client@mail.com</to_ad>
+        <user>fortrace</user>
+        <server>pop3.web.de</server>
+        <timestamp>author Sat Feb  2 21:35:34 2018</timestamp>
+        <subject>Sample message 2</subject>
+	<message>Please execcute great new software</message>
+	<attachments>
+		<attachment>C:\users\fortrace\Downloads\MalwareBot.exe</attachment>
+	</attachments>
+    </item>
+    <item>
+        <type>out</type>
+        <from_name>Supplier</from_name>
+        <from_ad>some.email@mail.com</from_ad>
+        <to_name>Client2</to_name>
+        <to_ad>some.client@mail.com</to_ad>
+        <user>fortrace</user>
+        <server>pop3.web.de</server>
+        <timestamp>author Sat Feb  2 21:35:34 2018</timestamp>
+        <subject>Sample message 2</subject>
+	<message>Please execute great new software</message>
+	<attachments>
+		<attachment>C:\users\fortrace\Downloads\MalwareBot.exe</attachment>
+	</attachments>
+    </item>
+    <item>
+        <type>out</type>
+        <from_name>Testbot</from_name>
+        <from_ad>theo11111@web.de</from_ad>
+        <to_name>Thomas</to_name>
+<<<<<<< HEAD
+        <to_ad>theo.test1@web.de</to_ad>
+        <user>Bill</user>
+=======
+        <to_ad>thomas.schaefer91@gmx.de</to_ad>
+        <user>fortrace</user>
+>>>>>>> malware
+        <server>pop3.web.de</server>
+        <timestamp>author Sat Feb  2 18:15:34 2018</timestamp>
+        <subject>Supply Chain Attack</subject>
+        <message>Nice supply chain attack</message>
+	<attachments>
+		<attachment>C:\users\fortrace\Downloads\MalwareBot.exe</attachment>
+	</attachments>
+    </item>
+</data>

@@ -1,0 +1,20 @@
+name: haystack example
+description: A example action suite to generate a haystack (traffic)
+author: MPSE Group
+seed: 1234
+collections:
+  c-http-0:
+    type: http
+    urls: ./generator/collections/friendly_urls.txt
+settings:
+  host_nfs_path: /data/fortrace_data
+  guest_nfs_path: Z:\\
+applications:
+hay:
+  h-http-1:
+    application: http
+    amount: 20
+    collection: c-http-0
+needles:
+scripts:
+  - validator

@@ -1,0 +1,123 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module fortrace.core.vm</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="fortrace.html"><font color="#ffffff">fortrace</font></a>.<a href="fortrace.core.html"><font color="#ffffff">core</font></a>.vm</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:///C:/users/vm/documents/github/fortrace/core/vm.py">c:\users\vm\documents\github\fortrace\core\vm.py</a></font></td></tr></table>
+    <p><tt>This&nbsp;module&nbsp;provides&nbsp;some&nbsp;operations&nbsp;related&nbsp;to&nbsp;a&nbsp;<a href="#vm">vm</a>.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="fortrace.common.constants.html">fortrace.common.constants</a><br>
+<a href="fortrace.html">fortrace</a><br>
+<a href="logging.html">logging</a><br>
+</td><td width="25%" valign=top><a href="os.html">os</a><br>
+<a href="select.html">select</a><br>
+<a href="socket.html">socket</a><br>
+</td><td width="25%" valign=top><a href="subprocess.html">subprocess</a><br>
+<a href="sys.html">sys</a><br>
+<a href="thread.html">thread</a><br>
+</td><td width="25%" valign=top><a href="threading.html">threading</a><br>
+<a href="time.html">time</a><br>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="__builtin__.html#object">__builtin__.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="fortrace.core.vm.html#vm">vm</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="vm">class <strong>vm</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Class&nbsp;to&nbsp;create&nbsp;and&nbsp;control&nbsp;a&nbsp;<a href="#vm">vm</a>&nbsp;from&nbsp;a&nbsp;template.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="vm-__init__"><strong>__init__</strong></a>(self, vmname, ip_internet, ip_local, mac_address_internet, mac_address_local, template, hypervisor<font color="#909090">='kvm'</font>, sniffer<font color="#909090">='/usr/sbin/tcpdump'</font>, logger<font color="#909090">=None</font>)</dt><dd><tt>Set&nbsp;default&nbsp;attribute&nbsp;values.<br>
+@param&nbsp;vmname:&nbsp;name&nbsp;of&nbsp;the&nbsp;<a href="#vm">vm</a>&nbsp;which&nbsp;virsh&nbsp;(libvirt)&nbsp;will&nbsp;use.<br>
+@param&nbsp;ip_internet:&nbsp;IP&nbsp;adress&nbsp;in&nbsp;the&nbsp;network&nbsp;internet.<br>
+@param&nbsp;ip_local:&nbsp;IP&nbsp;adress&nbsp;in&nbsp;the&nbsp;network&nbsp;local.<br>
+@param&nbsp;mac_address_internet:&nbsp;&nbsp;mac&nbsp;adress&nbsp;for&nbsp;the&nbsp;network&nbsp;device&nbsp;which&nbsp;is&nbsp;connected&nbsp;to&nbsp;the&nbsp;network&nbsp;internet.<br>
+@param&nbsp;mac_address_local:&nbsp;mac&nbsp;adress&nbsp;for&nbsp;the&nbsp;network&nbsp;device&nbsp;which&nbsp;is&nbsp;connected&nbsp;to&nbsp;the&nbsp;network&nbsp;local.<br>
+@param&nbsp;template:&nbsp;the&nbsp;<a href="#vm">vm</a>&nbsp;name&nbsp;which&nbsp;have&nbsp;to&nbsp;be&nbsp;used&nbsp;as&nbsp;template.<br>
+@param&nbsp;hypervisor:&nbsp;virtualization&nbsp;solution;&nbsp;only&nbsp;kvm&nbsp;is&nbsp;implemented.<br>
+@param&nbsp;sniffer:&nbsp;path&nbsp;to&nbsp;tcpdump.</tt></dd></dl>
+
+<dl><dt><a name="vm-click"><strong>click</strong></a>(self, button_position, button_state, x, y)</dt><dd><tt>Send&nbsp;a&nbsp;mouse&nbsp;click&nbsp;to&nbsp;the&nbsp;gui&nbsp;of&nbsp;the&nbsp;<a href="#vm">vm</a></tt></dd></dl>
+
+<dl><dt><a name="vm-create"><strong>create</strong></a>(self)</dt><dd><tt>Create&nbsp;a&nbsp;<a href="#vm">vm</a>&nbsp;by&nbsp;cloning&nbsp;a&nbsp;template.&nbsp;(i.e.&nbsp;windows-template);&nbsp;using&nbsp;virsh&nbsp;(libvirt).</tt></dd></dl>
+
+<dl><dt><a name="vm-createAndStart"><strong>createAndStart</strong></a>(self)</dt><dd><tt>Create&nbsp;the&nbsp;<a href="#vm">vm</a>&nbsp;using&nbsp;libvirt&nbsp;commmands.&nbsp;After&nbsp;it&nbsp;will&nbsp;be&nbsp;started.<br>
+&nbsp;<br>
+After&nbsp;the&nbsp;creation&nbsp;phase&nbsp;the&nbsp;starting&nbsp;period&nbsp;will&nbsp;be&nbsp;started&nbsp;as&nbsp;an&nbsp;own&nbsp;thread,<br>
+so&nbsp;the&nbsp;program&nbsp;won't&nbsp;block&nbsp;by&nbsp;waiting&nbsp;until&nbsp;the&nbsp;machine&nbsp;is&nbsp;started/connected.</tt></dd></dl>
+
+<dl><dt><a name="vm-delete"><strong>delete</strong></a>(self)</dt><dd><tt>Delete&nbsp;this&nbsp;<a href="#vm">vm</a>&nbsp;incl.&nbsp;harddisk;&nbsp;using&nbsp;libvirt&nbsp;commands.</tt></dd></dl>
+
+<dl><dt><a name="vm-disconnect"><strong>disconnect</strong></a>(self)</dt><dd><tt>Close&nbsp;the&nbsp;existing&nbsp;socket.</tt></dd></dl>
+
+<dl><dt><a name="vm-doRecvCommand"><strong>doRecvCommand</strong></a>(self, command)</dt><dd><tt>This&nbsp;function&nbsp;is&nbsp;called&nbsp;from&nbsp;the&nbsp;recvThread.&nbsp;Check&nbsp;for&nbsp;comming&nbsp;keywords&nbsp;from&nbsp;the&nbsp;<a href="#vm">vm</a>.<br>
+@param&nbsp;command:&nbsp;Command&nbsp;string.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Commands:&nbsp;browserInfo<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;created<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;busy<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;ready<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;error<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mailInfo<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-</tt></dd></dl>
+
+<dl><dt><a name="vm-openBrowser"><strong>openBrowser</strong></a>(self, webbrowser<font color="#909090">='firefox'</font>, url<font color="#909090">=''</font>)</dt><dd><tt>Create&nbsp;a&nbsp;browser&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;and&nbsp;append&nbsp;it&nbsp;to&nbsp;the&nbsp;application&nbsp;list</tt></dd></dl>
+
+<dl><dt><a name="vm-recvThread"><strong>recvThread</strong></a>(self)</dt><dd><tt>This&nbsp;tread&nbsp;will&nbsp;be&nbsp;opened&nbsp;for&nbsp;the&nbsp;<a href="#vm">vm</a>&nbsp;life&nbsp;time.<br>
+If&nbsp;a&nbsp;message&nbsp;is&nbsp;received,&nbsp;doRecvCommand&nbsp;will&nbsp;process&nbsp;it.</tt></dd></dl>
+
+<dl><dt><a name="vm-relativeClick"><strong>relativeClick</strong></a>(self, button_position, button_state, x, y)</dt><dd><tt>Send&nbsp;a&nbsp;mouse&nbsp;click&nbsp;relative&nbsp;to&nbsp;the&nbsp;active&nbsp;window&nbsp;on&nbsp;the&nbsp;gui&nbsp;of&nbsp;the&nbsp;<a href="#vm">vm</a></tt></dd></dl>
+
+<dl><dt><a name="vm-remove"><strong>remove</strong></a>(self, option<font color="#909090">='clean'</font>)</dt><dd><tt>Disconnect,&nbsp;halt,&nbsp;and&nbsp;delete&nbsp;the&nbsp;<a href="#vm">vm</a>.<br>
+@param&nbsp;option:&nbsp;Options&nbsp;to&nbsp;remove:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;'clean'&nbsp;-&nbsp;(default)&nbsp;will&nbsp;halt&nbsp;the&nbsp;machine&nbsp;by&nbsp;sending&nbsp;a&nbsp;signal&nbsp;to&nbsp;shutdown&nbsp;the&nbsp;machine.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;'force'&nbsp;-&nbsp;will&nbsp;power&nbsp;off&nbsp;the&nbsp;machine&nbsp;(without&nbsp;waiting&nbsp;for&nbsp;shutting&nbsp;down&nbsp;the&nbsp;machine).</tt></dd></dl>
+
+<dl><dt><a name="vm-send"><strong>send</strong></a>(self, msg)</dt><dd><tt>Send&nbsp;all&nbsp;type&nbsp;of&nbsp;requests&nbsp;to&nbsp;the&nbsp;<a href="#vm">vm</a>.&nbsp;Key&nbsp;value&nbsp;based&nbsp;communication.</tt></dd></dl>
+
+<dl><dt><a name="vm-sendKeys"><strong>sendKeys</strong></a>(self, keys)</dt><dd><tt>Send&nbsp;a&nbsp;keys&nbsp;to&nbsp;the&nbsp;gui&nbsp;of&nbsp;the&nbsp;<a href="#vm">vm</a></tt></dd></dl>
+
+<dl><dt><a name="vm-shutdown"><strong>shutdown</strong></a>(self, option)</dt><dd><tt>Halt&nbsp;the&nbsp;machine;&nbsp;using&nbsp;libvirt.<br>
+@param&nbsp;option:&nbsp;Options&nbsp;to&nbsp;shutting&nbsp;down&nbsp;the&nbsp;machine:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;'clean'&nbsp;-&nbsp;(default,&nbsp;set&nbsp;by&nbsp;remove)&nbsp;will&nbsp;halt&nbsp;the&nbsp;machine&nbsp;by&nbsp;sending&nbsp;a&nbsp;signal&nbsp;to&nbsp;shutdown&nbsp;the&nbsp;machine.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;'force'&nbsp;-&nbsp;will&nbsp;power&nbsp;off&nbsp;the&nbsp;machine&nbsp;(without&nbsp;waiting&nbsp;for&nbsp;shutting&nbsp;down&nbsp;the&nbsp;machine).</tt></dd></dl>
+
+<dl><dt><a name="vm-start"><strong>start</strong></a>(self)</dt><dd><tt>Starts&nbsp;the&nbsp;machine&nbsp;by&nbsp;using&nbsp;the&nbsp;libvirt&nbsp;command&nbsp;'virsh&nbsp;start&nbsp;&lt;vmname&gt;'.</tt></dd></dl>
+
+<dl><dt><a name="vm-startSniffer"><strong>startSniffer</strong></a>(self)</dt><dd><tt>Starts&nbsp;tcpdump&nbsp;on&nbsp;the&nbsp;network&nbsp;interface&nbsp;"internet",&nbsp;to&nbsp;capture&nbsp;all&nbsp;packets&nbsp;created&nbsp;by&nbsp;interact&nbsp;with&nbsp;the&nbsp;internet.</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table>
+</body></html>

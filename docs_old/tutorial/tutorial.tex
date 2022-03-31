@@ -1,0 +1,66 @@
+%% Copyright 2014 Reinhard Stampp
+%%
+%% Tutorial for the haystack traffic generator
+%%
+
+\documentclass{report}
+
+ \setlength{\textheight}{23 cm}
+ \setlength{\voffset}{-0.54cm}
+ \setlength{\hoffset}{-0.54cm}
+ \setlength{\oddsidemargin}{0.5 cm}
+ \setlength{\evensidemargin}{0.5 cm}
+ \setlength{\textwidth}{16 cm}
+ \setlength{\marginparwidth}{2.5 cm}
+ \setlength{\topmargin}{0.5 cm}
+ \setlength{\headheight}{0.5 cm}
+ \setlength{\headsep}{0.5 cm}
+
+
+ \usepackage[T1]{fontenc}
+  \usepackage{graphicx}
+  \usepackage[Lenny]{fncychap}
+  %\usepackage{ydrop}
+  \newcommand{\sk}{\vspace{0.2 cm}}
+  \newcommand{\A}[1]{{$\backslash${\tt #1}}}
+  \newcommand{\nsp}{\mbox{\hspace{-1 cm}}}
+  \title{fortrace tutorial V1.00}
+  \author{Reinhard Stampp}
+  \date{Dec 18, 2014}
+  
+\begin{document}
+  \maketitle
+  \tableofcontents
+  %\setlength{\dropcapsheight}{24pt}
+  \chapter{Introduction}
+    \section{About fortrace}
+    fortrace (from heystack) was designed to generate network traffic which don't have attack traffic in it. As well as this tool is called heystack our group have developed a tool to generate attack traffic which is called ndl (from needle).
+    So fortrace uses the approach of controlling virtual machines to generate realistic user traffic. In fact that we have the initial image installed by our own, make us really sure that this machine won't generate malicious network traffic (caused by infection; trojans, viruses...).
+
+    fortrace has two main mudules. First the host-side application which is called fortraceManager and second the virtual machine-side application named interaction manager.
+    \section{Contributing}
+
+    \section{Tutorial Organization}
+
+    \section{Resources}
+      \subsection{Python}
+      \subsection{Development Environment}
+    
+  \chapter{Getting Started}
+    \section{Overview}
+    \section{Downloading heystack}
+    \section{Setup heystack}
+    \section{Running your first Script}
+
+  \chapter{Conceptual Overview}
+    \section{Key Abstractions}
+    \section{Building Your Script}
+
+  \chapter{Supported Apps}
+
+  \chapter{Conclusion}
+    \section{Futures}
+    \section{Closing}
+    ?
+
+\end{document}

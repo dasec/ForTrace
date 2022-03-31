@@ -1,0 +1,318 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Framework Architecture &#8212; fortrace  documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Generator" href="generator.html" />
+    <link rel="prev" title="Architecture of fortrace" href="index.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="framework-architecture">
+<span id="arch"></span><h1>Framework Architecture<a class="headerlink" href="#framework-architecture" title="Permalink to this headline">¶</a></h1>
+<p>This chapter will detail the key components and workflow of fortrace as well as relate the currently available features and functions.
+To get a more technical overview of key functions, you can view the corresponding chapter here: <a class="reference internal" href="../developer/index.html#dev"><span class="std std-ref">Developer reference</span></a>.</p>
+<p>fortrace aims to generate network traffic and further relevant digital evidence by simulating regular user generated traffic.
+To accomplish this, fortrace operates as a layered system, sending requests for functions from the host to the guest layer. The guest
+layer then calls the corresponding functions, simulating keystrokes and other human-to-computer interactions to create the desired network traffic.
+This virtualized guest layer is realized as one or multiple virtual machine instances (clones of previously
+prepared templates, see <a class="reference internal" href="../installation/guest.html#guestinstall"><span class="std std-ref">Guest Installation</span></a>) using KVM (Kernel-based Virtual Machine).
+fortrace itself is programmed entirely in Python, as an OS-independent programming language was needed.</p>
+<div class="section" id="architecture">
+<h2>Architecture<a class="headerlink" href="#architecture" title="Permalink to this headline">¶</a></h2>
+<div class="figure" id="id1">
+<img alt="Framework client-server architecture." src="../_images/client-server-architecture.PNG" />
+<p class="caption"><span class="caption-text">Framework client-server architecture.</span></p>
+</div>
+<p>fortrace uses a common client-host architecture. The host side’s <strong>Framework Master</strong> is used to manage and run the
+virtual machines representing the guest side. The guest side is completely automated from startup to shutdown and is
+run by the <strong>Interaction Manager</strong>, a component that simulates all inputs and keystrokes.</p>
+<p>The figure above shows how these two components interact. The host side runs a specific scenario, which will, as a first step, create the needed guest
+instances by creating clones of the appropriate virtual machine templates. Each simulated user is represented by an isolated virtual machine instance.
+The framework master will then transmit the needed commands to the interaction manager of each guest, which in turn will execute these commands to generate the traffic using the application specified
+in the host side scenario. As every guest is isolated, every instance can generate a separate set of traffic data.</p>
+<p>As can be seen in the graphic, the connection between the host and client is separated from the client’s
+internet connection. This is done to minimize the simulation’s footprint on the generated data. The IP addresses and other
+related information can be adjusted in the <strong>constants.py</strong> file.</p>
+<p>Additionally, the host side is used to evaluate the created traffic using the reporting function (see <a class="reference internal" href="index.html#architecture-index"><span class="std std-ref">Architecture of fortrace</span></a>) and the <em>.pcap</em> file
+created by the automated use of <strong>tcpdump</strong>.</p>
+<div class="figure" id="id2">
+<img alt="In-depth graphic of fortrace's data synthesis procedure." src="../_images/fortrace_simulation_procedure_2.png" />
+<p class="caption"><span class="caption-text">In-depth graphic of fortrace’s data synthesis procedure.</span></p>
+</div>
+<p>The figure above gives a detailed step-by-step overview of the data synthesis procedure in fortrace.</p>
+<ol class="arabic simple">
+<li>The <strong>vmm</strong> class assists in setting up all needed guest environments, ensuring all functions and values are in order and creating a <em>listen</em> socket for all interfaces for the agent on all guests.</li>
+<li>The <strong>guest</strong> class loads values from <strong>constants.py</strong> to create and later control the scenario-specific guest instances.</li>
+<li>MAC addresses are linked to IP addresses and stored within the <em>libvirt</em> config files.</li>
+<li>The <em>local</em> network for communication between guest/s and host and the network <em>internet</em> for communication between guest/s and the internet are created.</li>
+<li><em>Guest</em> class uses <em>libvirt</em> to create the guest instances specified in the input scenario with help of the prepared templates.</li>
+<li><em>Guest</em> class causes the created guest instances to load their respective interaction models.</li>
+<li>The interaction models are executed - this means the virtual machines are started and <em>tcpdump</em> begins recording all traffic.</li>
+<li>The guest instances are connected to the virtual machines.</li>
+<li>The traffic within each VM is generated through the interaction manager’s execution of the respective scenarios.</li>
+<li>The scenarios have completed and the simulation is over. <em>Tcpdump</em> stops recording and the virtual machines are shut down.</li>
+<li>The virtual machines and network interfaces are deleted.</li>
+</ol>
+<p>The following diagram gives some additional insight into the workflow of a general simulation lifecycle.</p>
+<div class="figure" id="id3">
+<img alt="General fortrace workflow." src="../_images/fortrace-workflow.png" />
+<p class="caption"><span class="caption-text">General fortrace workflow.</span></p>
+</div>
+</div>
+<div class="section" id="features-and-functions">
+<h2>Features and Functions<a class="headerlink" href="#features-and-functions" title="Permalink to this headline">¶</a></h2>
+<p>To run fortrace, we recommend a Ubuntu host machine. The virtualized guests fortrace is currently capable of using to generate
+traffic are Ubuntu, Windows 7 and Windows 10. Additionally, fortrace supports the following common (network) applications for
+traffic generation:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="40%" />
+<col width="23%" />
+<col width="21%" />
+<col width="16%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Function</th>
+<th class="head">Protocol</th>
+<th class="head">Windows 7/10</th>
+<th class="head">Ubuntu</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Firefox Browse URL</td>
+<td>HTTP/HTTPS</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr class="row-odd"><td>Firefox Click Element</td>
+<td>HTTP/HTTPS</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr class="row-even"><td>Firefox Download</td>
+<td>HTTP/HTTPS</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr class="row-odd"><td>Thunderbird receive Email</td>
+<td>POP3/IMAP/IMAPS</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr class="row-even"><td>Thunderbird send Email</td>
+<td>SMTP/SMTPS</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr class="row-odd"><td>Thunderbird fill mailbox file</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr class="row-even"><td>VeraCrypt create container</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Yes</td>
+<td>Not tested</td>
+</tr>
+<tr class="row-odd"><td>VeraCrypt un-/mount container</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Yes</td>
+<td>Not tested</td>
+</tr>
+<tr class="row-even"><td>Execute console commands</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr class="row-odd"><td>Change system clock</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr class="row-even"><td>Multiuser capability</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr class="row-odd"><td>SSH connection/file transfer</td>
+<td>SSH/SFTP</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr class="row-even"><td>SMB file transfer</td>
+<td>SMB</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr class="row-odd"><td>IPP print job</td>
+<td>IPP</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<p>fortrace is able to use <em>Firefox</em> to perform common web browsing actions to generate traffic such as browsing to and navigating
+webpages, e.g. browsing to a video or audio streaming site. fortrace is also able to download files from websites. Navigation
+of a page can be performer through multiple ways, including the use of xpath variables.</p>
+<p>With the <em>Thunderbird</em> application fortrace is able to perform common email tasks such as sending and receiving emails as well as
+logging into an email account of the user’s choice. The <em>service VM</em> contains a mailserver that can be used to send unencrypted
+mails. This allows analysis of both mail traffic and content.</p>
+<p><em>SSH/SFTP</em> protocols are usable by fortrace to transfer data from or to servers. fortrace is built with the capability to use both
+Linux Bash and Windows command line.</p>
+<p><em>VeraCrypt</em> has been implemented as a tool to generate images rather than network traffic. As of right now, image generation
+is only possible for Windows guests.</p>
+<p>Multiple common <em>Botnet simulation attacks</em> such as Mariposa, Zeus, Asprox or Waledac have already been implemented into
+fortrace to generate network dumps of an attack from the victim’s side. It is also possible to add new attack variants.</p>
+<p><em>SMB file transfer</em> uses the tool <strong>Samba</strong> to move data to a network drive. This drive is located on the service VM. Since
+SMB file transfers are usually not encrypted, the traffic and content can be easily analyzed.</p>
+<p><em>IPP print job</em> is a simulation of an attack in which confidential documents are printed through a network printer.
+For this, the service VM is set up with <strong>ippserver</strong> as a virtual network printer.</p>
+<div class="section" id="image-generation">
+<h3>Image Generation<a class="headerlink" href="#image-generation" title="Permalink to this headline">¶</a></h3>
+<div class="figure" id="id4">
+<img alt="Persistent image generation with fortrace." src="../_images/fortrace_framework_image_generator.png" />
+<p class="caption"><span class="caption-text">Persistent image generation with fortrace.</span></p>
+</div>
+<p>Besides generating network traffic, fortrace also allows for the creation of persistent disk image generation.
+As the figure above shows, fortrace is able to simulate the use of several common user applications. In addition to that,
+fortrace can manipulate the system clock to simulate system usage over user-chosen time interval. To track all modifications
+applied to a disk image, fortrace provides a log file with all relevant information and hash sums. The generated images are distributed
+in the <em>qemu</em> format, meaning they are smaller snapshots of a larger base image, limiting the required disk space.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">fortrace</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">Architecture of fortrace</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Framework Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#architecture">Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#features-and-functions">Features and Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="generator.html">Generator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="service_vm.html">Service VM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">Installation of fortrace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/config.html">Configuration of installation options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/host.html">Host Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/guest.html">Guest Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/service_vm.html">Installation of Service VM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/firstrun.html">First Run after installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/index.html">Developer reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/functions.html">Functions of fortrace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/implementing.html">Implementation of Scenarios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/implementing.html#implementation-of-new-features">Implementation of new Features</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Architecture of fortrace</a></li>
+      <li>Next: <a href="generator.html" title="next chapter">Generator</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Thomas Schäfer, Thomas Göbel, Jan Türr.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/architecture/framework_architecture.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,12 @@
+import "genericmessage.proto";
+
+
+message AnswerInfo {
+	required bool ok = 1 [default=true];
+	required bytes request = 2;
+	required string answer = 3;
+}
+
+extend GenericMessage {
+	required AnswerInfo answer_info = 107;
+}

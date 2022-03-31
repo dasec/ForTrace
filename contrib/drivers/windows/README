@@ -1,0 +1,14 @@
+This contains a fork of the vmulti driver by djpnnewton.
+Fork was done for the 5. May 2015 revision.
+For changes and instructions look at README.1ST
+
+Original driver sources can be found at:
+https://github.com/djpnewton/vmulti
+
+For easy installation execute the prepare_driver.cmd file.
+Install the provided dirs-Package.cert from one of the sub-directories to the trusted certificate publisher store.
+After rebooting run the install_driver.cmd file in the fitting sub-directory.
+Copy the 'usb-de.conf' file from 'src/fortrace/utility/conf' to 'C:\'.
+You need to start the controlvmulti userspace utility before starting the DevControlServer python script.
+
+File created on: 16. March 2016

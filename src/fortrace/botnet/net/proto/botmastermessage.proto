@@ -1,0 +1,18 @@
+import "genericmessage.proto";
+
+message BotMasterPlaceOrderMessage {
+	required bytes serialized_dict = 1;
+}
+
+message BotMasterGetResults {
+	required string receiving_host = 1;
+	required uint32 receiving_port = 2;
+}
+
+extend GenericMessage {
+	required BotMasterPlaceOrderMessage bm_order = 220;
+}
+
+extend GenericMessage {
+	required BotMasterGetResults bm_result = 221;
+}

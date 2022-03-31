@@ -1,0 +1,120 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module fortrace.interactionManager.windows.application.webBrowser</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="fortrace.html"><font color="#ffffff">fortrace</font></a>.<a href="fortrace.interactionManager.html"><font color="#ffffff">interactionManager</font></a>.<a href="fortrace.interactionManager.windows.html"><font color="#ffffff">windows</font></a>.<a href="fortrace.interactionManager.windows.application.html"><font color="#ffffff">application</font></a>.webBrowser</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:///C:/users/vm/documents/github/fortrace/interactionmanager/windows/application/webbrowser.py">c:\users\vm\documents\github\fortrace\interactionmanager\windows\application\webbrowser.py</a></font></td></tr></table>
+    <p><tt>This&nbsp;class&nbsp;contains&nbsp;the&nbsp;webbrowser&nbsp;implementation.<br>
+&nbsp;<br>
+The&nbsp;current&nbsp;testet&nbsp;browser&nbsp;is&nbsp;firefox.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="logging.html">logging</a><br>
+<a href="subprocess.html">subprocess</a><br>
+</td><td width="25%" valign=top><a href="sys.html">sys</a><br>
+<a href="threading.html">threading</a><br>
+</td><td width="25%" valign=top><a href="selenium.webdriver.html">selenium.webdriver</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="fortrace.interactionManager.windows.application.webBrowser.html#webBrowser">webBrowser</a>
+</font></dt><dt><font face="helvetica, arial"><a href="fortrace.interactionManager.windows.application.webBrowser.html#webBrowserManagement">webBrowserManagement</a>
+</font></dt></dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="webBrowser">class <strong>webBrowser</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Class&nbsp;<a href="#webBrowser">webBrowser</a>:<br>
+&nbsp;<br>
+class&nbsp;attributes<br>
+browserType&nbsp;-&nbsp;Which&nbsp;browser&nbsp;have&nbsp;to&nbsp;be&nbsp;used&nbsp;for&nbsp;surfing&nbsp;(firefox,&nbsp;chrome...)<br>
+winID&nbsp;-&nbsp;The&nbsp;ID&nbsp;for&nbsp;the&nbsp;opened&nbsp;object<br>
+url&nbsp;-&nbsp;which&nbsp;have&nbsp;to&nbsp;be&nbsp;opened&nbsp;/&nbsp;is&nbsp;opened<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="webBrowser-__init__"><strong>__init__</strong></a>(self, webBrowserManagemer, interactionManagerObject, timeout<font color="#909090">=30</font>, logger<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="webBrowser-browseTo"><strong>browseTo</strong></a>(self, winId, url)</dt><dd><tt>Will&nbsp;browse&nbsp;to&nbsp;the&nbsp;url&nbsp;with&nbsp;the&nbsp;browser&nbsp;window&nbsp;which&nbsp;have&nbsp;the&nbsp;given&nbsp;winId<br>
+&nbsp;<br>
+Send&nbsp;to&nbsp;the&nbsp;host&nbsp;in&nbsp;the&nbsp;known&nbsp;to&nbsp;be&nbsp;good&nbsp;state:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;'browserInfo&nbsp;busy&nbsp;winId'&nbsp;&nbsp;&nbsp;before&nbsp;load&nbsp;the&nbsp;website.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;'browserInfo&nbsp;ready&nbsp;winId'&nbsp;&nbsp;if&nbsp;load&nbsp;is&nbsp;finished.<br>
+in&nbsp;the&nbsp;error&nbsp;state:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;'browserInfo&nbsp;error&nbsp;winId'&nbsp;&nbsp;if&nbsp;selenium&nbsp;will&nbsp;throw&nbsp;an&nbsp;exception.<br>
+additionally&nbsp;the&nbsp;'window_is_crushed'&nbsp;attribute&nbsp;is&nbsp;set;&nbsp;so&nbsp;the&nbsp;next&nbsp;browse&nbsp;call&nbsp;will&nbsp;open<br>
+a&nbsp;new&nbsp;window.</tt></dd></dl>
+
+<dl><dt><a name="webBrowser-browseToLinkName"><strong>browseToLinkName</strong></a>(self, winId, linkname)</dt><dd><tt>Parse&nbsp;the&nbsp;website&nbsp;to&nbsp;find&nbsp;&lt;a&gt;&nbsp;elements&nbsp;which&nbsp;represent&nbsp;a&nbsp;link.&nbsp;sends&nbsp;a&nbsp;busy&nbsp;and&nbsp;ready&nbsp;message&nbsp;to&nbsp;the&nbsp;host<br>
+Then&nbsp;it&nbsp;surf&nbsp;the&nbsp;linkNumbers&nbsp;link&nbsp;by&nbsp;clicking&nbsp;it.</tt></dd></dl>
+
+<dl><dt><a name="webBrowser-browseToLinkNumber"><strong>browseToLinkNumber</strong></a>(self, winId, linkNumber)</dt><dd><tt>Parse&nbsp;the&nbsp;website&nbsp;to&nbsp;find&nbsp;&lt;a&gt;&nbsp;elements&nbsp;which&nbsp;represent&nbsp;a&nbsp;link.&nbsp;Sends&nbsp;a&nbsp;busy&nbsp;and&nbsp;ready&nbsp;message&nbsp;to&nbsp;the&nbsp;host.<br>
+Then&nbsp;it&nbsp;surf&nbsp;the&nbsp;linkNumbers&nbsp;link&nbsp;by&nbsp;clicking&nbsp;it.</tt></dd></dl>
+
+<dl><dt><a name="webBrowser-close"><strong>close</strong></a>(self)</dt><dd><tt>Close&nbsp;one&nbsp;given&nbsp;browser&nbsp;by&nbsp;winId</tt></dd></dl>
+
+<dl><dt><a name="webBrowser-open"><strong>open</strong></a>(self, browserType, winId, url)</dt><dd><tt>Open&nbsp;a&nbsp;browser&nbsp;and&nbsp;save&nbsp;the&nbsp;browserobject&nbsp;with&nbsp;an&nbsp;id&nbsp;in&nbsp;a&nbsp;dictionary.<br>
+Set&nbsp;page&nbsp;load&nbsp;timeout&nbsp;to&nbsp;30&nbsp;seconds.&nbsp;<br>
+&nbsp;<br>
+return:&nbsp;<br>
+Send&nbsp;to&nbsp;the&nbsp;host&nbsp;in&nbsp;the&nbsp;known&nbsp;to&nbsp;be&nbsp;good&nbsp;state:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;'browserInfo&nbsp;created&nbsp;browser&nbsp;url&nbsp;winId'.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;'browserInfo&nbsp;ready&nbsp;winId'.<br>
+in&nbsp;the&nbsp;error&nbsp;state:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;'browserInfo&nbsp;error&nbsp;winId'.<br>
+additionally&nbsp;the&nbsp;'window_is_crushed'&nbsp;attribute&nbsp;is&nbsp;set;&nbsp;so&nbsp;the&nbsp;next&nbsp;browse&nbsp;call&nbsp;will&nbsp;open<br>
+a&nbsp;new&nbsp;window.</tt></dd></dl>
+
+<dl><dt><a name="webBrowser-sendKeysToBrowserElement"><strong>sendKeysToBrowserElement</strong></a>(self, winId, element, keys)</dt><dd><tt>Send&nbsp;Keys&nbsp;to&nbsp;an&nbsp;browser&nbsp;element,&nbsp;searched&nbsp;by&nbsp;selenium.</tt></dd></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="webBrowserManagement">class <strong>webBrowserManagement</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Class&nbsp;<a href="#webBrowserManagement">webBrowserManagement</a>:<br>
+&nbsp;<br>
+Contain&nbsp;all&nbsp;<a href="#webBrowser">webBrowser</a>&nbsp;Objects.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="webBrowserManagement-__init__"><strong>__init__</strong></a>(self, interactionManagerObject, logger<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="webBrowserManagement-closeAllBrowsers"><strong>closeAllBrowsers</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="webBrowserManagement-execute"><strong>execute</strong></a>(self, command)</dt><dd><tt>Continue&nbsp;the&nbsp;command&nbsp;execution.<br>
+@param&nbsp;command:&nbsp;string&nbsp;to&nbsp;parse.<br>
+supported&nbsp;sub&nbsp;commands:<br>
+open<br>
+close&nbsp;<br>
+browseTo<br>
+browseToLinkNumber<br>
+browseToLinkName<br>
+sendKeysToBrowserElement&nbsp;-&nbsp;wrapper&nbsp;for&nbsp;seleniums&nbsp;find_element_by_name&nbsp;function&nbsp;combined&nbsp;with&nbsp;a&nbsp;send&nbsp;to</tt></dd></dl>
+
+<dl><dt><a name="webBrowserManagement-startAsThread"><strong>startAsThread</strong></a>(self, function, args, windowId)</dt><dd><tt>This&nbsp;method&nbsp;will&nbsp;start&nbsp;the&nbsp;openBrowser,&nbsp;browseToLinkNumber,&nbsp;browseTo&nbsp;methods&nbsp;in&nbsp;a&nbsp;thread.&nbsp;<br>
+If&nbsp;the&nbsp;window&nbsp;will&nbsp;crush&nbsp;a&nbsp;flag&nbsp;named&nbsp;self.<strong>window_is_crushed</strong>&nbsp;will&nbsp;be&nbsp;set.&nbsp;<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;last&nbsp;url&nbsp;(self.<strong>last_driven_url</strong>)&nbsp;would&nbsp;be&nbsp;called&nbsp;in&nbsp;a&nbsp;reopened&nbsp;window&nbsp;again,&nbsp;the&nbsp;window&nbsp;will&nbsp;freeze&nbsp;again.<br>
+So&nbsp;this&nbsp;url&nbsp;is&nbsp;ignored,&nbsp;and&nbsp;the&nbsp;next&nbsp;call&nbsp;to&nbsp;browse&nbsp;a&nbsp;link&nbsp;will&nbsp;reopen&nbsp;a&nbsp;now&nbsp;window.</tt></dd></dl>
+
+</td></tr></table></td></tr></table>
+</body></html>

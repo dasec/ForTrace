@@ -1,0 +1,7 @@
+/data/fortrace_data/blue.jpg
+/data/fortrace_data/black.jpg
+/data/fortrace_data/red.jpg
+/data/fortrace_data/yellow.jpg
+/data/fortrace_data/white.jpg
+/data/fortrace_data/document.pdf
+/data/fortrace_data/blue.pdf

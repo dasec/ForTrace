@@ -1,0 +1,40 @@
+Keywords - InteractionManager to mimicry leader:
+     startApp <application>
+
+     sendToApp <application> <keys>
+
+     sendToWinId <window id> <keys>
+
+     setWindowActiveByName <name> 
+        
+     setWindowActiveByWinId <id>
+        
+     clickRelative <button_position> <button_state> <x> <y>
+        
+     click <button_position> <button_state> <x> <y>
+        
+     sendKeysToBrowserElement <windowId> <element> <keys>
+        
+     sendKey <keys>
+        
+     openBrowser <browserType> <windowId> <url>
+
+     browseToLinkNumber <windowId> <linkNumber>
+
+     browseTo <windowId> <url>
+
+     closeBrowser <windowId>
+
+     destroyConnection
+
+Keywords - mimicry leader to InteractionManager:
+     browserInfo
+          <create>
+
+          <busy>
+
+          <ready>
+
+          <error>
+
+     

@@ -1,0 +1,28 @@
+name: haystack-example
+description: A example action suite to generate a haystack (traffic)
+author: MPSE Group
+seed: 1234
+collections:
+  c-http-0:
+    type: http
+    urls: ./generator/friendly_urls.txt
+settings:
+  host_nfs_path:
+  guest_nfs_path:
+applications:
+hay:
+  h-http-0:
+    application: http
+    url: https://dasec.h-da.de/
+    amount: 1
+needles:
+  n-http-0:
+    application: http
+    file: https://dasec.h-da.de/
+    amount: 1
+dumps:
+  d-dump-0:
+    dump-type: mem
+    dump-path: /home/fortrace/gendump.file
+
+

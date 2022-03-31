@@ -1,0 +1,12 @@
+dns.msftncsi.com
+tile-service.weather.microsoft.com
+v20.events.data.microsoft.com
+go.microsoft.com
+dmd.metaservices.microsoft.com
+watson.telemetry.microsoft.com
+displaycatalog.mp.microsoft.com
+licensing.mp.microsoft.com
+checkappexec.microsoft.com
+v10.events.data.microsoft.com
+detectportal.firefox.com
+firefox.settings.services.mozilla.com

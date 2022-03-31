@@ -1,0 +1,51 @@
+# This file is part of fortrace - http://fortrace.fbi.h-da.de
+# See the file 'docs/LICENSE' for copying permission.
+# Created by Stephan Maltan in 2021
+# Last updated: 2021-06-15
+
+This Document will help you creating your own fortrace scenario, using multi-user and anti-forensic methods with the help
+    of the scenario template
+
+1. Prerequisites
+    - Set up fortrace according to the installation guide found in the documentation
+    - create new folder /contrib/veracrypt and copy the veracrypt files of a portable version to it
+    - create a new folder /contrib/windows utils and copy the executable of the tools SDelete (sdelete64.exe) and PSExec
+        (PsExec64.exe) to it (can be downloaded for free on official Microsoft websites)
+
+2. Preparing the environment
+    - if you want to use a SMB share, prepare the files you want to use on that share
+        BEST PRACTICE: Avoid spaces and special characters in your directory and file names.
+         Using them may require escaping of these characters
+    - set the values in the "Values to define" section. If you are not using for example SMB connections, you may ignore
+        the according values
+    - you may set variables, that are used more often in the section "Space for additional content".
+        This can be text that should be written to a file, or paths to files
+    - ensure, that the provided export directory is empty, all files stored there will be added to the final package
+
+3. Create a scenario
+    - start your scenario in the section "Scenario". An exemplary beginning and end is given there
+        BEST PRACTICE: Follow the example and start your scenario with the following steps:
+               1. create a new user
+               2. change the context to this user
+               3. reboot the system (you may want to change the time)
+               4. delete the initial fortrace user with parameter "secure"
+               5. call the function sc.initClean() to reduce the artifacts that may have been created during
+                    template creation
+    - create your scenario by either using the predefined functions of the template, or using your own ones
+        (e.g. for modules currently not supported by the template)
+        NOTE: All functions provided by the template can be called with "needle" as the last parameter to add the
+            actions to the report (reboots and shutdowns will be added always)
+    - At the end of the scenario section you have different options, how you want to finish your scenario
+        1. shutdown: No cleanup is done, system is shut down and scenario finishes
+        2. cleanUp(): fortrace will reduce the left artifacts like the fortrace folder on users Desktops as fas as possible
+            Then the system will be shut down. Since fortrace needs this directory for the last avtive user, the files will
+            remain for that one
+        3. cleanUp("manual"): fortrace will reduce the left artifacts l as fas as possible. Then the scenario will pause
+            until the guest is shut down manually. Change to the guest, exit the GuestAgent CMD-window and follow the
+            steps provided in the uninstall_manual. Shut the guest system down after finishing
+4. Finalization
+    - The template will create a package after finishing the scenario, that includes the disk image as .raw file, as well
+        as the report for that scenario
+    - Remember to clean the export directory after finishing, if you want to use it for multiple executions
+
+

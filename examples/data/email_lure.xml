@@ -1,0 +1,47 @@
+<data>
+    <item>
+        <type>in</type>
+        <from_name>Attacker</from_name>
+        <from_ad>attacker@test.com</from_ad>
+        <to_name>Supplier</to_name>
+	<to_ad>supplier@test.de</to_ad>
+        <user>fortrace</user>
+        <server>pop3.web.de</server>
+        <timestamp>author Sat Feb  2 21:35:34 2018</timestamp>
+        <subject>Phishing Mail</subject>
+	<message>Nice phishing mail</message>
+	<attachments>
+		<attachment>C:\users\fortrace\Downloads\lure.docm</attachment>
+	</attachments>
+    </item>
+    <item>
+        <type>out</type>
+        <from_name>Supplier</from_name>
+        <from_ad>supplier@test.de</from_ad>
+        <to_name>Victim1</to_name>
+        <to_ad>victim1@test.de</to_ad>
+        <user>fortrace</user>
+        <server>pop3.web.de</server>
+        <timestamp>author Sat Feb  2 21:35:34 2018</timestamp>
+        <subject>Supply chain attack</subject>
+	<message>Pleasy open our new nice office document</message>
+	<attachments>
+		<attachment>C:\users\fortrace\Downloads\lure.docm</attachment>
+	</attachments>
+    </item>
+    <item>
+        <type>out</type>
+        <from_name>Supplier</from_name>
+        <from_ad>supplier@test.de</from_ad>
+        <to_name>Victim2</to_name>
+        <to_ad>victim2@test.de</to_ad>
+        <user>fortrace</user>
+        <server>pop3.web.de</server>
+        <timestamp>author Sat Feb  2 21:35:34 2018</timestamp>
+        <subject>Supply chain attack</subject>
+	<message>Pleasy open our new nice office document</message>
+	<attachments>
+		<attachment>C:\users\fortrace\Downloads\lure.docm</attachment>
+	</attachments>
+    </item>
+</data>

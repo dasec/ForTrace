@@ -1,0 +1,827 @@
+\hypertarget{pidgin__puppet_8h}{}\section{pidgin\+\_\+puppet.\+h File Reference}
+\label{pidgin__puppet_8h}\index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}
+
+
+File containing header definitions of Pidgin Puppet.  
+
+
+{\ttfamily \#include $<$glib.\+h$>$}\\*
+{\ttfamily \#include $<$memory.\+h$>$}\\*
+{\ttfamily \#include $<$windows.\+h$>$}\\*
+{\ttfamily \#include $<$process.\+h$>$}\\*
+{\ttfamily \#include $<$winsock2.\+h$>$}\\*
+{\ttfamily \#include $<$ws2tcpip.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}eventloop.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}conversation.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}blist.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}cmds.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}notify.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}plugin.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}version.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}debug.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}ft.\+h\char`\"{}}\\*
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structagentmessageheader}{agentmessageheader}
+\item 
+struct \hyperlink{structcb__message}{cb\+\_\+message}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{pidgin__puppet_8h_a0f40654b416236bb51e039f02aeababf}{P\+U\+R\+P\+L\+E\+\_\+\+P\+L\+U\+G\+I\+NS}
+\item 
+\#define \hyperlink{pidgin__puppet_8h_a5fc2dbdfd8973fb275af04457dbc32c8}{G\+\_\+\+G\+N\+U\+C\+\_\+\+N\+U\+L\+L\+\_\+\+T\+E\+R\+M\+I\+N\+A\+T\+ED}
+\item 
+\#define \hyperlink{pidgin__puppet_8h_a9c7f6d5331abb2692a876d5ee67474b7}{close}~closesocket
+\item 
+\#define \hyperlink{pidgin__puppet_8h_add4ff194692fc3c972558cbf568f547f}{S\+E\+R\+V\+A\+D\+DR}~\char`\"{}127.\+0.\+0.\+1\char`\"{}
+\item 
+\#define \hyperlink{pidgin__puppet_8h_a4fdcebb3723e64c7d58aeb804256dd93}{S\+E\+R\+V\+P\+O\+RT}~11001
+\item 
+\#define \hyperlink{pidgin__puppet_8h_a7abcc323e4058abf7155578ff5ed091f}{S\+I\+Z\+E\+R\+E\+C\+V\+B\+UF}~4096
+\item 
+\#define \hyperlink{pidgin__puppet_8h_ab72c97b4d9a2ef897ca885354e6062d0}{S\+I\+Z\+E\+S\+E\+N\+D\+B\+UF}~4096
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef unsigned int \hyperlink{pidgin__puppet_8h_a2eb3b718074d951580394651dec99eae}{hlength\+\_\+t}
+\item 
+typedef unsigned int \hyperlink{pidgin__puppet_8h_ac991ce97ed2ac2d3a08fbef807b117c6}{hnum\+\_\+t}
+\item 
+typedef unsigned int \hyperlink{pidgin__puppet_8h_a4e81645463f19167ed0723e71b925bc0}{offset\+\_\+entry\+\_\+t}
+\item 
+typedef \hyperlink{structagentmessageheader}{agentmessageheader} \hyperlink{pidgin__puppet_8h_ae3e76f0c9620187ebb5fac4366299499}{amh}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{pidgin__puppet_8h_a36a659884b6cfd0057f770189ef59173}{P\+I\+D\+G\+I\+N\+\_\+\+P\+U\+P\+P\+E\+T\+\_\+\+R\+E\+T\+V\+AL} \{ \\*
+\hyperlink{pidgin__puppet_8h_a36a659884b6cfd0057f770189ef59173a4a628dd3af8c6dd16738f5a00dedbe70}{P\+\_\+\+OK} = 0, 
+\hyperlink{pidgin__puppet_8h_a36a659884b6cfd0057f770189ef59173aed05b94b67c22dfa8ee067240a47adcb}{P\+\_\+\+G\+E\+N\+E\+R\+I\+C\+\_\+\+F\+A\+IL} = 1, 
+\hyperlink{pidgin__puppet_8h_a36a659884b6cfd0057f770189ef59173ac788601a9f8f3470eff3227793aec589}{P\+\_\+\+N\+O\+\_\+\+A\+C\+C\+O\+U\+NT} = 2, 
+\hyperlink{pidgin__puppet_8h_a36a659884b6cfd0057f770189ef59173ab5a2589cbeabd51f49a656804dca4e41}{P\+\_\+\+N\+O\+\_\+\+D\+A\+TA} = 3, 
+\\*
+\hyperlink{pidgin__puppet_8h_a36a659884b6cfd0057f770189ef59173a2a13d86f973aa833cd968d872c9b5a3b}{P\+\_\+\+N\+O\+\_\+\+M\+A\+T\+CH} = 4, 
+\hyperlink{pidgin__puppet_8h_a36a659884b6cfd0057f770189ef59173a498bccebf9532f98bf70297adca5bf57}{P\+\_\+\+B\+A\+D\+\_\+\+P\+TR} = 5, 
+\hyperlink{pidgin__puppet_8h_a36a659884b6cfd0057f770189ef59173a344792a2dad1d3ce4331ba5e022c14ec}{P\+\_\+\+O\+U\+T\+\_\+\+O\+F\+\_\+\+M\+EM} = 6, 
+\hyperlink{pidgin__puppet_8h_a36a659884b6cfd0057f770189ef59173a1dc7c13336215d35db9b3b6fa125d615}{P\+\_\+\+U\+N\+K\+N\+O\+WN} = 7, 
+\\*
+\hyperlink{pidgin__puppet_8h_a36a659884b6cfd0057f770189ef59173a65b7099529eaa34ad5dcdb87e34950e6}{P\+\_\+\+N\+O\+\_\+\+V\+A\+L\+UE} = -\/1
+ \}
+\item 
+enum \hyperlink{pidgin__puppet_8h_a3832477baa6d324b5c9f91adc3b80ec0}{P\+I\+D\+G\+I\+N\+\_\+\+P\+U\+P\+P\+E\+T\+\_\+\+S\+T\+A\+TE} \{ \\*
+\hyperlink{pidgin__puppet_8h_a3832477baa6d324b5c9f91adc3b80ec0a10353327f9b5240e612f2af4a3ea1cff}{P\+\_\+\+P\+L\+U\+G\+I\+N\+\_\+\+UP}, 
+\hyperlink{pidgin__puppet_8h_a3832477baa6d324b5c9f91adc3b80ec0a6b401724a68bc78f84f3670d4ebee3fd}{P\+\_\+\+P\+L\+U\+G\+I\+N\+\_\+\+D\+O\+WN}, 
+\hyperlink{pidgin__puppet_8h_a3832477baa6d324b5c9f91adc3b80ec0aeca31deae8b2e2be18d856b13de8e675}{P\+\_\+\+A\+C\+T\+I\+O\+N\+\_\+\+D\+O\+NE}, 
+\hyperlink{pidgin__puppet_8h_a3832477baa6d324b5c9f91adc3b80ec0acf6349690fb32a825e7cbf0b215aa423}{P\+\_\+\+M\+S\+G\+\_\+\+I\+M\+\_\+\+IN}, 
+\\*
+\hyperlink{pidgin__puppet_8h_a3832477baa6d324b5c9f91adc3b80ec0a119b735dd9ad64866a75bfbe638f6ad1}{P\+\_\+\+M\+S\+G\+\_\+\+C\+H\+A\+T\+\_\+\+IN}, 
+\hyperlink{pidgin__puppet_8h_a3832477baa6d324b5c9f91adc3b80ec0a0c03a09567dd2331870f62f19f83dbbd}{P\+\_\+\+F\+I\+L\+E\+\_\+\+IN}, 
+\hyperlink{pidgin__puppet_8h_a3832477baa6d324b5c9f91adc3b80ec0aa5bf5fc363c0be85892fb847dead62b6}{P\+\_\+\+C\+O\+N\+T\+A\+C\+T\+\_\+\+N\+EW}, 
+\hyperlink{pidgin__puppet_8h_a3832477baa6d324b5c9f91adc3b80ec0a3f2267c14430fe188fcec66ca40fddb8}{P\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+D\+O\+WN}, 
+\\*
+\hyperlink{pidgin__puppet_8h_a3832477baa6d324b5c9f91adc3b80ec0a3e343ce6b7e7ec3d1045f0f986b45002}{P\+\_\+\+S\+I\+G\+N\+\_\+\+ON}, 
+\hyperlink{pidgin__puppet_8h_a3832477baa6d324b5c9f91adc3b80ec0a18eac48c0c8bdded54eebaef3a7c7a98}{P\+\_\+\+B\+U\+D\+D\+Y\+\_\+\+S\+I\+G\+N\+\_\+\+ON}, 
+\hyperlink{pidgin__puppet_8h_a3832477baa6d324b5c9f91adc3b80ec0adfe823efaa48cb8270acd4232edef299}{P\+\_\+\+B\+U\+D\+D\+Y\+\_\+\+S\+I\+G\+N\+\_\+\+O\+FF}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{Indent}{\bf helpers}\par
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{pidgin__puppet_8h_aca7292a1fb03d38ab1943a790b6d494b}{headertohost} (char $\ast$buf)
+\item 
+void \hyperlink{pidgin__puppet_8h_af580db12de271f097757981388551a4f}{headertonet} (char $\ast$buf)
+\item 
+void \hyperlink{pidgin__puppet_8h_a7b8bdc0abbd2d617a34ee9b2eaeecb5e}{printbufferedmessage} (char $\ast$buf)
+\item 
+char $\ast$ \hyperlink{pidgin__puppet_8h_aabb2c8cec14e2fa018a9cd8c00ab64ff}{offsetentrytoptr} (char $\ast$bufptr, unsigned int num, unsigned int $\ast$out\+\_\+offset)
+\item 
+void \hyperlink{pidgin__puppet_8h_afc811c1f8e2719d20eb9fdb1e9d6e8fd}{sendpackstr} (const char $\ast$str, unsigned int $\ast$argnum, unsigned int $\ast$bytecnt, \hyperlink{pidgin__puppet_8h_ae3e76f0c9620187ebb5fac4366299499}{amh} $\ast$header)
+\item 
+unsigned int \hyperlink{pidgin__puppet_8h_af906b471a9b10cf5ed852c9e594013a4}{sendgetinitialbytepos} (unsigned int numofargs)
+\item 
+void \hyperlink{pidgin__puppet_8h_a34bf4649765aac25a2426fbb23405808}{lock\+Send} (void)
+\item 
+void \hyperlink{pidgin__puppet_8h_a156819c15ad0fd4f9820f99bcce7e1fd}{unlock\+Send} (void)
+\item 
+void \hyperlink{pidgin__puppet_8h_a6be49dbace2e34711f917582509b4ed1}{sendpackstatus} (\hyperlink{pidgin__puppet_8h_a36a659884b6cfd0057f770189ef59173}{P\+I\+D\+G\+I\+N\+\_\+\+P\+U\+P\+P\+E\+T\+\_\+\+R\+E\+T\+V\+AL} rval, unsigned int $\ast$argnum, unsigned int $\ast$bytecnt, \hyperlink{pidgin__puppet_8h_ae3e76f0c9620187ebb5fac4366299499}{amh} $\ast$header)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf signals}\par
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{pidgin__puppet_8h_a295f5fafa09b6153612737ee8992c463}{cb\+Send\+Im\+To\+Buddy} (void $\ast$cbmsg, void $\ast$data)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf network}\par
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{pidgin__puppet_8h_af6a04c95e7d374fa7d5872f0ec39fee9}{demultiplexmessage} (void)
+\item 
+void \hyperlink{pidgin__puppet_8h_a00638eb0ebbce4393aae224d81c13d17}{listensocket} (void)
+\item 
+void \hyperlink{pidgin__puppet_8h_a2ededcf48792ab007abcd68c863b35f0}{opensocket} (void)
+\item 
+void \hyperlink{pidgin__puppet_8h_a53447863ccd8135651b96397aaa8f884}{destroysocket} (void)
+\item 
+void \+\_\+\+\_\+cdecl \hyperlink{pidgin__puppet_8h_a3e07c7b90b2ffe72aae42f03779ec3ec}{listener\+Worker} (L\+P\+V\+O\+ID data)
+\item 
+int \hyperlink{pidgin__puppet_8h_a0ca50d83161d709e4b01c35c0d03e69e}{start\+Agent\+Listener} (void)
+\item 
+int \hyperlink{pidgin__puppet_8h_ae8ed76a5976a2f1254b2d73d5369c114}{stop\+Agent\+Listener} (void)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf commands}\par
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{pidgin__puppet_8h_a761a04242e08337a7ff144cf408671de}{notify\+Agent} (\hyperlink{pidgin__puppet_8h_a3832477baa6d324b5c9f91adc3b80ec0}{P\+I\+D\+G\+I\+N\+\_\+\+P\+U\+P\+P\+E\+T\+\_\+\+S\+T\+A\+TE} state, void $\ast$data)
+\item 
+int \hyperlink{pidgin__puppet_8h_acef9c5f3e76e89cb0ba7943d017d160e}{is\+Buddy\+Online} (const char $\ast$buddyname, int $\ast$retval)
+\item 
+int \hyperlink{pidgin__puppet_8h_aaad583d6006338dfe07f493c66eba9db}{get\+All\+Accounts} (G\+List $\ast$$\ast$list, unsigned int $\ast$size)
+\item 
+int \hyperlink{pidgin__puppet_8h_af33f059a78ae2737eea32b4748ab0ed4}{select\+Account} (const char $\ast$accountname, const char $\ast$prot\+\_\+id)
+\item 
+int \hyperlink{pidgin__puppet_8h_ae1c02665c8ecae17068ecfebd43adc03}{get\+Contact\+List} (G\+S\+List $\ast$$\ast$list, unsigned int $\ast$size)
+\item 
+int \hyperlink{pidgin__puppet_8h_a83e303aa7d2cdc7936ce8b39308c4616}{send\+Msg\+To\+Buddy\+Unsafe} (const char $\ast$buddy, const char $\ast$msg)
+\item 
+int \hyperlink{pidgin__puppet_8h_a97c100abe7b2a1b4008cd65593b45b3f}{send\+Im\+To\+Buddy\+Unsafe} (const char $\ast$buddy, const char $\ast$msg)
+\item 
+int \hyperlink{pidgin__puppet_8h_ad5e4be07ef48d4db89e0607021ff0bb3}{add\+Buddy} (const char $\ast$buddyname)
+\item 
+int \hyperlink{pidgin__puppet_8h_a8a025b51466522fb7713d03f680b5adc}{change\+Online\+State} (gboolean online)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf callbacks}\par
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{pidgin__puppet_8h_a67688ef8b02a69206eab0d61cf0260f3}{received\+Im\+Msg\+Callback} (Purple\+Account $\ast$\hyperlink{pidgin__puppet_8c_a7a963a44a8d050f04c0adb48ac7db0d0}{account}, char $\ast$sender, char $\ast$message, Purple\+Conversation $\ast$conv, Purple\+Message\+Flags flags)
+\item 
+void \hyperlink{pidgin__puppet_8h_af7e46e0f79137458a260b0bd0a62aee6}{received\+Chat\+Msg\+Callback} (Purple\+Account $\ast$\hyperlink{pidgin__puppet_8c_a7a963a44a8d050f04c0adb48ac7db0d0}{account}, char $\ast$sender, char $\ast$message, Purple\+Conversation $\ast$conv, Purple\+Message\+Flags flags)
+\item 
+int \hyperlink{pidgin__puppet_8h_a545f941243d29a9e3507e643acc9bf96}{account\+\_\+authorization\+\_\+requested} (Purple\+Account $\ast$\hyperlink{pidgin__puppet_8c_a7a963a44a8d050f04c0adb48ac7db0d0}{account}, const char $\ast$user)
+\item 
+void \hyperlink{pidgin__puppet_8h_ae40d22c2c9956ddb6031de2176705831}{signed\+\_\+on} (Purple\+Connection $\ast$gc)
+\item 
+void \hyperlink{pidgin__puppet_8h_a83a88050267b4ec123895f48c3bb753e}{buddy\+\_\+signed\+\_\+on} (Purple\+Buddy $\ast$buddy)
+\item 
+void \hyperlink{pidgin__puppet_8h_a1dbd5aceeaa5d76b4ae14e3dcb18d649}{buddy\+\_\+signed\+\_\+off} (Purple\+Buddy $\ast$buddy)
+\item 
+void \hyperlink{pidgin__puppet_8h_aa02bbc6fea0ec396fcceb47875379aad}{file\+\_\+recv\+\_\+request} (Purple\+Xfer $\ast$xfer, gpointer data)
+\item 
+void \hyperlink{pidgin__puppet_8h_ab179cf1c0a216640b7e20053002c2007}{file\+\_\+recv\+\_\+accept} (Purple\+Xfer $\ast$xfer, gpointer data)
+\item 
+void \hyperlink{pidgin__puppet_8h_a1882c89b019dfb3227931e5d827d4e04}{file\+\_\+recv\+\_\+complete} (Purple\+Xfer $\ast$xfer, gpointer data)
+\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\subsection{Detailed Description}
+File containing header definitions of Pidgin Puppet. 
+
+\begin{DoxyAuthor}{Author}
+Sascha Kopp 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+18 Jan 2015 
+\end{DoxyDate}
+
+
+\subsection{Macro Definition Documentation}
+\index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!close@{close}}
+\index{close@{close}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}
+\subsubsection[{\texorpdfstring{close}{close}}]{\setlength{\rightskip}{0pt plus 5cm}\#define close~closesocket}\hypertarget{pidgin__puppet_8h_a9c7f6d5331abb2692a876d5ee67474b7}{}\label{pidgin__puppet_8h_a9c7f6d5331abb2692a876d5ee67474b7}
+W\+I\+N32 doesn\textquotesingle{}t define close use closesocket for that \index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!G\+\_\+\+G\+N\+U\+C\+\_\+\+N\+U\+L\+L\+\_\+\+T\+E\+R\+M\+I\+N\+A\+T\+ED@{G\+\_\+\+G\+N\+U\+C\+\_\+\+N\+U\+L\+L\+\_\+\+T\+E\+R\+M\+I\+N\+A\+T\+ED}}
+\index{G\+\_\+\+G\+N\+U\+C\+\_\+\+N\+U\+L\+L\+\_\+\+T\+E\+R\+M\+I\+N\+A\+T\+ED@{G\+\_\+\+G\+N\+U\+C\+\_\+\+N\+U\+L\+L\+\_\+\+T\+E\+R\+M\+I\+N\+A\+T\+ED}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}
+\subsubsection[{\texorpdfstring{G\+\_\+\+G\+N\+U\+C\+\_\+\+N\+U\+L\+L\+\_\+\+T\+E\+R\+M\+I\+N\+A\+T\+ED}{G_GNUC_NULL_TERMINATED}}]{\setlength{\rightskip}{0pt plus 5cm}\#define G\+\_\+\+G\+N\+U\+C\+\_\+\+N\+U\+L\+L\+\_\+\+T\+E\+R\+M\+I\+N\+A\+T\+ED}\hypertarget{pidgin__puppet_8h_a5fc2dbdfd8973fb275af04457dbc32c8}{}\label{pidgin__puppet_8h_a5fc2dbdfd8973fb275af04457dbc32c8}
+Generic bug fix provided by pidgin \index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!P\+U\+R\+P\+L\+E\+\_\+\+P\+L\+U\+G\+I\+NS@{P\+U\+R\+P\+L\+E\+\_\+\+P\+L\+U\+G\+I\+NS}}
+\index{P\+U\+R\+P\+L\+E\+\_\+\+P\+L\+U\+G\+I\+NS@{P\+U\+R\+P\+L\+E\+\_\+\+P\+L\+U\+G\+I\+NS}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}
+\subsubsection[{\texorpdfstring{P\+U\+R\+P\+L\+E\+\_\+\+P\+L\+U\+G\+I\+NS}{PURPLE_PLUGINS}}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+U\+R\+P\+L\+E\+\_\+\+P\+L\+U\+G\+I\+NS}\hypertarget{pidgin__puppet_8h_a0f40654b416236bb51e039f02aeababf}{}\label{pidgin__puppet_8h_a0f40654b416236bb51e039f02aeababf}
+This is a libpurple plugin \index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!S\+E\+R\+V\+A\+D\+DR@{S\+E\+R\+V\+A\+D\+DR}}
+\index{S\+E\+R\+V\+A\+D\+DR@{S\+E\+R\+V\+A\+D\+DR}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}
+\subsubsection[{\texorpdfstring{S\+E\+R\+V\+A\+D\+DR}{SERVADDR}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+E\+R\+V\+A\+D\+DR~\char`\"{}127.\+0.\+0.\+1\char`\"{}}\hypertarget{pidgin__puppet_8h_add4ff194692fc3c972558cbf568f547f}{}\label{pidgin__puppet_8h_add4ff194692fc3c972558cbf568f547f}
+IP address of agent \index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!S\+E\+R\+V\+P\+O\+RT@{S\+E\+R\+V\+P\+O\+RT}}
+\index{S\+E\+R\+V\+P\+O\+RT@{S\+E\+R\+V\+P\+O\+RT}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}
+\subsubsection[{\texorpdfstring{S\+E\+R\+V\+P\+O\+RT}{SERVPORT}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+E\+R\+V\+P\+O\+RT~11001}\hypertarget{pidgin__puppet_8h_a4fdcebb3723e64c7d58aeb804256dd93}{}\label{pidgin__puppet_8h_a4fdcebb3723e64c7d58aeb804256dd93}
+Port used for agent communication \index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!S\+I\+Z\+E\+R\+E\+C\+V\+B\+UF@{S\+I\+Z\+E\+R\+E\+C\+V\+B\+UF}}
+\index{S\+I\+Z\+E\+R\+E\+C\+V\+B\+UF@{S\+I\+Z\+E\+R\+E\+C\+V\+B\+UF}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}
+\subsubsection[{\texorpdfstring{S\+I\+Z\+E\+R\+E\+C\+V\+B\+UF}{SIZERECVBUF}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+I\+Z\+E\+R\+E\+C\+V\+B\+UF~4096}\hypertarget{pidgin__puppet_8h_a7abcc323e4058abf7155578ff5ed091f}{}\label{pidgin__puppet_8h_a7abcc323e4058abf7155578ff5ed091f}
+Buffer size of receive buffer \index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!S\+I\+Z\+E\+S\+E\+N\+D\+B\+UF@{S\+I\+Z\+E\+S\+E\+N\+D\+B\+UF}}
+\index{S\+I\+Z\+E\+S\+E\+N\+D\+B\+UF@{S\+I\+Z\+E\+S\+E\+N\+D\+B\+UF}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}
+\subsubsection[{\texorpdfstring{S\+I\+Z\+E\+S\+E\+N\+D\+B\+UF}{SIZESENDBUF}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+I\+Z\+E\+S\+E\+N\+D\+B\+UF~4096}\hypertarget{pidgin__puppet_8h_ab72c97b4d9a2ef897ca885354e6062d0}{}\label{pidgin__puppet_8h_ab72c97b4d9a2ef897ca885354e6062d0}
+Buffer size of send buffer 
+
+\subsection{Typedef Documentation}
+\index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!amh@{amh}}
+\index{amh@{amh}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}
+\subsubsection[{\texorpdfstring{amh}{amh}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf amh}}\hypertarget{pidgin__puppet_8h_ae3e76f0c9620187ebb5fac4366299499}{}\label{pidgin__puppet_8h_ae3e76f0c9620187ebb5fac4366299499}
+Name shortener for a message header \index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!hlength\+\_\+t@{hlength\+\_\+t}}
+\index{hlength\+\_\+t@{hlength\+\_\+t}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}
+\subsubsection[{\texorpdfstring{hlength\+\_\+t}{hlength_t}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf hlength\+\_\+t}}\hypertarget{pidgin__puppet_8h_a2eb3b718074d951580394651dec99eae}{}\label{pidgin__puppet_8h_a2eb3b718074d951580394651dec99eae}
+32bit length field of header \index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!hnum\+\_\+t@{hnum\+\_\+t}}
+\index{hnum\+\_\+t@{hnum\+\_\+t}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}
+\subsubsection[{\texorpdfstring{hnum\+\_\+t}{hnum_t}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf hnum\+\_\+t}}\hypertarget{pidgin__puppet_8h_ac991ce97ed2ac2d3a08fbef807b117c6}{}\label{pidgin__puppet_8h_ac991ce97ed2ac2d3a08fbef807b117c6}
+32bit offset number field of header \index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!offset\+\_\+entry\+\_\+t@{offset\+\_\+entry\+\_\+t}}
+\index{offset\+\_\+entry\+\_\+t@{offset\+\_\+entry\+\_\+t}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}
+\subsubsection[{\texorpdfstring{offset\+\_\+entry\+\_\+t}{offset_entry_t}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf offset\+\_\+entry\+\_\+t}}\hypertarget{pidgin__puppet_8h_a4e81645463f19167ed0723e71b925bc0}{}\label{pidgin__puppet_8h_a4e81645463f19167ed0723e71b925bc0}
+32bit offset field of header 
+
+\subsection{Enumeration Type Documentation}
+\index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!P\+I\+D\+G\+I\+N\+\_\+\+P\+U\+P\+P\+E\+T\+\_\+\+R\+E\+T\+V\+AL@{P\+I\+D\+G\+I\+N\+\_\+\+P\+U\+P\+P\+E\+T\+\_\+\+R\+E\+T\+V\+AL}}
+\index{P\+I\+D\+G\+I\+N\+\_\+\+P\+U\+P\+P\+E\+T\+\_\+\+R\+E\+T\+V\+AL@{P\+I\+D\+G\+I\+N\+\_\+\+P\+U\+P\+P\+E\+T\+\_\+\+R\+E\+T\+V\+AL}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}
+\subsubsection[{\texorpdfstring{P\+I\+D\+G\+I\+N\+\_\+\+P\+U\+P\+P\+E\+T\+\_\+\+R\+E\+T\+V\+AL}{PIDGIN_PUPPET_RETVAL}}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf P\+I\+D\+G\+I\+N\+\_\+\+P\+U\+P\+P\+E\+T\+\_\+\+R\+E\+T\+V\+AL}}\hypertarget{pidgin__puppet_8h_a36a659884b6cfd0057f770189ef59173}{}\label{pidgin__puppet_8h_a36a659884b6cfd0057f770189ef59173}
+Enum that contains status codes for internal use \begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{P\+\_\+\+OK@{P\+\_\+\+OK}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}\index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!P\+\_\+\+OK@{P\+\_\+\+OK}}\item[{\em 
+P\+\_\+\+OK\hypertarget{pidgin__puppet_8h_a36a659884b6cfd0057f770189ef59173a4a628dd3af8c6dd16738f5a00dedbe70}{}\label{pidgin__puppet_8h_a36a659884b6cfd0057f770189ef59173a4a628dd3af8c6dd16738f5a00dedbe70}
+}]Success \index{P\+\_\+\+G\+E\+N\+E\+R\+I\+C\+\_\+\+F\+A\+IL@{P\+\_\+\+G\+E\+N\+E\+R\+I\+C\+\_\+\+F\+A\+IL}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}\index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!P\+\_\+\+G\+E\+N\+E\+R\+I\+C\+\_\+\+F\+A\+IL@{P\+\_\+\+G\+E\+N\+E\+R\+I\+C\+\_\+\+F\+A\+IL}}\item[{\em 
+P\+\_\+\+G\+E\+N\+E\+R\+I\+C\+\_\+\+F\+A\+IL\hypertarget{pidgin__puppet_8h_a36a659884b6cfd0057f770189ef59173aed05b94b67c22dfa8ee067240a47adcb}{}\label{pidgin__puppet_8h_a36a659884b6cfd0057f770189ef59173aed05b94b67c22dfa8ee067240a47adcb}
+}]Generic failure \index{P\+\_\+\+N\+O\+\_\+\+A\+C\+C\+O\+U\+NT@{P\+\_\+\+N\+O\+\_\+\+A\+C\+C\+O\+U\+NT}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}\index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!P\+\_\+\+N\+O\+\_\+\+A\+C\+C\+O\+U\+NT@{P\+\_\+\+N\+O\+\_\+\+A\+C\+C\+O\+U\+NT}}\item[{\em 
+P\+\_\+\+N\+O\+\_\+\+A\+C\+C\+O\+U\+NT\hypertarget{pidgin__puppet_8h_a36a659884b6cfd0057f770189ef59173ac788601a9f8f3470eff3227793aec589}{}\label{pidgin__puppet_8h_a36a659884b6cfd0057f770189ef59173ac788601a9f8f3470eff3227793aec589}
+}]No account selected \index{P\+\_\+\+N\+O\+\_\+\+D\+A\+TA@{P\+\_\+\+N\+O\+\_\+\+D\+A\+TA}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}\index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!P\+\_\+\+N\+O\+\_\+\+D\+A\+TA@{P\+\_\+\+N\+O\+\_\+\+D\+A\+TA}}\item[{\em 
+P\+\_\+\+N\+O\+\_\+\+D\+A\+TA\hypertarget{pidgin__puppet_8h_a36a659884b6cfd0057f770189ef59173ab5a2589cbeabd51f49a656804dca4e41}{}\label{pidgin__puppet_8h_a36a659884b6cfd0057f770189ef59173ab5a2589cbeabd51f49a656804dca4e41}
+}]No data or empty list was returned \index{P\+\_\+\+N\+O\+\_\+\+M\+A\+T\+CH@{P\+\_\+\+N\+O\+\_\+\+M\+A\+T\+CH}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}\index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!P\+\_\+\+N\+O\+\_\+\+M\+A\+T\+CH@{P\+\_\+\+N\+O\+\_\+\+M\+A\+T\+CH}}\item[{\em 
+P\+\_\+\+N\+O\+\_\+\+M\+A\+T\+CH\hypertarget{pidgin__puppet_8h_a36a659884b6cfd0057f770189ef59173a2a13d86f973aa833cd968d872c9b5a3b}{}\label{pidgin__puppet_8h_a36a659884b6cfd0057f770189ef59173a2a13d86f973aa833cd968d872c9b5a3b}
+}]Referenced object was not found \index{P\+\_\+\+B\+A\+D\+\_\+\+P\+TR@{P\+\_\+\+B\+A\+D\+\_\+\+P\+TR}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}\index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!P\+\_\+\+B\+A\+D\+\_\+\+P\+TR@{P\+\_\+\+B\+A\+D\+\_\+\+P\+TR}}\item[{\em 
+P\+\_\+\+B\+A\+D\+\_\+\+P\+TR\hypertarget{pidgin__puppet_8h_a36a659884b6cfd0057f770189ef59173a498bccebf9532f98bf70297adca5bf57}{}\label{pidgin__puppet_8h_a36a659884b6cfd0057f770189ef59173a498bccebf9532f98bf70297adca5bf57}
+}]A Null-\/pointer was provided, but argument was not optional \index{P\+\_\+\+O\+U\+T\+\_\+\+O\+F\+\_\+\+M\+EM@{P\+\_\+\+O\+U\+T\+\_\+\+O\+F\+\_\+\+M\+EM}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}\index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!P\+\_\+\+O\+U\+T\+\_\+\+O\+F\+\_\+\+M\+EM@{P\+\_\+\+O\+U\+T\+\_\+\+O\+F\+\_\+\+M\+EM}}\item[{\em 
+P\+\_\+\+O\+U\+T\+\_\+\+O\+F\+\_\+\+M\+EM\hypertarget{pidgin__puppet_8h_a36a659884b6cfd0057f770189ef59173a344792a2dad1d3ce4331ba5e022c14ec}{}\label{pidgin__puppet_8h_a36a659884b6cfd0057f770189ef59173a344792a2dad1d3ce4331ba5e022c14ec}
+}]Could not allocate memory \index{P\+\_\+\+U\+N\+K\+N\+O\+WN@{P\+\_\+\+U\+N\+K\+N\+O\+WN}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}\index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!P\+\_\+\+U\+N\+K\+N\+O\+WN@{P\+\_\+\+U\+N\+K\+N\+O\+WN}}\item[{\em 
+P\+\_\+\+U\+N\+K\+N\+O\+WN\hypertarget{pidgin__puppet_8h_a36a659884b6cfd0057f770189ef59173a1dc7c13336215d35db9b3b6fa125d615}{}\label{pidgin__puppet_8h_a36a659884b6cfd0057f770189ef59173a1dc7c13336215d35db9b3b6fa125d615}
+}]Unknown command \index{P\+\_\+\+N\+O\+\_\+\+V\+A\+L\+UE@{P\+\_\+\+N\+O\+\_\+\+V\+A\+L\+UE}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}\index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!P\+\_\+\+N\+O\+\_\+\+V\+A\+L\+UE@{P\+\_\+\+N\+O\+\_\+\+V\+A\+L\+UE}}\item[{\em 
+P\+\_\+\+N\+O\+\_\+\+V\+A\+L\+UE\hypertarget{pidgin__puppet_8h_a36a659884b6cfd0057f770189ef59173a65b7099529eaa34ad5dcdb87e34950e6}{}\label{pidgin__puppet_8h_a36a659884b6cfd0057f770189ef59173a65b7099529eaa34ad5dcdb87e34950e6}
+}]Value is not available, used for inter-\/thread communication \end{description}
+\end{Desc}
+\index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!P\+I\+D\+G\+I\+N\+\_\+\+P\+U\+P\+P\+E\+T\+\_\+\+S\+T\+A\+TE@{P\+I\+D\+G\+I\+N\+\_\+\+P\+U\+P\+P\+E\+T\+\_\+\+S\+T\+A\+TE}}
+\index{P\+I\+D\+G\+I\+N\+\_\+\+P\+U\+P\+P\+E\+T\+\_\+\+S\+T\+A\+TE@{P\+I\+D\+G\+I\+N\+\_\+\+P\+U\+P\+P\+E\+T\+\_\+\+S\+T\+A\+TE}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}
+\subsubsection[{\texorpdfstring{P\+I\+D\+G\+I\+N\+\_\+\+P\+U\+P\+P\+E\+T\+\_\+\+S\+T\+A\+TE}{PIDGIN_PUPPET_STATE}}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf P\+I\+D\+G\+I\+N\+\_\+\+P\+U\+P\+P\+E\+T\+\_\+\+S\+T\+A\+TE}}\hypertarget{pidgin__puppet_8h_a3832477baa6d324b5c9f91adc3b80ec0}{}\label{pidgin__puppet_8h_a3832477baa6d324b5c9f91adc3b80ec0}
+Enum that contains status messages for internal use \begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{P\+\_\+\+P\+L\+U\+G\+I\+N\+\_\+\+UP@{P\+\_\+\+P\+L\+U\+G\+I\+N\+\_\+\+UP}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}\index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!P\+\_\+\+P\+L\+U\+G\+I\+N\+\_\+\+UP@{P\+\_\+\+P\+L\+U\+G\+I\+N\+\_\+\+UP}}\item[{\em 
+P\+\_\+\+P\+L\+U\+G\+I\+N\+\_\+\+UP\hypertarget{pidgin__puppet_8h_a3832477baa6d324b5c9f91adc3b80ec0a10353327f9b5240e612f2af4a3ea1cff}{}\label{pidgin__puppet_8h_a3832477baa6d324b5c9f91adc3b80ec0a10353327f9b5240e612f2af4a3ea1cff}
+}]Plugin went up \index{P\+\_\+\+P\+L\+U\+G\+I\+N\+\_\+\+D\+O\+WN@{P\+\_\+\+P\+L\+U\+G\+I\+N\+\_\+\+D\+O\+WN}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}\index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!P\+\_\+\+P\+L\+U\+G\+I\+N\+\_\+\+D\+O\+WN@{P\+\_\+\+P\+L\+U\+G\+I\+N\+\_\+\+D\+O\+WN}}\item[{\em 
+P\+\_\+\+P\+L\+U\+G\+I\+N\+\_\+\+D\+O\+WN\hypertarget{pidgin__puppet_8h_a3832477baa6d324b5c9f91adc3b80ec0a6b401724a68bc78f84f3670d4ebee3fd}{}\label{pidgin__puppet_8h_a3832477baa6d324b5c9f91adc3b80ec0a6b401724a68bc78f84f3670d4ebee3fd}
+}]Plugin went down \index{P\+\_\+\+A\+C\+T\+I\+O\+N\+\_\+\+D\+O\+NE@{P\+\_\+\+A\+C\+T\+I\+O\+N\+\_\+\+D\+O\+NE}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}\index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!P\+\_\+\+A\+C\+T\+I\+O\+N\+\_\+\+D\+O\+NE@{P\+\_\+\+A\+C\+T\+I\+O\+N\+\_\+\+D\+O\+NE}}\item[{\em 
+P\+\_\+\+A\+C\+T\+I\+O\+N\+\_\+\+D\+O\+NE\hypertarget{pidgin__puppet_8h_a3832477baa6d324b5c9f91adc3b80ec0aeca31deae8b2e2be18d856b13de8e675}{}\label{pidgin__puppet_8h_a3832477baa6d324b5c9f91adc3b80ec0aeca31deae8b2e2be18d856b13de8e675}
+}]Action was completed \index{P\+\_\+\+M\+S\+G\+\_\+\+I\+M\+\_\+\+IN@{P\+\_\+\+M\+S\+G\+\_\+\+I\+M\+\_\+\+IN}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}\index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!P\+\_\+\+M\+S\+G\+\_\+\+I\+M\+\_\+\+IN@{P\+\_\+\+M\+S\+G\+\_\+\+I\+M\+\_\+\+IN}}\item[{\em 
+P\+\_\+\+M\+S\+G\+\_\+\+I\+M\+\_\+\+IN\hypertarget{pidgin__puppet_8h_a3832477baa6d324b5c9f91adc3b80ec0acf6349690fb32a825e7cbf0b215aa423}{}\label{pidgin__puppet_8h_a3832477baa6d324b5c9f91adc3b80ec0acf6349690fb32a825e7cbf0b215aa423}
+}]IM received \index{P\+\_\+\+M\+S\+G\+\_\+\+C\+H\+A\+T\+\_\+\+IN@{P\+\_\+\+M\+S\+G\+\_\+\+C\+H\+A\+T\+\_\+\+IN}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}\index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!P\+\_\+\+M\+S\+G\+\_\+\+C\+H\+A\+T\+\_\+\+IN@{P\+\_\+\+M\+S\+G\+\_\+\+C\+H\+A\+T\+\_\+\+IN}}\item[{\em 
+P\+\_\+\+M\+S\+G\+\_\+\+C\+H\+A\+T\+\_\+\+IN\hypertarget{pidgin__puppet_8h_a3832477baa6d324b5c9f91adc3b80ec0a119b735dd9ad64866a75bfbe638f6ad1}{}\label{pidgin__puppet_8h_a3832477baa6d324b5c9f91adc3b80ec0a119b735dd9ad64866a75bfbe638f6ad1}
+}]Chat message received \index{P\+\_\+\+F\+I\+L\+E\+\_\+\+IN@{P\+\_\+\+F\+I\+L\+E\+\_\+\+IN}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}\index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!P\+\_\+\+F\+I\+L\+E\+\_\+\+IN@{P\+\_\+\+F\+I\+L\+E\+\_\+\+IN}}\item[{\em 
+P\+\_\+\+F\+I\+L\+E\+\_\+\+IN\hypertarget{pidgin__puppet_8h_a3832477baa6d324b5c9f91adc3b80ec0a0c03a09567dd2331870f62f19f83dbbd}{}\label{pidgin__puppet_8h_a3832477baa6d324b5c9f91adc3b80ec0a0c03a09567dd2331870f62f19f83dbbd}
+}]File received \index{P\+\_\+\+C\+O\+N\+T\+A\+C\+T\+\_\+\+N\+EW@{P\+\_\+\+C\+O\+N\+T\+A\+C\+T\+\_\+\+N\+EW}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}\index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!P\+\_\+\+C\+O\+N\+T\+A\+C\+T\+\_\+\+N\+EW@{P\+\_\+\+C\+O\+N\+T\+A\+C\+T\+\_\+\+N\+EW}}\item[{\em 
+P\+\_\+\+C\+O\+N\+T\+A\+C\+T\+\_\+\+N\+EW\hypertarget{pidgin__puppet_8h_a3832477baa6d324b5c9f91adc3b80ec0aa5bf5fc363c0be85892fb847dead62b6}{}\label{pidgin__puppet_8h_a3832477baa6d324b5c9f91adc3b80ec0aa5bf5fc363c0be85892fb847dead62b6}
+}]Authorization request received \index{P\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+D\+O\+WN@{P\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+D\+O\+WN}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}\index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!P\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+D\+O\+WN@{P\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+D\+O\+WN}}\item[{\em 
+P\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+D\+O\+WN\hypertarget{pidgin__puppet_8h_a3832477baa6d324b5c9f91adc3b80ec0a3f2267c14430fe188fcec66ca40fddb8}{}\label{pidgin__puppet_8h_a3832477baa6d324b5c9f91adc3b80ec0a3f2267c14430fe188fcec66ca40fddb8}
+}]Server went down \index{P\+\_\+\+S\+I\+G\+N\+\_\+\+ON@{P\+\_\+\+S\+I\+G\+N\+\_\+\+ON}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}\index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!P\+\_\+\+S\+I\+G\+N\+\_\+\+ON@{P\+\_\+\+S\+I\+G\+N\+\_\+\+ON}}\item[{\em 
+P\+\_\+\+S\+I\+G\+N\+\_\+\+ON\hypertarget{pidgin__puppet_8h_a3832477baa6d324b5c9f91adc3b80ec0a3e343ce6b7e7ec3d1045f0f986b45002}{}\label{pidgin__puppet_8h_a3832477baa6d324b5c9f91adc3b80ec0a3e343ce6b7e7ec3d1045f0f986b45002}
+}]Self signed on \index{P\+\_\+\+B\+U\+D\+D\+Y\+\_\+\+S\+I\+G\+N\+\_\+\+ON@{P\+\_\+\+B\+U\+D\+D\+Y\+\_\+\+S\+I\+G\+N\+\_\+\+ON}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}\index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!P\+\_\+\+B\+U\+D\+D\+Y\+\_\+\+S\+I\+G\+N\+\_\+\+ON@{P\+\_\+\+B\+U\+D\+D\+Y\+\_\+\+S\+I\+G\+N\+\_\+\+ON}}\item[{\em 
+P\+\_\+\+B\+U\+D\+D\+Y\+\_\+\+S\+I\+G\+N\+\_\+\+ON\hypertarget{pidgin__puppet_8h_a3832477baa6d324b5c9f91adc3b80ec0a18eac48c0c8bdded54eebaef3a7c7a98}{}\label{pidgin__puppet_8h_a3832477baa6d324b5c9f91adc3b80ec0a18eac48c0c8bdded54eebaef3a7c7a98}
+}]Buddy went online \index{P\+\_\+\+B\+U\+D\+D\+Y\+\_\+\+S\+I\+G\+N\+\_\+\+O\+FF@{P\+\_\+\+B\+U\+D\+D\+Y\+\_\+\+S\+I\+G\+N\+\_\+\+O\+FF}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}\index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!P\+\_\+\+B\+U\+D\+D\+Y\+\_\+\+S\+I\+G\+N\+\_\+\+O\+FF@{P\+\_\+\+B\+U\+D\+D\+Y\+\_\+\+S\+I\+G\+N\+\_\+\+O\+FF}}\item[{\em 
+P\+\_\+\+B\+U\+D\+D\+Y\+\_\+\+S\+I\+G\+N\+\_\+\+O\+FF\hypertarget{pidgin__puppet_8h_a3832477baa6d324b5c9f91adc3b80ec0adfe823efaa48cb8270acd4232edef299}{}\label{pidgin__puppet_8h_a3832477baa6d324b5c9f91adc3b80ec0adfe823efaa48cb8270acd4232edef299}
+}]Buddy went offline \end{description}
+\end{Desc}
+
+
+\subsection{Function Documentation}
+\index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!account\+\_\+authorization\+\_\+requested@{account\+\_\+authorization\+\_\+requested}}
+\index{account\+\_\+authorization\+\_\+requested@{account\+\_\+authorization\+\_\+requested}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}
+\subsubsection[{\texorpdfstring{account\+\_\+authorization\+\_\+requested(\+Purple\+Account $\ast$account, const char $\ast$user)}{account_authorization_requested(PurpleAccount *account, const char *user)}}]{\setlength{\rightskip}{0pt plus 5cm}int account\+\_\+authorization\+\_\+requested (
+\begin{DoxyParamCaption}
+\item[{Purple\+Account $\ast$}]{account, }
+\item[{const char $\ast$}]{user}
+\end{DoxyParamCaption}
+)}\hypertarget{pidgin__puppet_8h_a545f941243d29a9e3507e643acc9bf96}{}\label{pidgin__puppet_8h_a545f941243d29a9e3507e643acc9bf96}
+Callback for Authorization Requests 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em account} & Pointer to account, that received the authorization request \\
+\hline
+\mbox{\tt in}  & {\em user} & Pointer to buddy name, that send the authorization request \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 for accept, -\/1 for deny (default\+: accept) 
+\end{DoxyReturn}
+\index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!add\+Buddy@{add\+Buddy}}
+\index{add\+Buddy@{add\+Buddy}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}
+\subsubsection[{\texorpdfstring{add\+Buddy(const char $\ast$buddyname)}{addBuddy(const char *buddyname)}}]{\setlength{\rightskip}{0pt plus 5cm}int add\+Buddy (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{buddyname}
+\end{DoxyParamCaption}
+)}\hypertarget{pidgin__puppet_8h_ad5e4be07ef48d4db89e0607021ff0bb3}{}\label{pidgin__puppet_8h_ad5e4be07ef48d4db89e0607021ff0bb3}
+Add a buddy to current account and send authorization request~\newline
+ May return\+: \hyperlink{pidgin__puppet_8h_a36a659884b6cfd0057f770189ef59173a4a628dd3af8c6dd16738f5a00dedbe70}{P\+\_\+\+OK}, \hyperlink{pidgin__puppet_8h_a36a659884b6cfd0057f770189ef59173ac788601a9f8f3470eff3227793aec589}{P\+\_\+\+N\+O\+\_\+\+A\+C\+C\+O\+U\+NT} 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em buddyname} & Pointer to buddy name that will be added \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Status code resulting from executed operation 
+\end{DoxyReturn}
+\index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!buddy\+\_\+signed\+\_\+off@{buddy\+\_\+signed\+\_\+off}}
+\index{buddy\+\_\+signed\+\_\+off@{buddy\+\_\+signed\+\_\+off}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}
+\subsubsection[{\texorpdfstring{buddy\+\_\+signed\+\_\+off(\+Purple\+Buddy $\ast$buddy)}{buddy_signed_off(PurpleBuddy *buddy)}}]{\setlength{\rightskip}{0pt plus 5cm}void buddy\+\_\+signed\+\_\+off (
+\begin{DoxyParamCaption}
+\item[{Purple\+Buddy $\ast$}]{buddy}
+\end{DoxyParamCaption}
+)}\hypertarget{pidgin__puppet_8h_a1dbd5aceeaa5d76b4ae14e3dcb18d649}{}\label{pidgin__puppet_8h_a1dbd5aceeaa5d76b4ae14e3dcb18d649}
+Callback for buddy sign off 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em buddy} & Pointer to the name of a signed off buddy \\
+\hline
+\end{DoxyParams}
+\index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!buddy\+\_\+signed\+\_\+on@{buddy\+\_\+signed\+\_\+on}}
+\index{buddy\+\_\+signed\+\_\+on@{buddy\+\_\+signed\+\_\+on}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}
+\subsubsection[{\texorpdfstring{buddy\+\_\+signed\+\_\+on(\+Purple\+Buddy $\ast$buddy)}{buddy_signed_on(PurpleBuddy *buddy)}}]{\setlength{\rightskip}{0pt plus 5cm}void buddy\+\_\+signed\+\_\+on (
+\begin{DoxyParamCaption}
+\item[{Purple\+Buddy $\ast$}]{buddy}
+\end{DoxyParamCaption}
+)}\hypertarget{pidgin__puppet_8h_a83a88050267b4ec123895f48c3bb753e}{}\label{pidgin__puppet_8h_a83a88050267b4ec123895f48c3bb753e}
+Callback for buddy sign on 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em buddy} & Pointer to the name of a signed on buddy \\
+\hline
+\end{DoxyParams}
+\index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!cb\+Send\+Im\+To\+Buddy@{cb\+Send\+Im\+To\+Buddy}}
+\index{cb\+Send\+Im\+To\+Buddy@{cb\+Send\+Im\+To\+Buddy}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}
+\subsubsection[{\texorpdfstring{cb\+Send\+Im\+To\+Buddy(void $\ast$cbmsg, void $\ast$data)}{cbSendImToBuddy(void *cbmsg, void *data)}}]{\setlength{\rightskip}{0pt plus 5cm}void cb\+Send\+Im\+To\+Buddy (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{cbmsg, }
+\item[{void $\ast$}]{data}
+\end{DoxyParamCaption}
+)}\hypertarget{pidgin__puppet_8h_a295f5fafa09b6153612737ee8992c463}{}\label{pidgin__puppet_8h_a295f5fafa09b6153612737ee8992c463}
+obsolete callback to send a message 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em cbmsg} & Pointer to a \hyperlink{structcb__message}{cb\+\_\+message} struct \\
+\hline
+\mbox{\tt in}  & {\em data} & Internal Pointer to additional data, unused \\
+\hline
+\end{DoxyParams}
+\index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!change\+Online\+State@{change\+Online\+State}}
+\index{change\+Online\+State@{change\+Online\+State}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}
+\subsubsection[{\texorpdfstring{change\+Online\+State(gboolean online)}{changeOnlineState(gboolean online)}}]{\setlength{\rightskip}{0pt plus 5cm}int change\+Online\+State (
+\begin{DoxyParamCaption}
+\item[{gboolean}]{online}
+\end{DoxyParamCaption}
+)}\hypertarget{pidgin__puppet_8h_a8a025b51466522fb7713d03f680b5adc}{}\label{pidgin__puppet_8h_a8a025b51466522fb7713d03f680b5adc}
+Sets state to on-\//offline~\newline
+ May return\+: \hyperlink{pidgin__puppet_8h_a36a659884b6cfd0057f770189ef59173a4a628dd3af8c6dd16738f5a00dedbe70}{P\+\_\+\+OK}, \hyperlink{pidgin__puppet_8h_a36a659884b6cfd0057f770189ef59173ac788601a9f8f3470eff3227793aec589}{P\+\_\+\+N\+O\+\_\+\+A\+C\+C\+O\+U\+NT} 
+\begin{DoxyParams}{Parameters}
+{\em online} & True for inline, False for Offline \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Status code resulting from executed operation 
+\end{DoxyReturn}
+\index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!demultiplexmessage@{demultiplexmessage}}
+\index{demultiplexmessage@{demultiplexmessage}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}
+\subsubsection[{\texorpdfstring{demultiplexmessage(void)}{demultiplexmessage(void)}}]{\setlength{\rightskip}{0pt plus 5cm}void demultiplexmessage (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{pidgin__puppet_8h_af6a04c95e7d374fa7d5872f0ec39fee9}{}\label{pidgin__puppet_8h_af6a04c95e7d374fa7d5872f0ec39fee9}
+Deconstructs a message and calls the appropriate command~\newline
+ Notify agent of success of the received and processed command \index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!destroysocket@{destroysocket}}
+\index{destroysocket@{destroysocket}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}
+\subsubsection[{\texorpdfstring{destroysocket(void)}{destroysocket(void)}}]{\setlength{\rightskip}{0pt plus 5cm}void destroysocket (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{pidgin__puppet_8h_a53447863ccd8135651b96397aaa8f884}{}\label{pidgin__puppet_8h_a53447863ccd8135651b96397aaa8f884}
+Close the socket \index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!file\+\_\+recv\+\_\+accept@{file\+\_\+recv\+\_\+accept}}
+\index{file\+\_\+recv\+\_\+accept@{file\+\_\+recv\+\_\+accept}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}
+\subsubsection[{\texorpdfstring{file\+\_\+recv\+\_\+accept(\+Purple\+Xfer $\ast$xfer, gpointer data)}{file_recv_accept(PurpleXfer *xfer, gpointer data)}}]{\setlength{\rightskip}{0pt plus 5cm}void file\+\_\+recv\+\_\+accept (
+\begin{DoxyParamCaption}
+\item[{Purple\+Xfer $\ast$}]{xfer, }
+\item[{gpointer}]{data}
+\end{DoxyParamCaption}
+)}\hypertarget{pidgin__puppet_8h_ab179cf1c0a216640b7e20053002c2007}{}\label{pidgin__puppet_8h_ab179cf1c0a216640b7e20053002c2007}
+Callback for incoming file accepted 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em xfer} & Pointer to a Purple\+Xfer object \\
+\hline
+\mbox{\tt in}  & {\em data} & Additional data \\
+\hline
+\end{DoxyParams}
+\index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!file\+\_\+recv\+\_\+complete@{file\+\_\+recv\+\_\+complete}}
+\index{file\+\_\+recv\+\_\+complete@{file\+\_\+recv\+\_\+complete}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}
+\subsubsection[{\texorpdfstring{file\+\_\+recv\+\_\+complete(\+Purple\+Xfer $\ast$xfer, gpointer data)}{file_recv_complete(PurpleXfer *xfer, gpointer data)}}]{\setlength{\rightskip}{0pt plus 5cm}void file\+\_\+recv\+\_\+complete (
+\begin{DoxyParamCaption}
+\item[{Purple\+Xfer $\ast$}]{xfer, }
+\item[{gpointer}]{data}
+\end{DoxyParamCaption}
+)}\hypertarget{pidgin__puppet_8h_a1882c89b019dfb3227931e5d827d4e04}{}\label{pidgin__puppet_8h_a1882c89b019dfb3227931e5d827d4e04}
+Callback for incoming file transfer completed 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em xfer} & Pointer to a Purple\+Xfer object \\
+\hline
+\mbox{\tt in}  & {\em data} & Additional data \\
+\hline
+\end{DoxyParams}
+\index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!file\+\_\+recv\+\_\+request@{file\+\_\+recv\+\_\+request}}
+\index{file\+\_\+recv\+\_\+request@{file\+\_\+recv\+\_\+request}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}
+\subsubsection[{\texorpdfstring{file\+\_\+recv\+\_\+request(\+Purple\+Xfer $\ast$xfer, gpointer data)}{file_recv_request(PurpleXfer *xfer, gpointer data)}}]{\setlength{\rightskip}{0pt plus 5cm}void file\+\_\+recv\+\_\+request (
+\begin{DoxyParamCaption}
+\item[{Purple\+Xfer $\ast$}]{xfer, }
+\item[{gpointer}]{data}
+\end{DoxyParamCaption}
+)}\hypertarget{pidgin__puppet_8h_aa02bbc6fea0ec396fcceb47875379aad}{}\label{pidgin__puppet_8h_aa02bbc6fea0ec396fcceb47875379aad}
+Callback for incoming file 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em xfer} & Pointer to a Purple\+Xfer object \\
+\hline
+\mbox{\tt in}  & {\em data} & Additional data \\
+\hline
+\end{DoxyParams}
+\index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!get\+All\+Accounts@{get\+All\+Accounts}}
+\index{get\+All\+Accounts@{get\+All\+Accounts}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}
+\subsubsection[{\texorpdfstring{get\+All\+Accounts(\+G\+List $\ast$$\ast$list, unsigned int $\ast$size)}{getAllAccounts(GList **list, unsigned int *size)}}]{\setlength{\rightskip}{0pt plus 5cm}int get\+All\+Accounts (
+\begin{DoxyParamCaption}
+\item[{G\+List $\ast$$\ast$}]{list, }
+\item[{unsigned int $\ast$}]{size}
+\end{DoxyParamCaption}
+)}\hypertarget{pidgin__puppet_8h_aaad583d6006338dfe07f493c66eba9db}{}\label{pidgin__puppet_8h_aaad583d6006338dfe07f493c66eba9db}
+Gets a list of all registered accounts~\newline
+ May return\+: \hyperlink{pidgin__puppet_8h_a36a659884b6cfd0057f770189ef59173a4a628dd3af8c6dd16738f5a00dedbe70}{P\+\_\+\+OK}, \hyperlink{pidgin__puppet_8h_a36a659884b6cfd0057f770189ef59173a498bccebf9532f98bf70297adca5bf57}{P\+\_\+\+B\+A\+D\+\_\+\+P\+TR}, \hyperlink{pidgin__puppet_8h_a36a659884b6cfd0057f770189ef59173ab5a2589cbeabd51f49a656804dca4e41}{P\+\_\+\+N\+O\+\_\+\+D\+A\+TA} 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em list} & Pointer to list reference, will be initialized by function \\
+\hline
+\mbox{\tt in}  & {\em size} & Pointer to size of list, that will be returned \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Status code resulting from executed operation 
+\end{DoxyReturn}
+\begin{DoxyRefDesc}{Bug}
+\item[\hyperlink{bug__bug000001}{Bug}]This function is untested. \end{DoxyRefDesc}
+\index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!get\+Contact\+List@{get\+Contact\+List}}
+\index{get\+Contact\+List@{get\+Contact\+List}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}
+\subsubsection[{\texorpdfstring{get\+Contact\+List(\+G\+S\+List $\ast$$\ast$list, unsigned int $\ast$size)}{getContactList(GSList **list, unsigned int *size)}}]{\setlength{\rightskip}{0pt plus 5cm}int get\+Contact\+List (
+\begin{DoxyParamCaption}
+\item[{G\+S\+List $\ast$$\ast$}]{list, }
+\item[{unsigned int $\ast$}]{size}
+\end{DoxyParamCaption}
+)}\hypertarget{pidgin__puppet_8h_ae1c02665c8ecae17068ecfebd43adc03}{}\label{pidgin__puppet_8h_ae1c02665c8ecae17068ecfebd43adc03}
+Returns all buddies in selected account, returned list needs to be freed with g\+\_\+slist\+\_\+free if operation succeeded~\newline
+ May return\+: \hyperlink{pidgin__puppet_8h_a36a659884b6cfd0057f770189ef59173a4a628dd3af8c6dd16738f5a00dedbe70}{P\+\_\+\+OK}, \hyperlink{pidgin__puppet_8h_a36a659884b6cfd0057f770189ef59173a498bccebf9532f98bf70297adca5bf57}{P\+\_\+\+B\+A\+D\+\_\+\+P\+TR}, \hyperlink{pidgin__puppet_8h_a36a659884b6cfd0057f770189ef59173ab5a2589cbeabd51f49a656804dca4e41}{P\+\_\+\+N\+O\+\_\+\+D\+A\+TA} 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em list} & Pointer to list reference, will be initialized by function, needs to be freed with g\+\_\+slist\+\_\+free if operation succeeded \\
+\hline
+\mbox{\tt in}  & {\em size} & Pointer to size of list, that will be returned \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Status code resulting from executed operation 
+\end{DoxyReturn}
+\index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!headertohost@{headertohost}}
+\index{headertohost@{headertohost}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}
+\subsubsection[{\texorpdfstring{headertohost(char $\ast$buf)}{headertohost(char *buf)}}]{\setlength{\rightskip}{0pt plus 5cm}void headertohost (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{buf}
+\end{DoxyParamCaption}
+)}\hypertarget{pidgin__puppet_8h_aca7292a1fb03d38ab1943a790b6d494b}{}\label{pidgin__puppet_8h_aca7292a1fb03d38ab1943a790b6d494b}
+Transform header to host byte-\/order 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em buf} & Pointer to header \\
+\hline
+\end{DoxyParams}
+\index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!headertonet@{headertonet}}
+\index{headertonet@{headertonet}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}
+\subsubsection[{\texorpdfstring{headertonet(char $\ast$buf)}{headertonet(char *buf)}}]{\setlength{\rightskip}{0pt plus 5cm}void headertonet (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{buf}
+\end{DoxyParamCaption}
+)}\hypertarget{pidgin__puppet_8h_af580db12de271f097757981388551a4f}{}\label{pidgin__puppet_8h_af580db12de271f097757981388551a4f}
+Transform header to network byte-\/order 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em buf} & Pointer to header \\
+\hline
+\end{DoxyParams}
+\index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!is\+Buddy\+Online@{is\+Buddy\+Online}}
+\index{is\+Buddy\+Online@{is\+Buddy\+Online}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}
+\subsubsection[{\texorpdfstring{is\+Buddy\+Online(const char $\ast$buddyname, int $\ast$retval)}{isBuddyOnline(const char *buddyname, int *retval)}}]{\setlength{\rightskip}{0pt plus 5cm}int is\+Buddy\+Online (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{buddyname, }
+\item[{int $\ast$}]{retval}
+\end{DoxyParamCaption}
+)}\hypertarget{pidgin__puppet_8h_acef9c5f3e76e89cb0ba7943d017d160e}{}\label{pidgin__puppet_8h_acef9c5f3e76e89cb0ba7943d017d160e}
+Check if buddy is online, untested~\newline
+ May return\+: \hyperlink{pidgin__puppet_8h_a36a659884b6cfd0057f770189ef59173a4a628dd3af8c6dd16738f5a00dedbe70}{P\+\_\+\+OK}, \hyperlink{pidgin__puppet_8h_a36a659884b6cfd0057f770189ef59173a498bccebf9532f98bf70297adca5bf57}{P\+\_\+\+B\+A\+D\+\_\+\+P\+TR}, \hyperlink{pidgin__puppet_8h_a36a659884b6cfd0057f770189ef59173ac788601a9f8f3470eff3227793aec589}{P\+\_\+\+N\+O\+\_\+\+A\+C\+C\+O\+U\+NT}, \hyperlink{pidgin__puppet_8h_a36a659884b6cfd0057f770189ef59173a2a13d86f973aa833cd968d872c9b5a3b}{P\+\_\+\+N\+O\+\_\+\+M\+A\+T\+CH} 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em buddyname} & Name of buddy to check for state \\
+\hline
+\mbox{\tt in}  & {\em retval} & Pointer to return value to write to (gboolean) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Status code resulting from executed operation 
+\end{DoxyReturn}
+\index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!listener\+Worker@{listener\+Worker}}
+\index{listener\+Worker@{listener\+Worker}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}
+\subsubsection[{\texorpdfstring{listener\+Worker(\+L\+P\+V\+O\+I\+D data)}{listenerWorker(LPVOID data)}}]{\setlength{\rightskip}{0pt plus 5cm}void \+\_\+\+\_\+cdecl listener\+Worker (
+\begin{DoxyParamCaption}
+\item[{L\+P\+V\+O\+ID}]{data}
+\end{DoxyParamCaption}
+)}\hypertarget{pidgin__puppet_8h_a3e07c7b90b2ffe72aae42f03779ec3ec}{}\label{pidgin__puppet_8h_a3e07c7b90b2ffe72aae42f03779ec3ec}
+Thread to handle network communication with agent 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em data} & Internal pointer to additional data, unused \\
+\hline
+\end{DoxyParams}
+\index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!listensocket@{listensocket}}
+\index{listensocket@{listensocket}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}
+\subsubsection[{\texorpdfstring{listensocket(void)}{listensocket(void)}}]{\setlength{\rightskip}{0pt plus 5cm}void listensocket (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{pidgin__puppet_8h_a00638eb0ebbce4393aae224d81c13d17}{}\label{pidgin__puppet_8h_a00638eb0ebbce4393aae224d81c13d17}
+Checks if message arrives and stores it to buffer \index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!lock\+Send@{lock\+Send}}
+\index{lock\+Send@{lock\+Send}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}
+\subsubsection[{\texorpdfstring{lock\+Send(void)}{lockSend(void)}}]{\setlength{\rightskip}{0pt plus 5cm}void lock\+Send (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{pidgin__puppet_8h_a34bf4649765aac25a2426fbb23405808}{}\label{pidgin__puppet_8h_a34bf4649765aac25a2426fbb23405808}
+Lock send buffer access \index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!notify\+Agent@{notify\+Agent}}
+\index{notify\+Agent@{notify\+Agent}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}
+\subsubsection[{\texorpdfstring{notify\+Agent(\+P\+I\+D\+G\+I\+N\+\_\+\+P\+U\+P\+P\+E\+T\+\_\+\+S\+T\+A\+T\+E state, void $\ast$data)}{notifyAgent(PIDGIN_PUPPET_STATE state, void *data)}}]{\setlength{\rightskip}{0pt plus 5cm}int notify\+Agent (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+I\+D\+G\+I\+N\+\_\+\+P\+U\+P\+P\+E\+T\+\_\+\+S\+T\+A\+TE}}]{state, }
+\item[{void $\ast$}]{data}
+\end{DoxyParamCaption}
+)}\hypertarget{pidgin__puppet_8h_a761a04242e08337a7ff144cf408671de}{}\label{pidgin__puppet_8h_a761a04242e08337a7ff144cf408671de}
+Notify Agent for state change~\newline
+ May return\+: \hyperlink{pidgin__puppet_8h_a36a659884b6cfd0057f770189ef59173a4a628dd3af8c6dd16738f5a00dedbe70}{P\+\_\+\+OK} 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em state} & Internal state code to notify for \\
+\hline
+\mbox{\tt in}  & {\em data} & Pointer to data used in switch-\/case statement \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Status code resulting from executed operation 
+\end{DoxyReturn}
+\index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!offsetentrytoptr@{offsetentrytoptr}}
+\index{offsetentrytoptr@{offsetentrytoptr}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}
+\subsubsection[{\texorpdfstring{offsetentrytoptr(char $\ast$bufptr, unsigned int num, unsigned int $\ast$out\+\_\+offset)}{offsetentrytoptr(char *bufptr, unsigned int num, unsigned int *out_offset)}}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ offsetentrytoptr (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{bufptr, }
+\item[{unsigned int}]{num, }
+\item[{unsigned int $\ast$}]{out\+\_\+offset}
+\end{DoxyParamCaption}
+)}\hypertarget{pidgin__puppet_8h_aabb2c8cec14e2fa018a9cd8c00ab64ff}{}\label{pidgin__puppet_8h_aabb2c8cec14e2fa018a9cd8c00ab64ff}
+Returns pointer to a receive buffer entry 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em bufptr} & Pointer to a header \\
+\hline
+\mbox{\tt in}  & {\em num} & Entry no., starts at 0 \\
+\hline
+\mbox{\tt out}  & {\em out\+\_\+offset} & Pointer to the offset entry, optional \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the string data requested 
+\end{DoxyReturn}
+\index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!opensocket@{opensocket}}
+\index{opensocket@{opensocket}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}
+\subsubsection[{\texorpdfstring{opensocket(void)}{opensocket(void)}}]{\setlength{\rightskip}{0pt plus 5cm}void opensocket (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{pidgin__puppet_8h_a2ededcf48792ab007abcd68c863b35f0}{}\label{pidgin__puppet_8h_a2ededcf48792ab007abcd68c863b35f0}
+Establish connection to agent \index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!printbufferedmessage@{printbufferedmessage}}
+\index{printbufferedmessage@{printbufferedmessage}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}
+\subsubsection[{\texorpdfstring{printbufferedmessage(char $\ast$buf)}{printbufferedmessage(char *buf)}}]{\setlength{\rightskip}{0pt plus 5cm}void printbufferedmessage (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{buf}
+\end{DoxyParamCaption}
+)}\hypertarget{pidgin__puppet_8h_a7b8bdc0abbd2d617a34ee9b2eaeecb5e}{}\label{pidgin__puppet_8h_a7b8bdc0abbd2d617a34ee9b2eaeecb5e}
+Prints a packet Packets needs to be in host byte-\/order 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em buf} & Pointer to send or receive buffer \\
+\hline
+\end{DoxyParams}
+\index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!received\+Chat\+Msg\+Callback@{received\+Chat\+Msg\+Callback}}
+\index{received\+Chat\+Msg\+Callback@{received\+Chat\+Msg\+Callback}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}
+\subsubsection[{\texorpdfstring{received\+Chat\+Msg\+Callback(\+Purple\+Account $\ast$account, char $\ast$sender, char $\ast$message, Purple\+Conversation $\ast$conv, Purple\+Message\+Flags flags)}{receivedChatMsgCallback(PurpleAccount *account, char *sender, char *message, PurpleConversation *conv, PurpleMessageFlags flags)}}]{\setlength{\rightskip}{0pt plus 5cm}void received\+Chat\+Msg\+Callback (
+\begin{DoxyParamCaption}
+\item[{Purple\+Account $\ast$}]{account, }
+\item[{char $\ast$}]{sender, }
+\item[{char $\ast$}]{message, }
+\item[{Purple\+Conversation $\ast$}]{conv, }
+\item[{Purple\+Message\+Flags}]{flags}
+\end{DoxyParamCaption}
+)}\hypertarget{pidgin__puppet_8h_af7e46e0f79137458a260b0bd0a62aee6}{}\label{pidgin__puppet_8h_af7e46e0f79137458a260b0bd0a62aee6}
+Callback for Chat Messages 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em account} & Pointer to account, that received the chat message \\
+\hline
+\mbox{\tt in}  & {\em sender} & Pointer to buddy name, that received the chat message \\
+\hline
+\mbox{\tt in}  & {\em message} & Pointer to the actual message \\
+\hline
+\mbox{\tt in}  & {\em conv} & Pointer to the conversation object \\
+\hline
+\mbox{\tt in}  & {\em flags} & Flags of the received message \\
+\hline
+\end{DoxyParams}
+\index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!received\+Im\+Msg\+Callback@{received\+Im\+Msg\+Callback}}
+\index{received\+Im\+Msg\+Callback@{received\+Im\+Msg\+Callback}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}
+\subsubsection[{\texorpdfstring{received\+Im\+Msg\+Callback(\+Purple\+Account $\ast$account, char $\ast$sender, char $\ast$message, Purple\+Conversation $\ast$conv, Purple\+Message\+Flags flags)}{receivedImMsgCallback(PurpleAccount *account, char *sender, char *message, PurpleConversation *conv, PurpleMessageFlags flags)}}]{\setlength{\rightskip}{0pt plus 5cm}void received\+Im\+Msg\+Callback (
+\begin{DoxyParamCaption}
+\item[{Purple\+Account $\ast$}]{account, }
+\item[{char $\ast$}]{sender, }
+\item[{char $\ast$}]{message, }
+\item[{Purple\+Conversation $\ast$}]{conv, }
+\item[{Purple\+Message\+Flags}]{flags}
+\end{DoxyParamCaption}
+)}\hypertarget{pidgin__puppet_8h_a67688ef8b02a69206eab0d61cf0260f3}{}\label{pidgin__puppet_8h_a67688ef8b02a69206eab0d61cf0260f3}
+Callback for Instant Messages 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em account} & Pointer to account, that received the IM \\
+\hline
+\mbox{\tt in}  & {\em sender} & Pointer to buddy name, that received the IM \\
+\hline
+\mbox{\tt in}  & {\em message} & Pointer to the actual message \\
+\hline
+\mbox{\tt in}  & {\em conv} & Pointer to the conversation object \\
+\hline
+\mbox{\tt in}  & {\em flags} & Flags of the received message \\
+\hline
+\end{DoxyParams}
+\index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!select\+Account@{select\+Account}}
+\index{select\+Account@{select\+Account}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}
+\subsubsection[{\texorpdfstring{select\+Account(const char $\ast$accountname, const char $\ast$prot\+\_\+id)}{selectAccount(const char *accountname, const char *prot_id)}}]{\setlength{\rightskip}{0pt plus 5cm}int select\+Account (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{accountname, }
+\item[{const char $\ast$}]{prot\+\_\+id}
+\end{DoxyParamCaption}
+)}\hypertarget{pidgin__puppet_8h_af33f059a78ae2737eea32b4748ab0ed4}{}\label{pidgin__puppet_8h_af33f059a78ae2737eea32b4748ab0ed4}
+Switch to a specific account for further actions (\char`\"{}user@server/resource\char`\"{}), if prot\+\_\+id == N\+U\+LL use xmpp~\newline
+ Needs to be called before every thing else~\newline
+ If not, most operations will fail with \hyperlink{pidgin__puppet_8h_a36a659884b6cfd0057f770189ef59173ac788601a9f8f3470eff3227793aec589}{P\+\_\+\+N\+O\+\_\+\+A\+C\+C\+O\+U\+NT~\newline
+} May return\+: \hyperlink{pidgin__puppet_8h_a36a659884b6cfd0057f770189ef59173a4a628dd3af8c6dd16738f5a00dedbe70}{P\+\_\+\+OK}, \hyperlink{pidgin__puppet_8h_a36a659884b6cfd0057f770189ef59173a2a13d86f973aa833cd968d872c9b5a3b}{P\+\_\+\+N\+O\+\_\+\+M\+A\+T\+CH} 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em accountname} & Pointer to account name string (\char`\"{}user@server/resource\char`\"{} for xmpp) \\
+\hline
+\mbox{\tt in}  & {\em prot\+\_\+id} & Pointer to libpurple protocol id string, optional, xmpp is default \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Status code resulting from executed operation 
+\end{DoxyReturn}
+\index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!sendgetinitialbytepos@{sendgetinitialbytepos}}
+\index{sendgetinitialbytepos@{sendgetinitialbytepos}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}
+\subsubsection[{\texorpdfstring{sendgetinitialbytepos(unsigned int numofargs)}{sendgetinitialbytepos(unsigned int numofargs)}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int sendgetinitialbytepos (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{numofargs}
+\end{DoxyParamCaption}
+)}\hypertarget{pidgin__puppet_8h_af906b471a9b10cf5ed852c9e594013a4}{}\label{pidgin__puppet_8h_af906b471a9b10cf5ed852c9e594013a4}
+Returns the offset to the first byte after header 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em numofargs} & Number of arguments to reserve space for \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Number of reserved bytes including header 
+\end{DoxyReturn}
+\index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!send\+Im\+To\+Buddy\+Unsafe@{send\+Im\+To\+Buddy\+Unsafe}}
+\index{send\+Im\+To\+Buddy\+Unsafe@{send\+Im\+To\+Buddy\+Unsafe}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}
+\subsubsection[{\texorpdfstring{send\+Im\+To\+Buddy\+Unsafe(const char $\ast$buddy, const char $\ast$msg)}{sendImToBuddyUnsafe(const char *buddy, const char *msg)}}]{\setlength{\rightskip}{0pt plus 5cm}int send\+Im\+To\+Buddy\+Unsafe (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{buddy, }
+\item[{const char $\ast$}]{msg}
+\end{DoxyParamCaption}
+)}\hypertarget{pidgin__puppet_8h_a97c100abe7b2a1b4008cd65593b45b3f}{}\label{pidgin__puppet_8h_a97c100abe7b2a1b4008cd65593b45b3f}
+Send Message to buddy using Instant Messaging~\newline
+ May return\+: \hyperlink{pidgin__puppet_8h_a36a659884b6cfd0057f770189ef59173a4a628dd3af8c6dd16738f5a00dedbe70}{P\+\_\+\+OK}, \hyperlink{pidgin__puppet_8h_a36a659884b6cfd0057f770189ef59173a498bccebf9532f98bf70297adca5bf57}{P\+\_\+\+B\+A\+D\+\_\+\+P\+TR}, \hyperlink{pidgin__puppet_8h_a36a659884b6cfd0057f770189ef59173a2a13d86f973aa833cd968d872c9b5a3b}{P\+\_\+\+N\+O\+\_\+\+M\+A\+T\+CH} 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em buddy} & Pointer to buddy name \\
+\hline
+\mbox{\tt in}  & {\em msg} & Pointer to message that will be send to buddy \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Status code resulting from executed operation 
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+Should only be called from main thread 
+\end{DoxyWarning}
+\index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!send\+Msg\+To\+Buddy\+Unsafe@{send\+Msg\+To\+Buddy\+Unsafe}}
+\index{send\+Msg\+To\+Buddy\+Unsafe@{send\+Msg\+To\+Buddy\+Unsafe}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}
+\subsubsection[{\texorpdfstring{send\+Msg\+To\+Buddy\+Unsafe(const char $\ast$buddy, const char $\ast$msg)}{sendMsgToBuddyUnsafe(const char *buddy, const char *msg)}}]{\setlength{\rightskip}{0pt plus 5cm}int send\+Msg\+To\+Buddy\+Unsafe (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{buddy, }
+\item[{const char $\ast$}]{msg}
+\end{DoxyParamCaption}
+)}\hypertarget{pidgin__puppet_8h_a83e303aa7d2cdc7936ce8b39308c4616}{}\label{pidgin__puppet_8h_a83e303aa7d2cdc7936ce8b39308c4616}
+Send Message to buddy using Chat Messages~\newline
+ May return\+: \hyperlink{pidgin__puppet_8h_a36a659884b6cfd0057f770189ef59173a4a628dd3af8c6dd16738f5a00dedbe70}{P\+\_\+\+OK} 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em buddy} & Pointer to buddy name \\
+\hline
+\mbox{\tt in}  & {\em msg} & Pointer to message that will be send to buddy \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Status code resulting from executed operation 
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+Should only be called from main thread 
+\end{DoxyWarning}
+\begin{DoxyRefDesc}{Bug}
+\item[\hyperlink{bug__bug000002}{Bug}]This function is not implemented. \end{DoxyRefDesc}
+\index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!sendpackstatus@{sendpackstatus}}
+\index{sendpackstatus@{sendpackstatus}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}
+\subsubsection[{\texorpdfstring{sendpackstatus(\+P\+I\+D\+G\+I\+N\+\_\+\+P\+U\+P\+P\+E\+T\+\_\+\+R\+E\+T\+V\+A\+L rval, unsigned int $\ast$argnum, unsigned int $\ast$bytecnt, amh $\ast$header)}{sendpackstatus(PIDGIN_PUPPET_RETVAL rval, unsigned int *argnum, unsigned int *bytecnt, amh *header)}}]{\setlength{\rightskip}{0pt plus 5cm}void sendpackstatus (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+I\+D\+G\+I\+N\+\_\+\+P\+U\+P\+P\+E\+T\+\_\+\+R\+E\+T\+V\+AL}}]{rval, }
+\item[{unsigned int $\ast$}]{argnum, }
+\item[{unsigned int $\ast$}]{bytecnt, }
+\item[{{\bf amh} $\ast$}]{header}
+\end{DoxyParamCaption}
+)}\hypertarget{pidgin__puppet_8h_a6be49dbace2e34711f917582509b4ed1}{}\label{pidgin__puppet_8h_a6be49dbace2e34711f917582509b4ed1}
+Packs return status to header 
+\begin{DoxyParams}{Parameters}
+{\em rval} & The status to be added \\
+\hline
+{\em argnum} & Pointer to argument number \\
+\hline
+{\em bytecnt} & Pointer to current byte count \\
+\hline
+{\em header} & Pointer to the header \\
+\hline
+\end{DoxyParams}
+\begin{DoxyWarning}{Warning}
+On \hyperlink{pidgin__puppet_8h_a36a659884b6cfd0057f770189ef59173a4a628dd3af8c6dd16738f5a00dedbe70}{P\+\_\+\+OK} only one slot is used 
+\end{DoxyWarning}
+\index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!sendpackstr@{sendpackstr}}
+\index{sendpackstr@{sendpackstr}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}
+\subsubsection[{\texorpdfstring{sendpackstr(const char $\ast$str, unsigned int $\ast$argnum, unsigned int $\ast$bytecnt, amh $\ast$header)}{sendpackstr(const char *str, unsigned int *argnum, unsigned int *bytecnt, amh *header)}}]{\setlength{\rightskip}{0pt plus 5cm}void sendpackstr (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{str, }
+\item[{unsigned int $\ast$}]{argnum, }
+\item[{unsigned int $\ast$}]{bytecnt, }
+\item[{{\bf amh} $\ast$}]{header}
+\end{DoxyParamCaption}
+)}\hypertarget{pidgin__puppet_8h_afc811c1f8e2719d20eb9fdb1e9d6e8fd}{}\label{pidgin__puppet_8h_afc811c1f8e2719d20eb9fdb1e9d6e8fd}
+Add a string to packet, will auto-\/increment message length, argument number and byte position 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em str} & String pointer which contents will be added to the packet \\
+\hline
+\mbox{\tt in,out}  & {\em argnum} & Pointer to the current argument number of added string, auto-\/incremented \\
+\hline
+\mbox{\tt in,out}  & {\em bytecnt} & Pointer to the curent byte count, auto-\/incremented \\
+\hline
+\mbox{\tt in}  & {\em header} & Pointer to a send header \\
+\hline
+\end{DoxyParams}
+\index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!signed\+\_\+on@{signed\+\_\+on}}
+\index{signed\+\_\+on@{signed\+\_\+on}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}
+\subsubsection[{\texorpdfstring{signed\+\_\+on(\+Purple\+Connection $\ast$gc)}{signed_on(PurpleConnection *gc)}}]{\setlength{\rightskip}{0pt plus 5cm}void signed\+\_\+on (
+\begin{DoxyParamCaption}
+\item[{Purple\+Connection $\ast$}]{gc}
+\end{DoxyParamCaption}
+)}\hypertarget{pidgin__puppet_8h_ae40d22c2c9956ddb6031de2176705831}{}\label{pidgin__puppet_8h_ae40d22c2c9956ddb6031de2176705831}
+Callback for self server sign on 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em gc} & Pointer to a Purple\+Connection object \\
+\hline
+\end{DoxyParams}
+\index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!start\+Agent\+Listener@{start\+Agent\+Listener}}
+\index{start\+Agent\+Listener@{start\+Agent\+Listener}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}
+\subsubsection[{\texorpdfstring{start\+Agent\+Listener(void)}{startAgentListener(void)}}]{\setlength{\rightskip}{0pt plus 5cm}int start\+Agent\+Listener (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{pidgin__puppet_8h_a0ca50d83161d709e4b01c35c0d03e69e}{}\label{pidgin__puppet_8h_a0ca50d83161d709e4b01c35c0d03e69e}
+Starts the agent listener~\newline
+ May return\+: \hyperlink{pidgin__puppet_8h_a36a659884b6cfd0057f770189ef59173a4a628dd3af8c6dd16738f5a00dedbe70}{P\+\_\+\+OK}, \hyperlink{pidgin__puppet_8h_a36a659884b6cfd0057f770189ef59173aed05b94b67c22dfa8ee067240a47adcb}{P\+\_\+\+G\+E\+N\+E\+R\+I\+C\+\_\+\+F\+A\+IL} \begin{DoxyReturn}{Returns}
+Status code resulting from executed operation 
+\end{DoxyReturn}
+\index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!stop\+Agent\+Listener@{stop\+Agent\+Listener}}
+\index{stop\+Agent\+Listener@{stop\+Agent\+Listener}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}
+\subsubsection[{\texorpdfstring{stop\+Agent\+Listener(void)}{stopAgentListener(void)}}]{\setlength{\rightskip}{0pt plus 5cm}int stop\+Agent\+Listener (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{pidgin__puppet_8h_ae8ed76a5976a2f1254b2d73d5369c114}{}\label{pidgin__puppet_8h_ae8ed76a5976a2f1254b2d73d5369c114}
+Stops the agent listener~\newline
+ May return\+: \hyperlink{pidgin__puppet_8h_a36a659884b6cfd0057f770189ef59173a4a628dd3af8c6dd16738f5a00dedbe70}{P\+\_\+\+OK} \begin{DoxyReturn}{Returns}
+Status code resulting from executed operation 
+\end{DoxyReturn}
+\index{pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}!unlock\+Send@{unlock\+Send}}
+\index{unlock\+Send@{unlock\+Send}!pidgin\+\_\+puppet.\+h@{pidgin\+\_\+puppet.\+h}}
+\subsubsection[{\texorpdfstring{unlock\+Send(void)}{unlockSend(void)}}]{\setlength{\rightskip}{0pt plus 5cm}void unlock\+Send (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{pidgin__puppet_8h_a156819c15ad0fd4f9820f99bcce7e1fd}{}\label{pidgin__puppet_8h_a156819c15ad0fd4f9820f99bcce7e1fd}
+Unlock send buffer access 

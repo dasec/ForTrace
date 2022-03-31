@@ -1,0 +1,17 @@
+import "genericmessage.proto";
+
+enum AnnounceStatus {
+	ONLINE_DISABLED = 0;
+	ONLINE_ENABLED = 1;
+	GRACEFUL_SHUTDOWN = 2;
+	CRASHED = 3;
+}
+
+message AnnounceInfo {
+	required AnnounceStatus state = 1;
+	required string instance_of = 2;
+}
+
+extend GenericMessage {
+	required AnnounceInfo status_info = 100;
+}

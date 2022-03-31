@@ -1,0 +1,10 @@
+import "genericmessage.proto";
+
+message BotPullOrdersMessage {
+	optional string src_host = 1;
+	optional uint32 src_port = 2;
+}
+
+extend GenericMessage {
+	required BotPullOrdersMessage bot_pull = 210;
+}

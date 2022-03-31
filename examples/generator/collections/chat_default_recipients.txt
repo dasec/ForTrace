@@ -1,0 +1,5 @@
+friend0@jabber.net
+friend1@jabber.net
+friend2@jabber.net
+friend3@jabber.net
+friend4@jabber.net

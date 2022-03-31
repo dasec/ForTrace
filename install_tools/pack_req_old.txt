@@ -1,0 +1,11 @@
+python
+python-pip
+python-libvirt
+qemu-kvm
+libvirt-daemon-system
+libvirt-clients
+libvirt-dev
+virt-manager
+libcap2-bin
+tcpdump
+jq

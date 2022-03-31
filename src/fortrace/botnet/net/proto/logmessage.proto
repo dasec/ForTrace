@@ -1,0 +1,19 @@
+import "genericmessage.proto";
+
+enum Severity {
+	OK = 0;
+	DEBUG = 1;
+	INFORMATIONAL = 2;
+	WARNING = 3;
+	CRITICAL = 4;
+}
+
+message LogInfo {
+	required Severity severity = 1;
+	required string source = 2;
+	required string context = 3;
+}
+
+extend GenericMessage {
+	required LogInfo log_info = 104;
+}

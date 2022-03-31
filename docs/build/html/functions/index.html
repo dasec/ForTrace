@@ -1,0 +1,538 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Functions of fortrace &#8212; fortrace  documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="functions-of-fortrace">
+<span id="funcindex"></span><h1>Functions of fortrace<a class="headerlink" href="#functions-of-fortrace" title="Permalink to this headline">¶</a></h1>
+<p>Currently a selected group of applications is supported by the fortrace framework. An overview can be seen in table X.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="28%" />
+<col width="38%" />
+<col width="19%" />
+<col width="15%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td colspan="2">&#160;</td>
+<td colspan="2">Supported on</td>
+</tr>
+<tr class="row-even"><td>Application</td>
+<td>Function</td>
+<td>Windows</td>
+<td>Linux</td>
+</tr>
+<tr class="row-odd"><td>Firefox</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>&#160;</td>
+<td>open</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td>close</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>&#160;</td>
+<td>browse_to</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td>facebook_login</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>Thunderbird</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td>open</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>&#160;</td>
+<td>close</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td>add_imap</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>&#160;</td>
+<td>send_mail</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td>load_mailboxdata</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>VeraCrypt</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td>open</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>&#160;</td>
+<td>close</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td>create_container</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>&#160;</td>
+<td>mount_container</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td>copy_to_container</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>&#160;</td>
+<td>unmount_container</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td>delete_container</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="firefox">
+<h2>Firefox<a class="headerlink" href="#firefox" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="fortrace.application.webBrowserFirefox.WebBrowserFirefoxVmmSide">
+<em class="property">class </em><code class="descclassname">fortrace.application.webBrowserFirefox.</code><code class="descname">WebBrowserFirefoxVmmSide</code><span class="sig-paren">(</span><em>guest_obj</em>, <em>args</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fortrace/application/webBrowserFirefox.html#WebBrowserFirefoxVmmSide"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fortrace.application.webBrowserFirefox.WebBrowserFirefoxVmmSide" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class is a remote control on the host-side to control a real browser
+running on a guest. Supported browsers on the guest is Mozilla Firefox.
+For more details to the correspond guest-side module look into
+webBrowserFirefox_guest_side.</p>
+<dl class="method">
+<dt id="fortrace.application.webBrowserFirefox.WebBrowserFirefoxVmmSide.browse_to">
+<code class="descname">browse_to</code><span class="sig-paren">(</span><em>url</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fortrace/application/webBrowserFirefox.html#WebBrowserFirefoxVmmSide.browse_to"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fortrace.application.webBrowserFirefox.WebBrowserFirefoxVmmSide.browse_to" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sends a url to the associated webBrowserFirefox running on the guest.
+&#64;param url: URL to load.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="fortrace.application.webBrowserFirefox.WebBrowserFirefoxVmmSide.browse_to_link_number">
+<code class="descname">browse_to_link_number</code><span class="sig-paren">(</span><em>link_number</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fortrace/application/webBrowserFirefox.html#WebBrowserFirefoxVmmSide.browse_to_link_number"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fortrace.application.webBrowserFirefox.WebBrowserFirefoxVmmSide.browse_to_link_number" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call the &lt;linkNumber&gt; link on the current website in the browser.
+&#64;param link_number: number of the link on this website to call.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="fortrace.application.webBrowserFirefox.WebBrowserFirefoxVmmSide.close">
+<code class="descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fortrace/application/webBrowserFirefox.html#WebBrowserFirefoxVmmSide.close"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fortrace.application.webBrowserFirefox.WebBrowserFirefoxVmmSide.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sends a command to close a webBrowserFirefox on the associated guest.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="fortrace.application.webBrowserFirefox.WebBrowserFirefoxVmmSide.facebook_login">
+<code class="descname">facebook_login</code><span class="sig-paren">(</span><em>username</em>, <em>password</em>, <em>id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fortrace/application/webBrowserFirefox.html#WebBrowserFirefoxVmmSide.facebook_login"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fortrace.application.webBrowserFirefox.WebBrowserFirefoxVmmSide.facebook_login" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sends a command to call facebook.com and login.
+&#64;param username: facebook username.
+&#64;param password: facebook password.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="fortrace.application.webBrowserFirefox.WebBrowserFirefoxVmmSide.open">
+<code class="descname">open</code><span class="sig-paren">(</span><em>url</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fortrace/application/webBrowserFirefox.html#WebBrowserFirefoxVmmSide.open"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fortrace.application.webBrowserFirefox.WebBrowserFirefoxVmmSide.open" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sends a command to open a webBrowserFirefox on the associated guest.</p>
+<p>&#64;param url: Website to open.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="fortrace.application.webBrowserFirefox.WebBrowserFirefoxVmmSide.send_keys_to_browser_element">
+<code class="descname">send_keys_to_browser_element</code><span class="sig-paren">(</span><em>element</em>, <em>keys</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fortrace/application/webBrowserFirefox.html#WebBrowserFirefoxVmmSide.send_keys_to_browser_element"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fortrace.application.webBrowserFirefox.WebBrowserFirefoxVmmSide.send_keys_to_browser_element" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send keys to a specific element on the currently parsed website.
+&#64;param element: element to search for.
+&#64;param keys: string for the element</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="thunderbird">
+<h2>Thunderbird<a class="headerlink" href="#thunderbird" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="fortrace.application.mailClientThunderbird.MailClientThunderbirdVmmSide">
+<em class="property">class </em><code class="descclassname">fortrace.application.mailClientThunderbird.</code><code class="descname">MailClientThunderbirdVmmSide</code><span class="sig-paren">(</span><em>guest_obj</em>, <em>args</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fortrace/application/mailClientThunderbird.html#MailClientThunderbirdVmmSide"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fortrace.application.mailClientThunderbird.MailClientThunderbirdVmmSide" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class is a remote control on the host-side to control a real &lt;MailClient&gt;
+running on a guest.</p>
+<dl class="method">
+<dt id="fortrace.application.mailClientThunderbird.MailClientThunderbirdVmmSide.add_imap_account">
+<code class="descname">add_imap_account</code><span class="sig-paren">(</span><em>imap_server</em>, <em>smtp_server</em>, <em>email_address</em>, <em>username</em>, <em>full_name</em>, <em>socket_type=3</em>, <em>socket_type_smtp=2</em>, <em>auth_method_smtp=3</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fortrace/application/mailClientThunderbird.html#MailClientThunderbirdVmmSide.add_imap_account"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fortrace.application.mailClientThunderbird.MailClientThunderbirdVmmSide.add_imap_account" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a imap account to the profile.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>imap_server</strong> – address of the pop3 mailserver</li>
+<li><strong>smtp_server</strong> – address of the smtp server</li>
+<li><strong>email_address</strong> – the accounts email address</li>
+<li><strong>username</strong> – username of the mail server, usually the email address</li>
+<li><strong>full_name</strong> – the account owners full name</li>
+<li><strong>socket_type</strong> – 0 No SSL, 1 StartTLS, 2 SSL/TLS</li>
+<li><strong>auth_method</strong> – corresponds to the password exchange method, has the same methods for smtp</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="fortrace.application.mailClientThunderbird.MailClientThunderbirdVmmSide.add_pop3_account">
+<code class="descname">add_pop3_account</code><span class="sig-paren">(</span><em>pop_server</em>, <em>smtp_server</em>, <em>email_address</em>, <em>username</em>, <em>full_name</em>, <em>smtp_description</em>, <em>socket_type=3</em>, <em>auth_method=3</em>, <em>socket_type_smtp=3</em>, <em>auth_method_smtp=3</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fortrace/application/mailClientThunderbird.html#MailClientThunderbirdVmmSide.add_pop3_account"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fortrace.application.mailClientThunderbird.MailClientThunderbirdVmmSide.add_pop3_account" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a pop3 account to the profile.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>pop_server</strong> – address of the pop3 mailserver</li>
+<li><strong>smtp_server</strong> – address of the smtp server</li>
+<li><strong>email_address</strong> – the accounts email address</li>
+<li><strong>username</strong> – username of the mail server, usually the email address</li>
+<li><strong>full_name</strong> – the account owners full name</li>
+<li><strong>smtp_description</strong> – desription for the smpt server</li>
+<li><strong>socket_type</strong> – 0 No SSL, 1 StartTLS, 2 SSL/TLS</li>
+<li><strong>auth_method</strong> – corresponds to the password exchange method, pop supports other methods than imap</li>
+<li><strong>auth_method_smtp</strong> – corresponds to the password exchange method for the smtp server</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="fortrace.application.mailClientThunderbird.MailClientThunderbirdVmmSide.close">
+<code class="descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fortrace/application/mailClientThunderbird.html#MailClientThunderbirdVmmSide.close"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fortrace.application.mailClientThunderbird.MailClientThunderbirdVmmSide.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sends a command to close a MailClient on the associated guest.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="fortrace.application.mailClientThunderbird.MailClientThunderbirdVmmSide.open">
+<code class="descname">open</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fortrace/application/mailClientThunderbird.html#MailClientThunderbirdVmmSide.open"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fortrace.application.mailClientThunderbird.MailClientThunderbirdVmmSide.open" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sends a command to open a MailClient on the associated guest.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="fortrace.application.mailClientThunderbird.MailClientThunderbirdVmmSide.run_for">
+<code class="descname">run_for</code><span class="sig-paren">(</span><em>timeout</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fortrace/application/mailClientThunderbird.html#MailClientThunderbirdVmmSide.run_for"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fortrace.application.mailClientThunderbird.MailClientThunderbirdVmmSide.run_for" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Run Thunderbird for a limited amount of time to generate folders and files or to receive mail.</dt>
+<dd><p class="first">Call this after making changes to the profile config.</p>
+<p class="last">Bug: Don’t call this method it will fail since the backend uses incorrect parameters for calling mozrunner.</p>
+</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>timeout</strong> – </td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="fortrace.application.mailClientThunderbird.MailClientThunderbirdVmmSide.send_mail">
+<code class="descname">send_mail</code><span class="sig-paren">(</span><em>receiver</em>, <em>subject</em>, <em>message</em>, <em>attachment_path_list=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fortrace/application/mailClientThunderbird.html#MailClientThunderbirdVmmSide.send_mail"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fortrace.application.mailClientThunderbird.MailClientThunderbirdVmmSide.send_mail" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send an email via the mailClient.</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>Note: A bug prevents this from working inside an open thunderbird application.</dt>
+<dd>Close all thunderbird windows before using this method.</dd>
+</dl>
+</div></blockquote>
+<p>&#64;param receiver: Receiver for this email.
+&#64;param subject: Subject for this email.
+&#64;param message: Message for this email.
+&#64;param attachment_path_list: (Optional) list of paths for files to attach to the mail.</p>
+<p>&#64;return: No return value.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="fortrace.application.mailClientThunderbird.MailClientThunderbirdVmmSide.set_session_password">
+<code class="descname">set_session_password</code><span class="sig-paren">(</span><em>password</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fortrace/application/mailClientThunderbird.html#MailClientThunderbirdVmmSide.set_session_password"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fortrace.application.mailClientThunderbird.MailClientThunderbirdVmmSide.set_session_password" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set password for password dialogs in current session.</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>Note: Call this as the first method after opening the mail plugin to prevent profile generation issues.</dt>
+<dd>Use an empty password if you have to.
+The password will be saved inside the thunderbird profile, make sure to delete it if you dont intent to share it.</dd>
+</dl>
+</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>password</strong> – </td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="veracrypt-command-line">
+<h2>VeraCrypt (command-line)<a class="headerlink" href="#veracrypt-command-line" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="fortrace.application.veraCryptWrapper.VeraCryptWrapperVmmSide">
+<em class="property">class </em><code class="descclassname">fortrace.application.veraCryptWrapper.</code><code class="descname">VeraCryptWrapperVmmSide</code><span class="sig-paren">(</span><em>guest_obj</em>, <em>args</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fortrace/application/veraCryptWrapper.html#VeraCryptWrapperVmmSide"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fortrace.application.veraCryptWrapper.VeraCryptWrapperVmmSide" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class is a remote control on the host-side to control a real &lt;skeleton&gt;
+running on a guest.</p>
+<dl class="method">
+<dt id="fortrace.application.veraCryptWrapper.VeraCryptWrapperVmmSide.close">
+<code class="descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fortrace/application/veraCryptWrapper.html#VeraCryptWrapperVmmSide.close"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fortrace.application.veraCryptWrapper.VeraCryptWrapperVmmSide.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sends a command to close a VeraCryptWrapper on the associated guest.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="fortrace.application.veraCryptWrapper.VeraCryptWrapperVmmSide.copyToContainer">
+<code class="descname">copyToContainer</code><span class="sig-paren">(</span><em>src</em>, <em>dst</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fortrace/application/veraCryptWrapper.html#VeraCryptWrapperVmmSide.copyToContainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fortrace.application.veraCryptWrapper.VeraCryptWrapperVmmSide.copyToContainer" title="Permalink to this definition">¶</a></dt>
+<dd><p>copy to an encrypted container with veracrypt</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="fortrace.application.veraCryptWrapper.VeraCryptWrapperVmmSide.createContainer">
+<code class="descname">createContainer</code><span class="sig-paren">(</span><em>executable</em>, <em>path</em>, <em>size</em>, <em>password</em>, <em>hash='sha512'</em>, <em>encryption='serpent'</em>, <em>filesystem='FAT'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fortrace/application/veraCryptWrapper.html#VeraCryptWrapperVmmSide.createContainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fortrace.application.veraCryptWrapper.VeraCryptWrapperVmmSide.createContainer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates an encrypted container with veracrypt</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="fortrace.application.veraCryptWrapper.VeraCryptWrapperVmmSide.dismountContainer">
+<code class="descname">dismountContainer</code><span class="sig-paren">(</span><em>executable</em>, <em>mount_point</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fortrace/application/veraCryptWrapper.html#VeraCryptWrapperVmmSide.dismountContainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fortrace.application.veraCryptWrapper.VeraCryptWrapperVmmSide.dismountContainer" title="Permalink to this definition">¶</a></dt>
+<dd><p>unmount an encrypted container with veracrypt</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="fortrace.application.veraCryptWrapper.VeraCryptWrapperVmmSide.mountContainer">
+<code class="descname">mountContainer</code><span class="sig-paren">(</span><em>executable</em>, <em>path</em>, <em>password</em>, <em>mount_point</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fortrace/application/veraCryptWrapper.html#VeraCryptWrapperVmmSide.mountContainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fortrace.application.veraCryptWrapper.VeraCryptWrapperVmmSide.mountContainer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mounts an encrypted container with veracrypt</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="fortrace.application.veraCryptWrapper.VeraCryptWrapperVmmSide.open">
+<code class="descname">open</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fortrace/application/veraCryptWrapper.html#VeraCryptWrapperVmmSide.open"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fortrace.application.veraCryptWrapper.VeraCryptWrapperVmmSide.open" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sends a command to open a VeraCryptWrapper on the associated guest.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="user-administration">
+<h2>User Administration<a class="headerlink" href="#user-administration" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="fortrace.application.userManagement.UserManagementVmmSide">
+<em class="property">class </em><code class="descclassname">fortrace.application.userManagement.</code><code class="descname">UserManagementVmmSide</code><span class="sig-paren">(</span><em>guest_obj</em>, <em>args</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fortrace/application/userManagement.html#UserManagementVmmSide"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fortrace.application.userManagement.UserManagementVmmSide" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class is a remote control on the host-side to control a real &lt;userManagement&gt;
+running on a guest.</p>
+<dl class="method">
+<dt id="fortrace.application.userManagement.UserManagementVmmSide.addUser">
+<code class="descname">addUser</code><span class="sig-paren">(</span><em>user_name</em>, <em>password</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fortrace/application/userManagement.html#UserManagementVmmSide.addUser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fortrace.application.userManagement.UserManagementVmmSide.addUser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creating a User on the guest system</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="fortrace.application.userManagement.UserManagementVmmSide.close">
+<code class="descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fortrace/application/userManagement.html#UserManagementVmmSide.close"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fortrace.application.userManagement.UserManagementVmmSide.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sends a command to close a &lt;userManagement&gt; on the associated guest.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="fortrace.application.userManagement.UserManagementVmmSide.open">
+<code class="descname">open</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fortrace/application/userManagement.html#UserManagementVmmSide.open"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fortrace.application.userManagement.UserManagementVmmSide.open" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sends a command to open a userManagement on the associated guest.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="set-system-time">
+<h2>Set System Time<a class="headerlink" href="#set-system-time" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="elevated-shell-commands">
+<h2>Elevated Shell Commands<a class="headerlink" href="#elevated-shell-commands" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="network-share">
+<h2>(Network Share)<a class="headerlink" href="#network-share" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="network-printer-simulation">
+<h2>(Network Printer Simulation)<a class="headerlink" href="#network-printer-simulation" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="reporter">
+<h2>Reporter<a class="headerlink" href="#reporter" title="Permalink to this headline">¶</a></h2>
+<p>The Reporter class has been added to the framework for different reasons.</p>
+<span class="target" id="module-fortrace.core.reporter"></span><dl class="class">
+<dt id="fortrace.core.reporter.Reporter">
+<em class="property">class </em><code class="descclassname">fortrace.core.reporter.</code><code class="descname">Reporter</code><a class="reference internal" href="../_modules/fortrace/core/reporter.html#Reporter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fortrace.core.reporter.Reporter" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class is responsible for the creation of a report for a case
+added by Thomas Schaefer in 2019</p>
+<dl class="method">
+<dt id="fortrace.core.reporter.Reporter.add">
+<code class="descname">add</code><span class="sig-paren">(</span><em>tag</em>, <em>text</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fortrace/core/reporter.html#Reporter.add"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fortrace.core.reporter.Reporter.add" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adding the given text to the tag-array in order to later add them to the ElementTree.
+:param tag: XML tag name
+:param text: value to add to the XML file
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="fortrace.core.reporter.Reporter.generate">
+<code class="descname">generate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fortrace/core/reporter.html#Reporter.generate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fortrace.core.reporter.Reporter.generate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Writing ElementTree (ET) to an XML file and changing rights to the file. This file can then be viewed
+with report.html.
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="fortrace.core.reporter.Reporter.generateTags">
+<code class="descname">generateTags</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fortrace/core/reporter.html#Reporter.generateTags"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fortrace.core.reporter.Reporter.generateTags" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adding the needed tags and values to the ElementTree (ET) to write them to a file.
+:return:</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">fortrace</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../architecture/index.html">Architecture of fortrace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture/framework_architecture.html">Framework Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture/generator.html">Generator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture/service_vm.html">Service VM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">Installation of fortrace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/config.html">Configuration of installation options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/host.html">Host Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/guest.html">Guest Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/service_vm.html">Installation of Service VM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/firstrun.html">First Run after installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/index.html">Developer reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/functions.html">Functions of fortrace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/implementing.html">Implementation of Scenarios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/implementing.html#implementation-of-new-features">Implementation of new Features</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Thomas Schäfer, Thomas Göbel, Jan Türr.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/functions/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

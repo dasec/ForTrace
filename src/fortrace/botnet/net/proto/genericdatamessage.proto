@@ -1,0 +1,9 @@
+import "genericmessage.proto";
+
+message GenericData {
+	required bytes content = 1;
+}
+
+extend GenericMessage {
+	required GenericData data = 108;
+}

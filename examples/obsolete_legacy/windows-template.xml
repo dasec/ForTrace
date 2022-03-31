@@ -1,0 +1,74 @@
+<!--
+WARNING: THIS IS AN AUTO-GENERATED FILE. CHANGES TO IT ARE LIKELY TO BE 
+OVERWRITTEN AND LOST. Changes to this xml configuration should be made using:
+  virsh edit windows-template
+or other application using the libvirt API.
+-->
+
+<domain type='kvm'>
+  <name>windows-template</name>
+  <uuid>cdb94489-478e-5eab-8739-bc239161408a</uuid>
+  <memory>2097152</memory>
+  <currentMemory>2097152</currentMemory>
+  <vcpu>1</vcpu>
+  <os>
+    <type arch='x86_64' machine='pc-1.0'>hvm</type>
+    <boot dev='hd'/>
+  </os>
+  <features>
+    <acpi/>
+    <apic/>
+    <pae/>
+  </features>
+  <clock offset='localtime'/>
+  <on_poweroff>destroy</on_poweroff>
+  <on_reboot>restart</on_reboot>
+  <on_crash>restart</on_crash>
+  <devices>
+    <emulator>/usr/bin/kvm</emulator>
+    <disk type='file' device='disk'>
+      <driver name='qemu' type='img'/>
+      <source file='/data/images/win10.img'/>
+      <target dev='hda' bus='ide'/>
+      <address type='drive' controller='0' bus='0' unit='0'/>
+    </disk>
+    <disk type='file' device='cdrom'>
+      <driver name='qemu' type='raw'/>
+      <target dev='hdc' bus='ide'/>
+      <readonly/>
+      <address type='drive' controller='0' bus='1' unit='0'/>
+    </disk>
+    <controller type='ide' index='0'>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x01' function='0x1'/>
+    </controller>
+    <interface type='network'>
+      <mac address='00:50:56:00:01:f9'/>
+      <source network='internet'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x03' function='0x0'/>
+    </interface>
+    <interface type='network'>
+      <mac address='00:50:56:00:01:fa'/>
+      <source network='local'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x06' function='0x0'/>
+    </interface>
+    <serial type='pty'>
+      <target port='0'/>
+    </serial>
+    <console type='pty'>
+      <target type='serial' port='0'/>
+    </console>
+    <input type='tablet' bus='usb'/>
+    <input type='mouse' bus='ps2'/>
+    <graphics type='vnc' port='-1' autoport='yes'/>
+    <sound model='ich6'>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x04' function='0x0'/>
+    </sound>
+    <video>
+      <model type='vga' vram='9216' heads='1'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x02' function='0x0'/>
+    </video>
+    <memballoon model='virtio'>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x05' function='0x0'/>
+    </memballoon>
+  </devices>
+</domain>

@@ -1,0 +1,253 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Generator &#8212; fortrace  documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Service VM" href="service_vm.html" />
+    <link rel="prev" title="Framework Architecture" href="framework_architecture.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="generator">
+<span id="gen"></span><h1>Generator<a class="headerlink" href="#generator" title="Permalink to this headline">¶</a></h1>
+<p>The generator is an addition to make the use of fortrace more user-friendly. It allows a user to hide one or multiple
+needles in a haystack without needing to write a python script every time the framework is used. Additionally, after finishing
+the scenario entered, the generator returns a.*pcap* file for the user to evaluate the generated traffic.</p>
+<p>To use the generator, the user needs to configure a .*yaml* file (a template can be seen at the end of this section).
+The file is structured in 4 section:</p>
+<ol class="arabic simple">
+<li><strong>collections</strong>: This section contains a list of possible parameters such as email recipients, messages or lists of websites. The choice of what parameters are used is randomized and dependent on what seed is used - using the same seed twice should result in similar (or the same) results.</li>
+<li><strong>applications</strong>: This section determines which applications are used to generate traffic and execute the actions defined in the following sections.</li>
+<li><strong>hay</strong> and 4. <strong>needles</strong>: These sections define the actions that are supposed to be simulated to generate traffic. The separation between hay and needles is simply a formatting choice - it should have no bearing on what actions are allowed to be executed.</li>
+</ol>
+<div class="figure" id="id1">
+<img alt="Generator workflow." src="../_images/generator.PNG" />
+<p class="caption"><span class="caption-text">Generator workflow.</span></p>
+</div>
+<p>The generator can be started with the following command:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> python -m fortrace.generator config.yml
+</pre></div>
+</div>
+<p>What follows is depicted in the workflow diagram above. First, the virtual machine(s) is started and a connection between
+host and guest is established. Then, the <strong>config.yml</strong> is read and the collections are loaded into the generator.
+Next, the needed applications are set up and <strong>hay</strong> and <strong>needles</strong> are used to generate the actions detailed in the config file.
+Before executing these actions, the parameters are chosen randomly. Once all actions have completed, the guest components
+are stopped and a .*pcap* file is created on the host machine.</p>
+<p>If you are currently not using a NFS or your NFS server is not located on your host machine, leave the fields <strong>host_nfs_path</strong>
+and <strong>guest_nfs_path</strong> empty - this will allow you to use normal windows or linux paths.</p>
+<div class="section" id="yaml-template">
+<h2>YAML-Template<a class="headerlink" href="#yaml-template" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>name: haystack-example
+description: A example action suite to generate a haystack (traffic)
+author: MPSE Group
+seed: 1234
+collections:
+    c-http-0:
+        type: http
+        urls: ./generator/friendly_urls.txt
+    c-mail-0:
+        type: mail
+        recipients: ./generator/friendly_recipients.txt
+        subjects: ./generator/friendly_subjects.txt
+        messages: ./generator/friendly_messages.txt
+    c-print-0:
+        type: printer
+        files: ./generator/printer_default_documents.txt
+    c-smb-0:
+        type: smb
+        files: ./generator/general_default_attachments.txt
+settings:
+    host_nfs_path: /data/fortrace_data
+    guest_nfs_path: Z:\\
+applications:
+    mail-0:
+        type: mail
+        imap_hostname: imap.web.de
+        smtp_hostname: smtp.web.de
+        email: fortrace@web.de
+        password: Vo@iLmx48Qv8m%y
+        username: fortrace
+        full_name: Heinz fortrace
+        socket_type: 3
+        socket_type_smtp: 2
+        auth_method_smtp: 3
+    mail-1:
+        type: mail
+        imap_hostname: 192.168.103.123
+        smtp_hostname: 192.168.103.123
+        email: sk@fortrace.local
+        password: fortrace
+        username: sk
+        full_name: Heinz fortrace
+        socket_type: 0
+        socket_type_smtp: 0
+        auth_method_smtp: 3
+    printer-0:
+        type: printer
+        hostname: http://192.168.103.123:631/ipp/print/name
+    smb-0:
+        type: smb
+        username: service
+        password: fortrace
+        destination: \\192.168.103.123\sambashare
+hay:
+    h-http-0:
+        application: http
+        url: https://dasec.h-da.de/
+        amount: 1
+    h-http-1:
+        application: http
+        amount: 3
+        collection: c-http-0
+    h-mail-0:
+        application: mail-1
+        recipient: sk@fortrace.local
+        subject: a random mail
+        message: I’m sending you this mail because of X.
+        attachments:
+            - /data/fortrace_data/blue.jpg
+            - /data/fortrace_data/document.pdf
+        amount: 1
+    h-mail-1:
+        application: mail-1
+        amount: 2
+        recipient: sk@fortrace.local
+        collection: c-mail-0
+needles:
+    n-printer-0:
+        application: printer-0
+        file: C:\Users\fortrace\Documents\top_secret.txt
+        amount: 2
+    n-mail-0:
+        application: mail-1
+        recipient: sk@fortrace.local
+        subject: a suspicious mail
+        content: I&#39;ve attached said document.
+        attachments:
+            - /data/fortrace_data/hda_master.pdf
+        amount: 1
+    n-smb-0:
+        application: smb-0
+        amount: 1
+        files:
+            - C:\Users\fortrace\Documents\top_secret.txt
+            - C:\Users\fortrace\Documents\hda_master.pdf
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">fortrace</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">Architecture of fortrace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="framework_architecture.html">Framework Architecture</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Generator</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#yaml-template">YAML-Template</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="service_vm.html">Service VM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">Installation of fortrace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/config.html">Configuration of installation options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/host.html">Host Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/guest.html">Guest Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/service_vm.html">Installation of Service VM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/firstrun.html">First Run after installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/index.html">Developer reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/functions.html">Functions of fortrace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/implementing.html">Implementation of Scenarios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/implementing.html#implementation-of-new-features">Implementation of new Features</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="framework_architecture.html" title="previous chapter">Framework Architecture</a></li>
+      <li>Next: <a href="service_vm.html" title="next chapter">Service VM</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Thomas Schäfer, Thomas Göbel, Jan Türr.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/architecture/generator.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

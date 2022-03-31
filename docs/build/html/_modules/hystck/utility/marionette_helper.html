@@ -1,0 +1,611 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>fortrace.utility.marionette_helper &#8212; fortrace  documentation</title>
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for fortrace.utility.marionette_helper</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot; Module to interact with firefox via marionette web-api.</span>
+<span class="sd">    Note: window may refer to windows, chrome-windows or tabs</span>
+<span class="sd">          It is not guaranteed that indexes have an incremental numbering or keep the same id over the session</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">marionette_driver.errors</span> <span class="k">import</span> <span class="n">InvalidSessionIdException</span>
+<span class="kn">from</span> <span class="nn">marionette_driver.marionette</span> <span class="k">import</span> <span class="n">Marionette</span>
+<span class="kn">from</span> <span class="nn">marionette_driver</span> <span class="k">import</span> <span class="n">By</span>
+<span class="kn">from</span> <span class="nn">marionette_driver.errors</span> <span class="k">import</span> <span class="n">NoSuchElementException</span>
+<span class="kn">from</span> <span class="nn">marionette_driver.errors</span> <span class="k">import</span> <span class="n">TimeoutException</span>
+<span class="kn">from</span> <span class="nn">marionette_driver.errors</span> <span class="k">import</span> <span class="n">NoSuchWindowException</span>
+<span class="kn">from</span> <span class="nn">marionette_driver.errors</span> <span class="k">import</span> <span class="n">ElementNotInteractableException</span>
+<span class="kn">from</span> <span class="nn">marionette_driver.errors</span> <span class="k">import</span> <span class="n">ElementNotAccessibleException</span>
+<span class="kn">from</span> <span class="nn">marionette_driver.errors</span> <span class="k">import</span> <span class="n">ElementNotSelectableException</span>
+<span class="kn">from</span> <span class="nn">marionette_driver.errors</span> <span class="k">import</span> <span class="n">ElementNotVisibleException</span>
+<span class="kn">from</span> <span class="nn">marionette_driver.errors</span> <span class="k">import</span> <span class="n">InsecureCertificateException</span>
+<span class="kn">from</span> <span class="nn">marionette_driver.errors</span> <span class="k">import</span> <span class="n">UnknownException</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">socket</span>
+
+<span class="n">DEFAULT_FF_PATH_LINUX</span> <span class="o">=</span> <span class="s1">&#39;/usr/bin/firefox&#39;</span>
+<span class="n">DEFAULT_FF_PATH_WIN32</span> <span class="o">=</span> <span class="s1">&#39;C:/Program Files/Mozilla Firefox/firefox.exe&#39;</span>
+<span class="n">DEFAULT_FF_PATH_WIN64</span> <span class="o">=</span> <span class="s1">&#39;C:/Program Files (x86)/Mozilla Firefox/firefox.exe&#39;</span>
+<span class="n">DEFAULT_FF64_PATH_WIN</span> <span class="o">=</span> <span class="s1">&#39;C:/Program Files/Mozilla Firefox/firefox.exe&#39;</span>
+
+
+<div class="viewcode-block" id="MarionetteHelper"><a class="viewcode-back" href="../../../developer/functions.html#fortrace.utility.marionette_helper.MarionetteHelper">[docs]</a><span class="k">class</span> <span class="nc">MarionetteHelper</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot; Helper for starting firefox and for remote browsing</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">firefox_path</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">logger</span>  <span class="c1"># type: logging.Logger</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># type: Marionette</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ffpopen</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># type: subprocess.Popen</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ffpath</span> <span class="o">=</span> <span class="n">firefox_path</span>  <span class="c1"># type: str</span>
+        <span class="k">if</span> <span class="n">logger</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;MarionetteHelper&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Marionette helper init done&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_open_session</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">2828</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Opens the session for marionette&quot;&quot;&quot;</span>
+        <span class="n">caps</span> <span class="o">=</span> <span class="p">{</span><span class="sa">u</span><span class="s1">&#39;acceptInsecureCerts&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">Marionette</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="n">port</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">start_session</span><span class="p">(</span><span class="n">capabilities</span><span class="o">=</span><span class="n">caps</span><span class="p">)</span>
+
+<div class="viewcode-block" id="MarionetteHelper.run_firefox"><a class="viewcode-back" href="../../../developer/functions.html#fortrace.utility.marionette_helper.MarionetteHelper.run_firefox">[docs]</a>    <span class="k">def</span> <span class="nf">run_firefox</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Start the firefox process&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Starting firefox process&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ffpopen</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">ffpath</span><span class="p">,</span> <span class="s2">&quot;-marionette&quot;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Opening marionette session&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_open_session</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="MarionetteHelper.quit_firefox"><a class="viewcode-back" href="../../../developer/functions.html#fortrace.utility.marionette_helper.MarionetteHelper.quit_firefox">[docs]</a>    <span class="k">def</span> <span class="nf">quit_firefox</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Close the firefox process and close marionette session&quot;&quot;&quot;</span>
+        <span class="c1">#self.logger.debug(&quot;Closing firefox&quot;)</span>
+        <span class="c1">#self.client._send_message(&quot;Marionette:Quit&quot;)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">_request_in_app_shutdown</span><span class="p">(</span><span class="s2">&quot;eForceQuit&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">delete_session</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1"># reset client state</span></div>
+        <span class="c1">#try:</span>
+        <span class="c1">#    self.client.close()  # try to close the window anyway</span>
+        <span class="c1">#except InvalidSessionIdException:</span>
+        <span class="c1">#    pass</span>
+        <span class="c1">#except socket.error:</span>
+        <span class="c1">#    pass</span>
+        <span class="c1">#finally:</span>
+        <span class="c1">#    try:</span>
+        <span class="c1">#        self.logger.debug(&quot;Closing marionette session&quot;)</span>
+        <span class="c1">#        self.client.delete_session(False)  # close client session</span>
+        <span class="c1">#    except InvalidSessionIdException:</span>
+        <span class="c1">#        pass</span>
+        <span class="c1">#    except socket.error:</span>
+        <span class="c1">#        pass</span>
+        <span class="c1">#    self.client = None  # reset client state</span>
+        <span class="c1">#self.logger.debug(&quot;Waiting for firefox to close&quot;)</span>
+        <span class="c1">#for _ in range(3):  # give the process 3 seconds to terminate</span>
+        <span class="c1">#    time.sleep(1)</span>
+        <span class="c1">#    self.ffpopen.poll()</span>
+        <span class="c1">#    if self.ffpopen.returncode is not None:</span>
+        <span class="c1">#        break</span>
+        <span class="c1">#self.ffpopen.poll()</span>
+        <span class="c1">#if self.ffpopen.returncode is None:</span>
+        <span class="c1">#    self.logger.warning(&quot;Firefox not closed in time, killing it!&quot;)</span>
+        <span class="c1">#    self.ffpopen.kill()  # process was not quit in time, kill it</span>
+        <span class="c1">#self.ffpopen = None  # reset popen state</span>
+        <span class="c1">#self.logger.debug(&quot;Firefox is closed&quot;)</span>
+
+    <span class="k">def</span> <span class="nf">___get_client</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Returns the internal marionette client object&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span>
+
+<div class="viewcode-block" id="MarionetteHelper.navigate_to_url"><a class="viewcode-back" href="../../../developer/functions.html#fortrace.utility.marionette_helper.MarionetteHelper.navigate_to_url">[docs]</a>    <span class="k">def</span> <span class="nf">navigate_to_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Open an url in format of http[s]://example.com&quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s2">&quot;http&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">url</span><span class="p">:</span>
+                <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;http://&quot;</span> <span class="o">+</span> <span class="n">url</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">navigate</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">TimeoutException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Timeout&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="n">InsecureCertificateException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Warning: Insecure Certificate&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">except</span> <span class="n">UnknownException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s2">&quot;Reached error page&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Reached error page, ignoring...&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span> <span class="c1"># reraise, something very unexpected happened here</span>
+                <span class="n">t</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">tb</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">exc_info</span><span class="p">()</span>
+                <span class="k">raise</span> <span class="n">t</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">tb</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="MarionetteHelper.back"><a class="viewcode-back" href="../../../developer/functions.html#fortrace.utility.marionette_helper.MarionetteHelper.back">[docs]</a>    <span class="k">def</span> <span class="nf">back</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Go a page backward&quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">go_back</span><span class="p">()</span>
+        <span class="k">except</span> <span class="n">TimeoutException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Timeout&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="n">InsecureCertificateException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Warning: Insecure Certificate&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">except</span> <span class="n">UnknownException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s2">&quot;Reached error page&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Reached error page, ignoring...&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span> <span class="c1"># reraise, something very unexpected happened here</span>
+                <span class="n">t</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">tb</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">exc_info</span><span class="p">()</span>
+                <span class="k">raise</span> <span class="n">t</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">tb</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="MarionetteHelper.forward"><a class="viewcode-back" href="../../../developer/functions.html#fortrace.utility.marionette_helper.MarionetteHelper.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Go a page forward&quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">go_forward</span><span class="p">()</span>
+        <span class="k">except</span> <span class="n">TimeoutException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Timeout&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="n">InsecureCertificateException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Warning: Insecure Certificate&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">except</span> <span class="n">UnknownException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s2">&quot;Reached error page&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Reached error page, ignoring...&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span> <span class="c1"># reraise, something very unexpected happened here</span>
+                <span class="n">t</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">tb</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">exc_info</span><span class="p">()</span>
+                <span class="k">raise</span> <span class="n">t</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">tb</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="MarionetteHelper.follow_link"><a class="viewcode-back" href="../../../developer/functions.html#fortrace.utility.marionette_helper.MarionetteHelper.follow_link">[docs]</a>    <span class="k">def</span> <span class="nf">follow_link</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Click on a link&quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">links</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">find_elements</span><span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">TAG_NAME</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span>
+            <span class="n">links</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+        <span class="k">except</span> <span class="n">ElementNotVisibleException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Element not visible&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="n">ElementNotSelectableException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Element not selectable&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="n">ElementNotAccessibleException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Element not accessible&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="n">ElementNotInteractableException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Element not interactable&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="n">NoSuchElementException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Element does not exist&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="n">TimeoutException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Timeout&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Out of bound&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="n">InsecureCertificateException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Warning: Insecure Certificate&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">except</span> <span class="n">UnknownException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s2">&quot;Reached error page&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Reached error page, ignoring...&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span> <span class="c1"># reraise, something very unexpected happened here</span>
+                <span class="n">t</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">tb</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">exc_info</span><span class="p">()</span>
+                <span class="k">raise</span> <span class="n">t</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">tb</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="MarionetteHelper.click_element_by_class_name"><a class="viewcode-back" href="../../../developer/functions.html#fortrace.utility.marionette_helper.MarionetteHelper.click_element_by_class_name">[docs]</a>    <span class="k">def</span> <span class="nf">click_element_by_class_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">html_class_name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Click on first element via class name&quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">e</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">CLASS_NAME</span><span class="p">,</span> <span class="n">html_class_name</span><span class="p">)</span>
+            <span class="n">e</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+        <span class="k">except</span> <span class="n">ElementNotVisibleException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Element not visible&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="n">ElementNotSelectableException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Element not selectable&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="n">ElementNotAccessibleException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Element not accessible&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="n">ElementNotInteractableException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Element not interactable&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="n">NoSuchElementException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Element does not exist&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="n">TimeoutException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Timeout&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="n">InsecureCertificateException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Warning: Insecure Certificate&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">except</span> <span class="n">UnknownException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s2">&quot;Reached error page&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Reached error page, ignoring...&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span> <span class="c1"># reraise, something very unexpected happened here</span>
+                <span class="n">t</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">tb</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">exc_info</span><span class="p">()</span>
+                <span class="k">raise</span> <span class="n">t</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">tb</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="MarionetteHelper.click_element_by_css_selector"><a class="viewcode-back" href="../../../developer/functions.html#fortrace.utility.marionette_helper.MarionetteHelper.click_element_by_css_selector">[docs]</a>    <span class="k">def</span> <span class="nf">click_element_by_css_selector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">css_selector</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Click on first element via css selector&quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">e</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">CSS_SELECTOR</span><span class="p">,</span> <span class="n">css_selector</span><span class="p">)</span>
+            <span class="n">e</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+        <span class="k">except</span> <span class="n">ElementNotVisibleException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Element not visible&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="n">ElementNotSelectableException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Element not selectable&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="n">ElementNotAccessibleException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Element not accessible&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="n">ElementNotInteractableException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Element not interactable&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="n">NoSuchElementException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Element does not exist&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="n">TimeoutException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Timeout&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="n">InsecureCertificateException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Warning: Insecure Certificate&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">except</span> <span class="n">UnknownException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s2">&quot;Reached error page&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Reached error page, ignoring...&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span> <span class="c1"># reraise, something very unexpected happened here</span>
+                <span class="n">t</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">tb</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">exc_info</span><span class="p">()</span>
+                <span class="k">raise</span> <span class="n">t</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">tb</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="MarionetteHelper.click_element_by_id"><a class="viewcode-back" href="../../../developer/functions.html#fortrace.utility.marionette_helper.MarionetteHelper.click_element_by_id">[docs]</a>    <span class="k">def</span> <span class="nf">click_element_by_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">html_id</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Click on first element via element id&quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">e</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">ID</span><span class="p">,</span> <span class="n">html_id</span><span class="p">)</span>
+            <span class="n">e</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+        <span class="k">except</span> <span class="n">ElementNotVisibleException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Element not visible&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="n">ElementNotSelectableException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Element not selectable&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="n">ElementNotAccessibleException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Element not accessible&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="n">ElementNotInteractableException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Element not interactable&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="n">NoSuchElementException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Element does not exist&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="n">TimeoutException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Timeout&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="n">InsecureCertificateException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Warning: Insecure Certificate&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">except</span> <span class="n">UnknownException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s2">&quot;Reached error page&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Reached error page, ignoring...&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span> <span class="c1"># reraise, something very unexpected happened here</span>
+                <span class="n">t</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">tb</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">exc_info</span><span class="p">()</span>
+                <span class="k">raise</span> <span class="n">t</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">tb</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="MarionetteHelper.click_element_by_name"><a class="viewcode-back" href="../../../developer/functions.html#fortrace.utility.marionette_helper.MarionetteHelper.click_element_by_name">[docs]</a>    <span class="k">def</span> <span class="nf">click_element_by_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">html_name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Click on first element via element name&quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">e</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">NAME</span><span class="p">,</span> <span class="n">html_name</span><span class="p">)</span>
+            <span class="n">e</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+        <span class="k">except</span> <span class="n">ElementNotVisibleException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Element not visible&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="n">ElementNotSelectableException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Element not selectable&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="n">ElementNotAccessibleException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Element not accessible&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="n">ElementNotInteractableException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Element not interactable&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="n">NoSuchElementException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Element does not exist&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="n">TimeoutException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Timeout&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="n">InsecureCertificateException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Warning: Insecure Certificate&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">except</span> <span class="n">UnknownException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s2">&quot;Reached error page&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Reached error page, ignoring...&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span> <span class="c1"># reraise, something very unexpected happened here</span>
+                <span class="n">t</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">tb</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">exc_info</span><span class="p">()</span>
+                <span class="k">raise</span> <span class="n">t</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">tb</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="MarionetteHelper.click_element_by_tag_name"><a class="viewcode-back" href="../../../developer/functions.html#fortrace.utility.marionette_helper.MarionetteHelper.click_element_by_tag_name">[docs]</a>    <span class="k">def</span> <span class="nf">click_element_by_tag_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">html_tag_name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Click on first element via tag name&quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">e</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">TAG_NAME</span><span class="p">,</span> <span class="n">html_tag_name</span><span class="p">)</span>
+            <span class="n">e</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+        <span class="k">except</span> <span class="n">ElementNotVisibleException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Element not visible&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="n">ElementNotSelectableException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Element not selectable&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="n">ElementNotAccessibleException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Element not accessible&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="n">ElementNotInteractableException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Element not interactable&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="n">NoSuchElementException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Element does not exist&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="n">TimeoutException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Timeout&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="n">InsecureCertificateException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Warning: Insecure Certificate&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">except</span> <span class="n">UnknownException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s2">&quot;Reached error page&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Reached error page, ignoring...&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span> <span class="c1"># reraise, something very unexpected happened here</span>
+                <span class="n">t</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">tb</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">exc_info</span><span class="p">()</span>
+                <span class="k">raise</span> <span class="n">t</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">tb</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="MarionetteHelper.click_element_by_xpath"><a class="viewcode-back" href="../../../developer/functions.html#fortrace.utility.marionette_helper.MarionetteHelper.click_element_by_xpath">[docs]</a>    <span class="k">def</span> <span class="nf">click_element_by_xpath</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xpath</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Click on first element via xpath&quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">e</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">XPATH</span><span class="p">,</span> <span class="n">xpath</span><span class="p">)</span>
+            <span class="n">e</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+        <span class="k">except</span> <span class="n">ElementNotVisibleException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Element not visible&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="n">ElementNotSelectableException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Element not selectable&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="n">ElementNotAccessibleException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Element not accessible&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="n">ElementNotInteractableException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Element not interactable&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="n">NoSuchElementException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Element does not exist&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="n">TimeoutException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Timeout&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="n">InsecureCertificateException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Warning: Insecure Certificate&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">except</span> <span class="n">UnknownException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s2">&quot;Reached error page&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Reached error page, ignoring...&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span> <span class="c1"># reraise, something very unexpected happened here</span>
+                <span class="n">t</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">tb</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">exc_info</span><span class="p">()</span>
+                <span class="k">raise</span> <span class="n">t</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">tb</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="MarionetteHelper.click_element_by_link_text"><a class="viewcode-back" href="../../../developer/functions.html#fortrace.utility.marionette_helper.MarionetteHelper.click_element_by_link_text">[docs]</a>    <span class="k">def</span> <span class="nf">click_element_by_link_text</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">html_link_text</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Click on first element via link text&quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">e</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">LINK_TEXT</span><span class="p">,</span> <span class="n">html_link_text</span><span class="p">)</span>
+            <span class="n">e</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+        <span class="k">except</span> <span class="n">ElementNotVisibleException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Element not visible&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="n">ElementNotSelectableException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Element not selectable&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="n">ElementNotAccessibleException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Element not accessible&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="n">ElementNotInteractableException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Element not interactable&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="n">NoSuchElementException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Element does not exist&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="n">TimeoutException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Timeout&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="n">InsecureCertificateException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Warning: Insecure Certificate&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">except</span> <span class="n">UnknownException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s2">&quot;Reached error page&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Reached error page, ignoring...&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span> <span class="c1"># reraise, something very unexpected happened here</span>
+                <span class="n">t</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">tb</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">exc_info</span><span class="p">()</span>
+                <span class="k">raise</span> <span class="n">t</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">tb</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="MarionetteHelper.send_keys_to_element_by_name"><a class="viewcode-back" href="../../../developer/functions.html#fortrace.utility.marionette_helper.MarionetteHelper.send_keys_to_element_by_name">[docs]</a>    <span class="k">def</span> <span class="nf">send_keys_to_element_by_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Sends text to an element via name&quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">e</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">NAME</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+            <span class="n">e</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">ElementNotVisibleException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Element not visible&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="n">ElementNotSelectableException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Element not selectable&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="n">ElementNotAccessibleException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Element not accessible&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="n">ElementNotInteractableException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Element not interactable&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="n">NoSuchElementException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Element does not exist&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="n">TimeoutException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Timeout&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="MarionetteHelper.select_window"><a class="viewcode-back" href="../../../developer/functions.html#fortrace.utility.marionette_helper.MarionetteHelper.select_window">[docs]</a>    <span class="k">def</span> <span class="nf">select_window</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Switch window via index&quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">switch_to_window</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">window_handles</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
+        <span class="k">except</span> <span class="n">NoSuchWindowException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error: Window does not exist&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="MarionetteHelper.close_window"><a class="viewcode-back" href="../../../developer/functions.html#fortrace.utility.marionette_helper.MarionetteHelper.close_window">[docs]</a>    <span class="k">def</span> <span class="nf">close_window</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Close the current window&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>  <span class="c1"># this won&#39;t close the last window, call quit_firefox instead</span></div>
+
+<div class="viewcode-block" id="MarionetteHelper.get_current_window_index"><a class="viewcode-back" href="../../../developer/functions.html#fortrace.utility.marionette_helper.MarionetteHelper.get_current_window_index">[docs]</a>    <span class="k">def</span> <span class="nf">get_current_window_index</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Get current windows index&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">window_handles</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">current_window_handle</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="MarionetteHelper.new_tab"><a class="viewcode-back" href="../../../developer/functions.html#fortrace.utility.marionette_helper.MarionetteHelper.new_tab">[docs]</a>    <span class="k">def</span> <span class="nf">new_tab</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Open a new empty tab&quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">using_context</span><span class="p">(</span><span class="s2">&quot;chrome&quot;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">ID</span><span class="p">,</span> <span class="s2">&quot;menu_newNavigatorTab&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">click</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="MarionetteHelper.new_window"><a class="viewcode-back" href="../../../developer/functions.html#fortrace.utility.marionette_helper.MarionetteHelper.new_window">[docs]</a>    <span class="k">def</span> <span class="nf">new_window</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Open a new empty window&quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">using_context</span><span class="p">(</span><span class="s2">&quot;chrome&quot;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">execute_script</span><span class="p">(</span><span class="s2">&quot;window.open();&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="MarionetteHelper.close_tab"><a class="viewcode-back" href="../../../developer/functions.html#fortrace.utility.marionette_helper.MarionetteHelper.close_tab">[docs]</a>    <span class="k">def</span> <span class="nf">close_tab</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Close the current tab&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">close_window</span><span class="p">()</span>  <span class="c1"># basically the same as close windows</span></div></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">fortrace</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture/index.html">Architecture of fortrace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture/framework_architecture.html">Framework Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture/generator.html">Generator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture/service_vm.html">Service VM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation/index.html">Installation of fortrace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation/config.html">Configuration of installation options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation/host.html">Host Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation/guest.html">Guest Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation/service_vm.html">Installation of Service VM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation/firstrun.html">First Run after installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../developer/index.html">Developer reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../developer/functions.html">Functions of fortrace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../developer/implementing.html">Implementation of Scenarios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../developer/implementing.html#implementation-of-new-features">Implementation of new Features</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Thomas Schäfer, Thomas Göbel, Jan Türr.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

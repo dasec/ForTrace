@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="structagentmessageheader" kind="struct" language="C++" prot="public">
+    <compoundname>agentmessageheader</compoundname>
+    <includes refid="pidgin__puppet_8h" local="no">pidgin_puppet.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structagentmessageheader_1af24484d2b5c15ef4de3ae6f71cbba463" prot="public" static="no" mutable="no">
+        <type><ref refid="pidgin__puppet_8h_1a2eb3b718074d951580394651dec99eae" kindref="member">hlength_t</ref></type>
+        <definition>hlength_t agentmessageheader::length</definition>
+        <argsstring></argsstring>
+        <name>length</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Length of packet in bytes </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pidgin_puppet.h" line="185" column="1" bodyfile="pidgin_puppet.h" bodystart="185" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structagentmessageheader_1a7f2f76c9d50c026b0a5e64f78f7e9f17" prot="public" static="no" mutable="no">
+        <type><ref refid="pidgin__puppet_8h_1ac991ce97ed2ac2d3a08fbef807b117c6" kindref="member">hnum_t</ref></type>
+        <definition>hnum_t agentmessageheader::numofentries</definition>
+        <argsstring></argsstring>
+        <name>numofentries</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Number of offsets in packet </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pidgin_puppet.h" line="186" column="1" bodyfile="pidgin_puppet.h" bodystart="186" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Header used for agent communication </para>    </detaileddescription>
+    <location file="pidgin_puppet.h" line="184" column="1" bodyfile="pidgin_puppet.h" bodystart="184" bodyend="187"/>
+    <listofallmembers>
+      <member refid="structagentmessageheader_1af24484d2b5c15ef4de3ae6f71cbba463" prot="public" virt="non-virtual"><scope>agentmessageheader</scope><name>length</name></member>
+      <member refid="structagentmessageheader_1a7f2f76c9d50c026b0a5e64f78f7e9f17" prot="public" virt="non-virtual"><scope>agentmessageheader</scope><name>numofentries</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

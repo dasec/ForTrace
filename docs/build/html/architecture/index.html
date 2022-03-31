@@ -1,0 +1,176 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Architecture of fortrace &#8212; fortrace  documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Framework Architecture" href="framework_architecture.html" />
+    <link rel="prev" title="What is fortrace and what can it do?" href="../index.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="architecture-of-fortrace">
+<span id="architecture-index"></span><h1>Architecture of fortrace<a class="headerlink" href="#architecture-of-fortrace" title="Permalink to this headline">¶</a></h1>
+<p>In this part we shed some light on the architecture of fortrace. We will explain which tools are used by the
+framework, for example how virtualization is achieved, how  it generates traffic, etc. However most importantly we will
+clarify the different parts of the framework and their interaction to make the installation process more transparent.</p>
+<p>First it is important to understand that fortrace consists of two distinct parts. The first being the user simulation
+model that will be run on the physical machine. This part will communicate with an agent inside a virtual machine which
+serves as the second part of fortrace. Both of these need to be installed before use, as described in <a class="reference internal" href="../installation/index.html#installindex"><span class="std std-ref">Installation of fortrace</span></a>.</p>
+<div class="section" id="framework-architecture">
+<h2>Framework architecture<a class="headerlink" href="#framework-architecture" title="Permalink to this headline">¶</a></h2>
+<p>fortrace is designed to create network traffic and related digital evidence by simulating user inputs. The simulation of
+these inputs are achieved by using the layered architecture seen in the image below. The host (or management layer)
+creates the virtual environments specified by the active scenario. These virtual environments are clones of previously
+prepared templates (see <a class="reference internal" href="../installation/guest.html#guestinstall"><span class="std std-ref">Guest Installation</span></a>). By using a network bridge created solely for the communication between the
+management layer and virtual machine layer (or guest/s), function calls are fed from the host to the the guest machine/s,
+executing the traffic generation scenario created and executed at the beginning.</p>
+<div class="figure" id="id1">
+<img alt="Graphic of fortrace's layered architecture." src="../_images/architecture.png" />
+<p class="caption"><span class="caption-text">Graphic of fortrace’s layered architecture.</span></p>
+</div>
+<p>For a more in-depth explanation about functions, workflow and architecture, please refer to <a class="reference internal" href="framework_architecture.html#arch"><span class="std std-ref">Framework Architecture</span></a>.</p>
+</div>
+<div class="section" id="service-vm">
+<h2>Service VM<a class="headerlink" href="#service-vm" title="Permalink to this headline">¶</a></h2>
+<p>The service VM is a permanent virtual machine, that is not deleted after usage (like the guest component of fortrace) and provides
+services to one or multiple fortrace guest components. This allows for an easier configuration of fortrace and increases its usability.
+There are currently 3 services available: mailserver (SMTP emails - PostFix &amp; Dovecot), printing systems (IPPServer) and a
+network drive (SMB).</p>
+<p>For a more in–depth explanation of the service VM and the services included you can refer to <a class="reference internal" href="service_vm.html#service"><span class="std std-ref">Service VM</span></a>.</p>
+</div>
+<div class="section" id="generator">
+<h2>Generator<a class="headerlink" href="#generator" title="Permalink to this headline">¶</a></h2>
+<p>The Generator serves as a way to simplify the user interaction model, allowing users to create scenarios of traffic generation
+with both malicious and benign traffic by feeding a YAML-file to the fortrace generator. This allows for easy creation
+and reproduction of traffic generation scenarios, removing the necessity of handily programmed scenarios.</p>
+<div class="figure" id="id2">
+<img alt="Generator workflow graphic." src="../_images/generator_flow.png" />
+<p class="caption"><span class="caption-text">Generator workflow graphic.</span></p>
+</div>
+<p>For a more in-depth explanation of the generator’s workflow and functionality, please refer to <a class="reference internal" href="generator.html#gen"><span class="std std-ref">Generator</span></a>.</p>
+</div>
+<div class="section" id="reporter">
+<h2>Reporter<a class="headerlink" href="#reporter" title="Permalink to this headline">¶</a></h2>
+<p>In addition to tcpdump, fortrace has a separate built-in evaluation functionality with the <strong>reporter</strong>. This reporter’s main
+task is to display an overview of the time and type of actions taking place durign a simulation. The reporter produces an .*xml*
+file that can be displayed using a web viewer (<strong>report.html</strong>) delivered alongside the framework.</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">fortrace</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Architecture of fortrace</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#framework-architecture">Framework architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#service-vm">Service VM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#generator">Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reporter">Reporter</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="framework_architecture.html">Framework Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generator.html">Generator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="service_vm.html">Service VM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">Installation of fortrace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/config.html">Configuration of installation options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/host.html">Host Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/guest.html">Guest Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/service_vm.html">Installation of Service VM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/firstrun.html">First Run after installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/index.html">Developer reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/functions.html">Functions of fortrace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/implementing.html">Implementation of Scenarios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/implementing.html#implementation-of-new-features">Implementation of new Features</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="../index.html" title="previous chapter">What is fortrace and what can it do?</a></li>
+      <li>Next: <a href="framework_architecture.html" title="next chapter">Framework Architecture</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Thomas Schäfer, Thomas Göbel, Jan Türr.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/architecture/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

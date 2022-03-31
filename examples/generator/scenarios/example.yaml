@@ -1,0 +1,95 @@
+name: haystack example
+description: A example action suite to generate a haystack (traffic)
+author: MPSE Group
+seed: 1234
+collections:
+  c-http-0:
+    type: http
+    urls: ./generator/collections/friendly_urls.txt
+  c-mail-0:
+    type: mail
+    recipients: ./generator/collections/friendly_recipients.txt
+    subjects: ./generator/collections/friendly_subjects.txt
+    messages: ./generator/collections/friendly_messages.txt
+  c-print-0:
+    type: printer
+    files: ./generator/collections/printer_default_documents.txt
+  c-smb-0:
+    type: smb
+    files: ./generator/collections/smb_default_attachments.txt
+settings:
+  host_nfs_path: /data/fortrace_data
+  guest_nfs_path: Z:\\
+applications:
+  mail-0:
+    type: mail
+    imap_hostname: imap.web.de
+    smtp_hostname: smtp.web.de
+    email: fortrace@web.de
+    password: Vo@iLmx48Qv8m%y
+    username: fortrace
+    full_name: Heinz fortrace
+    socket_type: 3
+    socket_type_smtp: 2
+    auth_method_smtp: 3
+  mail-1:
+    type: mail
+    imap_hostname: 192.168.103.123
+    smtp_hostname: 192.168.103.123
+    email: sk@fortrace.local
+    password: fortrace
+    username: sk
+    full_name: Heinz fortrace
+    socket_type: 0
+    socket_type_smtp: 0
+    auth_method_smtp: 3
+  printer-0:
+    type: printer
+    hostname: http://192.168.103.123:631/ipp/print/name
+  smb-0:
+    type: smb
+    username: service
+    password: fortrace
+    destination: \\192.168.103.123\sambashare
+hay:
+  h-http-0:
+    application: http
+    url: https://dasec.h-da.de/
+    amount: 1
+  h-http-1:
+    application: http
+    amount: 3
+    collection: c-http-0
+  h-mail-0:
+    application: mail-1
+    recipient: sk@fortrace.local
+    subject: a random mail
+    message: I'm sending you this mail because of X.
+    attachments:
+      - /data/fortrace_data/blue.jpg
+      - /data/fortrace_data/document.pdf
+    amount: 1
+  h-mail-1:
+    application: mail-1
+    amount: 2
+    recipient: sk@fortrace.local
+    collection: c-mail-0
+needles:
+  n-printer-0:
+    application: printer-0
+    file: C:\Users\fortrace\Documents\top_secret.txt
+    amount: 2
+  n-mail-0:
+    application: mail-1
+    recipient: sk@fortrace.local
+    subject: a suspicious mail
+    content: I've attached said document.
+    attachments:
+      - /data/fortrace_data/hda_master.pdf
+    amount: 1
+  n-smb-0:
+    application: smb-0
+    amount: 1
+    files:
+      - C:\Users\fortrace\Documents\top_secret.txt
+      - C:\Users\fortrace\Documents\hda_master.pdf
