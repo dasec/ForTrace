@@ -1,4 +1,6 @@
-Repository of ForTrace framework as submitted to IFIP ICDF 11.9 2020
+Repository of ForTrace framework as submitted to DFRWS EU 2022 [1]
+
+[1] Göbel, T., Maltan, S., Türr, J., Baier, H., & Mann, F. (2022). ForTrace-A holistic forensic data set synthesis framework. Forensic Science International: Digital Investigation, 40.
 
 # What is ForTrace
 ForTrace is a tool that aims towards the automatic generation of traffic through multiple applications. Supported applications
