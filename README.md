@@ -1,4 +1,5 @@
 The ForTrace framework was published at the Digital Forensics Research Workshop '22 (EU).
+
 The reference to this article is: Thomas Göbel, Stephan Maltan, Jan Türr, Harald Baier, and Florian Mann. "ForTrace - A holistic forensic data set synthesis framework". In: Forensic Science International: Digital Investigation, 40 (2022).
 
 # What is ForTrace
