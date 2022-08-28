@@ -127,8 +127,7 @@ Next, you simply have to run **install.bat** with admin privileges. It is locate
 located in the same folder.
 
 
-### 
-tu
+### Ubuntu
 
 The first step in creating your virtual Ubuntu guest is creating the virtual machine. To do this, you will need to
 obtain a Ubuntu image. We recommend downloading an ISO-file from an official source.
