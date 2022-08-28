@@ -114,7 +114,7 @@ reason the auto login does not work with your Windows 10 guest component,
 [this link](https://support.microsoft.com/en-us/help/324737/how-to-turn-on-automatic-logon-in-windows) should guide you
 through the process of (re-)enabling auto login.
 
-Windows 11 guests can be installed using the same method, with a specific installation script **win11install.sh** being provided with the next update in the same folder as the Windows 10 script.
+**Note** - Windows 11 guests can be installed using the same method, with a specific installation script **win11install.sh** being provided with the next update in the same folder as the Windows 10 script.
 
 ### Windows installation - automated
 
