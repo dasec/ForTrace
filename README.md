@@ -2,6 +2,10 @@ The **ForTrace** framework was published at the Digital Forensics Research Works
 
 The reference to this article is: Thomas Göbel, Stephan Maltan, Jan Türr, Harald Baier, and Florian Mann. "ForTrace - A holistic forensic data set synthesis framework". In: Forensic Science International: Digital Investigation, 40 (2022).
 
+The agent-less version of ForTrace was published at Digital Forensics Research Workshop '24 (EU). The article can be freely downloaded from [Digital Investigation](https://www.sciencedirect.com/science/article/pii/S2666281723002093).
+
+The reference to this article is: Dennis Wolf, Thomas Göbel, and Harald Baier. "Hypervisor-based data synthesis: On its potential to tackle the curse of client-side agent remnants in forensic image generation". In: Forensic Science International: Digital Investigation, 48 (2024).
+
 # What is ForTrace
 ForTrace is a tool that aims towards the automatic generation of traffic through multiple applications. Supported applications
 include Firefox, Thunderbird, Pidgin and a variety of botnet attacks. There are further applications
