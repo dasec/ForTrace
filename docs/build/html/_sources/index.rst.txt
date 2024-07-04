@@ -4,19 +4,19 @@
    contain the root `toctree` directive.
 
 ==================================
-What is fortrace and what can it do?
+What is ForTrace and what can it do?
 ==================================
 
-fortrace is an *Open Source* python module to simulate user behaviour inside a virtual machine and like that creating
+ForTrace is an *Open Source* python framework to simulate user behaviour inside a virtual machine to create
 network traffic, timestamps, files and other "real world" traces one would find in a forensic case.
-With this framework we opt to make data set generation accessible to the forensic community. If it is for universities
-to provide students with a variety of different cases or for people creating algorithms and programs aiding forensic
-investigators to test their products against.
-As everything that is happening inside the virtual machine is known it can even be used to train machine learning
+With this framework we opt to make data set generation accessible to the forensic community. It can be used by universities
+to provide students with a variety of different cases or by people creating algorithms and programs aiding forensic
+investigators to test their products.
+As everything that is happening inside the virtual machine is known and can be recorded using a **Reporting functionality** it can even be used to train machine learning
 algorithms.
 
-In this documentation we start by explaining how to set up fortrace.
-Additionally, we will show how to use fortrace, what it can already do and how you can extend it to fit your needs.
+In this documentation we start by explaining how to set up ForTrace.
+Additionally, we will show how to use ForTrace, what it can already do and how you can extend it to fit your needs.
 
 
 Contents

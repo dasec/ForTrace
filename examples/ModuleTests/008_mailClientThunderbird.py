@@ -11,6 +11,8 @@ except ImportError as ie:
     print("Import error! in fileManagement.py " + str(ie))
     exit(1)
 
+hostplattform = "windows11"
+
 # Function status
 add_pop3_account = True
 mailOpen = True
@@ -24,7 +26,7 @@ guests = []
 guestListener = GuestListener(guests, logger)
 virtual_machine_monitor1 = Vmm(macsInUse, guests, logger)
 imagename = "mailClientThunderbird_Testscript"
-guest = virtual_machine_monitor1.create_guest(guest_name=imagename, platform="windows")
+guest = virtual_machine_monitor1.create_guest(guest_name=imagename, platform=hostplattform)
 
 # Wait for the VM to connect to the VMM
 guest.waitTillAgentIsConnected()

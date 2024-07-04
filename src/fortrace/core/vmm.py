@@ -21,7 +21,7 @@ from fortrace.utility.logger_helper import create_logger
 class Vmm(object):
     """fortrace virtual machine monitor, setup environment to create guests and control them."""
 
-    def __init__(self, macsInUse, guests, logger=None, windows_template="windows-template",
+    def __init__(self, macsInUse, guests, logger=None, windows11_template="windows11-template", windows10_template="windows10-template",
                  linux_template="linux-template",
                  macosx_template="mac-template", hypervisor="kvm", hypervisor_ip="127.0.0.1", hypervisor_user="root",
                  tcpdump="/usr/sbin/tcpdump"):
@@ -44,7 +44,8 @@ class Vmm(object):
 
             self.logger.info("method Vmm::__init__ repoDec19")
             self.guest_template = {
-                "windows": windows_template,
+                "windows10": windows10_template,
+                "windows11": windows11_template,
                 "linux": linux_template,
                 "macosx": macosx_template
             }

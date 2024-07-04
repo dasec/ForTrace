@@ -21,7 +21,6 @@
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
-  
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
@@ -30,8 +29,6 @@
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          
-
           <div class="body" role="main">
             
   <span class="target" id="guestinstall"></span><div class="section" id="guest-installation">
@@ -69,29 +66,35 @@ install script found in the <strong>install_tools</strong> folder</p>
 <p>Either method would require you to adapt the <strong>–cdrom</strong> parameter with the correct path and name of your installation
 medium. You might also want to change <strong>–ram</strong>, <strong>disk space (size)</strong> or <strong>–vcpus</strong> depending on your available resources. When starting the
 virtual machine, make sure to name your primary user <strong>fortrace</strong>. Additionally, it is important <strong>not</strong> to set a password
-when first starting the guest component. Otherwise, fortrace will be unable to log into the default chosen user. If, for any
+when first starting the guest component. Otherwise, ForTrace will be unable to log into the default chosen user. If, for any
 reason the auto login does not work with your Windows 10 guest component,
 <a class="reference external" href="https://support.microsoft.com/en-us/help/324737/how-to-turn-on-automatic-logon-in-windows">this link</a> should guide you
 through the process of (re-)enabling auto login.</p>
+<div class="section" id="windows-11">
+<h3>Windows 11<a class="headerlink" href="#windows-11" title="Permalink to this headline">¶</a></h3>
+<p>We are currently in the process of testing and adapting ForTrace to run on Windows 11.
+The installation instructions provided here can currently be used for Windows 11 as well, with minor differences.
+An installation script called win11install.sh as well as other necessary adaptations will be provided with the next update.</p>
+</div>
 <div class="section" id="windows-installation-automated">
 <h3>Windows installation - automated<a class="headerlink" href="#windows-installation-automated" title="Permalink to this headline">¶</a></h3>
 <p>While most of the installation of the Windows guest can be automated, a few steps have to be done manually.</p>
-<p>First and foremost, fortrace has to be downloaded and moved or copied to your desktop.
+<p>First and foremost, ForTrace has to be downloaded and moved or copied to your desktop.
 It can be found <a class="reference external" href="https://github.com/dasec/fortrace">here</a>.</p>
 <p>Next, you simply have to run <strong>install.bat</strong> with admin privileges. It is located in the <strong>install_tools</strong> folder. This will install two .msi files
 located in the same folder.</p>
 <p>The following steps are included in the <strong>install.bat</strong> and are only mentioned for transparency.</p>
 <blockquote>
-<div><p>The first is Python 2.7 and can be <a class="reference external" href="https://www.python.org/ftp/python/2.7.17/python-2.7.17.amd64.msi">downloaded here</a> in case it is missing.</p>
+<div><p>The first is Python 3 and can be <a class="reference external" href="https://www.python.org/ftp/python/3.9.7/python-3.9.7-amd64.exe">downloaded here</a> in case it is missing.</p>
 <p>If you need to install pip in case the automatic installation skips it, download the <a class="reference external" href="https://bootstrap.pypa.io/get-pip.py">get-pip.py script here</a>
 and run the following command in your command line:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">C:\Users\user\fortrace\Downloads&gt; python get-pip.py</span>
 </pre></div>
 </div>
-<p>The second msi file ist the Visual C++ Compiler for Python 2.7. The compiler can be downloaded directly
+<p>The second msi file ist the Visual C++ Compiler for Python. The compiler can be downloaded directly
 from
-<a class="reference external" href="https://download.microsoft.com/download/7/9/6/796EF2E4-801B-4FC4-AB28-B59FBF6D907B/VCForPython27.msi">Microsoft’s web presence</a>.</p>
-<p>After all of the presetup is done, fortrace is installed using the following command:</p>
+<a class="reference external" href="https://go.microsoft.com/fwlink/?LinkId=691126">Microsoft’s web presence</a>.</p>
+<p>After all of the presetup is done, ForTrace is installed using the following command:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">C:\Users\user\fortrace\Desktop\fortrace&gt; python setup.py install</span>
 </pre></div>
 </div>
@@ -99,7 +102,7 @@ from
 <p>The final step manipulates the Windows Task Scheduler to run <strong>startGuestAgent.bat</strong>, which in turn
 will start the <strong>guestAgent.py</strong> script, both located in <strong>guest_tools</strong>. This script manages the communication between
 your host and guest instances. This is handled by the following line in the pre_setup.py script:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">prepCmd</span> <span class="o">=</span> <span class="s2">&quot;schtasks /create /sc ONLOGON /tn fortrace /tr %HOMEPATH%\Desktop\fortrace\guest_tools\startGuestAgent.bat /f&quot;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">prepCmd</span> <span class="o">=</span> <span class="s2">&quot;schtasks /create /sc ONLOGON /tn fortrace /tr %HOMEPATH%\Desktop</span><span class="se">\f</span><span class="s2">ortrace\guest_tools\startGuestAgent.bat /f&quot;</span>
 <span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">prepCmd</span><span class="o">.</span><span class="n">split</span><span class="p">(),</span> <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -107,14 +110,14 @@ your host and guest instances. This is handled by the following line in the pre_
 below.</p>
 </div></blockquote>
 <p>Next, you will want to install all applications used to generate traffic. Both Firefox and Thunderbird are the default
-mail and browsing applications used by fortrace.</p>
+mail and browsing applications used by ForTrace.</p>
 </div>
 <div class="section" id="windows-installation-manual">
 <h3>Windows installation - manual<a class="headerlink" href="#windows-installation-manual" title="Permalink to this headline">¶</a></h3>
-<p>Your first step in a manual installation of a Windows guest template should also be to download fortrace from
+<p>Your first step in a manual installation of a Windows guest template should also be to download ForTrace from
 <a class="reference external" href="https://github.com/dasec/fortrace">the repository</a> and the folder to your desktop.</p>
-<p>Next, you will need to download and install a few prerequisites before being able to install python packages and fortrace itself.</p>
-<p>The first is Python 2.7 and can be <a class="reference external" href="https://www.python.org/ftp/python/2.7.17/python-2.7.17.amd64.msi">found here</a>.
+<p>Next, you will need to download and install a few prerequisites before being able to install python packages and ForTrace itself.</p>
+<p>The first is Python 3 and can be <a class="reference external" href="https://www.python.org/ftp/python/3.9.7/python-3.9.7-amd64.exe">found here</a>.
 During installation, make sure Python is added to PATH and pip is installed alongside Python.</p>
 <img alt="../_images/pythonpathandpip.PNG" src="../_images/pythonpathandpip.PNG" />
 <p>These options should be turned on by default. If needed, both options can be performed after the actual installation.</p>
@@ -124,11 +127,11 @@ and run the following command in your command line:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">C:\Users\user\fortrace\Downloads&gt; python get-pip.py</span>
 </pre></div>
 </div>
-<p>Furthermore, you will need to install the Visual C++ Compiler for Python 2.7. The compiler can be downloaded directly
+<p>Furthermore, you will need to install the Visual C++ Compiler for Python. The compiler can be downloaded directly
 from
-<a class="reference external" href="https://download.microsoft.com/download/7/9/6/796EF2E4-801B-4FC4-AB28-B59FBF6D907B/VCForPython27.msi">Microsoft’s web presence</a>.</p>
+<a class="reference external" href="https://go.microsoft.com/fwlink/?LinkId=691126">Microsoft’s web presence</a>.</p>
 <p>Next, you will want to install all applications used to generate traffic. Both Firefox and Thunderbird are the default
-mail and browsing applications used by fortrace. Finally, you will need to install the required python modules. If you have
+mail and browsing applications used by ForTrace. Finally, you will need to install the required python modules. If you have
 installed Python as recommended above, you will simply be able to use the <strong>pip install</strong> command to install the following
 packages:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">C:\Users\user\fortrace\Desktop&gt; pip install -U pywinauto==0.6.0</span>
@@ -143,6 +146,7 @@ packages:</p>
 <span class="go">C:\Users\user\fortrace\Desktop&gt; pip install -U protobuf==2.5.0</span>
 <span class="go">C:\Users\user\fortrace\Desktop&gt; pip install -U mozprofile</span>
 <span class="go">C:\Users\user\fortrace\Desktop&gt; pip install -U mozrunner</span>
+<span class="go">...</span>
 </pre></div>
 </div>
 <p>Now you need to manipulate the Windows Task Scheduler to run <strong>startGuestAgent.bat</strong>, which in turn
@@ -173,13 +177,13 @@ your host and guest instances. The following screenshots will guide you through 
 <img alt="Task Scheduler step 4" src="../_images/tasksched4.PNG" />
 </div>
 <ol class="arabic simple" start="5">
-<li>Select the actions tab and add a new action by browsing to the fortrace folder located on your desktop. Select the startGuestAgent.bat file.</li>
+<li>Select the actions tab and add a new action by browsing to the ForTrace folder located on your desktop. Select the startGuestAgent.bat file.</li>
 </ol>
 <div class="figure">
 <img alt="Task Scheduler step 5" src="../_images/tasksched5.PNG" />
 </div>
 <p>Alternatively, you can move a link of the startGuestAgent.bat script to the autostart folder located in <strong>C:/Users/fortrace/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup</strong>.</p>
-<p>The only thing left to do to make this Windows guest template operational is to install fortrace.</p>
+<p>The only thing left to do to make this Windows guest template operational is to install ForTrace.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">C:\Users\user\fortrace\Desktop&gt; python setup.py install</span>
 </pre></div>
 </div>
@@ -189,7 +193,7 @@ your host and guest instances. The following screenshots will guide you through 
 <h2>Ubuntu Guest<a class="headerlink" href="#ubuntu-guest" title="Permalink to this headline">¶</a></h2>
 <p>The first step in creating your virtual Ubuntu guest is creating the virtual machine. To do this, you will need to
 obtain a Ubuntu image. We recommend downloading an ISO-file from an official source.</p>
-<p>Although we recommend Ubuntu 19.10, you can use other versions as well - the installation process <em>should</em> remain
+<p>Although we recommend Ubuntu 22.04, you can use other versions as well - the installation process <em>should</em> remain
 the same.</p>
 <p>Next, you need to set up the virtual machine.
 While this can be done via the graphical interface of the <strong>virt-manager</strong>, we recommend running the <strong>ubuntu19.10install.sh</strong>
@@ -224,11 +228,11 @@ setting up your host machine.</p>
 <h3>Ubuntu installation - automated<a class="headerlink" href="#ubuntu-installation-automated" title="Permalink to this headline">¶</a></h3>
 <p>The automated installation for a guest running Ubuntu is similar to the installation of the host machine described in
 <a class="reference internal" href="host.html#hostinstall"><span class="std std-ref">Host Installation</span></a>.</p>
-<p>First and foremost, fortrace has to be downloaded and moved or copied to your desktop.
+<p>First and foremost, ForTrace has to be downloaded and moved or copied to your desktop.
 It can be found <a class="reference external" href="https://github.com/dasec/fortrace">here</a>.</p>
 <p>Next, you will want to install all applications used to generate traffic. Both Firefox and Thunderbird are the default
-mail and browsing applications used by fortrace.</p>
-<p>After fortrace has been downloaded and your traffic generating application have been installed, simply navigate into <strong>install_tools</strong> and run <strong>linux_installation.sh</strong> and choose the option
+mail and browsing applications used by ForTrace.</p>
+<p>After ForTrace has been downloaded and your traffic generating application have been installed, simply navigate into <strong>install_tools</strong> and run <strong>linux_installation.sh</strong> and choose the option
 for the guest installation. You will be asked to enter your password as root privileges are required for parts of the installation. Do not execute the entire script
 as root (with sudo).</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> ./linux_installation.sh
@@ -240,15 +244,15 @@ as root (with sudo).</p>
 <p>This will install Python and then run the <strong>pre_setup.py</strong> with the <strong>vm</strong> parameter to start installing all
 necessary python modules. You can also start this script by hand if you choose to do so, although it would
 require a manual installation of Python beforehand.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo python pre_setup.py vm
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo python3 pre_setup.py vm
 </pre></div>
 </div>
 <p>This script also creates the <strong>~/.config/autostart</strong> folder and places the script <strong>agent.desktop</strong> inside. This script
 ensures that <strong>guestAgent.py</strong> from the <strong>guest_tools</strong> folder is called on system boot to facilitate communication
 between guest and host.</p>
-<p>After installing all necessary Python modules, you just have to install fortrace to complete the installation process. To do
+<p>After installing all necessary Python modules, you just have to install ForTrace to complete the installation process. To do
 so, navigate into the main directory you copied to your desktop and run the following:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> python setup.py install --user
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> python3 setup.py install --user
 </pre></div>
 </div>
 </div>
@@ -257,39 +261,42 @@ so, navigate into the main directory you copied to your desktop and run the foll
 <p>First and foremost, fortrace has to be downloaded and moved or copied to your desktop.
 It can be found <a class="reference external" href="https://github.com/dasec/fortrace">here</a>.</p>
 <p>Next, you will want to install all applications used to generate traffic. Both Firefox and Thunderbird are the default
-mail and browsing applications used by fortrace.</p>
-<p>After fortrace has been downloaded and your traffic generating application have been installed, you need to install a few
+mail and browsing applications used by ForTrace.</p>
+<p>After ForTrace has been downloaded and your traffic generating application have been installed, you need to install a few
 packages and Python modules. First, install the Python and Python-Pip packages.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt install python
-<span class="gp">$</span> sudo apt install python-pip
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt install python3
+<span class="gp">$</span> sudo apt install python3-pip
 </pre></div>
 </div>
-<p>Make sure the default Python version is a variation of 2.7</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> python -V
+<p>Make sure the default Python version is a variation of 3</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> python3 -V
 </pre></div>
 </div>
-<p>If this command returns a Python version higher than 2.7, refer to <a class="reference internal" href="host.html#hostinstall"><span class="std std-ref">Host Installation</span></a> for a guide on how to
+<p>If this command returns a Python version lower than 3 or no version at all, refer to <a class="reference internal" href="host.html#hostinstall"><span class="std std-ref">Host Installation</span></a> for a guide on how to
 change the default Python version.</p>
 <p>Next, you will need to install the required Python modules. Simply use the <strong>pip install -U</strong> commands listed below.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> pip install -U <span class="nv">pywinauto</span><span class="o">==</span><span class="m">0</span>.6.0
-<span class="gp">$</span> pip install -U pywin32
-<span class="gp">$</span> pip install -U setuptools
-<span class="gp">$</span> pip install -U selenium
-<span class="gp">$</span> pip install -U marionette_driver
-<span class="gp">$</span> pip install -U netifaces
-<span class="gp">$</span> pip install -U psutil
-<span class="gp">$</span> pip install -U netaddr
-<span class="gp">$</span> pip install -U enum34
-<span class="gp">$</span> pip install -U <span class="nv">protobuf</span><span class="o">==</span><span class="m">2</span>.5.0
-<span class="gp">$</span> pip install -U mozprofile
-<span class="gp">$</span> pip install -U mozrunner
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> pip3 install -U <span class="nv">pywinauto</span><span class="o">==</span><span class="m">0</span>.6.0
+<span class="gp">$</span> pip3 install -U pywin32
+<span class="gp">$</span> pip3 install -U setuptools
+<span class="gp">$</span> pip3 install -U selenium
+<span class="gp">$</span> pip3 install -U marionette_driver
+<span class="gp">$</span> pip3 install -U netifaces
+<span class="gp">$</span> pip3 install -U psutil
+<span class="gp">$</span> pip3 install -U netaddr
+<span class="gp">$</span> pip3 install -U enum34
+<span class="gp">$</span> pip3 install -U <span class="nv">protobuf</span><span class="o">==</span><span class="m">2</span>.5.0
+<span class="gp">$</span> pip3 install -U mozprofile
+<span class="gp">$</span> pip3 install -U mozrunner
+<span class="gp">$</span> ...
 </pre></div>
 </div>
 <p>It is possible, that <strong>netifaces</strong> will require you to install <strong>python-dev</strong>:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt install python-dev
-<span class="gp">$</span> pip install -U netiface
+<span class="gp">$</span> pip install -U netifaces
 </pre></div>
 </div>
+<p><strong>Note</strong>: This following section concering ldtp has not been manually tested for our current approach and is obsolete, especially since most of the packages are no longer available. A replacement is currently in development and will be added with the next update.
+LDTP is a remnant of the Python 2 version of ForTrace. For completion sake or if you use the Python 2 version of the framework, the following section will remain in this documentation.</p>
 <p>Additionally, Linux requires an additional package called <strong>LDTP</strong> as well as an enabled accessibility feature in Gnome
 to control and manage window actions:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> wget http://download.freedesktop.org/ldtp/3.x/3.5.x/ldtp-3.5.0.tar.gz
@@ -317,9 +324,9 @@ different name), copy and then paste the following text in it:</p>
 <span class="go">Comment=</span>
 </pre></div>
 </div>
-<p>The last step of your presetup will be to install fortrace. Navigate into the main directory you copied to your desktop
+<p>The last step of your presetup will be to install ForTrace. Navigate into the main directory you copied to your desktop
 and run:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> python setup.py install --user
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> python3 setup.py install --user
 </pre></div>
 </div>
 <div class="section" id="connecting-the-guest-machines-to-the-nfs-server">
@@ -356,7 +363,7 @@ or do not mind running <strong>install.bat</strong> a second time, the <strong>m
 </div>
 <div class="section" id="creating-backups-or-manual-clones-for-guest-templates">
 <h2>Creating backups or manual clones for guest templates<a class="headerlink" href="#creating-backups-or-manual-clones-for-guest-templates" title="Permalink to this headline">¶</a></h2>
-<p>fortrace creates and disposes of clones of the prepared templates automatically, but you might want to create
+<p>ForTrace creates and disposes of clones of the prepared templates automatically, but you might want to create
 a backup of your templates manually. To do so, simply start <strong>virt-manager</strong>, right-click on the template and select <strong>clone</strong>.</p>
 <p>While the method above works for both Windows and Ubuntu, you can create a Ubuntu backup without a graphical interface:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> qemu-img create -f qcow2 -b /media/KVM-Images/ubuntu_template.qcow2 /media/KVM-Images/l-guest01.qcow2
@@ -374,7 +381,6 @@ a backup of your templates manually. To do so, simply start <strong>virt-manager
 
 
           </div>
-          
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -391,11 +397,12 @@ a backup of your templates manually. To do so, simply start <strong>virt-manager
 <h3>Navigation</h3>
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../architecture/index.html">Architecture of fortrace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture/index.html">Architecture of ForTrace</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../architecture/framework_architecture.html">Framework Architecture</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../architecture/generator.html">Generator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture/generator.html">Generator and manual testing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../architecture/service_vm.html">Service VM</a></li>
-<li class="toctree-l1"><a class="reference internal" href="index.html">Installation of fortrace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture/service_vm.html#malware-service">Malware Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Installation of ForTrace</a></li>
 <li class="toctree-l1"><a class="reference internal" href="config.html">Configuration of installation options</a></li>
 <li class="toctree-l1"><a class="reference internal" href="host.html">Host Installation</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Guest Installation</a><ul>
@@ -407,9 +414,8 @@ a backup of your templates manually. To do so, simply start <strong>virt-manager
 <li class="toctree-l1"><a class="reference internal" href="service_vm.html">Installation of Service VM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="firstrun.html">First Run after installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../developer/index.html">Developer reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../developer/functions.html">Functions of fortrace</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../developer/implementing.html">Implementation of Scenarios</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../developer/implementing.html#implementation-of-new-features">Implementation of new Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/functions.html">Functions of ForTrace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/implementing.html">Implementing new Scenarios and Features</a></li>
 </ul>
 
 <div class="relations">
@@ -433,14 +439,6 @@ a backup of your templates manually. To do so, simply start <strong>virt-manager
     </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
-
-
-
-
-
-
-
-
         </div>
       </div>
       <div class="clearer"></div>
@@ -450,7 +448,7 @@ a backup of your templates manually. To do so, simply start <strong>virt-manager
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |
       <a href="../_sources/installation/guest.rst.txt"

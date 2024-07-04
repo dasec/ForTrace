@@ -11,3 +11,6 @@ tcpdump
 jq
 openssh-client
 openssh-server
+swtpm
+swtpm-tools
+ovmf

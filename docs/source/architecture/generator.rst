@@ -4,19 +4,21 @@
 Generator and manual testing
 ****************************
 
-The generator is an addition to make the use of fortrace more user-friendly. It allows a user to hide one or multiple
-needles in a haystack without needing to write a python script every time the framework is used. Additionally, after finishing
-the scenario entered, the generator returns a.*pcap* file for the user to evaluate the generated traffic.
+The generator is an addition to make the use of ForTrace more user-friendly. It allows a user to generate multiple instances of relevant forensic evidence
+and additional data to synthesize a complete and more realistic dataset without needing to write a python script every time the framework is used. Additionally, after finishing
+the scenario entered, the generator returns a *.pcap* file for the user to evaluate the generated network traffic as well as an optional memory dump.
 
-To use the generator, the user needs to configure a .*yaml* file (a template can be seen at the end of this section).
-The file is structured in 4 section:
+To use the generator, the user needs to configure a *.yaml* file (a template can be seen at the end of this section).
+The file is structured in 5 section:
 
 1. **collections**: This section contains a list of possible parameters such as email recipients, messages or lists of websites. The choice of what parameters are used is randomized and dependent on what seed is used - using the same seed twice should result in similar (or the same) results.
 
 2. **applications**: This section determines which applications are used to generate traffic and execute the actions defined in the following sections.
 
-3. **hay** and 4. **needles**: These sections define the actions that are supposed to be simulated to generate traffic. The separation between hay and needles is simply a formatting choice - it should have no bearing on what actions are allowed to be executed.
+3. **hay** and 4. **needles**: These sections define the actions that are supposed to be simulated to generate artifacts.
+The separation between hay and needles is simply a formatting choice - it should have no bearing on what actions are allowed to be executed.
 
+5. **dumps** can be used to create certain data dumps. Currently, only memory dumps are implemented as network traffic is recorded regardless.
 
 .. figure:: ../../figures/generator.PNG
     :alt: Generator workflow.
@@ -30,12 +32,14 @@ The generator can be started with the following command:
 
     $ python -m fortrace.generator config.yml
 
+Additionally, there is a python script **\\examples\\generate_haystack.py** that can be called with the yaml-file as a parameter, performing the same task as the command above.
+
 
 What follows is depicted in the workflow diagram above. First, the virtual machine(s) is started and a connection between
 host and guest is established. Then, the **config.yml** is read and the collections are loaded into the generator.
 Next, the needed applications are set up and **hay** and **needles** are used to generate the actions detailed in the config file.
 Before executing these actions, the parameters are chosen randomly. Once all actions have completed, the guest components
-are stopped and a .*pcap* file is created on the host machine.
+are stopped and a .*pcap* file is created on the host machine. If the **dumps** section of the yaml file is filled in, additional dumps will be created on the host machine.
 
 
 If you are currently not using a NFS or your NFS server is not located on your host machine, leave the fields **host_nfs_path**
@@ -100,6 +104,16 @@ YAML-Template
             username: service
             password: fortrace
             destination: \\192.168.103.123\sambashare
+        malware-0:
+            type: malware
+            service-vm: 192.168.122.219
+            dnsServer: 192.168.122.219
+            webServer: 192.168.122.219
+            name: MalwareBot.exe
+            webPort: 7777
+            service-port: 8080
+            beacon: 1
+            path: C:\users\fortrace\Downloads
     hay:
         h-http-0:
             application: http
@@ -142,7 +156,13 @@ YAML-Template
             files:
                 - C:\Users\fortrace\Documents\top_secret.txt
                 - C:\Users\fortrace\Documents\hda_master.pdf
-
+        h- malware -1:
+             application: malware-0
+             collection: c-malware-0
+    dumps:
+         d-dump-0:
+            dump-type: mem
+            dump-path: /home/fortrace/gendump.file
 
 
 

@@ -177,10 +177,10 @@ class Generator(object):
         ssh = paramiko.SSHClient()
         ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         ssh.connect(malware_config['service-vm'], username="fortrace-service", password="$Anfang01")
-        ssh_stdin, ssh_stdout, ssh_stderr = ssh.exec_command("cd C:\users\fortrace-service\Desktop & MalwareServer.exe config" + config)
+        ssh_stdin, ssh_stdout, ssh_stderr = ssh.exec_command("cd C:\\users\\fortrace-service\\Desktop & MalwareServer.exe config" + config)
         exit_status = ssh_stdout.channel.recv_exit_status()
         print("Malware Server: Exit Code", exit_status)
-        print("cd C:\users\fortrace-service\Desktop & MalwareServer.exe config" + config)
+        print("cd C:\\users\\fortrace-service\\Desktop & MalwareServer.exe config" + config)
         print("-----------------------------------------------\n")
         print(ssh_stdout.read())
         print("\n---------------------------------------------\n")
@@ -204,8 +204,8 @@ class Generator(object):
         ssh.connect(malware_config['service-vm'], username="fortrace-service", password="$Anfang01")
         ftp = ssh.open_sftp()
         try:
-            ftp.stat("C:\users\fortrace-service\Desktop\config" + str(configs))
-            ftp.remove("C:\users\fortrace-service\Desktop\config" + str(configs))
+            ftp.stat("C:\\users\\fortrace-service\\Desktop\\config" + str(configs))
+            ftp.remove("C:\\users\\fortrace-service\\Desktop\\config" + str(configs))
         except:
             pass
         ftp.close()
@@ -216,8 +216,8 @@ class Generator(object):
                 configs = configs + 1
                 ftp = ssh.open_sftp()
                 try:
-                    ftp.stat("C:\users\fortrace-service\Desktop\config" + str(configs))
-                    ftp.remove("C:\users\fortrace-service\Desktop\config" + str(configs))
+                    ftp.stat("C:\\users\\fortrace-service\\Desktop\\config" + str(configs))
+                    ftp.remove("C:\\users\\fortrace-service\\Desktop\\config" + str(configs))
                 except:
                     pass
                 ftp.close()
@@ -239,8 +239,8 @@ class Generator(object):
                 configs = configs + 1
                 ftp = ssh.open_sftp()
                 try:
-                    ftp.stat("C:\users\fortrace-service\Desktop\config" + str(configs))
-                    ftp.remove("C:\users\fortrace-service\Desktop\config" + str(configs))
+                    ftp.stat("C:\\users\\fortrace-service\\Desktop\\config" + str(configs))
+                    ftp.remove("C:\\users\\fortrace-service\\Desktop\\config" + str(configs))
                 except:
                     pass
                 ftp.close()
@@ -253,8 +253,8 @@ class Generator(object):
                 configs = configs + 1
                 ftp = ssh.open_sftp()
                 try:
-                    ftp.stat("C:\users\fortrace-service\Desktop\config" + str(configs))
-                    ftp.remove("C:\users\fortrace-service\Desktop\config" + str(configs))
+                    ftp.stat("C:\\users\\fortrace-service\\Desktop\\config" + str(configs))
+                    ftp.remove("C:\\users\\fortrace-service\\Desktop\\config" + str(configs))
                 except:
                     pass
                 ftp.close()
@@ -306,8 +306,8 @@ class Generator(object):
                 configs = configs + 1
                 ftp = ssh.open_sftp()
                 try:
-                    ftp.stat("C:\users\fortrace-service\Desktop\config" + str(configs))
-                    ftp.remove("C:\users\fortrace-service\Desktop\config" + str(configs))
+                    ftp.stat("C:\\users\\fortrace-service\\Desktop\\config" + str(configs))
+                    ftp.remove("C:\\users\\fortrace-service\\Desktop\\config" + str(configs))
                 except:
                     pass
                 ftp.close()
@@ -320,7 +320,7 @@ class Generator(object):
                 time.sleep(10)
             else:
                 ftp = ssh.open_sftp()
-                file = ftp.file("C:\users\fortrace-service\Desktop\config" + str(configs), "a", -1)
+                file = ftp.file("C:\\users\\fortrace-service\\Desktop\\config" + str(configs), "a", -1)
                 file.write(i + "\n")
                 ftp.close()
         ssh.close()

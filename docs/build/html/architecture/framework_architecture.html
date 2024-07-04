@@ -16,11 +16,10 @@
     <script type="text/javascript" src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Generator" href="generator.html" />
-    <link rel="prev" title="Architecture of fortrace" href="index.html" />
+    <link rel="next" title="Generator and manual testing" href="generator.html" />
+    <link rel="prev" title="Architecture of ForTrace" href="index.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-  
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
@@ -30,43 +29,42 @@
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          
-
           <div class="body" role="main">
             
   <div class="section" id="framework-architecture">
 <span id="arch"></span><h1>Framework Architecture<a class="headerlink" href="#framework-architecture" title="Permalink to this headline">¶</a></h1>
-<p>This chapter will detail the key components and workflow of fortrace as well as relate the currently available features and functions.
+<p>This chapter will detail the key components and workflow of ForTrace as well as relate the currently available features and functions.
 To get a more technical overview of key functions, you can view the corresponding chapter here: <a class="reference internal" href="../developer/index.html#dev"><span class="std std-ref">Developer reference</span></a>.</p>
-<p>fortrace aims to generate network traffic and further relevant digital evidence by simulating regular user generated traffic.
-To accomplish this, fortrace operates as a layered system, sending requests for functions from the host to the guest layer. The guest
-layer then calls the corresponding functions, simulating keystrokes and other human-to-computer interactions to create the desired network traffic.
+<p>ForTrace aims to synthesize forensically relevant data by simulating regular user interactions.
+To accomplish this, ForTrace operates as a layered system, sending requests for functions from the host to the guest layer.
+The guest layer then calls the corresponding functions, simulating keystrokes and other human-to-computer interactions
+to create the desired data.
 This virtualized guest layer is realized as one or multiple virtual machine instances (clones of previously
-prepared templates, see <a class="reference internal" href="../installation/guest.html#guestinstall"><span class="std std-ref">Guest Installation</span></a>) using KVM (Kernel-based Virtual Machine).
-fortrace itself is programmed entirely in Python, as an OS-independent programming language was needed.</p>
+prepared templates, see <span class="xref std std-ref">guestinstall</span>) using KVM (Kernel-based Virtual Machine).
+ForTrace itself is programmed entirely in Python, as an OS-independent programming language was needed.</p>
 <div class="section" id="architecture">
 <h2>Architecture<a class="headerlink" href="#architecture" title="Permalink to this headline">¶</a></h2>
 <div class="figure" id="id1">
 <img alt="Framework client-server architecture." src="../_images/client-server-architecture.PNG" />
 <p class="caption"><span class="caption-text">Framework client-server architecture.</span></p>
 </div>
-<p>fortrace uses a common client-host architecture. The host side’s <strong>Framework Master</strong> is used to manage and run the
+<p>ForTrace uses a common client-host architecture. The host side’s <strong>Framework Master</strong> is used to manage and run the
 virtual machines representing the guest side. The guest side is completely automated from startup to shutdown and is
 run by the <strong>Interaction Manager</strong>, a component that simulates all inputs and keystrokes.</p>
 <p>The figure above shows how these two components interact. The host side runs a specific scenario, which will, as a first step, create the needed guest
 instances by creating clones of the appropriate virtual machine templates. Each simulated user is represented by an isolated virtual machine instance.
-The framework master will then transmit the needed commands to the interaction manager of each guest, which in turn will execute these commands to generate the traffic using the application specified
-in the host side scenario. As every guest is isolated, every instance can generate a separate set of traffic data.</p>
+The framework master will then transmit the needed commands to the interaction manager of each guest, which in turn will execute these commands to generate the artifacts using the application specified
+in the host side scenario. As every guest is isolated, every instance can generate a separate set of artifacts.</p>
 <p>As can be seen in the graphic, the connection between the host and client is separated from the client’s
-internet connection. This is done to minimize the simulation’s footprint on the generated data. The IP addresses and other
+internet connection. This is done to minimize the simulation’s footprint on the generated network data. The IP addresses and other
 related information can be adjusted in the <strong>constants.py</strong> file.</p>
-<p>Additionally, the host side is used to evaluate the created traffic using the reporting function (see <a class="reference internal" href="index.html#architecture-index"><span class="std std-ref">Architecture of fortrace</span></a>) and the <em>.pcap</em> file
-created by the automated use of <strong>tcpdump</strong>.</p>
+<p>Additionally, the host side is used to evaluate the created data using the reporting function (see <a class="reference internal" href="index.html#architecture-index"><span class="std std-ref">Architecture of ForTrace</span></a>) and the <em>.pcap</em> file
+created by the automated use of <strong>tcpdump</strong>. Additionally, it is possible to extract a memory dump using the <strong>guest_dump</strong> function at any time during a scenario.</p>
 <div class="figure" id="id2">
-<img alt="In-depth graphic of fortrace's data synthesis procedure." src="../_images/fortrace_simulation_procedure_2.png" />
-<p class="caption"><span class="caption-text">In-depth graphic of fortrace’s data synthesis procedure.</span></p>
+<img alt="In-depth graphic of ForTrace's data synthesis procedure." src="../_images/fortrace_simulation_procedure_2.png" />
+<p class="caption"><span class="caption-text">In-depth graphic of ForTrace’s data synthesis procedure.</span></p>
 </div>
-<p>The figure above gives a detailed step-by-step overview of the data synthesis procedure in fortrace.</p>
+<p>The figure above gives a detailed step-by-step overview of the data synthesis procedure in ForTrace.</p>
 <ol class="arabic simple">
 <li>The <strong>vmm</strong> class assists in setting up all needed guest environments, ensuring all functions and values are in order and creating a <em>listen</em> socket for all interfaces for the agent on all guests.</li>
 <li>The <strong>guest</strong> class loads values from <strong>constants.py</strong> to create and later control the scenario-specific guest instances.</li>
@@ -78,158 +76,233 @@ created by the automated use of <strong>tcpdump</strong>.</p>
 <li>The guest instances are connected to the virtual machines.</li>
 <li>The traffic within each VM is generated through the interaction manager’s execution of the respective scenarios.</li>
 <li>The scenarios have completed and the simulation is over. <em>Tcpdump</em> stops recording and the virtual machines are shut down.</li>
-<li>The virtual machines and network interfaces are deleted.</li>
+<li>The virtual machines and network interfaces are deleted. (<em>This step is optional. We recommend deleting the virtual machines if you are solely interested in memory or network data.</em>)</li>
 </ol>
 <p>The following diagram gives some additional insight into the workflow of a general simulation lifecycle.</p>
 <div class="figure" id="id3">
-<img alt="General fortrace workflow." src="../_images/fortrace-workflow.png" />
-<p class="caption"><span class="caption-text">General fortrace workflow.</span></p>
+<img alt="General ForTrace workflow." src="../_images/fortrace-workflow.png" />
+<p class="caption"><span class="caption-text">General ForTrace workflow.</span></p>
+</div>
+<div class="section" id="image-generation">
+<h3>Image Generation<a class="headerlink" href="#image-generation" title="Permalink to this headline">¶</a></h3>
+<p>ForTrace is able to simulate the use of several common user applications. In addition to that,
+ForTrace can manipulate the system clock to simulate system usage over user-chosen time interval. To track all modifications
+applied to a disk image, ForTrace provides a log file with all relevant information and hash sums. The generated images are distributed
+in the <em>qemu</em> format, meaning they are smaller snapshots of a larger base image, limiting the required disk space.</p>
 </div>
 </div>
 <div class="section" id="features-and-functions">
 <h2>Features and Functions<a class="headerlink" href="#features-and-functions" title="Permalink to this headline">¶</a></h2>
-<p>To run fortrace, we recommend a Ubuntu host machine. The virtualized guests fortrace is currently capable of using to generate
-traffic are Ubuntu, Windows 7 and Windows 10. Additionally, fortrace supports the following common (network) applications for
-traffic generation:</p>
+<p>To run ForTrace, we recommend a Ubuntu host machine. The virtualized guests ForTrace is currently capable of using to generate
+forensic artifacts are Ubuntu, Windows 7 and Windows 10. Additionally, ForTrace supports the following common applications for
+data synthesis:</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="40%" />
 <col width="23%" />
-<col width="21%" />
-<col width="16%" />
+<col width="77%" />
 </colgroup>
 <thead valign="bottom">
-<tr class="row-odd"><th class="head">Function</th>
-<th class="head">Protocol</th>
-<th class="head">Windows 7/10</th>
-<th class="head">Ubuntu</th>
+<tr class="row-odd"><th class="head">Module</th>
+<th class="head">Available functions / user actions</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>Firefox Browse URL</td>
-<td>HTTP/HTTPS</td>
-<td>Yes</td>
-<td>Yes</td>
+<tr class="row-even"><td><strong>Guest/Agent/VMM</strong></td>
+<td>Create and clone virtual machine</td>
 </tr>
-<tr class="row-odd"><td>Firefox Click Element</td>
-<td>HTTP/HTTPS</td>
-<td>Yes</td>
-<td>Yes</td>
+<tr class="row-odd"><td>&#160;</td>
+<td>Establish connection to VM</td>
 </tr>
-<tr class="row-even"><td>Firefox Download</td>
-<td>HTTP/HTTPS</td>
-<td>Yes</td>
-<td>Yes</td>
+<tr class="row-even"><td>&#160;</td>
+<td>Start, shutdown, restart VM</td>
 </tr>
-<tr class="row-odd"><td>Thunderbird receive Email</td>
-<td>POP3/IMAP/IMAPS</td>
-<td>Yes</td>
-<td>Yes</td>
+<tr class="row-odd"><td>&#160;</td>
+<td>Execute other modules</td>
 </tr>
-<tr class="row-even"><td>Thunderbird send Email</td>
-<td>SMTP/SMTPS</td>
-<td>Yes</td>
-<td>Yes</td>
+<tr class="row-even"><td>&#160;</td>
+<td>Execute arbitrary commands via CLI/Linux Bash (e.g. SSH)</td>
 </tr>
-<tr class="row-odd"><td>Thunderbird fill mailbox file</td>
-<td><ul class="first last simple">
-<li></li>
-</ul>
-</td>
-<td>Yes</td>
-<td>Yes</td>
+<tr class="row-odd"><td>&#160;</td>
+<td>Set OS time and date</td>
 </tr>
-<tr class="row-even"><td>VeraCrypt create container</td>
-<td><ul class="first last simple">
-<li></li>
-</ul>
-</td>
-<td>Yes</td>
-<td>Not tested</td>
+<tr class="row-even"><td>&#160;</td>
+<td>Send keystrokes</td>
 </tr>
-<tr class="row-odd"><td>VeraCrypt un-/mount container</td>
-<td><ul class="first last simple">
-<li></li>
-</ul>
-</td>
-<td>Yes</td>
-<td>Not tested</td>
+<tr class="row-odd"><td>&#160;</td>
+<td>Create network traffic dump (automated)</td>
 </tr>
-<tr class="row-even"><td>Execute console commands</td>
-<td><ul class="first last simple">
-<li></li>
-</ul>
-</td>
-<td>Yes</td>
-<td>Yes</td>
+<tr class="row-even"><td>&#160;</td>
+<td>Create memory dump</td>
 </tr>
-<tr class="row-odd"><td>Change system clock</td>
-<td><ul class="first last simple">
-<li></li>
-</ul>
-</td>
-<td>Yes</td>
-<td>Yes</td>
+<tr class="row-odd"><td><strong>File System</strong></td>
+<td>Copy, move, delete files and folders</td>
 </tr>
-<tr class="row-even"><td>Multiuser capability</td>
-<td><ul class="first last simple">
-<li></li>
-</ul>
-</td>
-<td>Yes</td>
-<td>No</td>
+<tr class="row-even"><td>&#160;</td>
+<td>Change directory</td>
 </tr>
-<tr class="row-odd"><td>SSH connection/file transfer</td>
-<td>SSH/SFTP</td>
-<td>Yes</td>
-<td>Yes</td>
+<tr class="row-odd"><td>&#160;</td>
+<td>Empty recycle bin</td>
 </tr>
-<tr class="row-even"><td>SMB file transfer</td>
-<td>SMB</td>
-<td>Yes</td>
-<td>Yes</td>
+<tr class="row-even"><td>&#160;</td>
+<td>Secure delete files and folders (SDelete)</td>
 </tr>
-<tr class="row-odd"><td>IPP print job</td>
-<td>IPP</td>
-<td>Yes</td>
-<td>Yes</td>
+<tr class="row-odd"><td><strong>File Transfer</strong></td>
+<td>Transfer files between guest and SMB share</td>
+</tr>
+<tr class="row-even"><td>&#160;</td>
+<td>Transfer files between guest and (S)FTP share</td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td>Transfer files between guest and NFS share</td>
+</tr>
+<tr class="row-even"><td><strong>User management</strong></td>
+<td>Add, delete, change local accounts</td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td>Logon, logoff desired user</td>
+</tr>
+<tr class="row-even"><td><strong>PowerShell</strong></td>
+<td>Install, uninstall a program</td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td>Launch, terminate a program</td>
+</tr>
+<tr class="row-even"><td>&#160;</td>
+<td>Enable, disable UAC</td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td>Open Windows explorer</td>
+</tr>
+<tr class="row-even"><td>&#160;</td>
+<td>Search for keyword</td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td>Attach, detach USB devices</td>
+</tr>
+<tr class="row-even"><td>&#160;</td>
+<td>Connect, mount, unmount a network drive</td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td>Basic file and folder manipulation</td>
+</tr>
+<tr class="row-even"><td><strong>Printer</strong></td>
+<td>Setup software network printer</td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td>Print files</td>
+</tr>
+<tr class="row-even"><td><strong>Anti Forensics</strong></td>
+<td>Disable, delete Event Log history</td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td>Disable Hibernation file</td>
+</tr>
+<tr class="row-even"><td>&#160;</td>
+<td>Disable Page file</td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td>Disable, empty Recycle bin</td>
+</tr>
+<tr class="row-even"><td>&#160;</td>
+<td>Disable, delete Prefetch files</td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td>Disable, delete Recent files</td>
+</tr>
+<tr class="row-even"><td>&#160;</td>
+<td>Disable, delete Thumbcache</td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td>Disable, delete MRUs/User Assist</td>
+</tr>
+<tr class="row-even"><td>&#160;</td>
+<td>Disable, delete File History or Volume Shadow Copy</td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td>Clear jump lists</td>
+</tr>
+<tr class="row-even"><td>&#160;</td>
+<td>Set, manipulate, delete arbitrary Registry keys</td>
+</tr>
+<tr class="row-odd"><td><strong>Malware</strong>
+<strong>Synthesis</strong></td>
+<td>Set up environment (Web server, DNS server, C&amp;C server)</td>
+</tr>
+<tr class="row-even"><td>&#160;</td>
+<td>Deliver Malware (via dropper, email, download)</td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td>Use persistence mechanisms (search order hijacking, service
+creation, Registry manipulation)</td>
+</tr>
+<tr class="row-even"><td>&#160;</td>
+<td>Execute various commands (upload, download, …)</td>
+</tr>
+<tr class="row-odd"><td><strong>Firefox</strong></td>
+<td>Open, close browser</td>
+</tr>
+<tr class="row-even"><td>&#160;</td>
+<td>Browse to one, multiple, specific or random websites</td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td>Perform downloads and “right click save as” operations</td>
+</tr>
+<tr class="row-even"><td>&#160;</td>
+<td>Click elements via ID, xpath</td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td>Perform logins</td>
+</tr>
+<tr class="row-even"><td><strong>Thunderbird</strong></td>
+<td>Open, close mail application</td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td>Add IMAP, POP3 accounts</td>
+</tr>
+<tr class="row-even"><td>&#160;</td>
+<td>Send, receive emails (with or without attachments)</td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td>Fill mailbox artificially</td>
+</tr>
+<tr class="row-even"><td><strong>VeraCrypt</strong></td>
+<td>Create encrypted container</td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td>Mount, unmount encrypted container</td>
+</tr>
+<tr class="row-even"><td>&#160;</td>
+<td>Transfer data to encrypted container</td>
+</tr>
+<tr class="row-odd"><td><strong>Pidgin</strong></td>
+<td>Instant messaging via IRC, Jabber, Bonjour, …</td>
 </tr>
 </tbody>
 </table>
-<p>fortrace is able to use <em>Firefox</em> to perform common web browsing actions to generate traffic such as browsing to and navigating
-webpages, e.g. browsing to a video or audio streaming site. fortrace is also able to download files from websites. Navigation
+<p>ForTrace is able to use <em>Firefox</em> to perform common web browsing actions to generate traffic such as browsing to and navigating
+webpages, e.g. browsing to a video or audio streaming site. ForTrace is also able to download files from websites. Navigation
 of a page can be performer through multiple ways, including the use of xpath variables.</p>
-<p>With the <em>Thunderbird</em> application fortrace is able to perform common email tasks such as sending and receiving emails as well as
+<p>With the <em>Thunderbird</em> application ForTrace is able to perform common email tasks such as sending and receiving emails as well as
 logging into an email account of the user’s choice. The <em>service VM</em> contains a mailserver that can be used to send unencrypted
 mails. This allows analysis of both mail traffic and content.</p>
-<p><em>SSH/SFTP</em> protocols are usable by fortrace to transfer data from or to servers. fortrace is built with the capability to use both
+<p><em>SSH/SFTP</em> protocols are usable by ForTrace to transfer data from or to servers. ForTrace is built with the capability to use both
 Linux Bash and Windows command line.</p>
 <p><em>VeraCrypt</em> has been implemented as a tool to generate images rather than network traffic. As of right now, image generation
 is only possible for Windows guests.</p>
 <p>Multiple common <em>Botnet simulation attacks</em> such as Mariposa, Zeus, Asprox or Waledac have already been implemented into
-fortrace to generate network dumps of an attack from the victim’s side. It is also possible to add new attack variants.</p>
+ForTrace to generate network dumps of an attack from the victim’s side. It is also possible to add new attack variants.</p>
 <p><em>SMB file transfer</em> uses the tool <strong>Samba</strong> to move data to a network drive. This drive is located on the service VM. Since
 SMB file transfers are usually not encrypted, the traffic and content can be easily analyzed.</p>
 <p><em>IPP print job</em> is a simulation of an attack in which confidential documents are printed through a network printer.
 For this, the service VM is set up with <strong>ippserver</strong> as a virtual network printer.</p>
-<div class="section" id="image-generation">
-<h3>Image Generation<a class="headerlink" href="#image-generation" title="Permalink to this headline">¶</a></h3>
-<div class="figure" id="id4">
-<img alt="Persistent image generation with fortrace." src="../_images/fortrace_framework_image_generator.png" />
-<p class="caption"><span class="caption-text">Persistent image generation with fortrace.</span></p>
-</div>
-<p>Besides generating network traffic, fortrace also allows for the creation of persistent disk image generation.
-As the figure above shows, fortrace is able to simulate the use of several common user applications. In addition to that,
-fortrace can manipulate the system clock to simulate system usage over user-chosen time interval. To track all modifications
-applied to a disk image, fortrace provides a log file with all relevant information and hash sums. The generated images are distributed
-in the <em>qemu</em> format, meaning they are smaller snapshots of a larger base image, limiting the required disk space.</p>
-</div>
+<p><em>Powershell</em> is a powerful Windows tool that can be used to manipulate almost everything on the Windows VM .</p>
+<p><em>Malware synthesis</em> uses an additional Service VM to establish connections between the infected guest VM and the simulated attacker.</p>
+<p>The <em>Anti forensics</em> module can be used to hide manipulation or obscure obvious artifacts.</p>
 </div>
 </div>
 
 
           </div>
-          
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -246,32 +319,32 @@ in the <em>qemu</em> format, meaning they are smaller snapshots of a larger base
 <h3>Navigation</h3>
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="index.html">Architecture of fortrace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Architecture of ForTrace</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Framework Architecture</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#architecture">Architecture</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#features-and-functions">Features and Functions</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="generator.html">Generator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generator.html">Generator and manual testing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="service_vm.html">Service VM</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">Installation of fortrace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="service_vm.html#malware-service">Malware Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">Installation of ForTrace</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../installation/config.html">Configuration of installation options</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../installation/host.html">Host Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../installation/guest.html">Guest Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../installation/service_vm.html">Installation of Service VM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../installation/firstrun.html">First Run after installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../developer/index.html">Developer reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../developer/functions.html">Functions of fortrace</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../developer/implementing.html">Implementation of Scenarios</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../developer/implementing.html#implementation-of-new-features">Implementation of new Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/functions.html">Functions of ForTrace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/implementing.html">Implementing new Scenarios and Features</a></li>
 </ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="index.html" title="previous chapter">Architecture of fortrace</a></li>
-      <li>Next: <a href="generator.html" title="next chapter">Generator</a></li>
+      <li>Previous: <a href="index.html" title="previous chapter">Architecture of ForTrace</a></li>
+      <li>Next: <a href="generator.html" title="next chapter">Generator and manual testing</a></li>
   </ul></li>
 </ul>
 </div>
@@ -287,14 +360,6 @@ in the <em>qemu</em> format, meaning they are smaller snapshots of a larger base
     </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
-
-
-
-
-
-
-
-
         </div>
       </div>
       <div class="clearer"></div>
@@ -304,7 +369,7 @@ in the <em>qemu</em> format, meaning they are smaller snapshots of a larger base
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |
       <a href="../_sources/architecture/framework_architecture.rst.txt"

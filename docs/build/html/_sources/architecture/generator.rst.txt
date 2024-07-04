@@ -1,22 +1,24 @@
 .. _gen:
 
 ****************************
-Generator
+Generator and manual testing
 ****************************
 
-The generator is an addition to make the use of fortrace more user-friendly. It allows a user to hide one or multiple
-needles in a haystack without needing to write a python script every time the framework is used. Additionally, after finishing
-the scenario entered, the generator returns a.*pcap* file for the user to evaluate the generated traffic.
+The generator is an addition to make the use of ForTrace more user-friendly. It allows a user to generate multiple instances of relevant forensic evidence
+and additional data to synthesize a complete and more realistic dataset without needing to write a python script every time the framework is used. Additionally, after finishing
+the scenario entered, the generator returns a *.pcap* file for the user to evaluate the generated network traffic as well as an optional memory dump.
 
-To use the generator, the user needs to configure a .*yaml* file (a template can be seen at the end of this section).
-The file is structured in 4 section:
+To use the generator, the user needs to configure a *.yaml* file (a template can be seen at the end of this section).
+The file is structured in 5 section:
 
 1. **collections**: This section contains a list of possible parameters such as email recipients, messages or lists of websites. The choice of what parameters are used is randomized and dependent on what seed is used - using the same seed twice should result in similar (or the same) results.
 
 2. **applications**: This section determines which applications are used to generate traffic and execute the actions defined in the following sections.
 
-3. **hay** and 4. **needles**: These sections define the actions that are supposed to be simulated to generate traffic. The separation between hay and needles is simply a formatting choice - it should have no bearing on what actions are allowed to be executed.
+3. **hay** and 4. **needles**: These sections define the actions that are supposed to be simulated to generate artifacts.
+The separation between hay and needles is simply a formatting choice - it should have no bearing on what actions are allowed to be executed.
 
+5. **dumps** can be used to create certain data dumps. Currently, only memory dumps are implemented as network traffic is recorded regardless.
 
 .. figure:: ../../figures/generator.PNG
     :alt: Generator workflow.
@@ -30,12 +32,14 @@ The generator can be started with the following command:
 
     $ python -m fortrace.generator config.yml
 
+Additionally, there is a python script **\\examples\\generate_haystack.py** that can be called with the yaml-file as a parameter, performing the same task as the command above.
+
 
 What follows is depicted in the workflow diagram above. First, the virtual machine(s) is started and a connection between
 host and guest is established. Then, the **config.yml** is read and the collections are loaded into the generator.
 Next, the needed applications are set up and **hay** and **needles** are used to generate the actions detailed in the config file.
 Before executing these actions, the parameters are chosen randomly. Once all actions have completed, the guest components
-are stopped and a .*pcap* file is created on the host machine.
+are stopped and a .*pcap* file is created on the host machine. If the **dumps** section of the yaml file is filled in, additional dumps will be created on the host machine.
 
 
 If you are currently not using a NFS or your NFS server is not located on your host machine, leave the fields **host_nfs_path**
@@ -100,6 +104,16 @@ YAML-Template
             username: service
             password: fortrace
             destination: \\192.168.103.123\sambashare
+        malware-0:
+            type: malware
+            service-vm: 192.168.122.219
+            dnsServer: 192.168.122.219
+            webServer: 192.168.122.219
+            name: MalwareBot.exe
+            webPort: 7777
+            service-port: 8080
+            beacon: 1
+            path: C:\users\fortrace\Downloads
     hay:
         h-http-0:
             application: http
@@ -142,3 +156,114 @@ YAML-Template
             files:
                 - C:\Users\fortrace\Documents\top_secret.txt
                 - C:\Users\fortrace\Documents\hda_master.pdf
+        h- malware -1:
+             application: malware-0
+             collection: c-malware-0
+    dumps:
+         d-dump-0:
+            dump-type: mem
+            dump-path: /home/fortrace/gendump.file
+
+
+
+=================================
+Manual Testing
+=================================
+
+It is also possible to manually test single or multiple modules using self-written python
+scripts. While running large scale scenarios like this may be cumbersome, it is an easy method to test
+single scenarios or new modules. This section will describe the possible structure of such a script
+using one of the example scripts found in **/examples/obsolete_legacy**.
+
+First, define the details of the virtual machine that is going to simulate the guest system.
+The current test scripts use a function **create_vm** for this.
+
+.. code-block::python
+
+    def create_vm(logger):
+    # virtual_machine_monitor1 = Vmm(logger, linux_template='linux_template')
+        macsInUse = []
+        guests = []
+        guestListener = GuestListener(guests, logger)
+        virtual_machine_monitor1 = Vmm(macsInUse, guests, logger)
+    # guest = virtual_machine_monitor1.create_guest(guest_name="l-guest01", platform="linux", boottime=None)
+        guest = virtual_machine_monitor1.create_guest(guest_name="w-guest01", platform="windows", boottime=None)
+        logger.debug("Try connecting to guest")
+
+        while guest.state != "connected":
+            logger.debug(".")
+            time.sleep(1)
+
+        logger.debug(guest.guestname + " is connected!")
+
+        return guest
+
+Here, the name of the guest and its operating system are determined. Then, after cloning the template and starting the guest
+a connection is established.
+
+In the **main** portion of the script, the function is called before executing the application that the user wants to run.
+
+.. code-block::python
+
+        browser_obj = None
+        browser_obj = guest.application("webBrowserFirefox", {'webBrowser': "firefox"})
+        browser_obj.open(url="faz.net")
+        while browser_obj.is_busy:
+		time.sleep(2)
+        browser_obj.browse_to("heise.de")
+        while browser_obj.is_busy:
+		time.sleep(2)
+        browser_obj.browse_to("google.de")
+        while browser_obj.is_busy:
+                time.sleep(2)
+        browser_obj.browse_to("bild.de")
+        while browser_obj.is_busy:
+                time.sleep(2)
+	time.sleep(10)
+        browser_obj.close()
+	while browser_obj.is_busy:
+		time.sleep(5)
+
+        time.sleep(5)
+        guest.remove()
+
+In this example, an instance of the Firefox application is started and directed to open a browser, browse to 3 different websites
+and then close the browser. In the end, the guest system is shut down and deleted. If you want to keep a system intact, simply
+remove the final line (**guest.remove**).
+
+It would also be advisable to add some exception handling to your script. An example is shown below.
+
+.. code-block::python
+
+    ######## CLEANUP ############# ERROR HANDLING
+    except KeyboardInterrupt as k:
+        logger.debug(k)
+        logger.debug("KeyboardInterrupt")
+        logger.debug(k)
+        logger.debug(virtual_machine_monitor1)
+        raw_input("Press Enter to continue...")
+        virtual_machine_monitor1.clear()
+        logger.debug("cleanup here")
+        try:
+            virtual_machine_monitor1.clear()
+        except NameError:
+            logger.debug("well, host1 was not defined!")
+
+        exit(0)
+
+    except Exception as e:
+        logger.debug("main gets the error: " + str(e))
+        logger.debug("cleanup here")
+        raw_input("Press Enter to continue...")
+        try:
+            virtual_machine_monitor1.clear()
+            subprocess.call(["/etc/init.d/libvirt-bin", "restart"])
+        except NameError:
+            logger.debug("well, host1 was not defined!")
+        sys.exit(1)
+
+The script is then called like any other python script.
+
+.. code-block::cmd
+
+    $ python testrun3.py

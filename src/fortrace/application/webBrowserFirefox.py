@@ -44,7 +44,7 @@ try:
         print("Import error in webBrowserFirefox.py for marionette helper classes.")
 
     #pywinauto enter button
-    from pywinauto import keyboard
+    #from pywinauto import keyboard
 
 except ImportError as ie:
     print(("Import error! in webBrowserFirefox.py " + str(ie)))
@@ -550,17 +550,20 @@ class WebBrowserFirefoxGuestSide(ApplicationGuestSide):
 
     def press_enter_test(self, args):
     #experimental; rename + busy/ready states
-        keyboard.SendKeys('{ENTER 2}')
+        # keyboard.SendKeys('{ENTER 2}')
         # TODO switch to pywinauto, ...
+        pass
 
     def press_tab_test(self, args):
        #experimental; rename + busy/ready states
-       keyboard.SendKeys('{TAB}')
+       #keyboard.SendKeys('{TAB}')
+        pass
 
     def save_as(self, args):
         #experimental, to be tested; busy/ready states
-        keyboard.SendKeys('%s')
+        #keyboard.SendKeys('%s')
         # TODO switch to pywinauto ...
+        pass
 
     def find_firefox_path(self):
         if platform.system() == "Windows":

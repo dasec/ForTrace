@@ -57,16 +57,22 @@ or simply copying the command seen below:
 Either method would require you to adapt the **--cdrom** parameter with the correct path and name of your installation
 medium. You might also want to change **--ram**, **disk space (size)** or **--vcpus** depending on your available resources. When starting the
 virtual machine, make sure to name your primary user **fortrace**. Additionally, it is important **not** to set a password
-when first starting the guest component. Otherwise, fortrace will be unable to log into the default chosen user. If, for any
+when first starting the guest component. Otherwise, ForTrace will be unable to log into the default chosen user. If, for any
 reason the auto login does not work with your Windows 10 guest component,
 `this link <https://support.microsoft.com/en-us/help/324737/how-to-turn-on-automatic-logon-in-windows>`_ should guide you
 through the process of (re-)enabling auto login.
+
+Windows 11
+#################################
+We are currently in the process of testing and adapting ForTrace to run on Windows 11.
+The installation instructions provided here can currently be used for Windows 11 as well, with minor differences.
+An installation script called win11install.sh as well as other necessary adaptations will be provided with the next update.
 
 Windows installation - automated
 ####################################
 While most of the installation of the Windows guest can be automated, a few steps have to be done manually.
 
-First and foremost, fortrace has to be downloaded and moved or copied to your desktop.
+First and foremost, ForTrace has to be downloaded and moved or copied to your desktop.
 It can be found `here <https://github.com/dasec/fortrace>`_.
 
 Next, you simply have to run **install.bat** with admin privileges. It is located in the **install_tools** folder. This will install two .msi files
@@ -79,7 +85,7 @@ located in the same folder.
 The following steps are included in the **install.bat** and are only mentioned for transparency.
 
 
-    The first is Python 2.7 and can be `downloaded here <https://www.python.org/ftp/python/2.7.17/python-2.7.17.amd64.msi>`_ in case it is missing.
+    The first is Python 3 and can be `downloaded here <https://www.python.org/ftp/python/3.9.7/python-3.9.7-amd64.exe>`_ in case it is missing.
 
     If you need to install pip in case the automatic installation skips it, download the `get-pip.py script here <https://bootstrap.pypa.io/get-pip.py>`_
     and run the following command in your command line:
@@ -89,14 +95,14 @@ The following steps are included in the **install.bat** and are only mentioned f
         C:\Users\user\fortrace\Downloads> python get-pip.py
 
 
-    The second msi file ist the Visual C++ Compiler for Python 2.7. The compiler can be downloaded directly
+    The second msi file ist the Visual C++ Compiler for Python. The compiler can be downloaded directly
     from
-    `Microsoft's web presence <https://download.microsoft.com/download/7/9/6/796EF2E4-801B-4FC4-AB28-B59FBF6D907B/VCForPython27.msi>`_.
+    `Microsoft's web presence <https://go.microsoft.com/fwlink/?LinkId=691126>`_.
 
 
 
 
-    After all of the presetup is done, fortrace is installed using the following command:
+    After all of the presetup is done, ForTrace is installed using the following command:
 
     .. code-block:: console
 
@@ -120,18 +126,18 @@ The following steps are included in the **install.bat** and are only mentioned f
     below.
 
 Next, you will want to install all applications used to generate traffic. Both Firefox and Thunderbird are the default
-mail and browsing applications used by fortrace.
+mail and browsing applications used by ForTrace.
 
 
 Windows installation - manual
 #################################
 
-Your first step in a manual installation of a Windows guest template should also be to download fortrace from
+Your first step in a manual installation of a Windows guest template should also be to download ForTrace from
 `the repository <https://github.com/dasec/fortrace>`_ and the folder to your desktop.
 
-Next, you will need to download and install a few prerequisites before being able to install python packages and fortrace itself.
+Next, you will need to download and install a few prerequisites before being able to install python packages and ForTrace itself.
 
-The first is Python 2.7 and can be `found here <https://www.python.org/ftp/python/2.7.17/python-2.7.17.amd64.msi>`_.
+The first is Python 3 and can be `found here <https://www.python.org/ftp/python/3.9.7/python-3.9.7-amd64.exe>`_.
 During installation, make sure Python is added to PATH and pip is installed alongside Python.
 
 .. image:: ../../figures/pythonpathandpip.PNG
@@ -148,12 +154,12 @@ and run the following command in your command line:
     C:\Users\user\fortrace\Downloads> python get-pip.py
 
 
-Furthermore, you will need to install the Visual C++ Compiler for Python 2.7. The compiler can be downloaded directly
+Furthermore, you will need to install the Visual C++ Compiler for Python. The compiler can be downloaded directly
 from
-`Microsoft's web presence <https://download.microsoft.com/download/7/9/6/796EF2E4-801B-4FC4-AB28-B59FBF6D907B/VCForPython27.msi>`_.
+`Microsoft's web presence <https://go.microsoft.com/fwlink/?LinkId=691126>`_.
 
 Next, you will want to install all applications used to generate traffic. Both Firefox and Thunderbird are the default
-mail and browsing applications used by fortrace. Finally, you will need to install the required python modules. If you have
+mail and browsing applications used by ForTrace. Finally, you will need to install the required python modules. If you have
 installed Python as recommended above, you will simply be able to use the **pip install** command to install the following
 packages:
 
@@ -171,6 +177,7 @@ packages:
     C:\Users\user\fortrace\Desktop> pip install -U protobuf==2.5.0
     C:\Users\user\fortrace\Desktop> pip install -U mozprofile
     C:\Users\user\fortrace\Desktop> pip install -U mozrunner
+    ...
 
 Now you need to manipulate the Windows Task Scheduler to run **startGuestAgent.bat**, which in turn
 will start the **guestAgent.py** script, both located in **guest_tools**. This script manages the communication between
@@ -200,7 +207,7 @@ your host and guest instances. The following screenshots will guide you through 
     :alt: Task Scheduler step 4
 
 
-5. Select the actions tab and add a new action by browsing to the fortrace folder located on your desktop. Select the startGuestAgent.bat file.
+5. Select the actions tab and add a new action by browsing to the ForTrace folder located on your desktop. Select the startGuestAgent.bat file.
 
 .. figure:: ../../figures/tasksched5.PNG
     :alt: Task Scheduler step 5
@@ -210,7 +217,7 @@ Alternatively, you can move a link of the startGuestAgent.bat script to the auto
 
 
 
-The only thing left to do to make this Windows guest template operational is to install fortrace.
+The only thing left to do to make this Windows guest template operational is to install ForTrace.
 
 .. code-block:: console
 
@@ -223,7 +230,7 @@ Ubuntu Guest
 The first step in creating your virtual Ubuntu guest is creating the virtual machine. To do this, you will need to
 obtain a Ubuntu image. We recommend downloading an ISO-file from an official source.
 
-Although we recommend Ubuntu 19.10, you can use other versions as well - the installation process *should* remain
+Although we recommend Ubuntu 22.04, you can use other versions as well - the installation process *should* remain
 the same.
 
 Next, you need to set up the virtual machine.
@@ -270,13 +277,13 @@ Ubuntu installation - automated
 The automated installation for a guest running Ubuntu is similar to the installation of the host machine described in
 :ref:`hostinstall`.
 
-First and foremost, fortrace has to be downloaded and moved or copied to your desktop.
+First and foremost, ForTrace has to be downloaded and moved or copied to your desktop.
 It can be found `here <https://github.com/dasec/fortrace>`_.
 
 Next, you will want to install all applications used to generate traffic. Both Firefox and Thunderbird are the default
-mail and browsing applications used by fortrace.
+mail and browsing applications used by ForTrace.
 
-After fortrace has been downloaded and your traffic generating application have been installed, simply navigate into **install_tools** and run **linux_installation.sh** and choose the option
+After ForTrace has been downloaded and your traffic generating application have been installed, simply navigate into **install_tools** and run **linux_installation.sh** and choose the option
 for the guest installation. You will be asked to enter your password as root privileges are required for parts of the installation. Do not execute the entire script
 as root (with sudo).
 
@@ -294,18 +301,18 @@ require a manual installation of Python beforehand.
 
 .. code-block:: console
 
-    $ sudo python pre_setup.py vm
+    $ sudo python3 pre_setup.py vm
 
 This script also creates the **~/.config/autostart** folder and places the script **agent.desktop** inside. This script
 ensures that **guestAgent.py** from the **guest_tools** folder is called on system boot to facilitate communication
 between guest and host.
 
-After installing all necessary Python modules, you just have to install fortrace to complete the installation process. To do
+After installing all necessary Python modules, you just have to install ForTrace to complete the installation process. To do
 so, navigate into the main directory you copied to your desktop and run the following:
 
 .. code-block:: console
 
-    $ python setup.py install --user
+    $ python3 setup.py install --user
 
 
 Ubuntu installation - manual
@@ -315,48 +322,53 @@ First and foremost, fortrace has to be downloaded and moved or copied to your de
 It can be found `here <https://github.com/dasec/fortrace>`_.
 
 Next, you will want to install all applications used to generate traffic. Both Firefox and Thunderbird are the default
-mail and browsing applications used by fortrace.
+mail and browsing applications used by ForTrace.
 
-After fortrace has been downloaded and your traffic generating application have been installed, you need to install a few
+After ForTrace has been downloaded and your traffic generating application have been installed, you need to install a few
 packages and Python modules. First, install the Python and Python-Pip packages.
 
 .. code-block:: console
 
-    $ sudo apt install python
-    $ sudo apt install python-pip
+    $ sudo apt install python3
+    $ sudo apt install python3-pip
 
-Make sure the default Python version is a variation of 2.7
+Make sure the default Python version is a variation of 3
 
 .. code-block:: console
 
-    $ python -V
+    $ python3 -V
 
-If this command returns a Python version higher than 2.7, refer to :ref:`hostinstall` for a guide on how to
+If this command returns a Python version lower than 3 or no version at all, refer to :ref:`hostinstall` for a guide on how to
 change the default Python version.
 
 Next, you will need to install the required Python modules. Simply use the **pip install -U** commands listed below.
 
 .. code-block:: console
 
-    $ pip install -U pywinauto==0.6.0
-    $ pip install -U pywin32
-    $ pip install -U setuptools
-    $ pip install -U selenium
-    $ pip install -U marionette_driver
-    $ pip install -U netifaces
-    $ pip install -U psutil
-    $ pip install -U netaddr
-    $ pip install -U enum34
-    $ pip install -U protobuf==2.5.0
-    $ pip install -U mozprofile
-    $ pip install -U mozrunner
+    $ pip3 install -U pywinauto==0.6.0
+    $ pip3 install -U pywin32
+    $ pip3 install -U setuptools
+    $ pip3 install -U selenium
+    $ pip3 install -U marionette_driver
+    $ pip3 install -U netifaces
+    $ pip3 install -U psutil
+    $ pip3 install -U netaddr
+    $ pip3 install -U enum34
+    $ pip3 install -U protobuf==2.5.0
+    $ pip3 install -U mozprofile
+    $ pip3 install -U mozrunner
+    $ ...
 
 It is possible, that **netifaces** will require you to install **python-dev**:
 
 .. code-block:: console
 
     $ sudo apt install python-dev
-    $ pip install -U netiface
+    $ pip install -U netifaces
+
+
+**Note**: This following section concering ldtp has not been manually tested for our current approach and is obsolete, especially since most of the packages are no longer available. A replacement is currently in development and will be added with the next update.
+LDTP is a remnant of the Python 2 version of ForTrace. For completion sake or if you use the Python 2 version of the framework, the following section will remain in this documentation.
 
 Additionally, Linux requires an additional package called **LDTP** as well as an enabled accessibility feature in Gnome
 to control and manage window actions:
@@ -391,12 +403,12 @@ different name), copy and then paste the following text in it:
     Name=Startup Script
     Comment=
 
-The last step of your presetup will be to install fortrace. Navigate into the main directory you copied to your desktop
+The last step of your presetup will be to install ForTrace. Navigate into the main directory you copied to your desktop
 and run:
 
 .. code-block:: console
 
-    $ python setup.py install --user
+    $ python3 setup.py install --user
 
 
 Connecting the guest machines to the NFS server
@@ -453,7 +465,7 @@ This method can also be used to connect the NFS server to your host machine.
 Creating backups or manual clones for guest templates
 ######################################################
 
-fortrace creates and disposes of clones of the prepared templates automatically, but you might want to create
+ForTrace creates and disposes of clones of the prepared templates automatically, but you might want to create
 a backup of your templates manually. To do so, simply start **virt-manager**, right-click on the template and select **clone**.
 
 While the method above works for both Windows and Ubuntu, you can create a Ubuntu backup without a graphical interface:

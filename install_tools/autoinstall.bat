@@ -19,7 +19,7 @@ if %errorLevel% == 0 (
 
 	echo "Installing Python 3.7"
 	REM start /wait msiexec.exe /i %~dp0python.msi /passive /L*V "C:\msilog.log" ADDLOCAL=ALL ALLUSERS=1
-	choco install python3 -y
+	REM choco install python3 --version=3.7.2 -y
 
 	REM echo "Installing pip via get-pip.py python script - pip might already be installed via Python 2.7 installation"
 	REM python %~dp0get-pip.py

@@ -5,7 +5,7 @@ Configuration of installation options
 ######################################
 
 This short chapter will guide you through the **config.json** file located in **install_tools** to help you adjust
-necessary information for your fortrace installation on both the host and guest machines. Please adjust this information
+necessary information for your ForTrace installation on both the host and guest machines. Please adjust this information
 **before** running any of the installation scripts.
 
 
@@ -16,7 +16,7 @@ config.json
     :language: json
 
 
-* **User**: Here you can adjust the user in case you are not using the default fortrace user name. This is necessary, because certain important privileges (e.g. rights to the libvirtd group) will be assigned to that user.
+* **User**: Here you can adjust the user in case you are not using the default ForTrace user name. This is necessary, because certain important privileges (e.g. rights to the libvirtd group) will be assigned to that user.
 
 
 
@@ -29,7 +29,7 @@ config.json
 
 
 
-* **fortrace-path**: This value should be altered if you do not move fortrace to your desktop or have moved it from your desktop to a different location.
+* **fortrace-path**: This value should be altered if you do not move ForTrace to your desktop or have moved it from your desktop to a different location.
 
 
 

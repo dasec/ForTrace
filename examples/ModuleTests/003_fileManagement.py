@@ -22,6 +22,8 @@ smb_share = r"\\192.168.103.143\sambashare"
 smb_user = "service"
 smb_pass = "fortrace"
 
+hostplattform = "windows11"
+
 # Function status
 recycle = True
 emptyBin = True
@@ -37,7 +39,7 @@ guests = []
 guestListener = GuestListener(guests, logger)
 virtual_machine_monitor1 = Vmm(macsInUse, guests, logger)
 imagename = "fileManagement_testscript"
-guest = virtual_machine_monitor1.create_guest(guest_name=imagename, platform="windows")
+guest = virtual_machine_monitor1.create_guest(guest_name=imagename, platform=hostplattform)
 
 # Wait for the VM to connect to the VMM
 guest.waitTillAgentIsConnected()

@@ -16,11 +16,10 @@
     <script type="text/javascript" src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Installation of fortrace" href="../installation/index.html" />
-    <link rel="prev" title="Generator" href="generator.html" />
+    <link rel="next" title="Installation of ForTrace" href="../installation/index.html" />
+    <link rel="prev" title="Generator and manual testing" href="generator.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-  
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
@@ -30,24 +29,44 @@
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          
-
           <div class="body" role="main">
             
   <div class="section" id="service-vm">
 <span id="service"></span><h1>Service VM<a class="headerlink" href="#service-vm" title="Permalink to this headline">¶</a></h1>
+<p>The Service-VM is a collection of tools and services that are needed for specific scenarios.
+All of the services are optional and are not mandatory in general.</p>
+<p>We decided to use a debian image for the Service-VM, but feel free to choose your favorite linux distribution.
+In case you choose a linux distribution other than debian be aware that some commands of this instruction won’t work on your VM.
+Nevertheless, the changes for the config files will stay the same for each linux distribution.
+We recommend using the Service-VM provided by us <a class="reference external" href="https://hessenbox.tu-darmstadt.de/dl/fiVMPTSEjfKCTjHfLpVYpRLF/.zip">here</a>.</p>
+<p>If you want to use the full functionality of the ForTrace generator you have to install all of the following services.
+Once you have performed these steps, run <strong>ip addr</strong> to display the Service-VM’s ip address.
+This is important since the generator needs the address to perform various services.
+The IP address will look like this: <strong>192.168.103.xxx</strong> with 103 indicating that it is an IP address of the public network.
+Naturally, this will change if you decide to configure your networks differently.</p>
 <div class="section" id="ssh">
 <h2>SSH<a class="headerlink" href="#ssh" title="Permalink to this headline">¶</a></h2>
 <p>The VM has no GUI. Therefore SSH is necessary to install and configure the needed services.</p>
 <p>IP: <cite>192.168.103.123</cite></p>
-<p>User  Password</p>
-<p>——  ——</p>
-<p><cite>root</cite> (disabled via SSH)  <cite>fortrace</cite></p>
-<p><cite>service</cite>  <cite>fortrace</cite></p>
-</div>
-<div class="section" id="backup">
-<h2>Backup<a class="headerlink" href="#backup" title="Permalink to this headline">¶</a></h2>
-<p>Clean image (without any installations) was cloned under: /data/images/backup/ using the following command:</p>
+<p>It is possible that your service VM may have a different IP address. It is recommended to check the ip address before using ForTrace.</p>
+<p>Following are the login credentials for the provided VM:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="60%" />
+<col width="40%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>User</strong></td>
+<td><strong>Password</strong></td>
+</tr>
+<tr class="row-even"><td>root (SSH disabled)</td>
+<td>hystck</td>
+</tr>
+<tr class="row-odd"><td>service</td>
+<td>hystck</td>
+</tr>
+</tbody>
+</table>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> virt-clone --original debian_service --name debian_service_backup --file /data/images/backing/debian_service_backup.qcow2
 </pre></div>
 </div>
@@ -70,10 +89,22 @@ Similarly to the the mail communication, the <strong>SMB</strong> communication 
 </div>
 </div>
 </div>
+<div class="section" id="malware-service">
+<h1>Malware Service<a class="headerlink" href="#malware-service" title="Permalink to this headline">¶</a></h1>
+<p>The Malware module is currently split in two parts. One is the executable Malware component that will create traces on the guest machine.
+The other is a DNS and web server which are used to communicate with and control the malware. The following figure will give an overview
+of the module’s workflow and the integration of the Malware Service VM.</p>
+<div class="figure" id="id1">
+<img alt="Malware module workflow." src="../_images/Malware_module_workflow.PNG" />
+<p class="caption"><span class="caption-text">Malware module workflow.</span></p>
+</div>
+<p>Both components of the Malware module are delivered in the <em>root</em> directory of this repository. The server component can be configured easily
+using <em>MalwareServer/server_config.txt</em>. Before starting the Server it is advised to check the config file to amend paths and other attributes to fit your machine.
+It is advised to use a Windows virtual machine for this Service VM.</p>
+</div>
 
 
           </div>
-          
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -90,32 +121,31 @@ Similarly to the the mail communication, the <strong>SMB</strong> communication 
 <h3>Navigation</h3>
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="index.html">Architecture of fortrace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Architecture of ForTrace</a></li>
 <li class="toctree-l1"><a class="reference internal" href="framework_architecture.html">Framework Architecture</a></li>
-<li class="toctree-l1"><a class="reference internal" href="generator.html">Generator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generator.html">Generator and manual testing</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Service VM</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#ssh">SSH</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#backup">Backup</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">Installation of fortrace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#malware-service">Malware Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">Installation of ForTrace</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../installation/config.html">Configuration of installation options</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../installation/host.html">Host Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../installation/guest.html">Guest Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../installation/service_vm.html">Installation of Service VM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../installation/firstrun.html">First Run after installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../developer/index.html">Developer reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../developer/functions.html">Functions of fortrace</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../developer/implementing.html">Implementation of Scenarios</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../developer/implementing.html#implementation-of-new-features">Implementation of new Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/functions.html">Functions of ForTrace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/implementing.html">Implementing new Scenarios and Features</a></li>
 </ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="generator.html" title="previous chapter">Generator</a></li>
-      <li>Next: <a href="../installation/index.html" title="next chapter">Installation of fortrace</a></li>
+      <li>Previous: <a href="generator.html" title="previous chapter">Generator and manual testing</a></li>
+      <li>Next: <a href="../installation/index.html" title="next chapter">Installation of ForTrace</a></li>
   </ul></li>
 </ul>
 </div>
@@ -131,14 +161,6 @@ Similarly to the the mail communication, the <strong>SMB</strong> communication 
     </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
-
-
-
-
-
-
-
-
         </div>
       </div>
       <div class="clearer"></div>
@@ -148,7 +170,7 @@ Similarly to the the mail communication, the <strong>SMB</strong> communication 
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |
       <a href="../_sources/architecture/service_vm.rst.txt"

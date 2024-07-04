@@ -15,6 +15,8 @@ except ImportError as ie:
 # The effect of some functions may interfere with each other (e.g. cleaning the Event Log and then deleting the log
 # files seems pretty pointless
 
+hostplattform = "windows11"
+
 # Function status
 disableEventLog = True
 disableHibernation = True
@@ -41,7 +43,7 @@ guests = []
 guestListener = GuestListener(guests, logger)
 virtual_machine_monitor1 = Vmm(macsInUse, guests, logger)
 imagename = "antiForensics_testscript"
-guest = virtual_machine_monitor1.create_guest(guest_name=imagename, platform="windows")
+guest = virtual_machine_monitor1.create_guest(guest_name=imagename, platform=hostplattform)
 
 # Wait for the VM to connect to the VMM
 guest.waitTillAgentIsConnected()

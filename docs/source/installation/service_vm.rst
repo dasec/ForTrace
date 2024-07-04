@@ -21,6 +21,7 @@ using SSH.
     --graphics vnc,listen=0.0.0.0
     --noautoconsole -v
 
+We recommend using the Service-VM provided by us `here <https://hessenbox.tu-darmstadt.de/dl/fiVMPTSEjfKCTjHfLpVYpRLF/.zip>`_.
 
 If you have decided to use the service VM image we provide, you will need to perform a few steps to enable all functionalities.
 First, you will need to add your public and private networks manually. This can be done using **virt-manager**.
@@ -33,9 +34,16 @@ needs the address to perform various services. The IP address will look like thi
 is an IP address of the **public** network. Naturally, this will change if you decide to configure your networks differently.
 
 
+
 **Login data for provided service VM:**
-root - fortrace
-service - fortrace
+
++---------------------+--------------+
+| **User**            | **Password** |
++---------------------+--------------+
+| root (SSH disabled) | hystck       |
++---------------------+--------------+
+| service             | hystck       |
++---------------------+--------------+
 
 
 Print Service
@@ -310,11 +318,80 @@ installing an NFS server on your **host machine** or at least connecting your **
 
 
 
+DHCP
+====
+
+Here comes a quick introduction for configuring dnsmasq to serve as a DHCP-Server.
+
+Configuration
+#############
+
+The following config parameters need to be adjusted:
+::
+
+	$ cat /etc/dnsmasq.conf
+
+	...
+	interface=eth0
+	interface=eth1
+	...
+	dhcp-range=eth0,192.168.2.10,192.168.2.254,12h
+	dhcp-range=eth1,192.168.3.10,192.168.3.254,12h
+	...
+
+	$ sudo ifconfig eth0 192.168.2.2
+	$ sudo ifconfig eth1 192.168.3.2
+
+	$ sudo service dnsmasq restart
+
+Be aware that you have to replace the IP-Range as well as the interfaces based on your system configuration. The interfaces should be the ones
+connected to the bridges br0 and br1.
+
 .. TODO install instruction service VM including DHCP server
 
 
+####################
+Malware Service
+####################
 
+We recommend using either Windows Server or Windows 10 as the basis of the Malware Service VM. An easy solution would be to clone
+the Windows guest template **after** you have already pulled the ForTrace repository.
 
+Additionally, *Microsoft Visual C++ Redistributables* and a current Python version need to be installed. Python is used to provide
+the HTTP malware download scenarios with a webserver.
+
+You will also need to allow and install *OpenSSH* on the Windows Service VM.
+
+#. Go to Setting.
+#. Go to Apps.
+#. Go to Apps & features.
+#. Go to Optional features.
+#. Choose *Add a feature*.
+#. Locate *OpenSSH server*.
+#. Select Install.
+
+In case you are running the Service VM on a Windows 11 machine, installing OpenSSH will look like this:
+
+#. Go to Setting.
+#. Go to Apps.
+#. Go to Optional features.
+#. Click *View features*.
+#. Locate *OpenSSH server*.
+#. Select Install.
+
+The *MalwareServer* found in the root directory of the repository can now be extracted. Check */MalwareServer/server_config.txt*
+to amend paths and amend IP addresses here and in the *MalwareBot* code if needed. All that is left is to execute the Malware Server code on the VM.
+
+There need to be some adjustments on the **Windows guest template** as well. *Microsoft Visual C++ Redistributables* need to be
+installed here as well. It is also recommended to deactivate *Windows defender* if you choose to use the sample *MalwareBot*.
+Furthermore deactivating UAC is recommended, as it is preventing the creation of services.
+There are multiple ways to disable UAC, one of them is PowerShell:
+
+.. code-block:: console
+
+    C:\ New-ItemProperty -Path 'HKLM:\\Software\\Microsoft\\Windows\\CurrentVersion\\policies\\system' -Name 'EnableLUA' -PropertyType 'DWord' -Value 0 -Force
+
+You may also need to install Office 365 or an alternative that can deploy macros to access the dropper component of this module.
 
 
 

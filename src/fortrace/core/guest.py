@@ -263,7 +263,7 @@ class Guest(object):
                     # - Create a backing image from the base image
                     backing_image_file = join(constants.FILEPATH_TEMPLATE_IMAGES, self.template + ".qcow2")
                     subprocess.check_output(
-                        ["qemu-img", "create", "-f", "qcow2", "-b", backing_image_file, local_image_file_path])
+                        ["qemu-img", "create", "-f", "qcow2", "-F", "qcow2", "-b", backing_image_file, local_image_file_path])
                     print(self.guestname + " successfully created image file")
 
                     # create xml config for the new guest

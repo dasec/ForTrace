@@ -23,7 +23,7 @@ except ImportError as ie:
 export_dir = "/data/export/"
 vm_name = "Scenario{0}".format(random.randint(0, 9999))
 author = "Stephan Maltan"
-hostplatform = "windows"
+hostplatform = "windows11"
 creation_date = date.today().strftime('%Y-%m-%d')
 
 ##### SMB Server Data #####
@@ -36,7 +36,7 @@ smb_pass = "fortrace"
 ##### Beginning Date of the scenario #####
 # System time that will be set on first startup
 # use None for current date
-scenario_start = "2021-08-15 08:32:15"
+scenario_start = "2023-08-15 08:15:42"
 
 #############################################
 #       Space for additional content        #

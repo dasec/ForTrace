@@ -13,6 +13,7 @@ except ImportError as ie:
 ############################################################
 # Overview on used guest functions:
 # - insertCD(iso_path)
+hostplattform = "windows11"
 
 # Function status
 mountCD = True
@@ -36,7 +37,7 @@ guests = []
 guestListener = GuestListener(guests, logger)
 virtual_machine_monitor1 = Vmm(macsInUse, guests, logger)
 imagename = "guestFunctions_testscript"
-guest = virtual_machine_monitor1.create_guest(guest_name=imagename, platform="windows")
+guest = virtual_machine_monitor1.create_guest(guest_name=imagename, platform=hostplattform)
 logger.info("This script only verifies, if functions are executed correctly on the VMM by now. Verifying the effect on the guest has to be implemented later on")
 
 # Wait for the VM to connect to the VMM

@@ -11,6 +11,8 @@ except ImportError as ie:
     print("Import error! in fileManagement.py " + str(ie))
     exit(1)
 
+hostplattform = "windows11"
+
 # Function status
 openBrow = True
 browse_to = True
@@ -25,7 +27,7 @@ guests = []
 guestListener = GuestListener(guests, logger)
 virtual_machine_monitor1 = Vmm(macsInUse, guests, logger)
 imagename = "webBrowserFirefox_testscript"
-guest = virtual_machine_monitor1.create_guest(guest_name=imagename, platform="windows")
+guest = virtual_machine_monitor1.create_guest(guest_name=imagename, platform=hostplattform)
 
 # Wait for the VM to connect to the VMM
 guest.waitTillAgentIsConnected()

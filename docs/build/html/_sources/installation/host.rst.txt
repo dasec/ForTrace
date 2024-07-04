@@ -4,7 +4,7 @@
 Host Installation
 **********************
 
-The installation of the host component of fortrace can be done automatically using **pre_setup.py** and the corresponding
+The installation of the host component of ForTrace can be done automatically using **pre_setup.py** and the corresponding
 **config.json** located in the install_tools folder. Please check :ref:`config` before you start any of the installation
 scripts and make adjustments where necessary. Please also adjust **fortrace-pool.xml** and **backing-pool.xml** if necessary. If you are using a different Ubuntu distribution than recommended in
 :ref:`installindex`, you might need to tweak either file or run a completely manual installation of the host component.
@@ -21,10 +21,10 @@ scripts and make adjustments where necessary. Please also adjust **fortrace-pool
 Installation Host -- scripted
 ####################################
 
-The partially automated installation requires just a few steps to set up the host components of fortrace.
+The partially automated installation requires just a few steps to set up the host components of ForTrace.
 
-First, make sure the name of the user and your chosen paths for the virtual machine data, the location of your cloned fortrace
-repository and the path to your tcpdump binary you want to install fortrace on is correctly configured in **config.json**
+First, make sure the name of the user and your chosen paths for the virtual machine data, the location of your cloned ForTrace
+repository and the path to your tcpdump binary you want to install ForTrace on is correctly configured in **config.json**
 This is important, since the setup script later adds this user to the libvirtd-group,
 which is required to create clones of the virtual guest machines.
 
@@ -34,7 +34,7 @@ A new user can be added with the following command:
 
     $ sudo adduser fortrace
 
-If you want to install fortrace on a new user, please create that user **before** running any part of the installation process.
+If you want to install ForTrace on a new user, please create that user **before** running any part of the installation process.
 Additionally, it is imperative to give the new user root permissions as the installation script has to be called with sudo.
 
 .. code-block:: console
@@ -51,11 +51,11 @@ new user. This is one of multiple ways of allowing GUI functions for a new user.
 **NOTE:** Please adjust the username and ID in **config.json, fortrace-pool.xml** and **backing-pool.xml**.
 
 
-To run the following commands, you will need to download fortrace now.
-fortrace can be found here: `Github link <https://github.com/dasec/fortrace>`_.
+To run the following commands, you will need to download ForTrace now.
+ForTrace can be found here: `Github link <https://github.com/dasec/fortrace>`_.
 Clone or download the repository and navigate into **/install_tools**.
 
-In this folder, you will find a shell script called **linux_installation.sh**. To install the further parts of fortrace's
+In this folder, you will find a shell script called **linux_installation.sh**. To install the further parts of ForTrace's
 host component, run the script initially **without** root privileges (you will be asked to enter your password once the script starts) and choose **h** when the console prompts you to make a choice. The
 script will then install all necessary packages including the appropriate Python version.
 
@@ -85,7 +85,7 @@ the user mentioned in **config.json** to that group as well as to the libvirt gr
 default paths for your pools or the location of tcpdump, you can do so in **config.json** (see: :ref:`config`)
 All of these steps will be described further in the next section **Installation Host -- manual**.
 
-The backing folder, which will contain the differential images created during the execution of fortrace tasks, is currently created
+The backing folder, which will contain the differential images created during the execution of ForTrace tasks, is currently created
 as a pool as well. Refer to the next section in case this causes any issues for you. Alternatively, you could alter **src/fortrace/utility/constants.py**
 and remove the necessity for this backing folder.
 .. Important note: It is possible, that the **backing** folder inside the created pool location is missing, which
@@ -95,11 +95,12 @@ simply add a folder **/data/[pool-name]/backing**. You can also remove **backing
 
 .. TODO: code snippet?
 
-Lastly, fortrace needs to be installed. Navigate into the folder and then run:
+Lastly, ForTrace needs to be installed. While the installation script will do this automatically for most Ubuntu distributions, in case of an error you may need to
+navigate into the folder and then run:
 
 .. code-block:: console
 
-    $ python setup.py install --user
+    $ python3 setup.py install --user
 
 
 Installation Host -- manual
@@ -109,8 +110,8 @@ In case there are any issues with the partially automatic installation, you are 
 or simply want to adapt the installation process to a different OS, this section will guide you through the entire
 host-side installation process.
 
-First, make sure the name of the user and your chosen paths for the virtual machine data, the location of your cloned fortrace
-repository and the path to your tcpdump binary you want to install fortrace on is correctly configured in **config.json** (:ref.
+First, make sure the name of the user and your chosen paths for the virtual machine data, the location of your cloned ForTrace
+repository and the path to your tcpdump binary you want to install ForTrace on is correctly configured in **config.json** (:ref.
 This is important, since the setup script later adds this user to the libvirtd-group,
 which is required to create clones of the virtual guest machines.
 
@@ -120,7 +121,7 @@ A new user can be added with the following command:
 
     $ sudo adduser fortrace
 
-If you want to install fortrace on a new user, please create that user **before** running any part of the installation process.
+If you want to install ForTrace on a new user, please create that user **before** running any part of the installation process.
 Additionally, it is imperative to give the new user root permissions as the installation script has to be called with sudo.
 
 .. code-block:: console
@@ -137,20 +138,18 @@ new user. This is one of multiple ways of allowing GUI functions for a new user.
 
 **NOTE:** Please adjust the username and ID in **config.json, fortrace-pool.xml** and **backing-pool.xml**.
 
-
-By default, only python 3 is installed on the recommended Ubuntu distribution, but fortrace is
-currently still running on python 2. The following command should install python 2.7.
+ForTrace is currently designed to run using either Python 2 or Python 3, however due to the implementation of newer modules, compatibility may be restricted to Python 3 in the future.
 
 .. code-block:: console
 
-    $ sudo apt install python
+    $ sudo apt install python3
 
 
 You can check your python version:
 
 .. code-block:: console
 
-    $ python -V
+    $ python3 -V
 
 
 Next, you need to install the required packages.
@@ -165,6 +164,7 @@ Next, you need to install the required packages.
     $ sudo apt install virt-manager
     $ sudo apt install libcap2-bin
     $ sudo apt install tcpdump
+    $ ...
 
 The required packages can also be found in **/install_tools/packet_requirements.txt**.
 
@@ -173,21 +173,22 @@ In a similar manner, all necessary python packages need to be installed.
 
 .. code-block:: console
 
-    $ pip install -U pywinauto
-    $ pip install -U pywin32
-    $ pip install -U setuptools
-    $ pip install -U selenium
-    $ pip install -U marionette_driver
-    $ pip install -U netifaces
-    $ pip install -U psutil
-    $ pip install -U netaddr
-    $ pip install -U enum34
-    $ pip install -U protobuf==2.5.0
+    $ pip3 install -U pywinauto
+    $ pip3 install -U pywin32
+    $ pip3 install -U setuptools
+    $ pip3 install -U selenium
+    $ pip3 install -U marionette_driver
+    $ pip3 install -U netifaces
+    $ pip3 install -U psutil
+    $ pip3 install -U netaddr
+    $ pip3 install -U enum34
+    $ pip3 install -U protobuf
+    $ ...
 
 These packages can also be located under **/install_tools/PIP_requirements.txt**.
 
-The default network sniffer chosen by fortrace ist tcpdump. Usually, tcpdump requires root privileges to function
-properly, but since it should not be a requirement to run fortrace with root privileges, a simple modification to tcpdump
+The default network sniffer chosen by ForTrace ist tcpdump. Usually, tcpdump requires root privileges to function
+properly, but since it should not be a requirement to run ForTrace with root privileges, a simple modification to tcpdump
 needs to be made.
 
 .. code-block:: console
@@ -208,9 +209,9 @@ In case this solution does not work for you, you can simply give tcpdump the nec
 
     $ sudo chmod +s /usr/sbin/tcpdump
 
-Another privilege issue concerns libvirtd and the created fortrace user. Only root and members of the **libvirtd** group
+Another privilege issue concerns libvirtd and the created ForTrace user. Only root and members of the **libvirtd** group
 are able to fully access and modify the virtual machine images. To remedy this situation, we first usually have to create
-the libvirtd group. After creating the group, we can add the fortrace user to it.
+the libvirtd group. After creating the group, we can add the ForTrace user to it.
 
 .. code-block:: console
 
@@ -248,11 +249,11 @@ You can check your pools with the following commands:
     $ virsh pool-info fortrace-pool
 
 
-To run the following commands, you will need to download fortrace now.
-fortrace can be found here: `Github link <https://github.com/dasec/fortrace>`_.
+To run the following commands, you will need to download ForTrace now.
+ForTrace can be found here: `Github link <https://github.com/dasec/fortrace>`_.
 Clone or download the repository and navigate into **/install_tools**. Here, you will find **private.xml** and
 **public.xml**. These two files will help you to set up the network connections needed to communicate between the
-guest and the host without tainting the actual internet traffic fortrace is creating. The following set of commands
+guest and the host without tainting the actual internet traffic ForTrace is creating. The following set of commands
 will use the XML templates provided.
 
 .. code-block:: console
@@ -276,11 +277,11 @@ Similarly to the pools, you can check your created networks:
     $ virsh net-info [name]
 
 
-Lastly, fortrace needs to be installed. Navigate into the folder and then run:
+Lastly, ForTrace needs to be installed. Navigate into the folder and then run:
 
 .. code-block:: console
 
-    $ python setup.py install --user
+    $ python3 setup.py install --user
 
 
 
@@ -288,7 +289,7 @@ Lastly, fortrace needs to be installed. Navigate into the folder and then run:
 Template Rights Management
 ###################################
 
-After installing the host side of fortrace, you need alter the **/etc/libvirt/qemu.conf**. First, you need to stop the libvirt service:
+After installing the host side of ForTrace, you need alter the **/etc/libvirt/qemu.conf**. First, you need to stop the libvirt service:
 
 .. code-block:: console
 

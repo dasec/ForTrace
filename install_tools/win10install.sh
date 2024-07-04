@@ -21,10 +21,10 @@ if [ ! -f "$path" ]; then
     exit
 fi
 
-virt-install --name windows-template \
+virt-install --name windows10-template \
 --ram 8192 \
 --vcpus sockets=1,cores=4,threads=1 \
---disk pool="$poolname",bus=sata,size=40,format=qcow2 \
+--disk pool="$poolname",bus=sata,size=60,format=qcow2 \
 --cdrom "$path" \
 --network network="$publicname" \
 --network network="$privatename" \
@@ -32,4 +32,4 @@ virt-install --name windows-template \
 --noautoconsole \
 -v \
 
-chown $SUDO_USER "$poolpath"/"$poolname"/windows-template.qcow2
+chown $SUDO_USER "$poolpath"/"$poolname"/windows10-template.qcow2

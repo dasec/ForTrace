@@ -26,6 +26,7 @@ except ImportError as ie:
 export_dir = "/data/export/"
 vm_name = "Thesis-Windows_frame"
 author = "Stephan Maltan"
+hostplatform = "windows11"
 creation_date = date.today().strftime('%Y-%m-%d')
 
 ##### SMB Server Data #####
@@ -35,7 +36,7 @@ smb_pass = "fortrace"
 
 ##### Beginning Date of the scenario #####
 # set to None to use current date
-scenario_start = "2022-08-19 06:32:15"
+scenario_start = "2022-12-19 06:32:15"
 #############################################
 #       Space for additional content        #
 #############################################
@@ -79,7 +80,7 @@ guests = []
 logger = create_logger('fortraceManager', logging.INFO)
 guestListener = GuestListener(guests, logger)
 virtual_machine_monitor1 = Vmm(macsInUse, guests)#, logger)
-guest = virtual_machine_monitor1.create_guest(guest_name=vm_name, platform="windows", boottime=scenario_start)
+guest = virtual_machine_monitor1.create_guest(guest_name=vm_name, platform=hostplatform, boottime=scenario_start)
 sc = scenH.Scenario(logger, Reporter(), guest)
 
 sc.Reporter.add("imagename", vm_name)
