@@ -1,0 +1,8 @@
+NAME: Receive SMS
+DESCRIPTION: Receive SMS
+0:
+  PARAMETERS:
+    MESSAGE: Hey! I am on my way to the conference. Should i pick you up?
+    NUMBER: '123456789'
+  SUBTYPE: SMS
+  TYPE: EXTERNAL

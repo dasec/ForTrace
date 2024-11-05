@@ -1,0 +1,116 @@
+NAME: E-Mail
+DESCRIPTION: E-Mail
+8:
+  PARAMETERS:
+    RESOURCE_ID: None
+    RESOURCE_TEXT: None
+    RESOURCE_CONTENT_DESCRIPTION: None
+    RESOURCE_TAG: None
+    RESOURCE_CLASS: android.widget.FrameLayout
+    RESOURCE_PACKAGE_NAME: com.google.android.apps.nexuslauncher
+    RESOURCE_CHILD:
+    - RESOURCE_ID: com.google.android.apps.nexuslauncher:id/workspace
+      RESOURCE_TEXT: None
+      RESOURCE_CONTENT_DESCRIPTION: None
+      RESOURCE_TAG: None
+      RESOURCE_CLASS: android.widget.ScrollView
+      RESOURCE_PACKAGE_NAME: com.google.android.apps.nexuslauncher
+      RESOURCE_CHILD:
+      - RESOURCE_ID: None
+        RESOURCE_TEXT: Gmail
+        RESOURCE_CONTENT_DESCRIPTION: Gmail
+        RESOURCE_TAG: None
+        RESOURCE_CLASS: android.widget.TextView
+        RESOURCE_PACKAGE_NAME: com.google.android.apps.nexuslauncher
+        RESOURCE_CHILD: []
+        TEXT_TO_INSERT: None
+  TYPE: VIEW
+  SUBTYPE: android.widget.TextView
+9:
+  PARAMETERS:
+    RESOURCE_ID: None
+    RESOURCE_TEXT: None
+    RESOURCE_CONTENT_DESCRIPTION: None
+    RESOURCE_TAG: None
+    RESOURCE_CLASS: android.widget.FrameLayout
+    RESOURCE_PACKAGE_NAME: com.google.android.gm
+    RESOURCE_CHILD:
+    - RESOURCE_ID: com.google.android.gm:id/drawer_container
+      RESOURCE_TEXT: None
+      RESOURCE_CONTENT_DESCRIPTION: None
+      RESOURCE_TAG: None
+      RESOURCE_CLASS: androidx.drawerlayout.widget.DrawerLayout
+      RESOURCE_PACKAGE_NAME: com.google.android.gm
+      RESOURCE_CHILD:
+      - RESOURCE_ID: com.google.android.gm:id/content_pane
+        RESOURCE_TEXT: None
+        RESOURCE_CONTENT_DESCRIPTION: None
+        RESOURCE_TAG: None
+        RESOURCE_CLASS: android.widget.RelativeLayout
+        RESOURCE_PACKAGE_NAME: com.google.android.gm
+        RESOURCE_CHILD:
+        - RESOURCE_ID: com.google.android.gm:id/compose_button
+          RESOURCE_TEXT: Compose
+          RESOURCE_CONTENT_DESCRIPTION: Compose
+          RESOURCE_TAG: None
+          RESOURCE_CLASS: android.widget.Button
+          RESOURCE_PACKAGE_NAME: com.google.android.gm
+          RESOURCE_CHILD: []
+          TEXT_TO_INSERT: None
+  TYPE: VIEW
+  SUBTYPE: android.widget.Button
+10:
+  PARAMETERS:
+    TEXT: youremail@exampledomain.com
+  SUBTYPE: INSERT
+  TYPE: TEXT
+11:
+  PARAMETERS:
+    RESOURCE_ID: None
+    RESOURCE_TEXT: None
+    RESOURCE_CONTENT_DESCRIPTION: None
+    RESOURCE_TAG: None
+    RESOURCE_CLASS: android.widget.FrameLayout
+    RESOURCE_PACKAGE_NAME: com.google.android.gm
+    RESOURCE_CHILD:
+    - RESOURCE_ID: com.google.android.gm:id/compose
+      RESOURCE_TEXT: None
+      RESOURCE_CONTENT_DESCRIPTION: None
+      RESOURCE_TAG: None
+      RESOURCE_CLASS: android.widget.ScrollView
+      RESOURCE_PACKAGE_NAME: com.google.android.gm
+      RESOURCE_CHILD:
+      - RESOURCE_ID: com.google.android.gm:id/subject
+        RESOURCE_TEXT: Subject
+        RESOURCE_CONTENT_DESCRIPTION: None
+        RESOURCE_TAG: None
+        RESOURCE_CLASS: android.widget.EditText
+        RESOURCE_PACKAGE_NAME: com.google.android.gm
+        RESOURCE_CHILD: []
+        TEXT_TO_INSERT: Conference time table
+  TYPE: VIEW
+  SUBTYPE: android.widget.EditText
+12:
+  PARAMETERS:
+    TEXT: Hello\nCan you send me the time table for the conference?
+  SUBTYPE: INSERT
+  TYPE: TEXT
+13:
+  PARAMETERS:
+    RESOURCE_ID: None
+    RESOURCE_TEXT: None
+    RESOURCE_CONTENT_DESCRIPTION: None
+    RESOURCE_TAG: None
+    RESOURCE_CLASS: android.widget.FrameLayout
+    RESOURCE_PACKAGE_NAME: com.google.android.gm
+    RESOURCE_CHILD:
+    - RESOURCE_ID: com.google.android.gm:id/send
+      RESOURCE_TEXT: None
+      RESOURCE_CONTENT_DESCRIPTION: Send
+      RESOURCE_TAG: None
+      RESOURCE_CLASS: android.widget.Button
+      RESOURCE_PACKAGE_NAME: com.google.android.gm
+      RESOURCE_CHILD: []
+      TEXT_TO_INSERT: None
+  TYPE: VIEW
+  SUBTYPE: android.widget.Button

@@ -1,0 +1,20 @@
+0:
+  description: Show more key events
+  requires_API_level: 1
+  id: show_more
+3:
+  description: Home button
+  requires_API_level: 1
+  id: key_home
+4:
+  description: Back button
+  requires_API_level: 1
+  id: key_back
+27:
+  description: Camera open button
+  requires_API_level: 1
+  id: key_camera
+26 :
+  description: Power button
+  requires_API_level: 1
+  id: key_power

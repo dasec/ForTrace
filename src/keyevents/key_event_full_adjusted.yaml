@@ -1,0 +1,1144 @@
+0:
+  description: ''
+  id: key_unknown
+  requires_API_level: Unknown
+1:
+  description: ''
+  id: key_soft_left
+  requires_API_level: Unknown
+2:
+  description: ''
+  id: key_soft_right
+  requires_API_level: Unknown
+3:
+  description: ''
+  id: key_home
+  requires_API_level: Unknown
+4:
+  description: ''
+  id: key_back
+  requires_API_level: Unknown
+5:
+  description: ''
+  id: key_call
+  requires_API_level: Unknown
+6:
+  description: ''
+  id: key_endcall
+  requires_API_level: Unknown
+7:
+  description: ''
+  id: key_0
+  requires_API_level: Unknown
+8:
+  description: ''
+  id: key_1
+  requires_API_level: Unknown
+9:
+  description: ''
+  id: key_2
+  requires_API_level: Unknown
+10:
+  description: ''
+  id: key_3
+  requires_API_level: Unknown
+11:
+  description: ''
+  id: key_4
+  requires_API_level: Unknown
+12:
+  description: ''
+  id: key_5
+  requires_API_level: Unknown
+13:
+  description: ''
+  id: key_6
+  requires_API_level: Unknown
+14:
+  description: ''
+  id: key_7
+  requires_API_level: Unknown
+15:
+  description: ''
+  id: key_8
+  requires_API_level: Unknown
+16:
+  description: ''
+  id: key_9
+  requires_API_level: Unknown
+17:
+  description: ''
+  id: key_star
+  requires_API_level: Unknown
+18:
+  description: ''
+  id: key_pound
+  requires_API_level: Unknown
+19:
+  description: ''
+  id: key_dpad_up
+  requires_API_level: Unknown
+20:
+  description: ''
+  id: key_dpad_down
+  requires_API_level: Unknown
+21:
+  description: ''
+  id: key_dpad_left
+  requires_API_level: Unknown
+22:
+  description: ''
+  id: key_dpad_right
+  requires_API_level: Unknown
+23:
+  description: ''
+  id: key_dpad_center
+  requires_API_level: Unknown
+24:
+  description: ''
+  id: key_volume_up
+  requires_API_level: Unknown
+25:
+  description: ''
+  id: key_volume_down
+  requires_API_level: Unknown
+26:
+  description: ''
+  id: key_power
+  requires_API_level: Unknown
+27:
+  description: ''
+  id: key_camera
+  requires_API_level: Unknown
+28:
+  description: ''
+  id: key_clear
+  requires_API_level: Unknown
+29:
+  description: ''
+  id: key_a
+  requires_API_level: Unknown
+30:
+  description: ''
+  id: key_b
+  requires_API_level: Unknown
+31:
+  description: ''
+  id: key_c
+  requires_API_level: Unknown
+32:
+  description: ''
+  id: key_d
+  requires_API_level: Unknown
+33:
+  description: ''
+  id: key_e
+  requires_API_level: Unknown
+34:
+  description: ''
+  id: key_f
+  requires_API_level: Unknown
+35:
+  description: ''
+  id: key_g
+  requires_API_level: Unknown
+36:
+  description: ''
+  id: key_h
+  requires_API_level: Unknown
+37:
+  description: ''
+  id: key_i
+  requires_API_level: Unknown
+38:
+  description: ''
+  id: key_j
+  requires_API_level: Unknown
+39:
+  description: ''
+  id: key_k
+  requires_API_level: Unknown
+40:
+  description: ''
+  id: key_l
+  requires_API_level: Unknown
+41:
+  description: ''
+  id: key_m
+  requires_API_level: Unknown
+42:
+  description: ''
+  id: key_n
+  requires_API_level: Unknown
+43:
+  description: ''
+  id: key_o
+  requires_API_level: Unknown
+44:
+  description: ''
+  id: key_p
+  requires_API_level: Unknown
+45:
+  description: ''
+  id: key_q
+  requires_API_level: Unknown
+46:
+  description: ''
+  id: key_r
+  requires_API_level: Unknown
+47:
+  description: ''
+  id: key_s
+  requires_API_level: Unknown
+48:
+  description: ''
+  id: key_t
+  requires_API_level: Unknown
+49:
+  description: ''
+  id: key_u
+  requires_API_level: Unknown
+50:
+  description: ''
+  id: key_v
+  requires_API_level: Unknown
+51:
+  description: ''
+  id: key_w
+  requires_API_level: Unknown
+52:
+  description: ''
+  id: key_x
+  requires_API_level: Unknown
+53:
+  description: ''
+  id: key_y
+  requires_API_level: Unknown
+54:
+  description: ''
+  id: key_z
+  requires_API_level: Unknown
+55:
+  description: ''
+  id: key_comma
+  requires_API_level: Unknown
+56:
+  description: ''
+  id: key_period
+  requires_API_level: Unknown
+57:
+  description: ''
+  id: key_alt_left
+  requires_API_level: Unknown
+58:
+  description: ''
+  id: key_alt_right
+  requires_API_level: Unknown
+59:
+  description: ''
+  id: key_shift_left
+  requires_API_level: Unknown
+60:
+  description: ''
+  id: key_shift_right
+  requires_API_level: Unknown
+61:
+  description: ''
+  id: key_tab
+  requires_API_level: Unknown
+62:
+  description: ''
+  id: key_space
+  requires_API_level: Unknown
+63:
+  description: ''
+  id: key_sym
+  requires_API_level: Unknown
+64:
+  description: ''
+  id: key_explorer
+  requires_API_level: Unknown
+65:
+  description: ''
+  id: key_envelope
+  requires_API_level: Unknown
+66:
+  description: ''
+  id: key_enter
+  requires_API_level: Unknown
+67:
+  description: ''
+  id: key_del
+  requires_API_level: Unknown
+68:
+  description: ''
+  id: key_grave
+  requires_API_level: Unknown
+69:
+  description: ''
+  id: key_minus
+  requires_API_level: Unknown
+70:
+  description: ''
+  id: key_equals
+  requires_API_level: Unknown
+71:
+  description: ''
+  id: key_left_bracket
+  requires_API_level: Unknown
+72:
+  description: ''
+  id: key_right_bracket
+  requires_API_level: Unknown
+73:
+  description: ''
+  id: key_backslash
+  requires_API_level: Unknown
+74:
+  description: ''
+  id: key_semicolon
+  requires_API_level: Unknown
+75:
+  description: ''
+  id: key_apostrophe
+  requires_API_level: Unknown
+76:
+  description: ''
+  id: key_slash
+  requires_API_level: Unknown
+77:
+  description: ''
+  id: key_at
+  requires_API_level: Unknown
+78:
+  description: ''
+  id: key_num
+  requires_API_level: Unknown
+79:
+  description: ''
+  id: key_headsethook
+  requires_API_level: Unknown
+80:
+  description: ''
+  id: key_focus
+  requires_API_level: Unknown
+81:
+  description: ''
+  id: key_plus
+  requires_API_level: Unknown
+82:
+  description: ''
+  id: key_menu
+  requires_API_level: Unknown
+83:
+  description: ''
+  id: key_notification
+  requires_API_level: Unknown
+84:
+  description: ''
+  id: key_search
+  requires_API_level: Unknown
+85:
+  description: ''
+  id: key_media_play_pause
+  requires_API_level: Unknown
+86:
+  description: ''
+  id: key_media_stop
+  requires_API_level: Unknown
+87:
+  description: ''
+  id: key_media_next
+  requires_API_level: Unknown
+88:
+  description: ''
+  id: key_media_previous
+  requires_API_level: Unknown
+89:
+  description: ''
+  id: key_media_rewind
+  requires_API_level: Unknown
+90:
+  description: ''
+  id: key_media_fast_forward
+  requires_API_level: Unknown
+91:
+  description: ''
+  id: key_mute
+  requires_API_level: Unknown
+92:
+  description: ''
+  id: key_page_up
+  requires_API_level: Unknown
+93:
+  description: ''
+  id: key_page_down
+  requires_API_level: Unknown
+94:
+  description: ''
+  id: key_pictsymbols
+  requires_API_level: Unknown
+95:
+  description: ''
+  id: key_switch_charset
+  requires_API_level: Unknown
+96:
+  description: ''
+  id: key_button_a
+  requires_API_level: Unknown
+97:
+  description: ''
+  id: key_button_b
+  requires_API_level: Unknown
+98:
+  description: ''
+  id: key_button_c
+  requires_API_level: Unknown
+99:
+  description: ''
+  id: key_button_x
+  requires_API_level: Unknown
+100:
+  description: ''
+  id: key_button_y
+  requires_API_level: Unknown
+101:
+  description: ''
+  id: key_button_z
+  requires_API_level: Unknown
+102:
+  description: ''
+  id: key_button_l1
+  requires_API_level: Unknown
+103:
+  description: ''
+  id: key_button_r1
+  requires_API_level: Unknown
+104:
+  description: ''
+  id: key_button_l2
+  requires_API_level: Unknown
+105:
+  description: ''
+  id: key_button_r2
+  requires_API_level: Unknown
+106:
+  description: ''
+  id: key_button_thumbl
+  requires_API_level: Unknown
+107:
+  description: ''
+  id: key_button_thumbr
+  requires_API_level: Unknown
+108:
+  description: ''
+  id: key_button_start
+  requires_API_level: Unknown
+109:
+  description: ''
+  id: key_button_select
+  requires_API_level: Unknown
+110:
+  description: ''
+  id: key_button_mode
+  requires_API_level: Unknown
+111:
+  description: ''
+  id: key_escape
+  requires_API_level: Unknown
+112:
+  description: ''
+  id: key_forward_del
+  requires_API_level: Unknown
+113:
+  description: ''
+  id: key_ctrl_left
+  requires_API_level: Unknown
+114:
+  description: ''
+  id: key_ctrl_right
+  requires_API_level: Unknown
+115:
+  description: ''
+  id: key_caps_lock
+  requires_API_level: Unknown
+116:
+  description: ''
+  id: key_scroll_lock
+  requires_API_level: Unknown
+117:
+  description: ''
+  id: key_meta_left
+  requires_API_level: Unknown
+118:
+  description: ''
+  id: key_meta_right
+  requires_API_level: Unknown
+119:
+  description: ''
+  id: key_function
+  requires_API_level: Unknown
+120:
+  description: ''
+  id: key_sysrq
+  requires_API_level: Unknown
+121:
+  description: ''
+  id: key_break
+  requires_API_level: Unknown
+122:
+  description: ''
+  id: key_move_home
+  requires_API_level: Unknown
+123:
+  description: ''
+  id: key_move_end
+  requires_API_level: Unknown
+124:
+  description: ''
+  id: key_insert
+  requires_API_level: Unknown
+125:
+  description: ''
+  id: key_forward
+  requires_API_level: Unknown
+126:
+  description: ''
+  id: key_media_play
+  requires_API_level: Unknown
+127:
+  description: ''
+  id: key_media_pause
+  requires_API_level: Unknown
+128:
+  description: ''
+  id: key_media_close
+  requires_API_level: Unknown
+129:
+  description: ''
+  id: key_media_eject
+  requires_API_level: Unknown
+130:
+  description: ''
+  id: key_media_record
+  requires_API_level: Unknown
+131:
+  description: ''
+  id: key_f1
+  requires_API_level: Unknown
+132:
+  description: ''
+  id: key_f2
+  requires_API_level: Unknown
+133:
+  description: ''
+  id: key_f3
+  requires_API_level: Unknown
+134:
+  description: ''
+  id: key_f4
+  requires_API_level: Unknown
+135:
+  description: ''
+  id: key_f5
+  requires_API_level: Unknown
+136:
+  description: ''
+  id: key_f6
+  requires_API_level: Unknown
+137:
+  description: ''
+  id: key_f7
+  requires_API_level: Unknown
+138:
+  description: ''
+  id: key_f8
+  requires_API_level: Unknown
+139:
+  description: ''
+  id: key_f9
+  requires_API_level: Unknown
+140:
+  description: ''
+  id: key_f10
+  requires_API_level: Unknown
+141:
+  description: ''
+  id: key_f11
+  requires_API_level: Unknown
+142:
+  description: ''
+  id: key_f12
+  requires_API_level: Unknown
+143:
+  description: ''
+  id: key_num_lock
+  requires_API_level: Unknown
+144:
+  description: ''
+  id: key_numpad_0
+  requires_API_level: Unknown
+145:
+  description: ''
+  id: key_numpad_1
+  requires_API_level: Unknown
+146:
+  description: ''
+  id: key_numpad_2
+  requires_API_level: Unknown
+147:
+  description: ''
+  id: key_numpad_3
+  requires_API_level: Unknown
+148:
+  description: ''
+  id: key_numpad_4
+  requires_API_level: Unknown
+149:
+  description: ''
+  id: key_numpad_5
+  requires_API_level: Unknown
+150:
+  description: ''
+  id: key_numpad_6
+  requires_API_level: Unknown
+151:
+  description: ''
+  id: key_numpad_7
+  requires_API_level: Unknown
+152:
+  description: ''
+  id: key_numpad_8
+  requires_API_level: Unknown
+153:
+  description: ''
+  id: key_numpad_9
+  requires_API_level: Unknown
+154:
+  description: ''
+  id: key_numpad_divide
+  requires_API_level: Unknown
+155:
+  description: ''
+  id: key_numpad_multiply
+  requires_API_level: Unknown
+156:
+  description: ''
+  id: key_numpad_subtract
+  requires_API_level: Unknown
+157:
+  description: ''
+  id: key_numpad_add
+  requires_API_level: Unknown
+158:
+  description: ''
+  id: key_numpad_dot
+  requires_API_level: Unknown
+159:
+  description: ''
+  id: key_numpad_comma
+  requires_API_level: Unknown
+160:
+  description: ''
+  id: key_numpad_enter
+  requires_API_level: Unknown
+161:
+  description: ''
+  id: key_numpad_equals
+  requires_API_level: Unknown
+162:
+  description: ''
+  id: key_numpad_left_paren
+  requires_API_level: Unknown
+163:
+  description: ''
+  id: key_numpad_right_paren
+  requires_API_level: Unknown
+164:
+  description: ''
+  id: key_volume_mute
+  requires_API_level: Unknown
+165:
+  description: ''
+  id: key_info
+  requires_API_level: Unknown
+166:
+  description: ''
+  id: key_channel_up
+  requires_API_level: Unknown
+167:
+  description: ''
+  id: key_channel_down
+  requires_API_level: Unknown
+168:
+  description: ''
+  id: key_zoom_in
+  requires_API_level: Unknown
+169:
+  description: ''
+  id: key_zoom_out
+  requires_API_level: Unknown
+170:
+  description: ''
+  id: key_tv
+  requires_API_level: Unknown
+171:
+  description: ''
+  id: key_window
+  requires_API_level: Unknown
+172:
+  description: ''
+  id: key_guide
+  requires_API_level: Unknown
+173:
+  description: ''
+  id: key_dvr
+  requires_API_level: Unknown
+174:
+  description: ''
+  id: key_bookmark
+  requires_API_level: Unknown
+175:
+  description: ''
+  id: key_captions
+  requires_API_level: Unknown
+176:
+  description: ''
+  id: key_settings
+  requires_API_level: Unknown
+177:
+  description: ''
+  id: key_tv_power
+  requires_API_level: Unknown
+178:
+  description: ''
+  id: key_tv_input
+  requires_API_level: Unknown
+179:
+  description: ''
+  id: key_stb_power
+  requires_API_level: Unknown
+180:
+  description: ''
+  id: key_stb_input
+  requires_API_level: Unknown
+181:
+  description: ''
+  id: key_avr_power
+  requires_API_level: Unknown
+182:
+  description: ''
+  id: key_avr_input
+  requires_API_level: Unknown
+183:
+  description: ''
+  id: key_prog_red
+  requires_API_level: Unknown
+184:
+  description: ''
+  id: key_prog_green
+  requires_API_level: Unknown
+185:
+  description: ''
+  id: key_prog_yellow
+  requires_API_level: Unknown
+186:
+  description: ''
+  id: key_prog_blue
+  requires_API_level: Unknown
+187:
+  description: ''
+  id: key_app_switch
+  requires_API_level: Unknown
+188:
+  description: ''
+  id: key_button_1
+  requires_API_level: Unknown
+189:
+  description: ''
+  id: key_button_2
+  requires_API_level: Unknown
+190:
+  description: ''
+  id: key_button_3
+  requires_API_level: Unknown
+191:
+  description: ''
+  id: key_button_4
+  requires_API_level: Unknown
+192:
+  description: ''
+  id: key_button_5
+  requires_API_level: Unknown
+193:
+  description: ''
+  id: key_button_6
+  requires_API_level: Unknown
+194:
+  description: ''
+  id: key_button_7
+  requires_API_level: Unknown
+195:
+  description: ''
+  id: key_button_8
+  requires_API_level: Unknown
+196:
+  description: ''
+  id: key_button_9
+  requires_API_level: Unknown
+197:
+  description: ''
+  id: key_button_10
+  requires_API_level: Unknown
+198:
+  description: ''
+  id: key_button_11
+  requires_API_level: Unknown
+199:
+  description: ''
+  id: key_button_12
+  requires_API_level: Unknown
+200:
+  description: ''
+  id: key_button_13
+  requires_API_level: Unknown
+201:
+  description: ''
+  id: key_button_14
+  requires_API_level: Unknown
+202:
+  description: ''
+  id: key_button_15
+  requires_API_level: Unknown
+203:
+  description: ''
+  id: key_button_16
+  requires_API_level: Unknown
+204:
+  description: ''
+  id: key_language_switch
+  requires_API_level: Unknown
+205:
+  description: ''
+  id: key_manner_mode
+  requires_API_level: Unknown
+206:
+  description: ''
+  id: key_3d_mode
+  requires_API_level: Unknown
+207:
+  description: ''
+  id: key_contacts
+  requires_API_level: Unknown
+208:
+  description: ''
+  id: key_calendar
+  requires_API_level: Unknown
+209:
+  description: ''
+  id: key_music
+  requires_API_level: Unknown
+210:
+  description: ''
+  id: key_calculator
+  requires_API_level: Unknown
+211:
+  description: ''
+  id: key_zenkaku_hankaku
+  requires_API_level: Unknown
+212:
+  description: ''
+  id: key_eisu
+  requires_API_level: Unknown
+213:
+  description: ''
+  id: key_muhenkan
+  requires_API_level: Unknown
+214:
+  description: ''
+  id: key_henkan
+  requires_API_level: Unknown
+215:
+  description: ''
+  id: key_katakana_hiragana
+  requires_API_level: Unknown
+216:
+  description: ''
+  id: key_yen
+  requires_API_level: Unknown
+217:
+  description: ''
+  id: key_ro
+  requires_API_level: Unknown
+218:
+  description: ''
+  id: key_kana
+  requires_API_level: Unknown
+219:
+  description: ''
+  id: key_assist
+  requires_API_level: Unknown
+220:
+  description: ''
+  id: key_brightness_down
+  requires_API_level: Unknown
+221:
+  description: ''
+  id: key_brightness_up
+  requires_API_level: Unknown
+222:
+  description: ''
+  id: key_media_audio_track
+  requires_API_level: Unknown
+223:
+  description: ''
+  id: key_sleep
+  requires_API_level: Unknown
+224:
+  description: ''
+  id: key_wakeup
+  requires_API_level: Unknown
+225:
+  description: ''
+  id: key_pairing
+  requires_API_level: Unknown
+226:
+  description: ''
+  id: key_media_top_menu
+  requires_API_level: Unknown
+227:
+  description: ''
+  id: key_11
+  requires_API_level: Unknown
+228:
+  description: ''
+  id: key_12
+  requires_API_level: Unknown
+229:
+  description: ''
+  id: key_last_channel
+  requires_API_level: Unknown
+230:
+  description: ''
+  id: key_tv_data_service
+  requires_API_level: Unknown
+231:
+  description: ''
+  id: key_voice_assist
+  requires_API_level: Unknown
+232:
+  description: ''
+  id: key_tv_radio_service
+  requires_API_level: Unknown
+233:
+  description: ''
+  id: key_tv_teletext
+  requires_API_level: Unknown
+234:
+  description: ''
+  id: key_tv_number_entry
+  requires_API_level: Unknown
+235:
+  description: ''
+  id: key_tv_terrestrial_analog
+  requires_API_level: Unknown
+236:
+  description: ''
+  id: key_tv_terrestrial_digital
+  requires_API_level: Unknown
+237:
+  description: ''
+  id: key_tv_satellite
+  requires_API_level: Unknown
+238:
+  description: ''
+  id: key_tv_satellite_bs
+  requires_API_level: Unknown
+239:
+  description: ''
+  id: key_tv_satellite_cs
+  requires_API_level: Unknown
+240:
+  description: ''
+  id: key_tv_satellite_service
+  requires_API_level: Unknown
+241:
+  description: ''
+  id: key_tv_network
+  requires_API_level: Unknown
+242:
+  description: ''
+  id: key_tv_antenna_cable
+  requires_API_level: Unknown
+243:
+  description: ''
+  id: key_tv_input_hdmi_1
+  requires_API_level: Unknown
+244:
+  description: ''
+  id: key_tv_input_hdmi_2
+  requires_API_level: Unknown
+245:
+  description: ''
+  id: key_tv_input_hdmi_3
+  requires_API_level: Unknown
+246:
+  description: ''
+  id: key_tv_input_hdmi_4
+  requires_API_level: Unknown
+247:
+  description: ''
+  id: key_tv_input_composite_1
+  requires_API_level: Unknown
+248:
+  description: ''
+  id: key_tv_input_composite_2
+  requires_API_level: Unknown
+249:
+  description: ''
+  id: key_tv_input_component_1
+  requires_API_level: Unknown
+250:
+  description: ''
+  id: key_tv_input_component_2
+  requires_API_level: Unknown
+251:
+  description: ''
+  id: key_tv_input_vga_1
+  requires_API_level: Unknown
+252:
+  description: ''
+  id: key_tv_audio_description
+  requires_API_level: Unknown
+253:
+  description: ''
+  id: key_tv_audio_description_mix_up
+  requires_API_level: Unknown
+254:
+  description: ''
+  id: key_tv_audio_description_mix_down
+  requires_API_level: Unknown
+255:
+  description: ''
+  id: key_tv_zoom_mode
+  requires_API_level: Unknown
+256:
+  description: ''
+  id: key_tv_contents_menu
+  requires_API_level: Unknown
+257:
+  description: ''
+  id: key_tv_media_context_menu
+  requires_API_level: Unknown
+258:
+  description: ''
+  id: key_tv_timer_programming
+  requires_API_level: Unknown
+259:
+  description: ''
+  id: key_help
+  requires_API_level: Unknown
+260:
+  description: ''
+  id: key_navigate_previous
+  requires_API_level: Unknown
+261:
+  description: ''
+  id: key_navigate_next
+  requires_API_level: Unknown
+262:
+  description: ''
+  id: key_navigate_in
+  requires_API_level: Unknown
+263:
+  description: ''
+  id: key_navigate_out
+  requires_API_level: Unknown
+264:
+  description: ''
+  id: key_stem_primary
+  requires_API_level: Unknown
+265:
+  description: ''
+  id: key_stem_1
+  requires_API_level: Unknown
+266:
+  description: ''
+  id: key_stem_2
+  requires_API_level: Unknown
+267:
+  description: ''
+  id: key_stem_3
+  requires_API_level: Unknown
+268:
+  description: ''
+  id: key_dpad_up_left
+  requires_API_level: Unknown
+269:
+  description: ''
+  id: key_dpad_down_left
+  requires_API_level: Unknown
+270:
+  description: ''
+  id: key_dpad_up_right
+  requires_API_level: Unknown
+271:
+  description: ''
+  id: key_dpad_down_right
+  requires_API_level: Unknown
+272:
+  description: ''
+  id: key_media_skip_forward
+  requires_API_level: Unknown
+273:
+  description: ''
+  id: key_media_skip_backward
+  requires_API_level: Unknown
+274:
+  description: ''
+  id: key_media_step_forward
+  requires_API_level: Unknown
+275:
+  description: ''
+  id: key_media_step_backward
+  requires_API_level: Unknown
+276:
+  description: ''
+  id: key_soft_sleep
+  requires_API_level: Unknown
+277:
+  description: ''
+  id: key_cut
+  requires_API_level: Unknown
+278:
+  description: ''
+  id: key_copy
+  requires_API_level: Unknown
+279:
+  description: ''
+  id: key_paste
+  requires_API_level: Unknown
+280:
+  description: ''
+  id: key_system_navigation_up
+  requires_API_level: Unknown
+281:
+  description: ''
+  id: key_system_navigation_down
+  requires_API_level: Unknown
+282:
+  description: ''
+  id: key_system_navigation_left
+  requires_API_level: Unknown
+283:
+  description: ''
+  id: key_system_navigation_right
+  requires_API_level: Unknown
+284:
+  description: ''
+  id: key_all_apps
+  requires_API_level: Unknown
+285:
+  description: ''
+  id: key_refresh
+  requires_API_level: Unknown
